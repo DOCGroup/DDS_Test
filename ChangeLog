@@ -1,0 +1,9 @@
+Fri Mar 24 22:10:00 UTC 2006    <mxiong@anduril.dre.vanderbilt.edu>
+
+        * Created ChangeLog
+
+Local Variables:
+mode: change-log
+add-log-time-format: (lambda () (progn (setq tz (getenv "TZ")) (set-time-zone-rule "UTC") (setq time (format-time-string "%a %b %e %H:%M:%S %Z %Y" (current-time))) (set-time-zone-rule tz) time))
+indent-tabs-mode: nil
+End:
