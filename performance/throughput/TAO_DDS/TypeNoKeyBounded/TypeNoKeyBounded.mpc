@@ -1,0 +1,104 @@
+project(DCPS_Perf_Throughput*) : dcps, portableserver {
+  libout       = .
+  idlflags    += -Sc -St \
+                 -Wb,export_macro=TPTTypeLib_Export \
+                 -Wb,export_include=TPTTypeLib_Export.h
+  dynamicflags = TPTTYPELIB_BUILD_DLL
+  pch_header   =
+  pch_source   =
+  dcps_ts_flags += --export=TPTTypeLib_Export --module=Mine
+
+  TypeSupport_Files {
+    TPTDef.idl >> Bytes4TypeSupport.idl \
+                  Bytes4TypeSupportImpl.h \
+                  Bytes4TypeSupportImpl.cpp \
+                  Bytes8TypeSupport.idl \
+                  Bytes8TypeSupportImpl.h \
+                  Bytes8TypeSupportImpl.cpp \
+                  Bytes16TypeSupport.idl \
+                  Bytes16TypeSupportImpl.h \
+                  Bytes16TypeSupportImpl.cpp \
+                  Bytes32TypeSupport.idl \
+                  Bytes32TypeSupportImpl.h \
+                  Bytes32TypeSupportImpl.cpp \
+                  Bytes64TypeSupport.idl \
+                  Bytes64TypeSupportImpl.h \
+                  Bytes64TypeSupportImpl.cpp \
+                  Bytes128TypeSupport.idl \
+                  Bytes128TypeSupportImpl.h \
+                  Bytes128TypeSupportImpl.cpp \
+                  Bytes256TypeSupport.idl \
+                  Bytes256TypeSupportImpl.h \
+                  Bytes256TypeSupportImpl.cpp \
+                  Bytes512TypeSupport.idl \
+                  Bytes512TypeSupportImpl.h \
+                  Bytes512TypeSupportImpl.cpp \
+                  Bytes1024TypeSupport.idl \
+                  Bytes1024TypeSupportImpl.h \
+                  Bytes1024TypeSupportImpl.cpp \
+                  Bytes2048TypeSupport.idl \
+                  Bytes2048TypeSupportImpl.h \
+                  Bytes2048TypeSupportImpl.cpp \
+                  Bytes4096TypeSupport.idl \
+                  Bytes4096TypeSupportImpl.h \
+                  Bytes4096TypeSupportImpl.cpp \
+                  Bytes8192TypeSupport.idl \
+                  Bytes8192TypeSupportImpl.h \
+                  Bytes8192TypeSupportImpl.cpp \
+                  Bytes16384TypeSupport.idl \
+                  Bytes16384TypeSupportImpl.h \
+                  Bytes16384TypeSupportImpl.cpp \
+                  Complex4TypeSupport.idl \
+                  Complex4TypeSupportImpl.h \
+                  Complex4TypeSupportImpl.cpp \
+                  Complex8TypeSupport.idl \
+                  Complex8TypeSupportImpl.h \
+                  Complex8TypeSupportImpl.cpp \
+                  Complex16TypeSupport.idl \
+                  Complex16TypeSupportImpl.h \
+                  Complex16TypeSupportImpl.cpp \
+                  Complex32TypeSupport.idl \
+                  Complex32TypeSupportImpl.h \
+                  Complex32TypeSupportImpl.cpp \
+                  Complex64TypeSupport.idl \
+                  Complex64TypeSupportImpl.h \
+                  Complex64TypeSupportImpl.cpp \
+                  Complex128TypeSupport.idl \
+                  Complex128TypeSupportImpl.h \
+                  Complex128TypeSupportImpl.cpp \
+                  Complex256TypeSupport.idl \
+                  Complex256TypeSupportImpl.h \
+                  Complex256TypeSupportImpl.cpp \
+                  Complex512TypeSupport.idl \
+                  Complex512TypeSupportImpl.h \
+                  Complex512TypeSupportImpl.cpp \
+                  Complex1024TypeSupport.idl \
+                  Complex1024TypeSupportImpl.h \
+                  Complex1024TypeSupportImpl.cpp \
+                  Complex2048TypeSupport.idl \
+                  Complex2048TypeSupportImpl.h \
+                  Complex2048TypeSupportImpl.cpp \
+                  Complex4096TypeSupport.idl \
+                  Complex4096TypeSupportImpl.h \
+                  Complex4096TypeSupportImpl.cpp \
+                  Complex8192TypeSupport.idl \
+                  Complex8192TypeSupportImpl.h \
+                  Complex8192TypeSupportImpl.cpp \
+                  Complex16384TypeSupport.idl \
+                  Complex16384TypeSupportImpl.h \
+                  Complex16384TypeSupportImpl.cpp
+  }
+
+  IDL_Files {
+    *.idl
+  }
+
+  Source_Files {
+    *.cpp
+  }
+  
+  Header_Files {
+    *.h
+  }
+}
+
