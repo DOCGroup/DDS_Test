@@ -24,7 +24,7 @@
 extern ACE_Condition<ACE_Recursive_Thread_Mutex> done_condition_;
 
 template<typename T, typename W, typename Wimpl>
-void write (long id,
+void write (long /* id */,
             ACE_CDR::ULong size,
             ACE_CDR::ULong num_messages,
             ::DDS::DataWriter_ptr writer,
@@ -38,7 +38,7 @@ void write (long id,
       payload.data[i] = static_cast<CORBA::Octet> (i % 256);
     }
 
-  W::_var_type pt_dw = W::_narrow (writer);
+  typename W::_var_type pt_dw = W::_narrow (writer);
     
   if (CORBA::is_nil (pt_dw.in ()))
     {
@@ -50,7 +50,7 @@ void write (long id,
     }
 
   Wimpl* pt_servant =
-    ::TAO::DCPS::reference_to_servant<Wimpl, W::_ptr_type> (
+    ::TAO::DCPS::reference_to_servant<Wimpl, typename W::_ptr_type> (
         pt_dw.in ()
       );
 
