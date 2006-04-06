@@ -29,10 +29,12 @@ read (::DDS::DataReader_ptr reader)
   // TWF: There is an optimization to the test by
   // using a pointer to the known servant and 
   // static_casting it to the servant
-  R::_var_type var_dr = R::_narrow (reader);
+  typename R::_var_type var_dr = R::_narrow (reader);
 
   Rimpl* dr_servant =
-    ::TAO::DCPS::reference_to_servant<Rimpl, R::_ptr_type> (var_dr.in ());
+    ::TAO::DCPS::reference_to_servant<Rimpl, typename R::_ptr_type> (
+        var_dr.in ()
+      );
 
   const ::CORBA::Long max_read_samples = 100;
   Tseq samples (max_read_samples);
