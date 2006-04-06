@@ -1,0 +1,12 @@
+project (Stats) : acelib {
+  dynamicflags += STATS_BUILD_DLL
+  
+  Source_Files {
+    Stats.cpp
+  }
+  
+  Header_Files {
+    Stats.h
+    stats_export.h
+  }
+}
