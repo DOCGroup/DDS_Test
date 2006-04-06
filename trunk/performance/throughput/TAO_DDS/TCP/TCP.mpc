@@ -1,0 +1,34 @@
+project(DCPS_Perf_Throughput*Pub): dcpsexe, portableserver {
+  exename   = publisher
+  libpaths += ../TypeNoKeyBounded
+  libs     += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
+  after    += DCPS_Perf_Throughput_TypeNoKeyBounded
+  includes += $(STATS_ROOT)
+
+  Header_Files {
+    common.h
+  }
+
+  Source_Files {
+    publisher.cpp
+    Writer.cpp
+  }
+}
+
+project(DCPS_Perf_Throughput*Sub): dcpsexe, portableserver {
+  exename   = subscriber
+  libpaths += ../TypeNoKeyBounded
+  libs     += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
+  after    += DCPS_Perf_Throughput_TypeNoKeyBounded
+  includes += $(STATS_ROOT)
+
+  Header_Files {
+    common.h
+  }
+
+  Source_Files {
+    subscriber.cpp
+    DataReaderListener.cpp
+  }
+}
+
