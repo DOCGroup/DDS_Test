@@ -24,7 +24,7 @@ $pub_outfile = PerlACE::LocalFile ("stats_pub");
 unlink $pub_outfile;
 
 #NOTE: above 1000 queue samples does not give any better performance.
-$pub_parameters = "-DCPSConfigFile conf.ini -p 1 -i $pub_writer_id"
+$pub_parameters = "-DCPSConfigFile conf.ini -i $pub_writer_id"
 #              . " -DCPSDebugLevel 6"
               . " -ORBDottedDecimalAddresses 1"
               . " -DCPSInfoRepo corbaloc:iiop:129.59.123.115:$repo_port/DCPSInfoRepo"
