@@ -592,11 +592,11 @@ main (int argc, char *argv[])
 
       while (!dr_listener_impl->is_finished ())
         {
-          ACE_OS::sleep (2);
+          ACE_OS::sleep (1);
         }
 
       // Clean up subscriber objects.
-      sub->delete_contained_entities () ;
+      sub->delete_contained_entities ();
 
       dp->delete_subscriber (sub.in () ACE_ENV_ARG_PARAMETER);
       ACE_TRY_CHECK;

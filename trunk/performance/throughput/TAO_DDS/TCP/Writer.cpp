@@ -118,14 +118,14 @@ Writer::svc (void)
   {
     int num_connected_subs = 0;
     ::DDS::InstanceHandleSeq handles;
-    
+/*    
     while (num_connected_subs != num_readers_)
       {
         ACE_OS::sleep (1);
         writer_->get_matched_subscriptions (handles);
         num_connected_subs = handles.length ();
       }
-
+*/
     switch (data_size_)
     {
     case 4:
@@ -271,7 +271,7 @@ Writer::svc (void)
                          "Exception caught in svc:");
   }
   ACE_ENDTRY;
-
+/*
   ::DDS::InstanceHandleSeq handles;
   
   while (!finished_sending_)
@@ -285,7 +285,9 @@ Writer::svc (void)
           done_condition_.signal ();
         }
     }
-
+*/
+          this->finished_sending_ = true;
+          done_condition_.signal ();
   return 0;
 }
 
