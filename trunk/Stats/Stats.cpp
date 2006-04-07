@@ -150,10 +150,12 @@ PubSub_Stats::pair_sample_usecs (void)
 void
 PubSub_Stats::sample_for_throughput (void)
 {
-  if (++curr_sample_ > num_primers_)
+  if (curr_sample_ == num_primers_)
     {
       timer_.start ();
     }
+    
+  ++curr_sample_;
 }
 
 bool
