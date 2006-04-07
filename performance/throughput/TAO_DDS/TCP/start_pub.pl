@@ -26,6 +26,7 @@ unlink $pub_outfile;
 #NOTE: above 1000 queue samples does not give any better performance.
 $pub_parameters = "-DCPSConfigFile conf.ini -p 1 -i $pub_writer_id"
 #              . " -DCPSDebugLevel 6"
+              . " -ORBDottedDecimalAddresses 1"
               . " -DCPSInfoRepo corbaloc:iiop:129.59.129.143:$repo_port/DCPSInfoRepo"
               . " -p $primer_messages -s $stats_messages"
               . " -o $pub_outfile -msi 1000 -mxs 1000";

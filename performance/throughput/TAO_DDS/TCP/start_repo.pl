@@ -20,7 +20,9 @@ $dcpsrepo_ior = PerlACE::LocalFile ("repo.ior");
 unlink $dcpsrepo_ior; 
 
 $DCPSREPO = new PerlACE::Process ("$DDS_ROOT/dds/InfoRepo/DCPSInfoRepo",
-                             "-NOBITS -o $dcpsrepo_ior -ORBEndpoint iiop://129.59.129.143:$repo_port"
+                             "-NOBITS -o $dcpsrepo_ior "
+                             . " -ORBDottedDecimalAddresses 1"
+                             . " -ORBEndpoint iiop://129.59.129.143:$repo_port"
                              . " -d $domains_file -DCPSConfigFile \"\"");
 
 print $DCPSREPO->CommandLine(), "\n";

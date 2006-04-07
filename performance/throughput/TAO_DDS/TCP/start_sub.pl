@@ -28,6 +28,7 @@ unlink $sub_outfile;
 
 $sub_parameters = "-DCPSConfigFile conf.ini -w $num_writers"
 #                . " -DCPSDebugLevel 6"
+                . " -ORBDottedDecimalAddresses 1"
                 . " -DCPSInfoRepo corbaloc:iiop:129.59.129.143:$repo_port/DCPSInfoRepo"
                 . " -p $primer_messages -s $stats_messages"
                 . " -o $sub_outfile -msi $num_messages -mxs $num_messages";
