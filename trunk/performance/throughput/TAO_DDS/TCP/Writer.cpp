@@ -119,12 +119,18 @@ Writer::svc (void)
     int num_connected_subs = 0;
     ::DDS::InstanceHandleSeq handles;
     
+// This doesn't work for all numbers of readers
+// remotely. For now we just use a sleep statement.
+/*    
     while (num_connected_subs != num_readers_)
       {
         ACE_OS::sleep (1);
         writer_->get_matched_subscriptions (handles);
         num_connected_subs = handles.length ();
       }
+*/
+
+    ACE_OS::sleep (3);
 
     switch (data_size_)
     {
