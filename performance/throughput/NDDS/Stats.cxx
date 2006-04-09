@@ -71,7 +71,7 @@ PubSub_Stats::file_dump_throughput (void)
     static_cast<ACE_CDR::Double> (total_bytes) / elapsed_time_;
 
   ACE_CDR::Double sample_per_sec =
-    static_cast<ACE_CDR::Double> (1000000 * total_bytes) / elapsed_time_;
+    static_cast<ACE_CDR::Double> (1000000 * num_samples_) / elapsed_time_;
 
   printf ("total bytes = %d, elapsed time = %d\n", (num_samples_) * sample_len_, elapsed_time_);
 
