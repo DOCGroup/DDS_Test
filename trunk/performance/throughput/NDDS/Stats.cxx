@@ -72,6 +72,7 @@ PubSub_Stats::file_dump_throughput (void)
 
   printf ("total bytes = %d, elapsed time = %d\n", (num_samples_) * sample_len_, elapsed_time_);
 
+  file_ << 1000000 * (num_samples_ /elapsed_time_) << endl;
   file_ << raw << endl;
 }
 
