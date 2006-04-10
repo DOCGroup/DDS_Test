@@ -31,7 +31,7 @@ $sub_parameters = "-DCPSConfigFile conf.ini -w $num_writers"
                 . " -ORBDottedDecimalAddresses 1"
                 . " -DCPSInfoRepo corbaloc:iiop:129.59.123.115:$repo_port/DCPSInfoRepo"
                 . " -p $primer_messages -s $stats_messages"
-                . " -o $sub_outfile -msi $num_messages -mxs $num_messages";
+                . " -o $sub_outfile -msi $num_messages";
 
 #use -msi $num_messages to avoid rejected samples
 #use -mxs $num_messages to avoid using the heap 
