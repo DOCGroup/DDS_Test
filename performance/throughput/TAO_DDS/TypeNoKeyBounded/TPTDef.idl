@@ -19,66 +19,79 @@ module TP_Test
   
   struct Bytes4
   {
+    unsigned long timestamp;
     Bytes4Seq data;
   };
   
   struct Bytes8
   {
+    unsigned long timestamp;
     Bytes8Seq data;
   };
   
   struct Bytes16
   {
+    unsigned long timestamp;
     Bytes16Seq data;
   };
   
   struct Bytes32
   {
+    unsigned long timestamp;
     Bytes32Seq data;
   };
   
   struct Bytes64
   {
+    unsigned long timestamp;
     Bytes64Seq data;
   };
   
   struct Bytes128
   {
+    unsigned long timestamp;
     Bytes128Seq data;
   };
   
   struct Bytes256
   {
+    unsigned long timestamp;
     Bytes256Seq data;
   };
   
   struct Bytes512
   {
-    Bytes512Seq data;
+   unsigned long timestamp;
+   Bytes512Seq data;
   };
   
   struct Bytes1024
   {
+    unsigned long timestamp;
     Bytes1024Seq data;
   };
   
   struct Bytes2048
   {
+    unsigned long timestamp;
     Bytes2048Seq data;
   };
   
   struct Bytes4096
   {
+    unsigned long timestamp;
     Bytes4096Seq data;
   };
   
   struct Bytes8192
   {
+    unsigned long timestamp;
     Bytes8192Seq data;
   };
   
   struct Bytes16384
   {
+    unsigned long timestamp;
     Bytes16384Seq data;
   };
     

@@ -2,6 +2,7 @@
 
 #include "Stats.h"
 #include "ace/High_Res_Timer.h"
+#include "ace/OS_NS_sys_time.h"
 #include <math.h>
 
 const u_int PRECISION = 3;
@@ -16,7 +17,8 @@ PubSub_Stats::PubSub_Stats (const char *output_file,
     num_samples_ (num_samples),
     sample_len_ (sample_len),
     curr_sample_ (0),
-    pair_first_ (true)
+    pair_first_ (true),
+    start_usecs_ (0UL)
 {
   file_.open (output_file, ofstream::app);
   file_.setf (ios::fixed);
@@ -61,14 +63,19 @@ PubSub_Stats::file_dump (void)
 void
 PubSub_Stats::file_dump_throughput (void)
 {
-  timer_.stop ();
-  timer_.elapsed_microseconds (elapsed_time_);
+//  timer_.stop ();
+//  timer_.elapsed_microseconds (elapsed_time_);
+  const timeval *tv = ACE_OS::gettimeofday ();
+  ACE_CDR::ULong end_usecs = tv->tv_usec + tv->tv_sec * 1000 * 1000;
+  ACE_CDR::ULong elapsed_time = end_usecs - start_usecs_;
   
   ACE_CDR::ULongLong total_bytes =
-    static_cast<ACE_CDR::ULongLong> (num_samples_) * sample_len_;
+    static_cast<ACE_CDR::ULongLong> (num_samples_)
+    * (sample_len_ + sizeof (ACE_CDR::ULong));
   
+  // (bytes * 1000) / usec == kb/sec
   ACE_CDR::Double raw =
-    static_cast<ACE_CDR::Double> (total_bytes) / elapsed_time_;
+    static_cast<ACE_CDR::Double> (total_bytes * 1000) / elapsed_time;
     
   file_ << raw << endl;
 }
@@ -148,10 +155,21 @@ PubSub_Stats::pair_sample_usecs (void)
 }
 
 void
-PubSub_Stats::sample_for_throughput (void)
+PubSub_Stats::sample_for_throughput (ACE_CDR::ULong &usecs,
+                                     bool reading)
 {
   if (curr_sample_ == num_primers_)
     {
+      if (reading)
+        {
+          start_usecs_ = usecs;
+        }
+      else
+        {   
+          const timeval *tv = ACE_OS::gettimeofday ();
+          usecs = tv->tv_usec + tv->tv_sec * 1000 * 1000;
+        }
+        
       timer_.start ();
     }
     

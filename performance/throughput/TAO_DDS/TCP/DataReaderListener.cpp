@@ -23,7 +23,7 @@
 extern long subscriber_delay_msec; // from common.h
 
 template<typename Tseq, typename R, typename Rimpl>
-int
+ACE_CDR::ULong
 read (::DDS::DataReader_ptr reader)
 {
   // TWF: There is an optimization to the test by
@@ -40,7 +40,6 @@ read (::DDS::DataReader_ptr reader)
   Tseq samples (max_read_samples);
   ::DDS::SampleInfoSeq infos (max_read_samples);
 
-  int samples_recvd = 0;
   DDS::ReturnCode_t status;
 
   status = dr_servant->read (samples,
@@ -52,7 +51,10 @@ read (::DDS::DataReader_ptr reader)
 
   if (::DDS::RETCODE_OK == status)
     {
-      samples_recvd = samples.length ();
+      if (samples.length () > 1)
+        {
+          ACE_DEBUG ((LM_DEBUG, "multiple samples read\n"));
+        }
     }
   else if (::DDS::RETCODE_NO_DATA == status)
     {
@@ -63,7 +65,7 @@ read (::DDS::DataReader_ptr reader)
       ACE_ERROR ((LM_ERROR, "read  data: Error: %d\n", status));
     }
 
-  return samples_recvd;
+  return samples[0].timestamp;
 }
 
 DataReaderListenerImpl::DataReaderListenerImpl (ACE_CDR::ULong num_publishers,
@@ -71,11 +73,11 @@ DataReaderListenerImpl::DataReaderListenerImpl (ACE_CDR::ULong num_publishers,
                                                 ACE_CDR::ULong stats_samples,
                                                 ACE_CDR::ULong data_size,
                                                 const char *output_file_name)
- : samples_lost_count_(0),
-   samples_rejected_count_(0),
-   samples_received_count_(0),
-   total_samples_count_(0),
-   num_publishers_(num_publishers),
+ : samples_lost_count_( 0),
+   samples_rejected_count_ (0),
+   samples_received_count_ (0),
+   total_samples_count_ (0),
+   num_publishers_ (num_publishers),
    num_samples_ (stats_samples),
    data_size_ (data_size),
    output_file_name_ (output_file_name),
@@ -184,10 +186,10 @@ DataReaderListenerImpl::on_data_available (
   {
     GuardType guard (this->lock_);
     
-    this->stats_.sample_for_throughput ();
-      
-    int samples_read = read_samples (reader);
+    ACE_CDR::ULong ts = read_samples (reader);
     
+    this->stats_.sample_for_throughput (ts, true);
+      
     if (this->stats_.ready_to_dump ())
       {
         this->stats_.file_dump_throughput ();
