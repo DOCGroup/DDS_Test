@@ -432,10 +432,10 @@ main (int argc, char *argv[])
       ::DDS::TopicQos topic_qos;
       dp->get_default_topic_qos (topic_qos);
         
-      topic_qos.resource_limits.max_samples_per_instance =
-        MAX_SAMPLES_PER_INSTANCE;
-      topic_qos.resource_limits.max_instances = MAX_INSTANCES;
-      topic_qos.resource_limits.max_samples = MAX_SAMPLES;
+//      topic_qos.resource_limits.max_samples_per_instance =
+//        MAX_SAMPLES_PER_INSTANCE;
+//      topic_qos.resource_limits.max_instances = MAX_INSTANCES;
+//      topic_qos.resource_limits.max_samples = MAX_SAMPLES;
 
       topic_qos.reliability.kind = ::DDS::RELIABLE_RELIABILITY_QOS;
       topic_qos.reliability.max_blocking_time.sec = max_mili_sec_blocking / 1000;
