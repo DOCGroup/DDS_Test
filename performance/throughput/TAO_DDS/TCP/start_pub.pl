@@ -29,7 +29,7 @@ $pub_parameters = "-DCPSConfigFile conf.ini -i $pub_writer_id"
               . " -ORBDottedDecimalAddresses 1"
               . " -DCPSInfoRepo corbaloc:iiop:129.59.123.115:$repo_port/DCPSInfoRepo"
               . " -p $primer_messages -s $stats_messages"
-              . " -o $pub_outfile -msi 1000 -mxs 1000";
+              . " -o $pub_outfile -msi 1000";
 
 @dataSizes =
   qw'4
