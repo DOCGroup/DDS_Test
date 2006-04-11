@@ -61,7 +61,8 @@ public:
   void pair_sample_usecs (void);
   /// Used for GSOAP, which seems to marshal everything twice.
   
-  void sample_for_throughput (ACE_CDR::ULong &usecs, bool reading = false);
+  void sample_for_throughput (ACE_CDR::ULongLong &usecs,
+                              bool reading = false);
   /// Just starts the timer, if we are done with primer runs.
   
   bool ready_to_dump (void) const;
@@ -84,7 +85,7 @@ private:
   ACE_hrtime_t elapsed_time_;
   ACE_hrtime_t pair_elapsed_time_;
   bool pair_first_;
-  ACE_CDR::ULong start_usecs_;
+  ACE_CDR::ULongLong start_usecs_;
 };
  
 #endif /* STATS_H */
