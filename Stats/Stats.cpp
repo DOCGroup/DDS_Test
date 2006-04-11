@@ -160,17 +160,14 @@ PubSub_Stats::sample_for_throughput (ACE_CDR::ULong &usecs,
 {
   if (curr_sample_ == num_primers_)
     {
-      if (reading)
-        {
-          start_usecs_ = usecs;
-        }
-      else
+      if (!reading)
         {   
           const timeval *tv = ACE_OS::gettimeofday ();
           usecs = tv->tv_usec + tv->tv_sec * 1000 * 1000;
         }
         
-      timer_.start ();
+      start_usecs_ = usecs;
+//      timer_.start ();
     }
     
   ++curr_sample_;
