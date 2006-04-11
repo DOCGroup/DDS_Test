@@ -66,8 +66,8 @@ PubSub_Stats::file_dump_throughput (void)
 //  timer_.stop ();
 //  timer_.elapsed_microseconds (elapsed_time_);
   const timeval *tv = ACE_OS::gettimeofday ();
-  ACE_CDR::ULongLong end_usecs = tv->tv_usec + tv->tv_sec * 1000 * 1000;
-  ACE_CDR::ULongLong elapsed_time = end_usecs - start_usecs_;
+  ACE_CDR::ULong end_usecs = tv->tv_usec + tv->tv_sec * 1000 * 1000;
+  ACE_CDR::ULong elapsed_time = end_usecs - start_usecs_;
   
   ACE_CDR::ULongLong total_bytes =
     static_cast<ACE_CDR::ULongLong> (num_samples_)
@@ -155,7 +155,7 @@ PubSub_Stats::pair_sample_usecs (void)
 }
 
 void
-PubSub_Stats::sample_for_throughput (ACE_CDR::ULongLong &usecs,
+PubSub_Stats::sample_for_throughput (ACE_CDR::ULong &usecs,
                                      bool reading)
 {
   if (curr_sample_ == num_primers_)
