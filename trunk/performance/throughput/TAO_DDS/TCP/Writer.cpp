@@ -120,12 +120,14 @@ Writer::svc (void)
     int num_connected_subs = 0;
     ::DDS::InstanceHandleSeq handles;
     
-    while (num_connected_subs != num_readers_)
-      {
-        ACE_OS::sleep (1);
-        writer_->get_matched_subscriptions (handles);
-        num_connected_subs = handles.length ();
-      }
+//    while (num_connected_subs != num_readers_)
+//      {
+//        ACE_OS::sleep (1);
+//        writer_->get_matched_subscriptions (handles);
+//        num_connected_subs = handles.length ();
+//      }
+
+    ACE_OS::sleep (2);
 
     switch (data_size_)
     {

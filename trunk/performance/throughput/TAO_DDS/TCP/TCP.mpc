@@ -4,6 +4,7 @@ project(DCPS_Perf_Throughput*Pub): dcpsexe, portableserver {
   libs     += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
   after    += DCPS_Perf_Throughput_TypeNoKeyBounded
   includes += $(STATS_ROOT)
+  commandflags += -g
 
   Header_Files {
     common.h
