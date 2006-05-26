@@ -1,0 +1,17 @@
+# most often changed QoS
+presentation=ordered_access
+durability=volatile
+history=keep_last
+reliability=best_effort
+
+# resource limits
+samples.max=1000
+samples.max_per_instance=10
+instances.max=50
+
+# transport type (multicast/unicast)
+transport=multicast
+
+# protocol (UDP/TCP)
+protocol=TCP
+
