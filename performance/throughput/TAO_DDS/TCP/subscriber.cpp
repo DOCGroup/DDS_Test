@@ -108,9 +108,22 @@ parse_args (int argc, char *argv[])
         STATS_SAMPLES = ACE_OS::atoi (currentArg);
         arg_shifter.consume_arg ();
       }
-    else if ((currentArg = arg_shifter.get_the_parameter ("-o")) != 0)
+    else if ((currentArg = arg_shifter.get_the_parameter ("-r")) != 0)
       {
         sub_output_file = currentArg;
+        arg_shifter.consume_arg ();
+      }
+    else if ((currentArg = arg_shifter.get_the_parameter ("-n")) != 0)
+      {
+        network_config_file = currentArg;
+
+        //        DDS_Config_File config (network_config_file.c_str ());
+
+        arg_shifter.consume_arg ();
+      }
+    else if ((currentArg = arg_shifter.get_the_parameter ("-q")) != 0)
+      {
+        qos_config_file = currentArg;
         arg_shifter.consume_arg ();
       }
     else if ((currentArg = arg_shifter.get_the_parameter ("-a")) != 0) 
@@ -168,8 +181,8 @@ main (int argc, char *argv[])
 
   ACE_TRY_NEW_ENV
     {
-      ACE_DEBUG ((LM_INFO,
-                  "%P|%t %T subscriber main\n"));
+      //ACE_DEBUG ((LM_INFO,
+      //            "%P|%t %T subscriber main\n"));
 
       ::DDS::DomainParticipantFactory_var dpf =
         TheParticipantFactoryWithArgs (argc, argv);
@@ -214,7 +227,7 @@ main (int argc, char *argv[])
             bytes4ts_servant;
 
           ::Mine::Bytes4TypeSupport_var bytes4ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes4TypeSupport
               > (bytes4ts_servant);
               
@@ -230,7 +243,7 @@ main (int argc, char *argv[])
             bytes8ts_servant;
 
           ::Mine::Bytes8TypeSupport_var bytes8ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes8TypeSupport
               > (bytes8ts_servant);
               
@@ -246,7 +259,7 @@ main (int argc, char *argv[])
             bytes16ts_servant;
 
           ::Mine::Bytes16TypeSupport_var bytes16ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes16TypeSupport
               > (bytes16ts_servant);
               
@@ -262,7 +275,7 @@ main (int argc, char *argv[])
             bytes32ts_servant;
 
           ::Mine::Bytes32TypeSupport_var bytes32ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes32TypeSupport
               > (bytes32ts_servant);
               
@@ -278,7 +291,7 @@ main (int argc, char *argv[])
             bytes64ts_servant;
 
           ::Mine::Bytes64TypeSupport_var bytes64ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes64TypeSupport
               > (bytes64ts_servant);
               
@@ -294,7 +307,7 @@ main (int argc, char *argv[])
             bytes128ts_servant;
 
           ::Mine::Bytes128TypeSupport_var bytes128ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes128TypeSupport
               > (bytes128ts_servant);
               
@@ -310,7 +323,7 @@ main (int argc, char *argv[])
             bytes256ts_servant;
 
           ::Mine::Bytes256TypeSupport_var bytes256ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes256TypeSupport
               > (bytes256ts_servant);
               
@@ -326,7 +339,7 @@ main (int argc, char *argv[])
             bytes512ts_servant;
 
           ::Mine::Bytes512TypeSupport_var bytes512ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes512TypeSupport
               > (bytes512ts_servant);
               
@@ -342,7 +355,7 @@ main (int argc, char *argv[])
             bytes1024ts_servant;
 
           ::Mine::Bytes1024TypeSupport_var bytes1024ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes1024TypeSupport
               > (bytes1024ts_servant);
               
@@ -358,7 +371,7 @@ main (int argc, char *argv[])
             bytes2048ts_servant;
 
           ::Mine::Bytes2048TypeSupport_var bytes2048ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes2048TypeSupport
               > (bytes2048ts_servant);
               
@@ -374,7 +387,7 @@ main (int argc, char *argv[])
             bytes4096ts_servant;
 
           ::Mine::Bytes4096TypeSupport_var bytes4096ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes4096TypeSupport
               > (bytes4096ts_servant);
               
@@ -390,7 +403,7 @@ main (int argc, char *argv[])
             bytes8192ts_servant;
 
           ::Mine::Bytes8192TypeSupport_var bytes8192ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes8192TypeSupport
               > (bytes8192ts_servant);
               
@@ -406,7 +419,7 @@ main (int argc, char *argv[])
             bytes16384ts_servant;
 
           ::Mine::Bytes16384TypeSupport_var bytes16384ts = 
-            TAO::DCPS::servant_to_reference<
+            TAO::DCPS::servant_to_reference_2<
                 ::Mine::Bytes16384TypeSupport
               > (bytes16384ts_servant);
               
@@ -562,7 +575,7 @@ main (int argc, char *argv[])
       PortableServer::ServantBase_var safe_servant = dr_listener_impl;
 
       ::DDS::DataReaderListener_var dr_listener = 
-        TAO::DCPS::servant_to_reference<
+        TAO::DCPS::servant_to_reference_2<
             ::DDS::DataReaderListener
           > (dr_listener_impl);
       ACE_TRY_CHECK;
