@@ -1,1 +1,1 @@
-./objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_publisher -sn 10000 -pn 1000 -Size 4
+./objs/i86Linux2.6gcc3.4.3/publisher -sn 10000 -pn 1000 -Size 4

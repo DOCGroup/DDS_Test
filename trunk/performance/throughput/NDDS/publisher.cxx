@@ -18,7 +18,7 @@
 
 #include "Stats.h"
 
-class NDDSLatencyDataProcessor {
+class TP_PacketDataProcessor {
 
   private:
     int _sequenceNumber;
@@ -42,8 +42,8 @@ class NDDSLatencyDataProcessor {
     int _countArray[LATENCY_ROUND_MAX];
 
   public:
-    ~NDDSLatencyDataProcessor();
-    NDDSLatencyDataProcessor();
+    ~TP_PacketDataProcessor();
+    TP_PacketDataProcessor();
     RTIBool calculate_clock_overhead();
     RTIBool initialize(struct RTIClock *clock);
     void reset();
@@ -62,21 +62,21 @@ class NDDSLatencyDataProcessor {
     RTIOsapiSemaphoreStatus wait(const struct RTINtpTime*);
 };
 
-NDDSLatencyDataProcessor::~NDDSLatencyDataProcessor()
+TP_PacketDataProcessor::~TP_PacketDataProcessor()
 {
     RTIOsapiSemaphore_delete(_sem);
 }
-NDDSLatencyDataProcessor::NDDSLatencyDataProcessor()
+TP_PacketDataProcessor::TP_PacketDataProcessor()
     : _clock(NULL),
       _arrayIndex(0)
 {}
-RTIOsapiSemaphoreStatus NDDSLatencyDataProcessor::wait(
+RTIOsapiSemaphoreStatus TP_PacketDataProcessor::wait(
     const struct RTINtpTime* blockTime)
 {
     return RTIOsapiSemaphore_take(_sem, blockTime);
 }
 
-RTIBool NDDSLatencyDataProcessor::calculate_clock_overhead() {
+RTIBool TP_PacketDataProcessor::calculate_clock_overhead() {
     RTIBool ok = RTI_FALSE;
     int i = 0;
     struct RTINtpTime beginTime = RTI_NTP_TIME_ZERO,
@@ -102,25 +102,25 @@ RTIBool NDDSLatencyDataProcessor::calculate_clock_overhead() {
     return ok;
 }
 
-RTIBool NDDSLatencyDataProcessor::initialize(struct RTIClock *clock) {
+RTIBool TP_PacketDataProcessor::initialize(struct RTIClock *clock) {
     _clock = clock;
     reset();
     _sem = RTIOsapiSemaphore_new(RTI_OSAPI_SEMAPHORE_KIND_BINARY, NULL);
     return((RTIBool)_sem);
 }
 
-RTIBool NDDSLatencyDataProcessor::echo_received() { /* stop timer */
+RTIBool TP_PacketDataProcessor::echo_received() { /* stop timer */
     _clock->getTime(_clock, &_finishTime);
     return RTI_TRUE;
 }
 
 
-RTIBool NDDSLatencyDataProcessor::start_one_issue() { /* start timer */
+RTIBool TP_PacketDataProcessor::start_one_issue() { /* start timer */
     _gotValidEcho = RTI_FALSE;
     return _clock->reset(_clock) && _clock->getTime(_clock, &_startTime);
 }
 
-void NDDSLatencyDataProcessor::reset() { /* start one new round (packetsize) */
+void TP_PacketDataProcessor::reset() { /* start one new round (packetsize) */
     RTINtpTime_setZero(&_startTime);
     RTINtpTime_setZero(&_finishTime);
     RTINtpTime_setZero(&_recvSignaledTime);
@@ -131,7 +131,7 @@ void NDDSLatencyDataProcessor::reset() { /* start one new round (packetsize) */
     _sigmaRoundtripTimeSquared      = 0.0;
 }
 
-void NDDSLatencyDataProcessor::finish_one_issue_recv_thread() {
+void TP_PacketDataProcessor::finish_one_issue_recv_thread() {
     RTINtpTime roundtrip = {0, 0};
     double roundtripInDouble = 0.0;
 
@@ -164,7 +164,7 @@ void NDDSLatencyDataProcessor::finish_one_issue_recv_thread() {
     ++_count;
 }
 
-void NDDSLatencyDataProcessor::finish_one_round()
+void TP_PacketDataProcessor::finish_one_round()
 { /* print out result */
     double timeAve = _sigmaRoundtripTime/(double)_count;
     double variance = sqrt(_sigmaRoundtripTimeSquared/(double)_count
@@ -185,10 +185,10 @@ void NDDSLatencyDataProcessor::finish_one_round()
 class Bytes4Listener : public DDSDataReaderListener {
 
   private:
-    NDDSLatencyDataProcessor *_dataProcessor;
+    TP_PacketDataProcessor *_dataProcessor;
 
   public:
-    Bytes4Listener(NDDSLatencyDataProcessor *dp)
+    Bytes4Listener(TP_PacketDataProcessor *dp)
   : _dataProcessor(dp) {}
     virtual ~Bytes4Listener() {}
 
@@ -222,7 +222,7 @@ static RTIBool NddsPublisherMain(int nddsDomain,
                                  RTIBool receiveOnMulticast)
 {
 
-    PubSub_Stats stats_ ("pub_stats",
+    PubSub_Stats stats_ (pub_output_file,
                          prime_num,
                          stats_num,
                          Size);
@@ -234,7 +234,7 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     DDS_ReturnCode_t retcode = DDS_RETCODE_ERROR;
     const struct DDS_Duration_t sleepTime = {1,0}, waitTime = {0, 20*1000000};
     struct RTIClock *clock = RTIHighResolutionClock_new();
-    NDDSLatencyDataProcessor dataProcessor;
+    TP_PacketDataProcessor dataProcessor;
     int i = 0, packetsize;
     DDS_Octet *dataBuffer = NULL;
 
@@ -274,7 +274,10 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 
     /* DataWriter declarations */
     DDSDataWriter* writer;
+
+    
     Bytes4DataWriter* latencyPacketDataWriter;
+
     DDS_DataWriterQos writer_qos;
     DDSDataWriterListener* writer_listener = NULL;
 
@@ -448,40 +451,10 @@ static RTIBool NddsPublisherMain(int nddsDomain,
                 publisher_listener,
                 DDS_STATUS_MASK_NONE);
     if (publisher == NULL) {
-  printf("***Error: failed to create publisher\n");
-  goto fin;
+      printf("***Error: failed to create publisher\n");
+      goto fin;
     }
 
-/*--------------------------------------------------------------------------
-  Register data types, and create topics: echo_topic and data_topic
-----------------------------------------------------------------------------*/
-
-    Bytes4TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
-
-    /* initialize topic_qos with default values */
-    participant->get_default_topic_qos(data_topic_qos);
-    data_topic_qos.ownership.kind = DDS_EXCLUSIVE_OWNERSHIP_QOS;
-    echo_topic_qos = data_topic_qos;
-
-    /* create and enable data_topic. This is topic for data from
-       NDDSLatencyWriter to NDDSLatencyReader. */
-    data_topic = participant->create_topic(
-  LATENCY_DATA_TOPIC_NAME, LATENCY_TYPE_NAME,
-  data_topic_qos, data_topic_listener, DDS_STATUS_MASK_NONE);
-    if (data_topic == NULL) {
-  printf("***Error: failed to create data topic\n");
-  goto fin;
-    }
-
-    /* create and enable processedDataTopic. This is topic for data from
-       NDDSLatencyReader to NDDSLatencyWriter. */
-    echo_topic = participant->create_topic(
-  LATENCY_ECHO_TOPIC_NAME, LATENCY_TYPE_NAME,
-  echo_topic_qos, echo_topic_listener, DDS_STATUS_MASK_NONE);
-    if (echo_topic == NULL) {
-  printf("***Error: failed to create echo topic\n");
-  goto fin;
-    }
 
 /*--------------------------------------------------------------------------
   Create one data writer: (data_)writer
@@ -491,20 +464,118 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     publisher->get_default_datawriter_qos(writer_qos);
 
     if(!isReliable) {//writer is reliable by default
-  writer_qos.reliability.kind = DDS_BEST_EFFORT_RELIABILITY_QOS;
+      writer_qos.reliability.kind = DDS_BEST_EFFORT_RELIABILITY_QOS;
     }
 
     /* create and enable writer. use data_topic. */
     writer = publisher->create_datawriter(
-  data_topic, writer_qos, writer_listener, DDS_STATUS_MASK_NONE);
+                                          data_topic,
+                                          writer_qos,
+                                          writer_listener,
+                                          DDS_STATUS_MASK_NONE);
     if (writer == NULL) {
-  printf("***Error: failed to create writer\n");
-  goto fin;
+      printf("***Error: failed to create writer\n");
+      goto fin;
     }
-    latencyPacketDataWriter = Bytes4DataWriter::narrow(writer);
+
+
+    switch (Size)
+      {
+      case 4:
+        latencyPacketDataWriter = Bytes4DataWriter::narrow(writer);
+        Bytes4TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 8:
+        latencyPacketDataWriter = Bytes8DataWriter::narrow(writer);
+        Bytes8TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 16:
+        latencyPacketDataWriter = Bytes16DataWriter::narrow(writer);
+        Bytes16TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 32:
+        latencyPacketDataWriter = Bytes32DataWriter::narrow(writer);
+        Bytes32TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 64:
+        latencyPacketDataWriter = Bytes64DataWriter::narrow(writer);
+        Bytes64TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 128:
+        latencyPacketDataWriter = Bytes128DataWriter::narrow(writer);
+        Bytes128TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 256:
+        latencyPacketDataWriter = Bytes256DataWriter::narrow(writer);
+        Bytes256TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 512:
+        latencyPacketDataWriter = Bytes512DataWriter::narrow(writer);
+        Bytes512TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 1024:
+        latencyPacketDataWriter = Bytes1024DataWriter::narrow(writer);
+        Bytes1024TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 2048:
+        latencyPacketDataWriter = Bytes2048DataWriter::narrow(writer);
+        Bytes2048TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 4096:
+        latencyPacketDataWriter = Bytes4096DataWriter::narrow(writer);
+        Bytes4096TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 8192:
+        latencyPacketDataWriter = Bytes8192DataWriter::narrow(writer);
+        Bytes8192TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      case 16384:
+        latencyPacketDataWriter = Bytes16384DataWriter::narrow(writer);
+        Bytes16384TypeSupport::register_type(participant, LATENCY_TYPE_NAME);
+        break;
+      }
+    
     if (latencyPacketDataWriter == NULL) {
-  printf("***Error: failed to narrow writer\n");
-  goto fin;
+      printf("***Error: failed to narrow writer\n");
+      goto fin;
+    }
+
+
+
+/*--------------------------------------------------------------------------
+  Register data types, and create topics: echo_topic and data_topic
+----------------------------------------------------------------------------*/
+
+
+    /* initialize topic_qos with default values */
+    participant->get_default_topic_qos(data_topic_qos);
+    data_topic_qos.ownership.kind = DDS_EXCLUSIVE_OWNERSHIP_QOS;
+    echo_topic_qos = data_topic_qos;
+
+    /* create and enable data_topic. This is topic for data from
+       TP_PacketWriter to TP_PacketReader. */
+    data_topic = participant->create_topic(
+                                           LATENCY_DATA_TOPIC_NAME,
+                                           LATENCY_TYPE_NAME,
+                                           data_topic_qos,
+                                           data_topic_listener,
+                                           DDS_STATUS_MASK_NONE);
+    if (data_topic == NULL) {
+      printf("***Error: failed to create data topic\n");
+      goto fin;
+    }
+
+    /* create and enable processedDataTopic. This is topic for data from
+       TP_PacketReader to TP_PacketWriter. */
+    echo_topic = participant->create_topic(
+                                           LATENCY_ECHO_TOPIC_NAME,
+                                           LATENCY_TYPE_NAME,
+                                           echo_topic_qos,
+                                           echo_topic_listener,
+                                           DDS_STATUS_MASK_NONE);
+    if (echo_topic == NULL) {
+      printf("***Error: failed to create echo topic\n");
+      goto fin;
     }
 
 /*--------------------------------------------------------------------------
@@ -594,7 +665,7 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 //  dataProcessor.start_one_round(packetsize);
 
 
-  for (i = 0; i < prime_num + stats_num; ++i) {
+  for (i = 0; i < (prime_num + stats_num * 16) ; ++i) {
 
     //      dataProcessor.start_one_issue();
 
@@ -623,17 +694,17 @@ static RTIBool NddsPublisherMain(int nddsDomain,
       printf ("results dumped\n");
     }
 
-  while (true)
-    {
-      /* send the raw data to all interested parties */
-      retcode = latencyPacketDataWriter->write(instance,
-                 instance_handle);
-      if (retcode != DDS_RETCODE_OK) {
-    printf("***Error: failed to send data\n");
-    goto fin;
-      }
+//   while (true)
+//     {
+//       /* send the raw data to all interested parties */
+//       retcode = latencyPacketDataWriter->write(instance,
+//                  instance_handle);
+//       if (retcode != DDS_RETCODE_OK) {
+//     printf("***Error: failed to send data\n");
+//     goto fin;
+//       }
 
-    }
+//     }
 
   /* one round (packetsize) finished. print out the result */
 //  dataProcessor.finish_one_round();
@@ -739,30 +810,36 @@ int main(int argc, char **argv)
     RTIBool isReliable = RTI_FALSE;
 
     const char *usageStr =
-  "Usage: [-d #] [-minSize #] [-maxSize #] [-multicast] [-reliable]\n"
-  "\t-d NDDS domain\n"
-  "\t-minSize minimum payload size\n"
-  "\t-maxSize maximum payload size\n"
-  "\t-multicast subscribe multicast\n"
-  "\t-reliable request reliable service\n";
+      "Usage: [-d #] [-minSize #] [-maxSize #] [-multicast] [-reliable]\n"
+      "\t-d NDDS domain\n"
+      "\t-minSize minimum payload size\n"
+      "\t-maxSize maximum payload size\n"
+      "\t-multicast subscribe multicast\n"
+      "\t-reliable request reliable service\n";
 
     for (int i = 1; i < argc; i++) {
-  if(strncmp(argv[i], "-d", 2) == 0) {
-      nddsDomain = strtol(argv[++i], NULL, 10);
-  } else if (strncmp(argv[i], "-Size", 5) == 0) {
-      Size = strtol(argv[++i], NULL, 10);
-  } else if (strncmp(argv[i], "-pn", 3) == 0) {
-      prime_num = strtol(argv[++i], NULL, 10);
-  } else if (strncmp(argv[i], "-sn", 3) == 0) {
-      stats_num = strtol(argv[++i], NULL, 10);
-  } else if (strncmp(argv[i], "-multicast", 10) == 0) {
-      useMulticast = RTI_TRUE;
-  } else if (strncmp(argv[i], "-reliable", 9) == 0) {
-      isReliable = RTI_TRUE;
-  } else {
-      printf("%s", usageStr);
-      return 0;
-  }
+      if(strncmp(argv[i], "-d", 2) == 0) {
+        nddsDomain = strtol(argv[++i], NULL, 10);
+      } else if (strncmp(argv[i], "-Size", 5) == 0) {
+        Size = strtol(argv[++i], NULL, 10);
+      } else if (strncmp(argv[i], "-pn", 3) == 0) {
+        prime_num = strtol(argv[++i], NULL, 10);
+      } else if (strncmp(argv[i], "-sn", 3) == 0) {
+        stats_num = strtol(argv[++i], NULL, 10);
+      } else if (strncmp(argv[i], "-r", 2) == 0) {
+        pub_output_file = argv[++i];
+      } else if (strncmp(argv[i], "-n", 2) == 0) {
+        net_config_file = argv[++i];
+      } else if (strncmp(argv[i], "-q", 2) == 0) {
+        qos_config_file = argv[++i];
+      } else if (strncmp(argv[i], "-multicast", 10) == 0) {
+        useMulticast = RTI_TRUE;
+      } else if (strncmp(argv[i], "-reliable", 9) == 0) {
+        isReliable = RTI_TRUE;
+      } else {
+        printf("%s", usageStr);
+        return 0;
+      }
     }
 
     return NddsPublisherMain(nddsDomain, Size, prime_num, stats_num,

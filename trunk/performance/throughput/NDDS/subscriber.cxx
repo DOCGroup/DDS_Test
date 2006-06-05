@@ -41,7 +41,7 @@ class Bytes4Listener : public DDSDataReaderListener {
                        prime_num_ (prime_num),
                        stats_num_ (stats_num),
                        size_ (size),
-                       stats_ ("sub_stats", prime_num, stats_num, size)
+                       stats_ (sub_output_file, prime_num, stats_num, size)
     {
       this->is_finished_ = false;
     }
@@ -55,7 +55,7 @@ class Bytes4Listener : public DDSDataReaderListener {
     prime_num_ (0),
     stats_num_ (0),
     size_ (0),
-    stats_("sub_stats", 0, 0, 0)
+    stats_(sub_output_file, 0, 0, 0)
     {}
     virtual ~Bytes4Listener() {}
 
@@ -527,6 +527,12 @@ int main(int argc, char *argv[])
       prime_num = strtol(argv[++i], NULL, 10);
   } else if (strncmp(argv[i], "-sn", 3) == 0) {
       stats_num = strtol(argv[++i], NULL, 10);
+  } else if (strncmp(argv[i], "-r", 2) == 0) {
+    sub_output_file = argv[++i];
+  } else if (strncmp(argv[i], "-n", 2) == 0) {
+    net_config_file = argv[++i];
+  } else if (strncmp(argv[i], "-q", 2) == 0) {
+    qos_config_file = argv[++i];
   }
   else if (strncmp(argv[i], "-role", 5) == 0) {
       role = strtol(argv[++i], NULL, 10);
