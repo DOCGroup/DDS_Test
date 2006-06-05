@@ -67,15 +67,16 @@ PubSub_Stats::file_dump_throughput (void)
   ACE_CDR::ULongLong total_bytes =
     static_cast<ACE_CDR::ULongLong> (num_samples_) * sample_len_;
 
+  // (bytes * 1000) / usec == KB/sec
   ACE_CDR::Double raw =
-    static_cast<ACE_CDR::Double> (total_bytes) / elapsed_time_;
+    static_cast<ACE_CDR::Double> (total_bytes * 1000) / elapsed_time_;
 
   ACE_CDR::Double sample_per_sec =
     static_cast<ACE_CDR::Double> (num_samples_) / elapsed_time_;
 
   printf ("total bytes = %d, elapsed time = %d\n", (num_samples_) * sample_len_, elapsed_time_);
 
-  file_ << 1000000 * sample_per_sec << endl;
+  //  file_ << 1000000 * sample_per_sec << endl;
   file_ << raw << endl;
 }
 
