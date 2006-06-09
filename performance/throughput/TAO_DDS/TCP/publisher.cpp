@@ -149,9 +149,25 @@ parse_args (int argc, char *argv[])
         pub_output_file = currentArg;
         arg_shifter.consume_arg ();
       }
+    else if ((currentArg = arg_shifter.get_the_parameter ("-top")) != 0)
+      {
+        test_topic_name = currentArg;
+
+        //DDS_Config_File config (network_config_file.c_str ());
+
+        arg_shifter.consume_arg ();
+      }
     else if ((currentArg = arg_shifter.get_the_parameter ("-n")) != 0)
       {
         network_config_file = currentArg;
+
+        //DDS_Config_File config (network_config_file.c_str ());
+
+        arg_shifter.consume_arg ();
+      }
+    else if ((currentArg = arg_shifter.get_the_parameter ("-num_of_sub")) != 0)
+      {
+        num_datareaders = ACE_OS::atoi (currentArg);
 
         //DDS_Config_File config (network_config_file.c_str ());
 
@@ -473,13 +489,18 @@ main (int argc, char *argv[])
         
       topic_qos.history.kind = ::DDS::KEEP_ALL_HISTORY_QOS;
 
+      
+
       ::DDS::Topic_var topic = 
-        dp->create_topic (TEST_TOPIC, 
+      dp->create_topic (test_topic_name.c_str (), 
                           TEST_TYPE, 
                           topic_qos, 
                           ::DDS::TopicListener::_nil ()
                           ACE_ENV_ARG_PARAMETER);
       ACE_TRY_CHECK;
+
+      cout << "The current topic is " << test_topic_name << endl;
+
       
       if (CORBA::is_nil (topic.in ()))
         {
@@ -587,6 +608,7 @@ main (int argc, char *argv[])
                              ACE_TEXT ("create_datawriter failed.\n")),
                             1);
         }
+
       }
 
       Writer** writers = new Writer* [num_datawriters] ;
@@ -601,6 +623,9 @@ main (int argc, char *argv[])
                                    num_datareaders,
                                    id + p); 
           writers[p]->start ();
+
+          cout << "Data Writer No: " << p << endl;
+
         }
 
 

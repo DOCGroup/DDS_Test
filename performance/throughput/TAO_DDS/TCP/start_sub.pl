@@ -85,7 +85,7 @@ close(FILE);
 
 &writeSettings($settings{'results'} . '.settings');
 
-
+$testDirectory = &getTestDirectory();
 
 #die "Settings and Parameters have been written... Exiting";
 #exit 0;
@@ -95,9 +95,13 @@ close(FILE);
 #   (could be less than $num_messages but I am not sure of the limit).
 
 
-foreach $data_size (@dataSizes) {
+foreach $data_size (@dataSizes)
+{
+
+  &touch($settings{'results'} . '.' .  $data_size);
+
   $Subscriber = new PerlACE::Process ("subscriber", $parameters
-                                                    . " -d " . $data_size);
+              . " -d " . $data_size . " -top test_topic_" . $data_size);
   print $Subscriber->CommandLine(), "\n";
 
   $SubscriberResult = $Subscriber->SpawnWaitKill (1200);
@@ -106,6 +110,28 @@ foreach $data_size (@dataSizes) {
       print STDERR "ERROR: subscriber returned $SubscriberResult \n";
       $status = 1;
   }
+
+  # let everyone know that this subscriber is done with this data size
+
+  unlink($settings{'results'} . '.' . $data_size);
+
+  # don't start the next tests until all subscribers are done with this
+  # data size
+
+  $done = 0;
+
+  while( $done == 0 )
+  {
+    $done = 1;
+    for( $i = 0; $i < $settings{'subscribers'}; $i++)
+    {
+      if( -e $testDirectory . "/sub$i.$data_size" )
+      {
+        $done = 0;
+      }
+    }
+  }
+
 }
 
 unlink($settings{'results'} . '.exists');

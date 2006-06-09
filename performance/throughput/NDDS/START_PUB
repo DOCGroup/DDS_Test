@@ -1,1 +1,1 @@
-./objs/i86Linux2.6gcc3.4.3/publisher -sn 10000 -pn 1000 -Size 4
+./objs/i86Linux2.6gcc3.4.3/publisher -top data_size_4 -sn 10000 -pn 1000 -Size $1 -num_of_sub $2 -r pub_result

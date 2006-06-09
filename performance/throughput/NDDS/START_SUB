@@ -1,1 +1,1 @@
-./objs/i86Linux2.6gcc3.4.3/subscriber -sn 10000 -pn 100 -Size 4
+./objs/i86Linux2.6gcc3.4.3/subscriber -sn 10000 -pn 100 -Size $1 -r sub_result -top data_size_4

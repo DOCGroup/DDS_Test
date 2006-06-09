@@ -113,6 +113,15 @@ parse_args (int argc, char *argv[])
         sub_output_file = currentArg;
         arg_shifter.consume_arg ();
       }
+
+    else if ((currentArg = arg_shifter.get_the_parameter ("-top")) != 0)
+      {
+        test_topic_name = currentArg;
+
+        //DDS_Config_File config (network_config_file.c_str ());
+
+        arg_shifter.consume_arg ();
+      }
     else if ((currentArg = arg_shifter.get_the_parameter ("-n")) != 0)
       {
         network_config_file = currentArg;
@@ -457,12 +466,18 @@ main (int argc, char *argv[])
       topic_qos.history.kind = ::DDS::KEEP_ALL_HISTORY_QOS;
 
       ::DDS::Topic_var topic = 
-        dp->create_topic (TEST_TOPIC, 
+      dp->create_topic (test_topic_name.c_str (), 
                           TEST_TYPE, 
                           topic_qos, 
                           ::DDS::TopicListener::_nil ()
                           ACE_ENV_ARG_PARAMETER);
+
+
       ACE_TRY_CHECK;
+
+
+      cout << "The current topic is " << test_topic_name << endl;
+
       
       if (CORBA::is_nil (topic.in ()))
         {
@@ -473,7 +488,7 @@ main (int argc, char *argv[])
         }
 
       ::DDS::TopicDescription_var description =
-        dp->lookup_topicdescription (TEST_TOPIC ACE_ENV_ARG_PARAMETER);
+         dp->lookup_topicdescription (test_topic_name.c_str () ACE_ENV_ARG_PARAMETER);
       ACE_TRY_CHECK;
       
       if (CORBA::is_nil (description.in ()))

@@ -80,13 +80,13 @@ Writer::Writer (::DDS::DataWriter_ptr writer,
                 ACE_CDR::ULong primer_messages,
                 ACE_CDR::ULong stats_messages,
                 ACE_CDR::ULong data_size, 
-                int num_readers,
+                int num_datareaders,
                 int writer_id)
   : writer_ (::DDS::DataWriter::_duplicate (writer)),
     primer_messages_ (primer_messages),
     stats_messages_ (stats_messages),
     data_size_ (data_size),
-    num_readers_ (num_readers),
+    num_datareaders_ (num_datareaders),
     writer_id_ (writer_id),
     finished_sending_ (false),
     stats_ (output_filename, primer_messages, stats_messages, data_size)
@@ -119,15 +119,15 @@ Writer::svc (void)
   {
     int num_connected_subs = 0;
     ::DDS::InstanceHandleSeq handles;
-    
-//    while (num_connected_subs != num_readers_)
-//      {
-//        ACE_OS::sleep (1);
-//        writer_->get_matched_subscriptions (handles);
-//        num_connected_subs = handles.length ();
-//      }
 
-    ACE_OS::sleep (2);
+     while (num_connected_subs != this->num_datareaders_)
+       {
+         ACE_OS::sleep (1);
+         writer_->get_matched_subscriptions (handles);
+         num_connected_subs = handles.length ();
+       }
+
+    //ACE_OS::sleep (2);
 
     switch (data_size_)
     {
@@ -274,7 +274,8 @@ Writer::svc (void)
                          "Exception caught in svc:");
   }
   ACE_ENDTRY;
-/*
+
+  
   ::DDS::InstanceHandleSeq handles;
   
   while (!finished_sending_)
@@ -288,9 +289,10 @@ Writer::svc (void)
           done_condition_.signal ();
         }
     }
-*/
-          this->finished_sending_ = true;
-          done_condition_.signal ();
+
+
+//          this->finished_sending_ = true;
+//          done_condition_.signal ();
   return 0;
 }
 
