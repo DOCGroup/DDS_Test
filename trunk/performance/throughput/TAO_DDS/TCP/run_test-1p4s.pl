@@ -58,7 +58,7 @@ $sub_parameters = "-DCPSConfigFile conf.ini -w $num_writers"
 $pub_parameters = "-DCPSConfigFile conf.ini -p 1 -i $pub_writer_id"
 #              . " -DCPSDebugLevel 6"
               . " -p $primer_messages -s $stats_messages" 
-              . " -r $num_readers -o $pub_outfile -msi 1000 -mxs 1000";
+              . " -r $pub_outfile -msi 1000 -mxs 1000";
 
 $DCPSREPO->Spawn ();
 
@@ -85,19 +85,19 @@ if (PerlACE::waitforfile_timed ($dcpsrepo_ior, 30) == -1) {
 
 foreach $data_size (@dataSizes) {
   $Sub1 = new PerlACE::Process ("subscriber", $sub_parameters 
-                                              . " -o $sub1_outfile" 
+                                              . " -r $sub1_outfile" 
                                               . " -d $data_size");
   print $Sub1->CommandLine(), "\n";
   $Sub2 = new PerlACE::Process ("subscriber", $sub_parameters 
-                                              . " -o $sub2_outfile" 
+                                              . " -r $sub2_outfile" 
                                               . " -d $data_size");
   print $Sub2->CommandLine(), "\n";
   $Sub3 = new PerlACE::Process ("subscriber", $sub_parameters 
-                                              . " -o $sub3_outfile" 
+                                              . " -r $sub3_outfile" 
                                               . " -d $data_size");
   print $Sub3->CommandLine(), "\n";
   $Sub4 = new PerlACE::Process ("subscriber", $sub_parameters 
-                                              . " -o $sub4_outfile" 
+                                              . " -r $sub4_outfile" 
                                               . " -d $data_size");
   print $Sub4->CommandLine(), "\n";
 

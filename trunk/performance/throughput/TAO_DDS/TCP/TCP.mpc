@@ -2,15 +2,16 @@ project(DCPS_Perf_Throughput*Pub): dcpsexe, portableserver {
   exename   = publisher
   libpaths += ../TypeNoKeyBounded
   libs     += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
-  after    += DCPS_Perf_Throughput_TypeNoKeyBounded
+  after    += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
   includes += $(STATS_ROOT)
-  commandflags += -g
 
   Header_Files {
     common.h
+    dds_config_file.h
   }
 
   Source_Files {
+    dds_config_file.cpp
     publisher.cpp
     Writer.cpp
   }
@@ -20,7 +21,7 @@ project(DCPS_Perf_Throughput*Sub): dcpsexe, portableserver {
   exename   = subscriber
   libpaths += ../TypeNoKeyBounded
   libs     += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
-  after    += DCPS_Perf_Throughput_TypeNoKeyBounded
+  after    += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
   includes += $(STATS_ROOT)
 
   Header_Files {

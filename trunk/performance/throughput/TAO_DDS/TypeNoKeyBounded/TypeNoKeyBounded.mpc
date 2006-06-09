@@ -1,5 +1,4 @@
 project(DCPS_Perf_Throughput*) : dcps, portableserver {
-  libout       = .
   idlflags    += -Sc -St \
                  -Wb,export_macro=TPTTypeLib_Export \
                  -Wb,export_include=TPTTypeLib_Export.h

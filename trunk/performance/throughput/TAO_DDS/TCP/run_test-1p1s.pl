@@ -45,7 +45,7 @@ print $DCPSREPO->CommandLine(), "\n";
 $sub_parameters = "-DCPSConfigFile conf.ini -w $num_writers"
 #                . " -DCPSDebugLevel 6"
                 . " -p $primer_messages -s $stats_messages"
-                . " -d $data_size -o $sub_outfile"
+                . " -r $sub_outfile"
                 . " -msi $num_messages -mxs $num_messages";
 
 #use -msi $num_messages to avoid rejected samples
@@ -53,10 +53,10 @@ $sub_parameters = "-DCPSConfigFile conf.ini -w $num_writers"
 #   (could be less than $num_messages but I am not sure of the limit).
 
 #NOTE: above 1000 queue samples does not give any better performance.
-$pub_parameters = "-DCPSConfigFile conf.ini -p 1 -i $pub_writer_id"
+$pub_parameters = "-DCPSConfigFile conf.ini -i $pub_writer_id"
 #              . " -DCPSDebugLevel 6"
               . " -p $primer_messages -s $stats_messages"
-              . " -o $pub_outfile -d $data_size" 
+              . " -r $pub_outfile" 
               . " -msi 1000 -mxs 1000";
 
 $DCPSREPO->Spawn ();
@@ -82,15 +82,15 @@ if (PerlACE::waitforfile_timed ($dcpsrepo_ior, 30) == -1) {
      8192
      16384';
 
-foreach $data_size (@dataSizes) {
+#foreach $data_size (@dataSizes) {
   $Publisher = new PerlACE::Process ("publisher", $pub_parameters 
-                                                  . " -d $data_size");
+                                                  . " -d 4");
   print $Publisher->CommandLine(), "\n";
 
   $Publisher->Spawn ();
   
   $Subscriber = new PerlACE::Process ("subscriber", $sub_parameters 
-                                                    . " -d $data_size");
+                                                    . " -d 4");
   print $Subscriber->CommandLine(), "\n";
 
   $SubscriberResult = $Subscriber->SpawnWaitKill (1200);
@@ -106,7 +106,7 @@ foreach $data_size (@dataSizes) {
       print STDERR "ERROR: publisher returned $PublisherResult \n";
       $status = 1;
   }
-}
+#}
 
 $ir = $DCPSREPO->TerminateWaitKill (5);
 

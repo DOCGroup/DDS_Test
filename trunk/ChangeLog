@@ -1,3 +1,24 @@
+Fri Jun  9 19:35:37 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/TAO_DDS/TCP/dds_config_file.cpp:
+        
+          Fixed signed/unsigned mismatch warning.
+          
+        * performance/throughput/TAO_DDS/TCP/run_test-1p1s.pl:
+        * performance/throughput/TAO_DDS/TCP/run_test-1p4s.pl:
+        
+          Minor change to debug locally on a Windows machine. These 
+          scripts are no longer used in our actual test runs.
+          
+        * performance/throughput/TAO_DDS/TypeNoKeyBounded/TypeNoKeyBounded.mpc:
+        
+          Removed line 'libout = .' so lib will be output to the usual
+          place for ACE+TAO+DDS builds.
+          
+        * performance/throughput/TAO_DDS/TCP/TCP.mpc:
+        
+          Added dds_config_file.{h,cpp} to the publisher project.
+
 Fri Mar 24 22:10:00 UTC 2006    <mxiong@anduril.dre.vanderbilt.edu>
         
         * Created ChangeLog
