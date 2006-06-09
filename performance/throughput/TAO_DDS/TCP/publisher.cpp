@@ -105,10 +105,15 @@ parse_args (int argc, char *argv[])
     //   arg_shifter.consume_arg ();
     // }
     if ((currentArg = arg_shifter.get_the_parameter ("-d")) != 0) 
-    {
-      DATA_SIZE = ACE_OS::atoi (currentArg);
-      arg_shifter.consume_arg ();
-    }
+      {
+        DATA_SIZE = ACE_OS::atoi (currentArg);
+        arg_shifter.consume_arg ();
+      }
+    else if ((currentArg = arg_shifter.get_the_parameter ("-sub")) != 0)
+      {
+        num_datareaders = ACE_OS::atoi (currentArg);
+        arg_shifter.consume_arg ();
+      }
     else if ((currentArg = arg_shifter.get_the_parameter ("-p")) != 0) 
       {
         PRIMER_SAMPLES = ACE_OS::atoi (currentArg);
@@ -160,14 +165,6 @@ parse_args (int argc, char *argv[])
     else if ((currentArg = arg_shifter.get_the_parameter ("-n")) != 0)
       {
         network_config_file = currentArg;
-
-        //DDS_Config_File config (network_config_file.c_str ());
-
-        arg_shifter.consume_arg ();
-      }
-    else if ((currentArg = arg_shifter.get_the_parameter ("-num_of_sub")) != 0)
-      {
-        num_datareaders = ACE_OS::atoi (currentArg);
 
         //DDS_Config_File config (network_config_file.c_str ());
 
