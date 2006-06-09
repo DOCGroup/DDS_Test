@@ -16,14 +16,15 @@
 #include "ace/SString.h"
 
 const long  TEST_DOMAIN   = 411;
-const char* TEST_TOPIC    = "PerfThroughputTest";
 const char* TEST_TYPE     = "PerfThroughputTestType";
 const char * reader_address_str = "default";
 const char * writer_address_str = "default";
+
 ACE_CString pub_output_file ("stats_pub");
 ACE_CString sub_output_file ("stats_sub");
 ACE_CString network_config_file ("net.txt");
 ACE_CString qos_config_file ("qos.txt");
+ACE_CString test_topic_name ("TEST_TOPIC");
 
 const ACE_Time_Value max_blocking_time (::DDS::DURATION_INFINITY_SEC);
 

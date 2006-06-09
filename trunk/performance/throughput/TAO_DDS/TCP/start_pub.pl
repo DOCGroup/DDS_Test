@@ -70,6 +70,7 @@ $parameters = "-DCPSConfigFile conf.ini -i $pub_writer_id"
               . " -msi " . $settings{'samples.maxperinstance'}
               . ' -mxs ' . $settings{'samples.max'}
               . ' -mxi ' . $settings{'instances.max'}
+              . ' -num_of_sub ' . $settings{'subscribers'}
               . ' -r ' . $settings{'results'} . '.stats -n ' . $settings{'net'}
               . ' -q ' . $settings{'qos'};
 
@@ -85,17 +86,24 @@ close(FILE);
 
 &writeSettings($settings{'results'} . '.settings');
 
+# figure out the test directory we're writing to from our result file path
 
+$testDirectory = &getTestDirectory();
+
+print "Test directory is $testDirectory, from " . $settings{'results'} . "\n";
 
 #die "Settings and Parameters have been written... Exiting";
 #exit 0;
 
-foreach $data_size (@dataSizes) {
-  sleep(1);
 
-#  system("publisher $parameters -d $data_size");
+foreach $data_size (@dataSizes)
+{
+
+  &touch( $settings{'results'} . '.' . $data_size );
+
   $Publisher = new PerlACE::Process ("publisher", $parameters
-                                                  . " -d " . $data_size);
+              . " -d " . $data_size . " -top test_topic_" . $data_size);
+
   print $Publisher->CommandLine(), "\n";
 
   $Publisher->Spawn ();
@@ -106,6 +114,29 @@ foreach $data_size (@dataSizes) {
       print STDERR "ERROR: publisher returned $PublisherResult \n";
       $status = 1;
   }
+
+  unlink( $settings{'results'} . '.' . $data_size );
+
+  # give the subscribers time to restart and get read for the next test.
+
+  $done = 0;
+
+  while( $done == 0 )
+  {
+    $done = 1;
+    for( $i = 0; $i < $settings{'subscribers'}; $i++)
+    {
+      if( -e $testDirectory . "/sub$i.$data_size" )
+      {
+        $done = 0;
+      }
+    }
+  }
+
+  print "Finished $data_size... Sleeping for 3 seconds before next round.\n";
+
+  sleep(10);
+
 }
 
 unlink($settings{'results'} . '.exists');

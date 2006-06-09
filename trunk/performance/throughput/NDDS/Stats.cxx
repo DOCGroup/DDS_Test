@@ -18,10 +18,20 @@ PubSub_Stats::PubSub_Stats (const char *output_file,
     curr_sample_ (0),
     pair_first_ (true)
 {
-  file_.open (output_file, ofstream::app);
+  // @@Note:disgard the exisiting file if
+  //        starts from smallest size
+  if (sample_len == TEST_DATA_MIN_SIZE )
+    {
+      file_.open (output_file, ofstream::out);
+    }
+  // otherwise just append to the existing file
+  else
+    {
+      file_.open (output_file, ofstream::app);
+    }
   file_.setf (ios::fixed);
   file_.precision (3);
-  file_ << sample_len << endl;
+  file_ << "Size:" << endl << sample_len << endl;
 }
 
 PubSub_Stats::~PubSub_Stats (void)
@@ -61,23 +71,30 @@ PubSub_Stats::file_dump (void)
 void
 PubSub_Stats::file_dump_throughput (void)
 {
-  timer_.stop ();
-  timer_.elapsed_microseconds (elapsed_time_);
+//   timer_.stop ();
+//   timer_.elapsed_microseconds (elapsed_time_);
+
+  const timeval *tv = ACE_OS::gettimeofday ();
+  ACE_CDR::ULong end_usecs = tv->tv_usec + tv->tv_sec * 1000 * 1000;
+  ACE_CDR::ULong elapsed_time = end_usecs - start_usecs_;
+
 
   ACE_CDR::ULongLong total_bytes =
     static_cast<ACE_CDR::ULongLong> (num_samples_) * sample_len_;
 
   // (bytes * 1000) / usec == KB/sec
-  ACE_CDR::Double raw =
-    static_cast<ACE_CDR::Double> (total_bytes * 1000) / elapsed_time_;
+  ACE_CDR::Double kilo_bytes_per_sec =
+    static_cast<ACE_CDR::Double> (total_bytes * 1000) / elapsed_time;
 
-  ACE_CDR::Double sample_per_sec =
-    static_cast<ACE_CDR::Double> (num_samples_) / elapsed_time_;
+  ACE_CDR::Double samples_per_sec =
+    static_cast<ACE_CDR::Double> (num_samples_ * 1000 * 1000) / elapsed_time;
 
-  printf ("total bytes = %d, elapsed time = %d\n", (num_samples_) * sample_len_, elapsed_time_);
+  printf ("Samples/sec = %7.1f, KB/sec = %7.1f\n", samples_per_sec, kilo_bytes_per_sec);
+  printf ("Samples sent/received = %d, Time elapsed (sec) = %d\n", num_samples_, elapsed_time);
 
-  //  file_ << 1000000 * sample_per_sec << endl;
-  file_ << raw << endl;
+
+  file_ << "KB/sec:" << endl << kilo_bytes_per_sec << endl;
+
 }
 
 void
@@ -155,11 +172,18 @@ PubSub_Stats::pair_sample_usecs (void)
 }
 
 void
-PubSub_Stats::sample_for_throughput (void)
+PubSub_Stats::sample_for_throughput (ACE_CDR::ULong &usecs,
+                                     bool reading)
 {
   if (curr_sample_ == num_primers_ - 1)
     {
-      timer_.start ();
+      if (!reading)
+        {
+          const timeval *tv = ACE_OS::gettimeofday ();
+          usecs = tv->tv_usec + tv->tv_sec * 1000 * 1000;
+          //          timer_.start ();
+        }
+      start_usecs_ = usecs;
     }
 
   ++curr_sample_;
