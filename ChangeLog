@@ -4,6 +4,7 @@ Tue Jun 13 20:37:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * performance/throughput/Splice/splice_publisher:
         * performance/throughput/Splice/splice_subscriber:
         * performance/throughput/Splice/stats_sub:
+        * performance/throughput/Splice/RUN:
         * performance/throughput/Splice/SpliceCompile/pingpong.h:
         * performance/throughput/Splice/SpliceCompile/pingpongDcps.h:
         * performance/throughput/Splice/SpliceCompile/pingpongSacDcps.c:
