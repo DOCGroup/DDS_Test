@@ -1,0 +1,1721 @@
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 284
+Code        : 0
+Description : The service has successfully started.
+Domain      : "DDS Benchmark Domain" with 10240 Kbytes storage space.
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.210685000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 157
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.254922000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 207
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.254988000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 252
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.255022000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 307
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.255056000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 368
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.255091000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 157
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.255200000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 207
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.255230000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 252
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.255277000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 307
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.255307000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 368
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.255338000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 324
+Code        : 0
+Description : Started service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.258354000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 324
+Code        : 0
+Description : Started service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173162.259638000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 255
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade44.isislab.vanderbilt.edu
+Process     : durability (32409)
+Thread      : main thread b7fe56c0
+Timestamp   : 1150173162.278765000 (Mon Jun 12 23:32:42 2006)
+### Report Message ###
+Type        : WARNING
+Context     : networking: reliable protocol
+File        : ../../code/nw_plugSendChannel.c
+Line        : 1166
+Code        : 0
+Description : Node 0x6376e40 (address 129.59.123.113) not responding or no heartbeats received, removing it from the reliable protocol
+Node        : blade44.isislab.vanderbilt.edu
+Process     : networking (32410)
+Thread      : Channels/Channel[@name='Reliable'] 7320bb0
+Timestamp   : 1150173201.106391000 (Mon Jun 12 23:33:21 2006)
+### Report Message ###
+Type        : INFO
+Context     : splicedaemon
+File        : ../../code/v_spliced.c
+Line        : 544
+Code        : 0
+Description : Lost heartbeat: (68960000, 8, 1213484880)
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : watchdog 770bbb0
+Timestamp   : 1150173202.433578000 (Mon Jun 12 23:33:22 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 689
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32403
+Thread      : main thread b7fa66c0
+Timestamp   : 1150173211.276224000 (Mon Jun 12 23:33:31 2006)
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 284
+Code        : 0
+Description : The service has successfully started.
+Domain      : "DDS Benchmark Domain" with 10240 Kbytes storage space.
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.342516000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 157
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.386445000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 207
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.386511000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 252
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.386545000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 307
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.386589000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 368
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.386624000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 157
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.386733000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 207
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.386764000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 252
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.386794000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 307
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.386824000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 368
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.386855000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 324
+Code        : 0
+Description : Started service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.390756000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 324
+Code        : 0
+Description : Started service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174176.392057000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 255
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade44.isislab.vanderbilt.edu
+Process     : durability (32540)
+Thread      : main thread b7f576c0
+Timestamp   : 1150174176.421359000 (Mon Jun 12 23:49:36 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32562
+Thread      : main thread b7f9aaa0
+Timestamp   : 1150174192.949941000 (Mon Jun 12 23:49:52 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32562
+Thread      : main thread b7f9aaa0
+Timestamp   : 1150174192.951961000 (Mon Jun 12 23:49:52 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32562
+Thread      : main thread b7f9aaa0
+Timestamp   : 1150174192.955130000 (Mon Jun 12 23:49:52 2006)
+### Report Message ###
+Type        : WARNING
+Context     : networking: reliable protocol
+File        : ../../code/nw_plugSendChannel.c
+Line        : 1166
+Code        : 0
+Description : Node 0x3b496de0 (address 129.59.123.113) not responding or no heartbeats received, removing it from the reliable protocol
+Node        : blade44.isislab.vanderbilt.edu
+Process     : networking (32541)
+Thread      : Channels/Channel[@name='Reliable'] 221dbb0
+Timestamp   : 1150174212.974390000 (Mon Jun 12 23:50:12 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 689
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32534
+Thread      : main thread b7ef96c0
+Timestamp   : 1150174218.622845000 (Mon Jun 12 23:50:18 2006)
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 284
+Code        : 0
+Description : The service has successfully started.
+Domain      : "DDS Benchmark Domain" with 10240 Kbytes storage space.
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.195659000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 157
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.239688000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 207
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.239754000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 252
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.239789000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 307
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.239823000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 368
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.239867000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 157
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.239979000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 207
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.240010000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 252
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.240040000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 307
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.240070000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 368
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.240101000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 324
+Code        : 0
+Description : Started service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.244054000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 324
+Code        : 0
+Description : Started service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174319.245312000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 255
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade44.isislab.vanderbilt.edu
+Process     : durability (32616)
+Thread      : main thread b7f0f6c0
+Timestamp   : 1150174319.264097000 (Mon Jun 12 23:51:59 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32639
+Thread      : main thread b7f7aaa0
+Timestamp   : 1150174337.960435000 (Mon Jun 12 23:52:17 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32639
+Thread      : main thread b7f7aaa0
+Timestamp   : 1150174337.962480000 (Mon Jun 12 23:52:17 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32639
+Thread      : main thread b7f7aaa0
+Timestamp   : 1150174337.965255000 (Mon Jun 12 23:52:17 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 689
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32610
+Thread      : main thread b7f496c0
+Timestamp   : 1150174351.338035000 (Mon Jun 12 23:52:31 2006)
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 284
+Code        : 0
+Description : The service has successfully started.
+Domain      : "DDS Benchmark Domain" with 10240 Kbytes storage space.
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.782699000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 157
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.827246000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 207
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.827313000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 252
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.827348000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 307
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.827382000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 368
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.827417000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 157
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.827527000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 207
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.827559000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 252
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.827600000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 307
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.827632000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 368
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.827663000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 324
+Code        : 0
+Description : Started service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.829987000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 324
+Code        : 0
+Description : Started service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174930.833761000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 255
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade44.isislab.vanderbilt.edu
+Process     : durability (32724)
+Thread      : main thread b7f406c0
+Timestamp   : 1150174930.856958000 (Tue Jun 13 00:02:10 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32746
+Thread      : main thread b7f62aa0
+Timestamp   : 1150174945.141602000 (Tue Jun 13 00:02:25 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32746
+Thread      : main thread b7f62aa0
+Timestamp   : 1150174945.143357000 (Tue Jun 13 00:02:25 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32746
+Thread      : main thread b7f62aa0
+Timestamp   : 1150174945.146515000 (Tue Jun 13 00:02:25 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 689
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32718
+Thread      : main thread b7fd06c0
+Timestamp   : 1150174957.855857000 (Tue Jun 13 00:02:37 2006)
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 284
+Code        : 0
+Description : The service has successfully started.
+Domain      : "DDS Benchmark Domain" with 10240 Kbytes storage space.
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.616207000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 157
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.660369000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 207
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.660436000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 252
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.660471000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 307
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.660506000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 368
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.660540000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 157
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.660651000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 207
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.660682000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 252
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.660713000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 307
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.660744000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 368
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.660774000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 324
+Code        : 0
+Description : Started service durability
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.663115000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 324
+Code        : 0
+Description : Started service networking
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175015.664488000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 255
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade44.isislab.vanderbilt.edu
+Process     : durability (32766)
+Thread      : main thread b7ff16c0
+Timestamp   : 1150175015.689181000 (Tue Jun 13 00:03:35 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 322
+Thread      : main thread b7f84aa0
+Timestamp   : 1150175028.120637000 (Tue Jun 13 00:03:48 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 322
+Thread      : main thread b7f84aa0
+Timestamp   : 1150175028.122726000 (Tue Jun 13 00:03:48 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 322
+Thread      : main thread b7f84aa0
+Timestamp   : 1150175028.125430000 (Tue Jun 13 00:03:48 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 330
+Thread      : main thread b7f90aa0
+Timestamp   : 1150175066.393451000 (Tue Jun 13 00:04:26 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 330
+Thread      : main thread b7f90aa0
+Timestamp   : 1150175066.395086000 (Tue Jun 13 00:04:26 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 330
+Thread      : main thread b7f90aa0
+Timestamp   : 1150175066.397617000 (Tue Jun 13 00:04:26 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 338
+Thread      : main thread b7f5aaa0
+Timestamp   : 1150175102.254882000 (Tue Jun 13 00:05:02 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 338
+Thread      : main thread b7f5aaa0
+Timestamp   : 1150175102.256527000 (Tue Jun 13 00:05:02 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 338
+Thread      : main thread b7f5aaa0
+Timestamp   : 1150175102.259898000 (Tue Jun 13 00:05:02 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 345
+Thread      : main thread b7f1baa0
+Timestamp   : 1150175133.042162000 (Tue Jun 13 00:05:33 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 345
+Thread      : main thread b7f1baa0
+Timestamp   : 1150175133.042577000 (Tue Jun 13 00:05:33 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 345
+Thread      : main thread b7f1baa0
+Timestamp   : 1150175133.056408000 (Tue Jun 13 00:05:33 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 349
+Thread      : main thread b7fe5aa0
+Timestamp   : 1150175141.944514000 (Tue Jun 13 00:05:41 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 349
+Thread      : main thread b7fe5aa0
+Timestamp   : 1150175141.944926000 (Tue Jun 13 00:05:41 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 349
+Thread      : main thread b7fe5aa0
+Timestamp   : 1150175141.948248000 (Tue Jun 13 00:05:41 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 353
+Thread      : main thread b7f61aa0
+Timestamp   : 1150175169.232240000 (Tue Jun 13 00:06:09 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 353
+Thread      : main thread b7f61aa0
+Timestamp   : 1150175169.233934000 (Tue Jun 13 00:06:09 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 353
+Thread      : main thread b7f61aa0
+Timestamp   : 1150175169.247670000 (Tue Jun 13 00:06:09 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 357
+Thread      : main thread b7fdaaa0
+Timestamp   : 1150175176.588794000 (Tue Jun 13 00:06:16 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 357
+Thread      : main thread b7fdaaa0
+Timestamp   : 1150175176.589209000 (Tue Jun 13 00:06:16 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 357
+Thread      : main thread b7fdaaa0
+Timestamp   : 1150175176.592875000 (Tue Jun 13 00:06:16 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 360
+Thread      : main thread b7fe3aa0
+Timestamp   : 1150175182.097967000 (Tue Jun 13 00:06:22 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 360
+Thread      : main thread b7fe3aa0
+Timestamp   : 1150175182.099630000 (Tue Jun 13 00:06:22 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 360
+Thread      : main thread b7fe3aa0
+Timestamp   : 1150175182.257454000 (Tue Jun 13 00:06:22 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 364
+Thread      : main thread b7f53aa0
+Timestamp   : 1150175189.327752000 (Tue Jun 13 00:06:29 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 364
+Thread      : main thread b7f53aa0
+Timestamp   : 1150175189.328176000 (Tue Jun 13 00:06:29 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 364
+Thread      : main thread b7f53aa0
+Timestamp   : 1150175189.331858000 (Tue Jun 13 00:06:29 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 367
+Thread      : main thread b7f9daa0
+Timestamp   : 1150175195.659891000 (Tue Jun 13 00:06:35 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 367
+Thread      : main thread b7f9daa0
+Timestamp   : 1150175195.661895000 (Tue Jun 13 00:06:35 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 367
+Thread      : main thread b7f9daa0
+Timestamp   : 1150175195.665309000 (Tue Jun 13 00:06:35 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 376
+Thread      : main thread b7f01aa0
+Timestamp   : 1150175263.798375000 (Tue Jun 13 00:07:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 376
+Thread      : main thread b7f01aa0
+Timestamp   : 1150175263.802599000 (Tue Jun 13 00:07:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 386
+Thread      : main thread b7f8aaa0
+Timestamp   : 1150175263.974678000 (Tue Jun 13 00:07:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 382
+Thread      : main thread b7f9baa0
+Timestamp   : 1150175263.974684000 (Tue Jun 13 00:07:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 386
+Thread      : main thread b7f8aaa0
+Timestamp   : 1150175263.976473000 (Tue Jun 13 00:07:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 376
+Thread      : main thread b7f01aa0
+Timestamp   : 1150175263.984735000 (Tue Jun 13 00:07:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 379
+Thread      : main thread b7f4baa0
+Timestamp   : 1150175263.987666000 (Tue Jun 13 00:07:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 379
+Thread      : main thread b7f4baa0
+Timestamp   : 1150175264.030207000 (Tue Jun 13 00:07:44 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 382
+Thread      : main thread b7f9baa0
+Timestamp   : 1150175263.989396000 (Tue Jun 13 00:07:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 386
+Thread      : main thread b7f8aaa0
+Timestamp   : 1150175264.004831000 (Tue Jun 13 00:07:44 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 379
+Thread      : main thread b7f4baa0
+Timestamp   : 1150175264.034936000 (Tue Jun 13 00:07:44 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 382
+Thread      : main thread b7f9baa0
+Timestamp   : 1150175264.046918000 (Tue Jun 13 00:07:44 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 396
+Thread      : main thread b7f4caa0
+Timestamp   : 1150175311.058771000 (Tue Jun 13 00:08:31 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 396
+Thread      : main thread b7f4caa0
+Timestamp   : 1150175311.060623000 (Tue Jun 13 00:08:31 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 396
+Thread      : main thread b7f4caa0
+Timestamp   : 1150175311.063496000 (Tue Jun 13 00:08:31 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 399
+Thread      : main thread b7f64aa0
+Timestamp   : 1150175316.371937000 (Tue Jun 13 00:08:36 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 399
+Thread      : main thread b7f64aa0
+Timestamp   : 1150175316.372343000 (Tue Jun 13 00:08:36 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 399
+Thread      : main thread b7f64aa0
+Timestamp   : 1150175316.375247000 (Tue Jun 13 00:08:36 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 403
+Thread      : main thread b7f32aa0
+Timestamp   : 1150175323.411700000 (Tue Jun 13 00:08:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 403
+Thread      : main thread b7f32aa0
+Timestamp   : 1150175323.412149000 (Tue Jun 13 00:08:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 403
+Thread      : main thread b7f32aa0
+Timestamp   : 1150175323.415541000 (Tue Jun 13 00:08:43 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 406
+Thread      : main thread b7f24aa0
+Timestamp   : 1150175326.478420000 (Tue Jun 13 00:08:46 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 406
+Thread      : main thread b7f24aa0
+Timestamp   : 1150175326.478839000 (Tue Jun 13 00:08:46 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 406
+Thread      : main thread b7f24aa0
+Timestamp   : 1150175326.481760000 (Tue Jun 13 00:08:46 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 409
+Thread      : main thread b7fd7aa0
+Timestamp   : 1150175328.714509000 (Tue Jun 13 00:08:48 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 409
+Thread      : main thread b7fd7aa0
+Timestamp   : 1150175328.714925000 (Tue Jun 13 00:08:48 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 409
+Thread      : main thread b7fd7aa0
+Timestamp   : 1150175328.717261000 (Tue Jun 13 00:08:48 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 412
+Thread      : main thread b7fa7aa0
+Timestamp   : 1150175330.954233000 (Tue Jun 13 00:08:50 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 412
+Thread      : main thread b7fa7aa0
+Timestamp   : 1150175330.954623000 (Tue Jun 13 00:08:50 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 412
+Thread      : main thread b7fa7aa0
+Timestamp   : 1150175330.957665000 (Tue Jun 13 00:08:50 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 417
+Thread      : main thread b7fd2aa0
+Timestamp   : 1150175357.953031000 (Tue Jun 13 00:09:17 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 417
+Thread      : main thread b7fd2aa0
+Timestamp   : 1150175357.953444000 (Tue Jun 13 00:09:17 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 417
+Thread      : main thread b7fd2aa0
+Timestamp   : 1150175357.957204000 (Tue Jun 13 00:09:17 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 421
+Thread      : main thread b7f02aa0
+Timestamp   : 1150175372.459409000 (Tue Jun 13 00:09:32 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 421
+Thread      : main thread b7f02aa0
+Timestamp   : 1150175372.461413000 (Tue Jun 13 00:09:32 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 421
+Thread      : main thread b7f02aa0
+Timestamp   : 1150175372.464704000 (Tue Jun 13 00:09:32 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_datareader contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 426
+Thread      : main thread b7fb3aa0
+Timestamp   : 1150175403.423666000 (Tue Jun 13 00:10:03 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 7
+Description : DomainParticipantFactory::delete_participant entities contained
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 426
+Thread      : main thread b7fb3aa0
+Timestamp   : 1150175403.425366000 (Tue Jun 13 00:10:03 2006)
+### Report Message ###
+Type        : API_INFO
+Context     : DCPS API
+File        : ../../code/gapi_error.c
+Line        : 320
+Code        : 19
+Description : Subscriber::delete_contained_entities contains_loans
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 426
+Thread      : main thread b7fb3aa0
+Timestamp   : 1150175403.428264000 (Tue Jun 13 00:10:03 2006)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 689
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade44.isislab.vanderbilt.edu
+Process     : 32760
+Thread      : main thread b7fa56c0
+Timestamp   : 1150175427.345980000 (Tue Jun 13 00:10:27 2006)
