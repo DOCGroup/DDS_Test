@@ -1,3 +1,25 @@
+Tue Jun 13 20:37:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/Splice/ospl-info.log:
+        * performance/throughput/Splice/splice_publisher:
+        * performance/throughput/Splice/splice_subscriber:
+        * performance/throughput/Splice/stats_sub:
+        * performance/throughput/Splice/SpliceCompile/pingpong.h:
+        * performance/throughput/Splice/SpliceCompile/pingpongDcps.h:
+        * performance/throughput/Splice/SpliceCompile/pingpongSacDcps.c:
+        * performance/throughput/Splice/SpliceCompile/pingpongSacDcps.h:
+        * performance/throughput/Splice/SpliceCompile/pingpongSplDcps.c:
+        * performance/throughput/Splice/SpliceCompile/pingpongSplDcps.h:
+        
+          Removed more unneeded files from the Splice throughput test
+          directory.
+
+Tue Jun 13 19:31:06 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/Splice/SpliceCompile/*.o:
+        
+          Removed the object files mistakenly checked in.
+
 Fri Jun  9 20:29:26 UTC 2006  xiong,ming  <ming.xiong@vanderbilt.edu>
 
         * performance/throughput/TAO_DDS/TCP/publisher.cpp
