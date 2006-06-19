@@ -107,7 +107,7 @@ foreach $data_size (@dataSizes)
         "subscriber",
 #         $parameters .
 #        " -Size $data_size -top test_topic_$data_size");
-         $parameters);
+         $parameters . " -top topic_$data_size");
   print $Subscriber->CommandLine(), "\n";
 
   $SubscriberResult = $Subscriber->SpawnWaitKill (1200);

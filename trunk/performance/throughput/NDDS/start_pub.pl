@@ -100,6 +100,7 @@ foreach $data_size (@dataSizes)
   $Publisher = new PerlACE::Process (
      "$exe" , 
      $parameters  . " -minSize $data_size -maxSize $data_size"
+                  . " -top topic_$data_size"
 #     . " -role $id -num_of_sub " . $settings{'subscribers'}
       );
 
