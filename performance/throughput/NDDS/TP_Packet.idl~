@@ -1,0 +1,116 @@
+/*
+ (c) Copyright, Real-Time Innovations, 2005.  All rights reserved.
+ No duplications, whole or partial, manual or electronic, may be made
+ without express written permission.  Any such copies, or
+ revisions thereof, must display this notice unaltered.
+ This code contains trade secrets of Real-Time Innovations, Inc.
+*/
+
+/* If you want to test the shared memory transport plugin's capability to
+   send messages larger than UDP packet size limit of 64K, increase this
+   value.  Please note that doing so will turn off the built-in UDPv4 plugin.
+*/
+const short MAX_MSG_LENGTH = 16384;//131072;
+
+
+
+const short LATENCY_MSG_LENGTH = 16384;
+
+struct NDDSLatencyPacket {
+  long sequenceNumber;
+  sequence<octet, LATENCY_MSG_LENGTH> data;
+};
+
+
+const short BYTES4_MSG_LENGTH=4;
+const short BYTES8_MSG_LENGTH=8;
+const short BYTES16_MSG_LENGTH=16;
+const short BYTES32_MSG_LENGTH=32;
+const short BYTES64_MSG_LENGTH=64;
+const short BYTES128_MSG_LENGTH=128;
+const short BYTES256_MSG_LENGTH=256;
+const short BYTES512_MSG_LENGTH=512;
+const short BYTES1024_MSG_LENGTH=1024;
+const short BYTES2048_MSG_LENGTH=2048;
+const short BYTES4096_MSG_LENGTH=4096;
+const short BYTES8192_MSG_LENGTH=8192;
+const short BYTES16384_MSG_LENGTH=16384;
+
+
+struct Bytes4
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES4_MSG_LENGTH> data;
+};
+  
+struct Bytes8
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES8_MSG_LENGTH> data;
+};
+  
+struct Bytes16
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES16_MSG_LENGTH > data;
+};
+  
+struct Bytes32
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES32_MSG_LENGTH> data;
+};
+  
+struct Bytes64
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES64_MSG_LENGTH> data;
+};
+  
+struct Bytes128
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES128_MSG_LENGTH> data;
+};
+  
+struct Bytes256
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES256_MSG_LENGTH> data;
+};
+  
+struct Bytes512
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES512_MSG_LENGTH> data;
+};
+  
+struct Bytes1024
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES1024_MSG_LENGTH> data;
+};
+  
+struct Bytes2048
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES2048_MSG_LENGTH> data;
+};
+  
+struct Bytes4096
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES4096_MSG_LENGTH> data;
+};
+  
+struct Bytes8192
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES8192_MSG_LENGTH> data;
+};
+  
+struct Bytes16384
+{
+  unsigned long timestamp;
+  sequence<octet, BYTES16384_MSG_LENGTH> data;
+};
