@@ -188,7 +188,7 @@ DataReaderListenerImpl::on_data_available (
     
     ACE_CDR::ULong ts = read_samples (reader);
     
-    this->stats_.sample_for_throughput (ts, true);
+    this->stats_.sample_for_throughput (ts, false);
       
     if (this->stats_.ready_to_dump ())
       {

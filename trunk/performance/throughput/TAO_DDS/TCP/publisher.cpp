@@ -496,7 +496,9 @@ main (int argc, char *argv[])
                           ACE_ENV_ARG_PARAMETER);
       ACE_TRY_CHECK;
 
-      cout << "The current topic is " << test_topic_name << endl;
+      ACE_DEBUG((LM_DEBUG, "(%P|%t)The current topic is %s\n",
+         test_topic_name.c_str()));
+      //cout << "The current topic is " << test_topic_name << endl;
 
       
       if (CORBA::is_nil (topic.in ()))
@@ -666,10 +668,14 @@ main (int argc, char *argv[])
       
       dpf->delete_participant (dp.in () ACE_ENV_ARG_PARAMETER);
       ACE_TRY_CHECK;
+ACE_DEBUG ((LM_DEBUG, "(%P|%t)releasing TheTransportFactory \n"));
 
       TheTransportFactory->release ();
-      TheServiceParticipant->shutdown (); 
 
+ACE_DEBUG ((LM_DEBUG, "(%P|%t)released TheTransportFactory \n"));
+
+      TheServiceParticipant->shutdown (); 
+ACE_DEBUG ((LM_DEBUG, "(%P|%t)shutdown TheServiceParticipant\n"));
       writer_transport_impl = 0;
     }
   ACE_CATCHANY
