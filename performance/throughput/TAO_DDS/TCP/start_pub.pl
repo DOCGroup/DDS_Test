@@ -18,8 +18,10 @@ require  "/export/home/tczar/scripts/scripts.lib";
 
 # no terminal? no problem...
 
-chdir("/export/home/tczar/DDS/performance/throughput/TAO_DDS/TCP");
-system("ulimit -c unlimited");
+chdir("/home/tczar/DDS/performance/throughput/TAO_DDS/TCP");
+#system("ulimit -c unlimited");
+system("/export/home/tczar/scripts/enable_cores.sh");
+
 
 #print "Publisher CWD: " . getcwd() . "\n";
 #exit(0);
@@ -63,14 +65,14 @@ if( $settings{'nodelist'} eq 'true' )
 
 #NOTE: above 1000 queue samples does not give any better performance.
 $parameters = "-DCPSConfigFile conf.ini -i $pub_writer_id"
-              . " -DCPSDebugLevel 0"
+              . " -DCPSDebugLevel 0 -ORBVerboseLogging 1"
               . " -ORBDottedDecimalAddresses 1"
               . " -DCPSInfoRepo corbaloc:iiop:$repo:$repo_port/DCPSInfoRepo"
               . " -p $primer_messages -s $stats_messages"
               . " -msi " . $settings{'samples.maxperinstance'}
               . ' -mxs ' . $settings{'samples.max'}
               . ' -mxi ' . $settings{'instances.max'}
-              . ' -num_of_sub ' . $settings{'subscribers'}
+              . ' -sub ' . $settings{'subscribers'}
               . ' -r ' . $settings{'results'} . '.stats -n ' . $settings{'net'}
               . ' -q ' . $settings{'qos'};
 
@@ -101,19 +103,23 @@ foreach $data_size (@dataSizes)
 
   &touch( $settings{'results'} . '.' . $data_size );
 
-  $Publisher = new PerlACE::Process ("publisher", $parameters
-              . " -d " . $data_size . " -top test_topic_" . $data_size);
 
-  print $Publisher->CommandLine(), "\n";
+  print "./publisher $parameters -d $data_size -top test_topic_$data_size";
+  system("./publisher $parameters -d $data_size -top test_topic_$data_size");
 
-  $Publisher->Spawn ();
+#  $Publisher = new PerlACE::Process ("publisher", $parameters
+#              . " -d " . $data_size . " -top test_topic_" . $data_size);
 
-  $PublisherResult = $Publisher->WaitKill (1200);
+#  print $Publisher->CommandLine(), "\n";
 
-  if ($PublisherResult != 0) {
-      print STDERR "ERROR: publisher returned $PublisherResult \n";
-      $status = 1;
-  }
+#  $Publisher->Spawn ();
+
+#  $PublisherResult = $Publisher->WaitKill (1200);
+
+#  if ($PublisherResult != 0) {
+#      print STDERR "ERROR: publisher returned $PublisherResult \n";
+#      $status = 1;
+#  }
 
   unlink( $settings{'results'} . '.' . $data_size );
 

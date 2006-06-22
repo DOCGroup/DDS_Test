@@ -18,7 +18,8 @@ require  "/export/home/tczar/scripts/scripts.lib";
 
 # no terminal? no problem...
 
-chdir("/export/home/tczar/DDS/performance/throughput/TAO_DDS/TCP");
+chdir("/home/tczar/DDS/performance/throughput/TAO_DDS/TCP");
+system("/export/home/tczar/scripts/enable_cores.sh");
 
 
 #print "Subscriber CWD: " . getcwd() . "\n";
@@ -65,7 +66,7 @@ if( $settings{'nodelist'} eq 'true' )
 
 
 $parameters = "-DCPSConfigFile conf.ini -w 1"
-              . " -DCPSDebugLevel 0"
+              . " -DCPSDebugLevel 0  -ORBVerboseLogging 1"
               . " -ORBDottedDecimalAddresses 1"
               . " -DCPSInfoRepo corbaloc:iiop:$repo:$repo_port/DCPSInfoRepo"
               . " -p $primer_messages -s $stats_messages"

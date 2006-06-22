@@ -127,7 +127,7 @@ Writer::svc (void)
          num_connected_subs = handles.length ();
        }
 
-    //ACE_OS::sleep (2);
+    ACE_OS::sleep (2);
 
     switch (data_size_)
     {
