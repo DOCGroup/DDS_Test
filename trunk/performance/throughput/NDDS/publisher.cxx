@@ -25,6 +25,13 @@ const char * TEST_TOPIC_NAME = "TEST_TOPIC";
 const char * TEST_ECHO_TOPIC_NAME = "TEST_ECHO_TOPIC";
 const char * TEST_TOPIC_TYPE_NAME = "TEST_TOPIC_TYPE";
 
+
+/* global QoS settings */
+RTIBool QoS_KEEP_ALL = RTI_FALSE;
+long QoS_MAX_SAMPLES_PER_INSTANCE = 65536;
+long QoS_MAX_SAMPLES = 65536;
+long QoS_MAX_INSTANCES = 65536;
+
 /**
  *
  * template data write
@@ -670,6 +677,11 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     participant->get_default_topic_qos(data_topic_qos);
     // each instance can only be owned by one DataWriter at a time
     data_topic_qos.ownership.kind = DDS_EXCLUSIVE_OWNERSHIP_QOS;
+    data_topic_qos.resource_limits.max_samples_per_instance = QoS_MAX_SAMPLES_PER_INSTANCE;
+    data_topic_qos.resource_limits.max_instances = QoS_MAX_INSTANCES;
+    data_topic_qos.resource_limits.max_samples = QoS_MAX_SAMPLES;
+
+
     echo_topic_qos = data_topic_qos;
     
     /* create and enable data_topic. This is topic for data from 
@@ -796,6 +808,11 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     if(!isReliable) {//writer is reliable by default
 	writer_qos.reliability.kind = DDS_BEST_EFFORT_RELIABILITY_QOS;
     }
+
+    if (QoS_KEEP_ALL) {
+      writer_qos.history.kind = DDS_KEEP_ALL_HISTORY_QOS;
+    }
+
 
     /* create and enable writer. use data_topic. */
     printf ("Creating data writer from data publisher......");
@@ -1192,6 +1209,12 @@ int main(int argc, char **argv)
         prime_num = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-sn") == 0) {
         stats_num = strtol(argv[++i], NULL, 10);
+      } else if (strcmp(argv[i], "-msi") == 0) {
+        QoS_MAX_SAMPLES_PER_INSTANCES  = strtol(argv[++i], NULL, 10);
+      } else if (strcmp(argv[i], "-mxs") == 0) {
+        QoS_MAX_SAMPLES = strtol(argv[++i], NULL, 10);
+      } else if (strcmp(argv[i], "-mxi") == 0) {
+        QoS_MAX_INSTANCES = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-r") == 0) {
         pub_output_file = argv[++i];
       } else if (strcmp(argv[i], "-n") == 0) {
@@ -1200,6 +1223,8 @@ int main(int argc, char **argv)
         qos_config_file = argv[++i];
       } else if (strcmp(argv[i], "-top") == 0) {
         TEST_TOPIC_NAME = argv[++i];
+      } else if (strcmp(argv[i], "-keep_all") == 0) {
+        QoS_Keep_All = RTI_TRUE;
       } else if (strcmp(argv[i], "-multicast") == 0) {
         useMulticast = RTI_TRUE;
       } else if (strcmp(argv[i], "-reliable") == 0) {
