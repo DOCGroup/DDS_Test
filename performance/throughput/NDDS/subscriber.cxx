@@ -23,9 +23,9 @@ const char * TEST_TOPIC_TYPE_NAME = "TEST_TOPIC_TYPE";
 
 /* global QoS settings */
 RTIBool QoS_KEEP_ALL = RTI_FALSE;
-long QoS_MAX_SAMPLES_PER_INSTANCE = 65536;
-long QoS_MAX_SAMPLES = 65536;
-long QoS_MAX_INSTANCES = 65536;
+long QoS_MAX_SAMPLES_PER_INSTANCE = DDS_LENGTH_UNLIMITED;
+long QoS_MAX_SAMPLES = DDS_LENGTH_UNLIMITED;
+long QoS_MAX_INSTANCES = DDS_LENGTH_UNLIMITED;
 
 
 template<typename T, typename TSeq, typename R>
@@ -1088,7 +1088,7 @@ int main(int argc, char *argv[])
       } else if (strcmp(argv[i], "-sn") == 0) {
         stats_num = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-msi") == 0) {
-        QoS_MAX_SAMPLES_PER_INSTANCES  = strtol(argv[++i], NULL, 10);
+        QoS_MAX_SAMPLES_PER_INSTANCE  = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-mxs") == 0) {
         QoS_MAX_SAMPLES = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-mxi") == 0) {
@@ -1104,7 +1104,7 @@ int main(int argc, char *argv[])
       } else if (strcmp(argv[i], "-wait") == 0) {
         useWaitSet = RTI_TRUE;
       } else if (strcmp(argv[i], "-keep_all") == 0) {
-        QoS_Keep_All = RTI_TRUE;
+        QoS_KEEP_ALL = RTI_TRUE;
       } else if (strcmp(argv[i], "-noecho") == 0) {
         thisSubscriberIsEchoer = RTI_FALSE;
       } else if (strcmp(argv[i], "-multicast") == 0) {

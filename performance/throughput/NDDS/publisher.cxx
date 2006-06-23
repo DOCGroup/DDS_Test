@@ -28,9 +28,9 @@ const char * TEST_TOPIC_TYPE_NAME = "TEST_TOPIC_TYPE";
 
 /* global QoS settings */
 RTIBool QoS_KEEP_ALL = RTI_FALSE;
-long QoS_MAX_SAMPLES_PER_INSTANCE = 65536;
-long QoS_MAX_SAMPLES = 65536;
-long QoS_MAX_INSTANCES = 65536;
+long QoS_MAX_SAMPLES_PER_INSTANCE = DDS_LENGTH_UNLIMITED;
+long QoS_MAX_SAMPLES = DDS_LENGTH_UNLIMITED;
+long QoS_MAX_INSTANCES = DDS_LENGTH_UNLIMITED;
 
 /**
  *
@@ -375,6 +375,14 @@ static RTIBool NddsPublisherMain(int nddsDomain,
         printf ("Multicast = No\n");
       }
     printf ("Notification_Type = N/A\n");
+    if (QoS_KEEP_ALL)
+      {
+        printf ("History = KEEP_ALL\n");
+      }
+    else
+      {
+        printf ("History = KEEP_LAST\n");
+      }
     printf ("=============Settings==============\n\n");
 
 
@@ -788,7 +796,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
        activated for callback
     */
     printf ("Setting echo reader listner............");
-    retcode = reader->set_listener(&reader_listener, DDS_DATA_AVAILABLE_STATUS);
+    retcode = reader->set_listener(&reader_listener,
+                                   DDS_DATA_AVAILABLE_STATUS);
     if (retcode != DDS_RETCODE_OK) {
 	printf("***Error: failed to set listener\n");
 	goto fin;
@@ -880,9 +889,11 @@ static RTIBool NddsPublisherMain(int nddsDomain,
        just sleep a while, assuming that the readers will be discovered within
        this time.
     */
+    printf ("Waiting for subscribers to be discovered..\n");
     for(i = 0; i < 20; ++i) {
 	NDDSUtility::sleep(sleepTime);
     }
+
 
     /*------------------------ start the latency test ----------------------*/
 
@@ -1210,7 +1221,7 @@ int main(int argc, char **argv)
       } else if (strcmp(argv[i], "-sn") == 0) {
         stats_num = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-msi") == 0) {
-        QoS_MAX_SAMPLES_PER_INSTANCES  = strtol(argv[++i], NULL, 10);
+        QoS_MAX_SAMPLES_PER_INSTANCE  = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-mxs") == 0) {
         QoS_MAX_SAMPLES = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-mxi") == 0) {
@@ -1224,7 +1235,7 @@ int main(int argc, char **argv)
       } else if (strcmp(argv[i], "-top") == 0) {
         TEST_TOPIC_NAME = argv[++i];
       } else if (strcmp(argv[i], "-keep_all") == 0) {
-        QoS_Keep_All = RTI_TRUE;
+        QoS_KEEP_ALL = RTI_TRUE;
       } else if (strcmp(argv[i], "-multicast") == 0) {
         useMulticast = RTI_TRUE;
       } else if (strcmp(argv[i], "-reliable") == 0) {
