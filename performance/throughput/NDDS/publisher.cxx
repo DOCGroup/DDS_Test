@@ -313,6 +313,42 @@ void NDDSLatencyDataProcessor::finish_one_round()
      ++(_arrayIndex);
 }
 
+
+
+class TP_PacketDataWriterListener : public DDSDataWriterListener 
+{
+private:
+  int num_of_subs_;
+
+public:
+
+  TP_PacketDataWriterListener()
+    : num_of_subs_(0) {}
+  
+  virtual ~NDDSLatencyPacketListener() {} 
+
+  virtual void on_offered_deadline_missed (DDSDataWriter *, 
+                                           const DDS_OfferedDeadlineMissedStatus &) {}
+
+  virtual void on_liveliness_lost(DDSDataWriter *, 
+                                  const DDS_LivelinessLostStatus &) {}
+
+  virtual void on_offered_incompatible_qos(DDSDataWriter *,
+                                           const DDS_OfferedIncompatibleQosStatus &) {}
+
+  virtual void on_publication_matched(DDSDataWriter *data_writer,
+                                      const DDS_PublicationMatchStatus &pub_stat);
+
+  virtual void on_reliable_reader_activity_changed(DDSDataWriter *,
+                                                   const DDS_ReliableReaderActivityChangedStatus &);
+
+  virtual void on_reliable_writer_cache_changed(DDSDataWriter *,
+                                                const DDS_ReliableWriterCacheChangedStatus &);
+
+};
+
+
+
 #ifndef JUST_WANT_DATA_PROCESSOR
 class NDDSLatencyPacketListener : public DDSDataReaderListener {
     
@@ -446,6 +482,7 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 
     /* Listener declarations */
     NDDSLatencyPacketListener reader_listener(&dataProcessor);
+    TP_PacketDataWriterListener writer_listener;
 
     /* Data declarations */
     NDDSLatencyPacket instance;
@@ -834,6 +871,17 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     printf ("[Done]\n");
 
 
+    printf ("Setting data writer listener for data writer......");
+    retcode = writer->set_listener (
+                                    &writer_listener,
+                                    DDS_PUBLICATION_MATCHED_STATUS);
+    if (retcode != DDS_RETCODE_OK) {
+      printf("***Error: failed to set listener\n");
+      goto finally;
+    }
+    printf ("[Done]\n");
+    
+
 
 #ifdef I_HAVE_MY_OWN_TEST_CODES
 
@@ -1149,6 +1197,17 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 
 
 }
+
+
+
+void TP_PacketDataWriterListener::on_publication_match( 
+                                               DDSDataWriter *data_writer, 
+                                               const DDS_PublicationMatchStatus &pub_stat) 
+{
+  this->num_of_subs_++;
+  printf("Discovered subscription: No.%d!\n", this->num_of_subs_++);
+}
+
 
 /*i called when received echo */
 void NDDSLatencyPacketListener::on_data_available(DDSDataReader* datareader)
