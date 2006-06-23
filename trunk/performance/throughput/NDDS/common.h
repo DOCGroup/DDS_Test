@@ -44,6 +44,13 @@ latency. The basic algorithm is as follow:
  #define MY_OWN_TEST_OVERHEAD 0
 #endif
 
+
+
+/* Uncomment this line if you want to debug the publication match */
+
+//#define I_WANT_TO_DEBUG
+
+
 /* Type name */
 #define LATENCY_TYPE_NAME "PacketDataType"
 
