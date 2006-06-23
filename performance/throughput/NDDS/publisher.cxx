@@ -196,12 +196,17 @@ class NDDSLatencyDataProcessor {
 
 NDDSLatencyDataProcessor::~NDDSLatencyDataProcessor()
 {
-    RTIOsapiSemaphore_delete(_sem);
+  if (NULL != _sem)
+    {
+      RTIOsapiSemaphore_delete(_sem);
+    }
 }
 NDDSLatencyDataProcessor::NDDSLatencyDataProcessor()
-    : _clock(NULL),
+    : _sem (NULL),
+      _clock(NULL),
       _arrayIndex(0)
 {}
+
 RTIOsapiSemaphoreStatus NDDSLatencyDataProcessor::wait(
     const struct RTINtpTime* blockTime)
 {
@@ -325,7 +330,7 @@ public:
   TP_PacketDataWriterListener()
     : num_of_subs_(0) {}
   
-  virtual ~NDDSLatencyPacketListener() {} 
+  virtual ~TP_PacketDataWriterListener() {} 
 
   virtual void on_offered_deadline_missed (DDSDataWriter *, 
                                            const DDS_OfferedDeadlineMissedStatus &) {}
@@ -337,13 +342,7 @@ public:
                                            const DDS_OfferedIncompatibleQosStatus &) {}
 
   virtual void on_publication_matched(DDSDataWriter *data_writer,
-                                      const DDS_PublicationMatchStatus &pub_stat);
-
-  virtual void on_reliable_reader_activity_changed(DDSDataWriter *,
-                                                   const DDS_ReliableReaderActivityChangedStatus &);
-
-  virtual void on_reliable_writer_cache_changed(DDSDataWriter *,
-                                                const DDS_ReliableWriterCacheChangedStatus &);
+                                      const DDS_PublicationMatchedStatus &pub_stat);
 
 };
 
@@ -478,7 +477,6 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     DDSDataWriter* writer;
     NDDSLatencyPacketDataWriter* latencyPacketDataWriter;
     DDS_DataWriterQos writer_qos;
-    DDSDataWriterListener* writer_listener = NULL;
 
     /* Listener declarations */
     NDDSLatencyPacketListener reader_listener(&dataProcessor);
@@ -820,8 +818,10 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     
     /* create and enable reader, using echo_topic. */
     printf ("Creating echo reader from echo subscriber......");
-    reader = subscriber->create_datareader(echo_topic, reader_qos,
-					   NULL, DDS_STATUS_MASK_NONE);
+    reader = subscriber->create_datareader(echo_topic,
+                                           reader_qos,
+					   NULL,
+                                           DDS_STATUS_MASK_NONE);
     if (reader == NULL) {
 	printf("***Error: failed to create reader\n");
 	goto fin;
@@ -862,8 +862,10 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 
     /* create and enable writer. use data_topic. */
     printf ("Creating data writer from data publisher......");
-    writer = publisher->create_datawriter(
-	data_topic, writer_qos, writer_listener, DDS_STATUS_MASK_NONE);
+    writer = publisher->create_datawriter(data_topic,
+                                          writer_qos,
+                                          NULL,
+                                          DDS_STATUS_MASK_NONE);
     if (writer == NULL) {
 	printf("***Error: failed to create writer\n");
 	goto fin;
@@ -871,15 +873,19 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     printf ("[Done]\n");
 
 
+#ifdef I_WANT_TO_DEBUG
+
     printf ("Setting data writer listener for data writer......");
     retcode = writer->set_listener (
                                     &writer_listener,
                                     DDS_PUBLICATION_MATCHED_STATUS);
     if (retcode != DDS_RETCODE_OK) {
       printf("***Error: failed to set listener\n");
-      goto finally;
+      goto fin;
     }
     printf ("[Done]\n");
+
+#endif
     
 
 
@@ -1200,12 +1206,12 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 
 
 
-void TP_PacketDataWriterListener::on_publication_match( 
+void TP_PacketDataWriterListener::on_publication_matched( 
                                                DDSDataWriter *data_writer, 
-                                               const DDS_PublicationMatchStatus &pub_stat) 
+                                               const DDS_PublicationMatchedStatus &pub_stat) 
 {
   this->num_of_subs_++;
-  printf("Discovered subscription: No.%d!\n", this->num_of_subs_++);
+  printf("Discovered subscription: No.%d!\n", this->num_of_subs_);
 }
 
 
