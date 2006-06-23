@@ -21,6 +21,12 @@ const char * TEST_ECHO_TOPIC_NAME = "TEST_ECHO_TOPIC";
 const char * TEST_TOPIC_TYPE_NAME = "TEST_TOPIC_TYPE";
 
 
+/* global QoS settings */
+RTIBool QoS_KEEP_ALL = RTI_FALSE;
+long QoS_MAX_SAMPLES_PER_INSTANCE = 65536;
+long QoS_MAX_SAMPLES = 65536;
+long QoS_MAX_INSTANCES = 65536;
+
 
 template<typename T, typename TSeq, typename R>
 long
@@ -190,6 +196,14 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     else
       {
         printf ("Notification_Type = listener-based\n");
+      }
+    if (QoS_KEEP_ALL)
+      {
+        printf ("History = KEEP_ALL\n");
+      }
+    else
+      {
+        printf ("History = KEEP_LAST\n");
       }
     printf ("=============Settings==============\n\n");
     
@@ -479,6 +493,12 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     // each instance can only be owned by one DataWriter at a time
     data_topic_qos.ownership.kind = DDS_EXCLUSIVE_OWNERSHIP_QOS;
 
+
+    data_topic_qos.resource_limits.max_samples_per_instance = QoS_MAX_SAMPLES_PER_INSTANCE;
+    data_topic_qos.resource_limits.max_instances = QoS_MAX_INSTANCES;
+    data_topic_qos.resource_limits.max_samples = QoS_MAX_SAMPLES;
+    
+
     /* create and enable data_topic. for issue from LatencyWriter to 
        LatencyReader */
 
@@ -590,6 +610,10 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     if(isReliable) {
 	reader_qos.reliability.kind = DDS_RELIABLE_RELIABILITY_QOS;
 	/* NOTE: not changing history depth or kind here */
+    }
+
+    if (QoS_KEEP_ALL) {
+      reader_qos.history.kind = DDS_KEEP_ALL_HISTORY_QOS;
     }
 
     if(receiveOnMulticast) {
@@ -1063,6 +1087,12 @@ int main(int argc, char *argv[])
         prime_num = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-sn") == 0) {
         stats_num = strtol(argv[++i], NULL, 10);
+      } else if (strcmp(argv[i], "-msi") == 0) {
+        QoS_MAX_SAMPLES_PER_INSTANCES  = strtol(argv[++i], NULL, 10);
+      } else if (strcmp(argv[i], "-mxs") == 0) {
+        QoS_MAX_SAMPLES = strtol(argv[++i], NULL, 10);
+      } else if (strcmp(argv[i], "-mxi") == 0) {
+        QoS_MAX_INSTANCES = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-r") == 0) {
         sub_output_file = argv[++i];
       } else if (strcmp(argv[i], "-n") == 0) {
@@ -1073,6 +1103,8 @@ int main(int argc, char *argv[])
         TEST_TOPIC_NAME = argv[++i];
       } else if (strcmp(argv[i], "-wait") == 0) {
         useWaitSet = RTI_TRUE;
+      } else if (strcmp(argv[i], "-keep_all") == 0) {
+        QoS_Keep_All = RTI_TRUE;
       } else if (strcmp(argv[i], "-noecho") == 0) {
         thisSubscriberIsEchoer = RTI_FALSE;
       } else if (strcmp(argv[i], "-multicast") == 0) {
