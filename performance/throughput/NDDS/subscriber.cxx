@@ -13,6 +13,8 @@
 #include "common.h"
 #include "Stats.h"
 
+#include "ace/Sched_Params.h"
+
 const char * sub_output_file = "stats_sub";
 const char * qos_config_file = "qos";
 const char * net_config_file = "net";
@@ -26,6 +28,44 @@ RTIBool QoS_KEEP_ALL = RTI_FALSE;
 long QoS_MAX_SAMPLES_PER_INSTANCE = DDS_LENGTH_UNLIMITED;
 long QoS_MAX_SAMPLES = DDS_LENGTH_UNLIMITED;
 long QoS_MAX_INSTANCES = DDS_LENGTH_UNLIMITED;
+
+
+// This can be changed to the desired value.
+const int PRIORITY =
+  (ACE_Sched_Params::priority_min (ACE_SCHED_FIFO)
+   + ACE_Sched_Params::priority_max (ACE_SCHED_FIFO)) / 2;
+
+// Attempt to set the real time priority and lock memory.
+int
+set_rt (void) 
+{
+  int rt_status =
+    ACE_OS::sched_params (ACE_Sched_Params (ACE_SCHED_FIFO,
+                                            PRIORITY,
+                                            ACE_SCOPE_PROCESS));
+  
+  if (rt_status != 0)
+    {
+      if (ACE_OS::last_error () == EPERM)
+        {
+          ACE_DEBUG ((LM_DEBUG,
+                      "publisher (%P|%t): user is not superuser, "
+                      "test runs in time-shared class\n"));
+        }
+      else
+        {
+          ACE_ERROR ((LM_ERROR,
+                      "publisher (%P|%t): sched_params failed\n"));
+        }
+      return -1;
+    }
+  else
+    {
+      printf ("Real time priority successfully set!\n");
+      return 0;
+    }
+
+}
 
 
 template<typename T, typename TSeq, typename R>
@@ -53,7 +93,8 @@ dr_read (DDSDataReader *datareader)
 
   if (retcode != DDS_RETCODE_OK)
     {
-      printf("***Error: failed to access data from the reader\n");
+      ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): failed to access data from the reader\n"));
     }
   else
     {
@@ -167,11 +208,29 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 				  RTIBool receiveOnMulticast,
                                   RTIBool receiveOnWaitSet)
 {
+
+    int rt = set_rt ();
+
     /*------------------------- declarations ----------------------------*/
     /* common declarations */
 
     printf ("=============Settings==============\n");
+
+    if (0 == rt)
+      {
+        printf ("Real-Time Schedule = yes\n");
+      }
+    else
+      {
+        printf ("Real-Time Schedule = no\n");
+      }
+
     printf ("MAX_MSG_LENGTH =  %d\n", MAX_MSG_LENGTH);
+
+    printf ("max_samples_per_instances = %ld\n", QoS_MAX_SAMPLES_PER_INSTANCE);
+    printf ("max_samples = %ld\n", QoS_MAX_SAMPLES);
+    printf ("max_instances = %ld\n", QoS_MAX_INSTANCES);
+
     if (isReliable)
       {
         printf ("protocol = Reliable\n");
@@ -300,7 +359,9 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     /* get handle to participant factory */
     factory = DDSDomainParticipantFactory::get_instance();
     if (factory == NULL) {
-	printf("***Error: failed to get domain participant factory\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): failed to get domain participant factory\n"));
+
 	goto finally;
     }
     
