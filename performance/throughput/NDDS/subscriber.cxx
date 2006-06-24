@@ -49,13 +49,13 @@ set_rt (void)
       if (ACE_OS::last_error () == EPERM)
         {
           ACE_DEBUG ((LM_DEBUG,
-                      "publisher (%P|%t): user is not superuser, "
+                      "subscriber (%P|%t): user is not superuser, "
                       "test runs in time-shared class\n"));
         }
       else
         {
           ACE_ERROR ((LM_ERROR,
-                      "publisher (%P|%t): sched_params failed\n"));
+                      "subscriber (%P|%t): sched_params failed\n"));
         }
       return -1;
     }
@@ -94,7 +94,7 @@ dr_read (DDSDataReader *datareader)
   if (retcode != DDS_RETCODE_OK)
     {
       ACE_DEBUG ((LM_DEBUG,
-                  "publisher (%P|%t): failed to access data from the reader\n"));
+                  "subscriber (%P|%t): failed to access data from the reader\n"));
     }
   else
     {
@@ -360,8 +360,7 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     factory = DDSDomainParticipantFactory::get_instance();
     if (factory == NULL) {
         ACE_DEBUG ((LM_DEBUG,
-                  "publisher (%P|%t): failed to get domain participant factory\n"));
-
+                  "subscriber (%P|%t): failed to get domain participant factory\n"));
 	goto finally;
     }
     
@@ -372,7 +371,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     factoryQos.entity_factory.autoenable_created_entities = DDS_BOOLEAN_FALSE;
 
     if (factory->set_qos(factoryQos) != DDS_RETCODE_OK) {
-        printf("***Error: failed to set factory QoS\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to set factory QoS\n"));
         goto finally;
     }    
     
@@ -411,7 +411,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 					      participant_listener,
 					      DDS_STATUS_MASK_NONE);
     if (participant == NULL) {
-	printf("***Error: failed to create domain participant\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to create domain participant\n"));
 	goto finally;
     }
     printf ("[Done]\n");
@@ -420,7 +421,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     if(NDDSTransportSupport::get_builtin_transport_property(
 	participant, DDS_TRANSPORTBUILTIN_UDPv4,
 	(struct NDDS_Transport_Property_t&)udpv4Property) != DDS_RETCODE_OK) {
-	printf("***Error: failed to get default UDPv4 xport property\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to get default UDPv4 xport property\n"));
 	goto finally;
     }
 
@@ -434,7 +436,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     if(NDDSTransportSupport::set_builtin_transport_property(
 	participant, DDS_TRANSPORTBUILTIN_UDPv4,
 	(struct NDDS_Transport_Property_t&)udpv4Property) != DDS_RETCODE_OK) {
-	printf("***Error: failed to get default UDPv4 xport property\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to set UDPv4 xport property\n"));
 	goto finally;
     }
 
@@ -443,7 +446,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     if(NDDSTransportSupport::get_builtin_transport_property(
 	participant, DDS_TRANSPORTBUILTIN_SHMEM,
 	(struct NDDS_Transport_Property_t&)shmemProperty) != DDS_RETCODE_OK) {
-	printf("***Error: failed to get default shmem xport property\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to get default shmem xport property\n"));
 	goto finally;
     }
 
@@ -456,14 +460,16 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     if(NDDSTransportSupport::set_builtin_transport_property(
 	participant, DDS_TRANSPORTBUILTIN_SHMEM,
 	(struct NDDS_Transport_Property_t&)shmemProperty) != DDS_RETCODE_OK) {
-	printf("***Error: failed to get default shmem xport property\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to set shmem xport property\n"));
 	goto finally;
     }
 #endif //RTI_SHARED_MEMORY
 
     retcode = participant->enable();
     if (retcode != DDS_RETCODE_OK) {
-        printf("*** Error: failed to enable participant\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to enable participant\n"));
         goto finally;
     }
     
@@ -482,7 +488,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 						subscriber_listener,
 						DDS_STATUS_MASK_NONE);
     if (subscriber == NULL) {
-	printf("***Error: failed to create subscriber\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to create subscriber\n"));
 	goto finally;
     }
     printf ("[Done]\n");
@@ -493,6 +500,7 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 ----------------------------------------------------------------------------*/ 
 
 #ifdef I_HAVE_MY_OWN_TEST_CODES
+
   printf ("Registering participant with data type \"%s\"......", TEST_TOPIC_TYPE_NAME);
 
   switch (thePacketSize)
@@ -537,7 +545,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
       Bytes16384TypeSupport::register_type(participant, TEST_TOPIC_TYPE_NAME);
       break;
     default:
-      printf ("***Error: bad data size %d\n", thePacketSize);
+      ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): bad data size: %d\n", thePacketSize));
       goto finally;
 
     }
@@ -582,7 +591,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 #endif /* I_HAVE_MY_OWN_TEST_CODES */
 
     if (data_topic == NULL) {
-	printf("***Error: failed to create data topic\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to create data topic\n"));
 	goto finally;
     }
     printf ("[Done]\n");
@@ -606,7 +616,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 	    LATENCY_ECHO_TOPIC_NAME, LATENCY_TYPE_NAME,
 	    echo_topic_qos, echo_topic_listener, DDS_STATUS_MASK_NONE);
 	if (echo_topic == NULL) {
-	    printf("***Error: failed to create echo topic\n");
+            ACE_DEBUG ((LM_DEBUG,
+                       "subscriber (%P|%t): failed to create echo topic\n"));
 	    goto finally;
 	}
         printf ("[Done]\n");
@@ -623,7 +634,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 						  publisher_listener,
 						  DDS_STATUS_MASK_NONE);
 	if (publisher == NULL) {
-	    printf("***Error: failed to create publisher\n");
+            ACE_DEBUG ((LM_DEBUG,
+                       "subscriber (%P|%t): failed to create publisher\n"));
 	    goto finally;
 	}
         printf ("[Done]\n");
@@ -644,7 +656,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 	writer = publisher->create_datawriter(
 	    echo_topic, writer_qos, writer_listener, DDS_STATUS_MASK_NONE);
 	if (writer == NULL) {
-	    printf("***Error: failed to create writer\n");
+            ACE_DEBUG ((LM_DEBUG,
+                        "subscriber (%P|%t): failed to create echo writer\n"));
 	    goto finally;
 	}
         printf ("[Done]\n");
@@ -652,7 +665,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 
 	latencyPacketDataWriter = NDDSLatencyPacketDataWriter::narrow(writer);
 	if (latencyPacketDataWriter == NULL) {
-	    printf("***Error: failed to narrow writer\n");
+            ACE_DEBUG ((LM_DEBUG,
+                       "subscriber (%P|%t): failed to narrow echo writer\n"));
 	    goto finally;
 	}
 
@@ -688,7 +702,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     reader = subscriber->create_datareader(data_topic, reader_qos,
 					   NULL, DDS_STATUS_MASK_NONE);
     if (reader == NULL) {
-	printf("***Error: failed to create reader\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to create data reader\n"));
 	goto finally;
     }
 
@@ -707,7 +722,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 
         if (retcode != DDS_RETCODE_OK)
           {
-            printf("***Error: failed to set condition\n");
+            ACE_DEBUG ((LM_DEBUG,
+                        "subscriber (%P|%t): failed to set waitset condition\n"));
             goto finally;
           }
         printf ("[Done]\n");
@@ -724,7 +740,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
                                        &reader_listener, 
                                        DDS_DATA_AVAILABLE_STATUS/* | DDS_SAMPLE_REJECTED_STATUS */);
         if (retcode != DDS_RETCODE_OK) {
-          printf("***Error: failed to set listener\n");
+          ACE_DEBUG ((LM_DEBUG,
+                      "subscriber (%P|%t): failed to set data reader listener\n"));
           goto finally;
         }
         printf ("[Done]\n");
@@ -757,7 +774,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
 
             if (0 == conditionList.length ())
               {
-                printf ("Wait timed out !! No conditions triggered !\n");
+                ACE_DEBUG ((LM_DEBUG,
+                            "subscriber (%P|%t): No conditions triggered\n"));
                 goto finally;
               }
             else
@@ -860,7 +878,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
                               (reader);
                             break;
                           default:
-                            printf ("***Error: bad data size %d\n", thePacketSize);
+                            ACE_DEBUG ((LM_DEBUG,
+                                        "subscriber (%P|%t): bad data size: %d\n", thePacketSize));
                             break;
                           };
 
@@ -876,7 +895,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
                       }
                     else
                       {
-                        printf ("incorrect conditions caught...\n");
+                        ACE_DEBUG ((LM_DEBUG,
+                                    "incorrect conditions caught...\n"));
                       }
                   }
               }
@@ -1053,7 +1073,8 @@ void NDDSLatencyPacketListener::on_data_available(DDSDataReader* datareader)
         (datareader);
       break;
     default:
-      printf ("***Error: bad data size %d\n", this->packetsize_);
+      ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): bad data size: %d\n", this->packetsize_));
       break;
     };
 
@@ -1081,7 +1102,8 @@ void NDDSLatencyPacketListener::on_data_available(DDSDataReader* datareader)
 			   DDS_ANY_INSTANCE_STATE);
 
     if (retcode != DDS_RETCODE_OK) {
-	printf("***Error: failed to access data from the reader\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): failed to access data from the reader\n"));
     } else {
 	// Examine every sample returned
 	for (int i = 0; i < data_seq.length(); i++) {
@@ -1089,7 +1111,6 @@ void NDDSLatencyPacketListener::on_data_available(DDSDataReader* datareader)
 	    /* Must check the 'valid_data' because for some
 	       samples the data_seq[i] will be NULL */
 	    if (info_seq[i].valid_data) {
-                printf (" I received the valid data, what the hell?!\n");
 		_sequenceNumber = data_seq[i].sequenceNumber;
 		_instance.sequenceNumber = _sequenceNumber;
 		_instance.data.loan_contiguous(data_seq[i].data.
@@ -1102,7 +1123,8 @@ void NDDSLatencyPacketListener::on_data_available(DDSDataReader* datareader)
                     printf ("sending out echo message ...\n");
 		    retcode = _writer->write(_instance, _instanceHandle); 
 		    if (retcode != DDS_RETCODE_OK) {
-			printf("***Error: failed to send data\n");
+                        ACE_DEBUG ((LM_DEBUG,
+                                    "subscriber (%P|%t): failed to send data\n"));
 		    }
 		}
 		_instance.data.unloan();/* return loan */
@@ -1173,8 +1195,10 @@ int main(int argc, char *argv[])
       } else if (strcmp(argv[i], "-reliable") == 0) {
         isReliable = RTI_TRUE;
       } else {
-        printf("Invalid argument: %s\n", argv[i]);
-        printf("%s", usageStr);
+        ACE_DEBUG ((LM_DEBUG,
+                    "subscriber (%P|%t): Invalid argument: %s\n", argv[i]));
+        ACE_DEBUG ((LM_DEBUG,
+                    " %s\n", usageStr));
         return 0;
       }
     }

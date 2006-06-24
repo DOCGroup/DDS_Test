@@ -96,7 +96,8 @@ int dw_write (
   dw = W::narrow (writer);
 
   if (dw == NULL) {
-    printf("***Error: failed to narrow writer\n");
+    ACE_DEBUG ((LM_DEBUG,
+                "publisher (%P|%t): failed to narrow data writer\n"));
     ret_val = -1;
     goto fin;
   }
@@ -105,7 +106,8 @@ int dw_write (
   dataBuffer = (DDS_Octet *)calloc(size, sizeof(DDS_Octet));
 
   if (dataBuffer == NULL) {
-    printf("***Error: failed to create data buffer\n");
+    ACE_DEBUG ((LM_DEBUG,
+                "publisher (%P|%t): failed to create data buffer\n"));
     ret_val = -1;
     goto fin;
   }
@@ -133,7 +135,8 @@ int dw_write (
 
       if (retcode != DDS_RETCODE_OK)
         {
-          printf ("***Error: failed to write\n");
+          ACE_DEBUG ((LM_DEBUG,
+                      "publisher (%P|%t): failed to write\n"));
           ret_val = -1;
           goto fin;
         }
@@ -163,7 +166,8 @@ int dw_write (
 
       if (retcode != DDS_RETCODE_OK)
         {
-          printf ("***Error: failed to write\n");
+          ACE_DEBUG ((LM_DEBUG,
+                      "publisher (%P|%t): failed to write\n"));
           ret_val = -1;
           goto fin;
         }
@@ -553,8 +557,10 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     NDDSConfigLogger* logger = NULL;
 
     if(thePacketSize > MAX_MSG_LENGTH) {
-	printf("***Error: invalid parameter; thePacketSize > MAX_MSG_LENGTH\n");
-	goto fin;
+      ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): invalid parameter; thePacketSize > MAX_MSG_LENGTH\n"));
+
+      goto fin;
     }
 
     /*-------------------------- create dds entities ---------------------*/
@@ -567,7 +573,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     /* get handle to participant factory */
     factory = DDSDomainParticipantFactory::get_instance();
     if (factory == NULL) {
-	printf("***Error: failed to get domain participant factory\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): failed to get domain participant factory\n"));
 	goto fin;
     }
     
@@ -577,7 +584,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     factoryQos.entity_factory.autoenable_created_entities = DDS_BOOLEAN_FALSE;
 
     if (factory->set_qos(factoryQos) != DDS_RETCODE_OK) {
-        printf("***Error: failed to set factory QoS\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): failed to set factory QoS\n"));
         goto fin;
     }    
     
@@ -623,7 +631,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 					      participant_listener,
 					      DDS_STATUS_MASK_NONE);
     if (participant == NULL) {
-	printf("***Error: failed to create domain participant\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): failed to create domain participant\n"));
 	goto fin;
     }
     printf ("[Done]\n");
@@ -633,7 +642,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 	    participant, DDS_TRANSPORTBUILTIN_UDPv4,
 	    (struct NDDS_Transport_Property_t&)udpv4Property)
 	   != DDS_RETCODE_OK) {
-	    printf("***Error: failed to get default UDPv4 xport property\n");
+            ACE_DEBUG ((LM_DEBUG,
+                       "publisher (%P|%t): failed to get default UDPv4 xport property\n"));
 	    goto fin;
 	}
 
@@ -655,7 +665,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 	    participant, DDS_TRANSPORTBUILTIN_UDPv4,
 	    (struct NDDS_Transport_Property_t&)udpv4Property)
 	   != DDS_RETCODE_OK) {
-	    printf("***Error: failed to get default UDPv4 xport property\n");
+            ACE_DEBUG ((LM_DEBUG,
+                       "publisher (%P|%t): failed to set UDPv4 xport property\n"));
 	    goto fin;
 	}
     }
@@ -665,7 +676,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     if(NDDSTransportSupport::get_builtin_transport_property(
 	participant, DDS_TRANSPORTBUILTIN_SHMEM,
 	(struct NDDS_Transport_Property_t&)shmemProperty) != DDS_RETCODE_OK) {
-	printf("***Error: failed to get default shmem xport property\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): failed to get default shmem xport property\n"));
 	goto fin;
     }
 
@@ -678,14 +690,16 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     if(NDDSTransportSupport::set_builtin_transport_property(
 	participant, DDS_TRANSPORTBUILTIN_SHMEM,
 	(struct NDDS_Transport_Property_t&)shmemProperty) != DDS_RETCODE_OK) {
-	printf("***Error: failed to get default shmem xport property\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): failed to set shmem xport property\n"));
 	goto fin;
     }
 #endif//RTI_SHARED_MEMORY
 
     retcode = participant->enable();/* now bring up the participant */
     if (retcode != DDS_RETCODE_OK) {
-        printf("*** Error: failed to enable participant\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): failed to enable participant\n"));
         goto fin;
     }
     
@@ -705,7 +719,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 					      publisher_listener,
 					      DDS_STATUS_MASK_NONE);
     if (publisher == NULL) {
-	printf("***Error: failed to create publisher\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): failed to create publisher\n"));
 	goto fin;
     }
     printf ("[Done]\n");
@@ -718,6 +733,7 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 
 
 #ifdef I_HAVE_MY_OWN_TEST_CODES
+
   printf ("Registering participant with data type \"%s\"......", TEST_TOPIC_TYPE_NAME);
 
   switch (thePacketSize)
@@ -762,7 +778,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
       Bytes16384TypeSupport::register_type(participant, TEST_TOPIC_TYPE_NAME);
       break;
     default:
-      printf ("\n***ERROR: bad data size %d\n", packetsize);
+      ACE_DEBUG ((LM_DEBUG,
+                  "subscriber (%P|%t): bad data size: %d\n", packetsize));
       goto fin;
     }
 
@@ -813,7 +830,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 #endif /* I_HAVE_MY_OWN_TEST_CODES */
 
     if (data_topic == NULL) {
-	printf("\n***Error: failed to create data topic\n");
+        ACE_DEBUG ((LM_DEBUG,
+                  "publisher(%P|%t): failed to create data topic\n"));
 	goto fin;
     }
     printf ("[Done]\n");
@@ -925,7 +943,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
                                           NULL,
                                           DDS_STATUS_MASK_NONE);
     if (writer == NULL) {
-	printf("***Error: failed to create writer\n");
+        ACE_DEBUG ((LM_DEBUG,
+                   "publisher (%P|%t): failed to create data writer\n"));
 	goto fin;
     }
     printf ("[Done]\n");
@@ -938,7 +957,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
                                     &writer_listener,
                                     DDS_PUBLICATION_MATCHED_STATUS);
     if (retcode != DDS_RETCODE_OK) {
-      printf("***Error: failed to set listener\n");
+      ACE_DEBUG ((LM_DEBUG,
+                  "publisher (%P|%t): failed to set data writer listener\n"));
       goto fin;
     }
     printf ("[Done]\n");
@@ -1131,7 +1151,8 @@ static RTIBool NddsPublisherMain(int nddsDomain,
            stats_);
         break;
       default:
-        printf ("ERROR: bad data size %d\n", packetsize);
+        ACE_DEBUG ((LM_DEBUG,
+                    "subscriber (%P|%t): bad data size: %d\n", packetsize));
         goto fin;
 
       }
@@ -1364,8 +1385,10 @@ int main(int argc, char **argv)
       } else if (strcmp(argv[i], "-reliable") == 0) {
         isReliable = RTI_TRUE;
       } else {
-        printf("Invalid argument: %s\n", argv[i]);
-        printf("%s", usageStr);
+        ACE_DEBUG ((LM_DEBUG,
+                    "publisher (%P|%t): Invalid argument: %s\n", argv[i]));
+        ACE_DEBUG ((LM_DEBUG,
+                    " %s\n", usageStr));
         return 0;
       }
     }
