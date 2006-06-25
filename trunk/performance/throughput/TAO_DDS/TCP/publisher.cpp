@@ -123,7 +123,7 @@ parse_args (int argc, char *argv[])
       }
     else if ((currentArg = arg_shifter.get_the_parameter ("-reliable")) != 0)
       {
-        isRelable = true;
+        isReliable = true;
         arg_shifter.consume_arg ();
       }
     else if ((currentArg = arg_shifter.get_the_parameter ("-keep_all")) != 0)
