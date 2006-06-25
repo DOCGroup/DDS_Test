@@ -39,6 +39,13 @@
 ACE_Recursive_Thread_Mutex done_lock_;
 ACE_Condition<ACE_Recursive_Thread_Mutex> done_condition_(done_lock_);
 
+
+
+/* QoS settings */
+bool isReliable = false;
+bool QoS_KEEP_ALL = false;
+
+
 // This can be changed to the desired value.
 const int PRIORITY =
   (ACE_Sched_Params::priority_min (ACE_SCHED_FIFO)
@@ -112,6 +119,16 @@ parse_args (int argc, char *argv[])
     else if ((currentArg = arg_shifter.get_the_parameter ("-sub")) != 0)
       {
         num_datareaders = ACE_OS::atoi (currentArg);
+        arg_shifter.consume_arg ();
+      }
+    else if ((currentArg = arg_shifter.get_the_parameter ("-reliable")) != 0)
+      {
+        isRelable = true;
+        arg_shifter.consume_arg ();
+      }
+    else if ((currentArg = arg_shifter.get_the_parameter ("-keep_all")) != 0)
+      {
+        QoS_KEEP_ALL = true;
         arg_shifter.consume_arg ();
       }
     else if ((currentArg = arg_shifter.get_the_parameter ("-p")) != 0) 
@@ -586,6 +603,18 @@ main (int argc, char *argv[])
       ::DDS::DataWriterQos dw_qos;
       pub->get_default_datawriter_qos (dw_qos);
       pub->copy_from_topic_qos (dw_qos, topic_qos);
+
+      if(isReliable) {
+	dw_qos.reliability.kind = RELIABLE_RELIABILITY_QOS;
+      }
+      else {
+	dw_qos.reliability.kind = BEST_EFFORT_RELIABILITY_QOS;
+      }
+      
+      if (QoS_KEEP_ALL) {
+        dw_qos.history.kind = KEEP_ALL_HISTORY_QOS;
+      }
+
 
       ::DDS::DataWriter_var * dws =
         new ::DDS::DataWriter_var[num_datawriters];
