@@ -489,19 +489,30 @@ main (int argc, char *argv[])
 
       ::DDS::TopicQos topic_qos;
       dp->get_default_topic_qos (topic_qos);
-      
-      topic_qos.resource_limits.max_samples_per_instance =
-            MAX_SAMPLES_PER_INSTANCE;
-      topic_qos.resource_limits.max_instances = MAX_INSTANCES;
-      topic_qos.resource_limits.max_samples = MAX_SAMPLES;
 
-      topic_qos.reliability.kind = ::DDS::RELIABLE_RELIABILITY_QOS;
-      topic_qos.reliability.max_blocking_time.sec = max_mili_sec_blocking / 1000;
+      if (isReliable)
+        {
       
-      topic_qos.reliability.max_blocking_time.nanosec = 
-        (max_mili_sec_blocking % 1000) * 1000*1000;
-        
-      topic_qos.history.kind = ::DDS::KEEP_ALL_HISTORY_QOS;
+          topic_qos.resource_limits.max_samples_per_instance =
+            MAX_SAMPLES_PER_INSTANCE;
+          topic_qos.resource_limits.max_instances = MAX_INSTANCES;
+          topic_qos.resource_limits.max_samples = MAX_SAMPLES;
+
+          topic_qos.reliability.kind = ::DDS::RELIABLE_RELIABILITY_QOS;
+          topic_qos.reliability.max_blocking_time.sec = max_mili_sec_blocking / 1000;
+      
+          topic_qos.reliability.max_blocking_time.nanosec = 
+            (max_mili_sec_blocking % 1000) * 1000*1000;
+        }
+      else
+        {
+          topic_qos.reliability.kind = :DDS::BEST_EFFORT_RELIABILITY_QOS;
+          
+        }
+
+      if (QoS_KEEP_ALL) {
+        topic_qos.history.kind = ::DDS::KEEP_ALL_HISTORY_QOS;
+      }
 
       
 
@@ -604,16 +615,6 @@ main (int argc, char *argv[])
       pub->get_default_datawriter_qos (dw_qos);
       pub->copy_from_topic_qos (dw_qos, topic_qos);
 
-      if(isReliable) {
-	dw_qos.reliability.kind = RELIABLE_RELIABILITY_QOS;
-      }
-      else {
-	dw_qos.reliability.kind = BEST_EFFORT_RELIABILITY_QOS;
-      }
-      
-      if (QoS_KEEP_ALL) {
-        dw_qos.history.kind = KEEP_ALL_HISTORY_QOS;
-      }
 
 
       ::DDS::DataWriter_var * dws =
