@@ -36,6 +36,12 @@
 #include "ace/Arg_Shifter.h"
 #include "ace/Sched_Params.h"
 
+
+/* QoS settings */
+bool isReliable = false;
+bool QoS_KEEP_ALL = false;
+
+
 // This can be changed to the desired value.
 const int PRIORITY =
   (ACE_Sched_Params::priority_min (ACE_SCHED_FIFO)
@@ -96,6 +102,16 @@ parse_args (int argc, char *argv[])
     else if ((currentArg = arg_shifter.get_the_parameter ("-d")) != 0) 
       {
         DATA_SIZE = ACE_OS::atoi (currentArg);
+        arg_shifter.consume_arg ();
+      }
+    else if ((currentArg = arg_shifter.get_the_parameter ("-reliable")) != 0)
+      {
+        isRelable = true;
+        arg_shifter.consume_arg ();
+      }
+    else if ((currentArg = arg_shifter.get_the_parameter ("-keep_all")) != 0)
+      {
+        QoS_KEEP_ALL = true;
         arg_shifter.consume_arg ();
       }
     else if ((currentArg = arg_shifter.get_the_parameter ("-p")) != 0) 
@@ -579,6 +595,19 @@ main (int argc, char *argv[])
       
       dr_qos.liveliness.lease_duration.sec = 2 ;
       dr_qos.liveliness.lease_duration.nanosec = 0 ;
+
+
+      if(isReliable) {
+	dr_qos.reliability.kind = RELIABLE_RELIABILITY_QOS;
+      }
+      else {
+	dr_qos.reliability.kind = BEST_EFFORT_RELIABILITY_QOS;
+      }
+
+      if (QoS_KEEP_ALL) {
+        dr_qos.history.kind = KEEP_ALL_HISTORY_QOS;
+      }
+
 
       DataReaderListenerImpl* dr_listener_impl =
         new DataReaderListenerImpl (num_datawriters,
