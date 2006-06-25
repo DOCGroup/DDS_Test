@@ -484,7 +484,7 @@ main (int argc, char *argv[])
         }
       else
         {
-          topic_qos.reliability.kind = :DDS::BEST_EFFORT_RELIABILITY_QOS;
+          topic_qos.reliability.kind = ::DDS::BEST_EFFORT_RELIABILITY_QOS;
           
         }
 
