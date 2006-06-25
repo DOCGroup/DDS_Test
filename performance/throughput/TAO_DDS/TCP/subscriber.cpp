@@ -469,17 +469,28 @@ main (int argc, char *argv[])
               
       ::DDS::TopicQos topic_qos;
       dp->get_default_topic_qos (topic_qos);
-        
-      topic_qos.resource_limits.max_samples_per_instance =
-        MAX_SAMPLES_PER_INSTANCE;
-      topic_qos.resource_limits.max_instances = MAX_INSTANCES;
-      topic_qos.resource_limits.max_samples = MAX_SAMPLES;
 
-      topic_qos.reliability.kind = ::DDS::RELIABLE_RELIABILITY_QOS;
-      topic_qos.reliability.max_blocking_time.sec = max_mili_sec_blocking / 1000;
-      topic_qos.reliability.max_blocking_time.nanosec = 
-        (max_mili_sec_blocking % 1000) * 1000*1000;
-      topic_qos.history.kind = ::DDS::KEEP_ALL_HISTORY_QOS;
+      if (isReliable)
+        {
+          topic_qos.resource_limits.max_samples_per_instance =
+            MAX_SAMPLES_PER_INSTANCE;
+          topic_qos.resource_limits.max_instances = MAX_INSTANCES;
+          topic_qos.resource_limits.max_samples = MAX_SAMPLES;
+
+          topic_qos.reliability.kind = ::DDS::RELIABLE_RELIABILITY_QOS;
+          topic_qos.reliability.max_blocking_time.sec = max_mili_sec_blocking / 1000;
+          topic_qos.reliability.max_blocking_time.nanosec = 
+            (max_mili_sec_blocking % 1000) * 1000*1000;
+        }
+      else
+        {
+          topic_qos.reliability.kind = :DDS::BEST_EFFORT_RELIABILITY_QOS;
+          
+        }
+
+      if (QoS_KEEP_ALL) {
+        topic_qos.history.kind = ::DDS::KEEP_ALL_HISTORY_QOS;
+      }
 
       ::DDS::Topic_var topic = 
       dp->create_topic (test_topic_name.c_str (), 
@@ -596,17 +607,6 @@ main (int argc, char *argv[])
       dr_qos.liveliness.lease_duration.sec = 2 ;
       dr_qos.liveliness.lease_duration.nanosec = 0 ;
 
-
-      if(isReliable) {
-	dr_qos.reliability.kind = RELIABLE_RELIABILITY_QOS;
-      }
-      else {
-	dr_qos.reliability.kind = BEST_EFFORT_RELIABILITY_QOS;
-      }
-
-      if (QoS_KEEP_ALL) {
-        dr_qos.history.kind = KEEP_ALL_HISTORY_QOS;
-      }
 
 
       DataReaderListenerImpl* dr_listener_impl =
