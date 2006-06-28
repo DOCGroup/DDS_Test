@@ -28,8 +28,10 @@ if (@ARGV == 0) {
   print "  -s     : use this test result for the final summary report for all DDS implementations.\n";
   print "  -r     : remove test report for [test ID].\n";
   print "  -clean : clean the report.\n";
+  print "\n";
   print "Example:\n";
   print "       ./makeddsreport.pl -t 1 -s\n";
+  print "       ./makeddsreport.pl -r 100\n";
   exit 1;
 }
 
