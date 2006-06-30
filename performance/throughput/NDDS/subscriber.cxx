@@ -28,7 +28,7 @@ RTIBool QoS_KEEP_ALL = RTI_FALSE;
 long QoS_MAX_SAMPLES_PER_INSTANCE = DDS_LENGTH_UNLIMITED;
 long QoS_MAX_SAMPLES = DDS_LENGTH_UNLIMITED;
 long QoS_MAX_INSTANCES = DDS_LENGTH_UNLIMITED;
-
+long QoS_HISTORY_DEPTH = 1;
 
 // This can be changed to the desired value.
 const int PRIORITY =
@@ -147,6 +147,9 @@ class NDDSLatencyPacketListener : public DDSDataReaderListener {
     PubSub_Stats stats_;
     bool is_finished_;
 
+
+    long lost_num_;
+
   public:
     NDDSLatencyPacketListener(int packetsize,
                               int prime_num,
@@ -155,6 +158,7 @@ class NDDSLatencyPacketListener : public DDSDataReaderListener {
 	  _writer(NULL),
 	  _sequenceNumber(0),
           packetsize_ (packetsize),
+          lost_num_ (0),
           stats_ (sub_output_file, prime_num, stats_num, packetsize)
     {
       this->is_finished_ = false;
@@ -172,7 +176,7 @@ class NDDSLatencyPacketListener : public DDSDataReaderListener {
 	const DDS_RequestedIncompatibleQosStatus& /*status*/) {}
 
     virtual void on_sample_rejected(DDSDataReader* /*reader*/,
-			const DDS_SampleRejectedStatus& /*status*/) {}
+                                    const DDS_SampleRejectedStatus& /*status*/);
 
     virtual void on_liveliness_changed(DDSDataReader* /*reader*/,
         const DDS_LivelinessChangedStatus& /*status*/) {}
@@ -181,7 +185,7 @@ class NDDSLatencyPacketListener : public DDSDataReaderListener {
         const DDS_SubscriptionMatchedStatus& /*status*/) {}
 
     virtual void on_sample_lost(DDSDataReader* /*reader*/,
-        const DDS_SampleLostStatus& /*status*/) {}
+                                const DDS_SampleLostStatus& /*status*/);
 
     virtual void on_data_available(DDSDataReader* /*reader*/);
 
@@ -264,6 +268,9 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
       {
         printf ("History = KEEP_LAST\n");
       }
+
+    printf ("History.depth = %d\n",QoS_HISTORY_DEPTH);
+
     printf ("=============Settings==============\n\n");
     
     
@@ -691,6 +698,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
       reader_qos.history.kind = DDS_KEEP_ALL_HISTORY_QOS;
     }
 
+    reader_qos.history.depth = QoS_HISTORY_DEPTH;
+
     if(receiveOnMulticast) {
 	reader_qos.multicast.value.ensure_length(1,1);
 	reader_qos.multicast.value[0].receive_address
@@ -738,7 +747,7 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
         printf ("Setting data reader listner for data reader...");
         retcode = reader->set_listener(
                                        &reader_listener, 
-                                       DDS_DATA_AVAILABLE_STATUS/* | DDS_SAMPLE_REJECTED_STATUS */);
+                                       DDS_DATA_AVAILABLE_STATUS);// | DDS_SAMPLE_LOST_STATUS | DDS_SAMPLE_REJECTED_STATUS);
         if (retcode != DDS_RETCODE_OK) {
           ACE_DEBUG ((LM_DEBUG,
                       "subscriber (%P|%t): failed to set data reader listener\n"));
@@ -972,6 +981,22 @@ finally:
 }
 
 
+
+
+void NDDSLatencyPacketListener::on_sample_rejected(DDSDataReader* /*reader*/,
+                                                   const DDS_SampleRejectedStatus& /*status*/)
+{
+  printf ("Yet another rejected sample\n");
+}
+
+void NDDSLatencyPacketListener::on_sample_lost(DDSDataReader* /*reader*/,
+                                               const DDS_SampleLostStatus& /*status*/) 
+{
+
+  printf ("Yet another lost sample:  %ld\n", this->lost_num_++);
+  
+}
+
 void NDDSLatencyPacketListener::on_data_available(DDSDataReader* datareader)
 {
 #ifdef I_HAVE_MY_OWN_TEST_CODES
@@ -1188,6 +1213,8 @@ int main(int argc, char *argv[])
         useWaitSet = RTI_TRUE;
       } else if (strcmp(argv[i], "-keep_all") == 0) {
         QoS_KEEP_ALL = RTI_TRUE;
+      } else if (strcmp(argv[i], "-depth") == 0) {
+        QoS_HISTORY_DEPTH = strtol(argv[++i], NULL, 10);
       } else if (strcmp(argv[i], "-noecho") == 0) {
         thisSubscriberIsEchoer = RTI_FALSE;
       } else if (strcmp(argv[i], "-multicast") == 0) {
