@@ -32,6 +32,7 @@ RTIBool QoS_KEEP_ALL = RTI_FALSE;
 long QoS_MAX_SAMPLES_PER_INSTANCE = DDS_LENGTH_UNLIMITED;
 long QoS_MAX_SAMPLES = DDS_LENGTH_UNLIMITED;
 long QoS_MAX_INSTANCES = DDS_LENGTH_UNLIMITED;
+long QoS_HISTORY_DEPTH = 1;
 
 // This can be changed to the desired value.
 const int PRIORITY =
@@ -480,6 +481,9 @@ static RTIBool NddsPublisherMain(int nddsDomain,
       {
         printf ("History = KEEP_LAST\n");
       }
+
+    printf ("History.depth = %d\n",QoS_HISTORY_DEPTH);
+
     printf ("=============Settings==============\n\n");
 
 
@@ -648,10 +652,15 @@ static RTIBool NddsPublisherMain(int nddsDomain,
 	}
 
 	udpv4Property.parent.message_size_max = MAX_MSG_LENGTH + NDDS_OVERHEAD + MY_OWN_TEST_OVERHEAD;
-	udpv4Property.send_socket_buffer_size
-	    = udpv4Property.parent.message_size_max;
+	udpv4Property.send_socket_buffer_size 
+          = udpv4Property.parent.message_size_max;
 	udpv4Property.recv_socket_buffer_size
-	    = 2 * udpv4Property.send_socket_buffer_size;
+          = 2 * udpv4Property.send_socket_buffer_size;
+
+
+        printf ("udpv4Property: message_size_max = %d \n", udpv4Property.parent.message_size_max);
+        printf ("udpv4Property: send_socker_buffer_size = %d \n", udpv4Property.send_socket_buffer_size);
+        printf ("udpv4Property: recv_socket_buffer_size = %d \n", udpv4Property.recv_socket_buffer_size);
 
 	/* if IP fragmentation unavoidable, don't use zbuf,
 	   which will only slow NDDS down */
@@ -934,6 +943,7 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     if (QoS_KEEP_ALL) {
       writer_qos.history.kind = DDS_KEEP_ALL_HISTORY_QOS;
     }
+    writer_qos.history.depth = QoS_HISTORY_DEPTH;
 
 
     /* create and enable writer. use data_topic. */
@@ -1384,6 +1394,8 @@ int main(int argc, char **argv)
         useMulticast = RTI_TRUE;
       } else if (strcmp(argv[i], "-reliable") == 0) {
         isReliable = RTI_TRUE;
+      } else if (strcmp(argv[i], "-depth") == 0 ) {
+        QoS_HISTORY_DEPTH = strtol(argv[++i], NULL, 10);
       } else {
         ACE_DEBUG ((LM_DEBUG,
                     "publisher (%P|%t): Invalid argument: %s\n", argv[i]));
