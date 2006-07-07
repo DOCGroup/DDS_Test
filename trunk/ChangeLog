@@ -1,3 +1,9 @@
+Fri Jul  7 15:41:09 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DDS_RTWS06.ppt:
+        
+          Added latest version of OMG RT Workshop slides.
+
 Sun Jun 25 04:39:35 UTC 2006  xiong,ming  <ming.xiong@vanderbilt.edu>
 
         * performance/throughput/TAO_DDS/TCP/publisher.cpp
