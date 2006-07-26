@@ -166,7 +166,7 @@ foreach $data_size (@dataSizes)
 
   $Publisher->Spawn ();
 
-  $PublisherResult = $Publisher->WaitKill (60);
+  $PublisherResult = $Publisher->WaitKill (90);
 
   if ($PublisherResult != 0) {
       print STDERR "ERROR: publisher returned $PublisherResult \n";

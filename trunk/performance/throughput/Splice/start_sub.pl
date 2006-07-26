@@ -156,7 +156,7 @@ foreach $data_size (@dataSizes)
               . " -d " . $data_size . " -top test_topic_" . $data_size);
   print $Subscriber->CommandLine(), "\n";
 
-  $SubscriberResult = $Subscriber->SpawnWaitKill (600);
+  $SubscriberResult = $Subscriber->SpawnWaitKill (120);
 
   if ($SubscriberResult != 0) {
       print STDERR "ERROR: subscriber returned $SubscriberResult \n";
