@@ -1,3 +1,13 @@
+Fri Jul 28 11:17:01 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
+
+        * examples/TAODDSQuoter/*
+        * examples/NDDSQuoter/*
+
+          Added the examples directory along with the implementation examples
+          for the TAO DDS and NDDS Quoter examples. The NDDS examples have
+          subdirectories for content based filter and waitset/listener
+          filtering.
+
 Fri Jul  7 15:41:09 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DDS_RTWS06.pdf:
