@@ -158,7 +158,7 @@ int dw_write (
 
 
 
-  for (i = 0; i < 15 * num_messages; ++i)
+  for (i = 0; i < 30 * num_messages; ++i)
     {
 
       /* send the raw data to all interested parties */

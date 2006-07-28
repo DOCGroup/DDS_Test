@@ -48,7 +48,7 @@ for A_DATA in $@; do
 
       A_SIZE=$(head --lines $A_SIZE_LINE_INDEX $A_DATA | tail --lines 1)
 
-      echo -e [MEASUREMENT]\\t[1]\\tSamples\\t1\\t[1]\\tSize\\t$A_SIZE\\t >> $A_FILE
+      echo -e [MEASUREMENT]\\t[1]\\tSamples\\t1\\t[1]\\tBytes\\t$A_SIZE\\t >> $A_FILE
     
       echo "Generate standard results for size  $A_SIZE .."
 

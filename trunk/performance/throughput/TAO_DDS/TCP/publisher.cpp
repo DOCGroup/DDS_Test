@@ -44,6 +44,10 @@ ACE_Condition<ACE_Recursive_Thread_Mutex> done_condition_(done_lock_);
 /* QoS settings */
 bool isReliable = false;
 bool QoS_KEEP_ALL = false;
+bool usingUdp = false;
+// Multiplier used for oversampling when using UDP
+// Using precedence from NDDS.
+const int OVERSAMPLEMULTIPLIER = 31;
 
 
 // This can be changed to the desired value.
@@ -100,7 +104,10 @@ parse_args (int argc, char *argv[])
     // -z  <verbose transport debug>
 
     const char *currentArg = 0;
-    
+   
+    std::cerr << "Evaluating parameter (" << arg_shifter.get_current() <<
+                 ")\n";
+   
     //if ((currentArg = arg_shifter.get_the_parameter ("-w")) != 0) 
     //{
     //  num_datawriters = ACE_OS::atoi (currentArg);
@@ -121,6 +128,13 @@ parse_args (int argc, char *argv[])
         num_datareaders = ACE_OS::atoi (currentArg);
         arg_shifter.consume_arg ();
       }
+    else if (arg_shifter.cur_arg_strncasecmp ("-udp") == 0)
+      {
+        std::cerr << "UDP being used.\n";
+        usingUdp = true;
+        arg_shifter.consume_arg ();
+      } 
+
     else if ((currentArg = arg_shifter.get_the_parameter ("-reliable")) != 0)
       {
         isReliable = true;
@@ -134,11 +148,18 @@ parse_args (int argc, char *argv[])
     else if ((currentArg = arg_shifter.get_the_parameter ("-p")) != 0) 
       {
         PRIMER_SAMPLES = ACE_OS::atoi (currentArg);
+        std::cerr << "Processing -p (" << PRIMER_SAMPLES << " )...\n";
+
         arg_shifter.consume_arg ();
       }
     else if ((currentArg = arg_shifter.get_the_parameter ("-s")) != 0) 
       {
         STATS_SAMPLES = ACE_OS::atoi (currentArg);
+
+        std::cerr << "Processing -s (" << STATS_SAMPLES << " )...\n";
+    std::cerr << "Next before consume (" << arg_shifter.get_current() <<
+                     ")\n";
+
         arg_shifter.consume_arg ();
       }
     else if ((currentArg = arg_shifter.get_the_parameter ("-a")) != 0) 
@@ -164,6 +185,7 @@ parse_args (int argc, char *argv[])
     else if ((currentArg = arg_shifter.get_the_parameter ("-i")) != 0) 
       {
         id = ACE_OS::atoi (currentArg);
+        std::cerr << "Processing -i (" << id << ")\n";
         arg_shifter.consume_arg ();
       }
     else if ((currentArg = arg_shifter.get_the_parameter ("-r")) != 0)
@@ -221,17 +243,20 @@ main (int argc, char *argv[])
 {
   // Try to set real-time scheduling class. Requires login as
   // superuser or administrator.
-  // set_rt ();
+  //set_rt ();
   
   int status = 0;
 
   ACE_TRY_NEW_ENV
     {
-//      ACE_DEBUG ((LM_INFO, "%P|%t %T publisher main\n"));
+      ACE_DEBUG ((LM_DEBUG, "(%P|%t) publisher main\n"));
 
       ::DDS::DomainParticipantFactory_var dpf =
         TheParticipantFactoryWithArgs (argc, argv);
       ACE_TRY_CHECK;
+
+
+      printf ("here\n");
 
       // let the Service_Participant (in above line) strip out
       // -DCPSxxx parameters and then get application specific parameters.
@@ -247,6 +272,8 @@ main (int argc, char *argv[])
                                  PARTICIPANT_QOS_DEFAULT, 
                                  ::DDS::DomainParticipantListener::_nil ()
                                  ACE_ENV_ARG_PARAMETER);
+
+      printf ("here1\n");
       ACE_TRY_CHECK;
       
       if (CORBA::is_nil (dp.in ()))
@@ -487,17 +514,19 @@ main (int argc, char *argv[])
                             1);
         }
 
-      ::DDS::TopicQos topic_qos;
+      ::DDS::TopicQos topic_qos
+;
       dp->get_default_topic_qos (topic_qos);
+
+      topic_qos.resource_limits.max_samples_per_instance =
+        MAX_SAMPLES_PER_INSTANCE;
+      topic_qos.resource_limits.max_instances = MAX_INSTANCES;
+      topic_qos.resource_limits.max_samples = MAX_SAMPLES;
+
 
       if (isReliable)
         {
       
-          topic_qos.resource_limits.max_samples_per_instance =
-            MAX_SAMPLES_PER_INSTANCE;
-          topic_qos.resource_limits.max_instances = MAX_INSTANCES;
-          topic_qos.resource_limits.max_samples = MAX_SAMPLES;
-
           topic_qos.reliability.kind = ::DDS::RELIABLE_RELIABILITY_QOS;
           topic_qos.reliability.max_blocking_time.sec = max_mili_sec_blocking / 1000;
       
@@ -642,6 +671,14 @@ main (int argc, char *argv[])
 
       Writer** writers = new Writer* [num_datawriters] ;
 
+      // If we're using UDP then oversend the number of samples
+      if (usingUdp)
+      {
+        // Using the precedence here from NDDS publisher for determining
+        // oversampling value.
+        STATS_SAMPLES = (STATS_SAMPLES + PRIMER_SAMPLES) * OVERSAMPLEMULTIPLIER;
+      }
+
       for (int p = 0; p < num_datawriters; ++p)
         {
           writers[p] = new Writer (dws[p].in (),
@@ -698,14 +735,12 @@ main (int argc, char *argv[])
       
       dpf->delete_participant (dp.in () ACE_ENV_ARG_PARAMETER);
       ACE_TRY_CHECK;
-ACE_DEBUG ((LM_DEBUG, "(%P|%t)releasing TheTransportFactory \n"));
 
+      ACE_OS::sleep (2);
       TheTransportFactory->release ();
 
-ACE_DEBUG ((LM_DEBUG, "(%P|%t)released TheTransportFactory \n"));
-
       TheServiceParticipant->shutdown (); 
-ACE_DEBUG ((LM_DEBUG, "(%P|%t)shutdown TheServiceParticipant\n"));
+
       writer_transport_impl = 0;
     }
   ACE_CATCHANY

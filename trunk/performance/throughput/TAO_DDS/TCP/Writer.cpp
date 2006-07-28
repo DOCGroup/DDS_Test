@@ -64,7 +64,11 @@ void write (long /* id */,
   for (ACE_CDR::ULong i = 0; i < num_messages; ++i)
     {
       stats.sample_for_throughput (payload.timestamp);
-      
+
+      payload.timestamp = i;
+
+      std::cerr << "Writing packet (" << i << ")\n";
+
       pt_servant->write (payload, 
                          handle);
     }
@@ -73,6 +77,15 @@ void write (long /* id */,
     {
       stats.file_dump_throughput ();
     }
+
+/*    for (ACE_CDR::ULong i = 0; i < num_messages; ++i)
+    {
+
+      pt_servant->write (payload,
+                         handle);
+    }
+*/
+
 }
 
 Writer::Writer (::DDS::DataWriter_ptr writer,
@@ -116,7 +129,7 @@ int
 Writer::svc (void)
 {
   ACE_TRY_NEW_ENV
-  {
+  {cout << "wait fully associated\n";
     int num_connected_subs = 0;
     ::DDS::InstanceHandleSeq handles;
 
@@ -126,8 +139,8 @@ Writer::svc (void)
          writer_->get_matched_subscriptions (handles);
          num_connected_subs = handles.length ();
        }
-
-    ACE_OS::sleep (2);
+   cout << " fully associated\n";
+    //ACE_OS::sleep (2);
 
     switch (data_size_)
     {
@@ -277,7 +290,8 @@ Writer::svc (void)
 
   
   ::DDS::InstanceHandleSeq handles;
-  
+cout <<  "Writer wait for 0 matched subscription\n";
+ ACE_DEBUG ((LM_DEBUG, "Writer wait for %d reader remove_associations\n", num_datareaders_));
   while (!finished_sending_)
     {
       ACE_OS::sleep (1);
@@ -289,7 +303,9 @@ Writer::svc (void)
           done_condition_.signal ();
         }
     }
+ cout << "Writer thread exit\n";
 
+ ACE_DEBUG ((LM_DEBUG, "Writer thread exit\n")); 
 
 //          this->finished_sending_ = true;
 //          done_condition_.signal ();

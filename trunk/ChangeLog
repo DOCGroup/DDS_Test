@@ -10,7 +10,6 @@ Fri Jul 28 13:11:10 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
           all the changes were needed - I essentially copied relevant
           parts from the benchmark test.
 
-          Added the examples directory along with the implementation examples
 Fri Jul 28 11:17:01 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
 
         * examples/TAODDSQuoter/*
