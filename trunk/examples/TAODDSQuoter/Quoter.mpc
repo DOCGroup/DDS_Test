@@ -1,0 +1,46 @@
+// This is the MPC file for the Quoter example using TAO DDS. To create
+// the appropriate files invoke $ACE_ROOT/bin/mpc.pl on this file. Then
+// use make with the generated GNU* makefiles.
+// See http://www.ociweb.com/products/mpc for more information on MPC.
+//
+// $Id$
+//
+project(DDS*Publisher): taoexe, portableserver, dcps {
+  requires += exceptions
+  exename   = publisher
+
+  TypeSupport_Files {
+    Quoter.idl >> QuoterTypeSupport.idl QuoterTypeSupportImpl.h QuoterTypeSupportImpl.cpp
+  }
+
+  IDL_Files {
+    Quoter.idl
+    QuoterTypeSupport.idl
+  }
+
+  Source_Files {
+    publisher.cpp
+    Writer.cpp
+    QuoterTypeSupportImpl.cpp
+  }
+}
+
+project(DDS*Subscriber): taoexe, portableserver, dcps {
+  requires += exceptions
+  exename   = subscriber
+
+  TypeSupport_Files {
+    Quoter.idl >> QuoterTypeSupport.idl QuoterTypeSupportImpl.h QuoterTypeSupportImpl.cpp
+  }
+
+  IDL_Files {
+    Quoter.idl
+    QuoterTypeSupport.idl
+  }
+
+  Source_Files {
+    subscriber.cpp
+    DataReaderListener.cpp
+    QuoterTypeSupportImpl.cpp
+  }
+}
