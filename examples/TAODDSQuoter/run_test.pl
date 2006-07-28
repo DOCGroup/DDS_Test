@@ -29,8 +29,8 @@ print "svc_conf = $svc_conf\n";
 
 $DCPSREPO = new PerlACE::Process ("$ENV{DDS_ROOT}/dds/InfoRepo/DCPSInfoRepo",
 				  "-NOBITS -o $dcpsrepo_ior -d $domains_file");
-$Subscriber = new PerlACE::Process ("subscriber", "$svc_conf -DCPSConfigFile sub.ini");
-$Publisher = new PerlACE::Process ("publisher", "$svc_conf -DCPSConfigFile pub.ini");
+$Subscriber = new PerlACE::Process ("subscriber", "$svc_conf -DCPSConfigFile tcp.ini");
+$Publisher = new PerlACE::Process ("publisher", "$svc_conf -DCPSConfigFile tcp.ini");
 
 $DCPSREPO->Spawn ();
 if (PerlACE::waitforfile_timed ($dcpsrepo_ior, 30) == -1) {
