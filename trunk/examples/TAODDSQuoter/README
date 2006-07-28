@@ -10,12 +10,77 @@ Use the run_test.pl script to test the builds. The publisher should
 publish 10 updates of the IBM stock and the subscriber should see these
 updates and print them out.
 
-There is currently a problem in that the publisher and subscriber need
-to be run on the same machine. (The InfoRepo can be run on a different
-machine just so long as all the executables are run in the same NFS
-directory.) When run on different machines the publisher errors and
-either hangs or seg faults.
-
 Please see http://www.ociweb.com/products/dds for more information on
 TAO DDS and http://www.ociweb.com/products/mpc for more information on
 MPC.
+
+The following outlines how to run the executables on different machines.
+The Info Repository can be started up as follows:
+$DDS_ROOT/dds/InfoRepo/DCPSInfoRepo -NOBITS -o repo.ior -d domain_ids
+
+The subscriber can be started up as follows:
+./subscriber -DCPSConfigFile tcp.ini
+
+The publisher can be started up as follows:
+./publisher -DCPSConfigFile tcp.ini
+
+
+The output should look something like this:
+===========================================
+For the Info Repository:
+------------------------
+(11711|3077654208)  13:05:04.685386 Repo main
+(11711|3077654208)INFO: not using file configuration - no configuration file specified.
+
+For the subscriber:
+-------------------
+DataReaderListenerImpl::on_subscription_match
+Quoter: price    = 0
+        symbol   = IBM
+        full name= International Business Machines
+SampleInfo.sample_rank = 0
+Quoter: price    = 100
+        symbol   = IBM
+        full name= International Business Machines
+SampleInfo.sample_rank = 0
+Quoter: price    = 200
+        symbol   = IBM
+        full name= International Business Machines
+SampleInfo.sample_rank = 0
+Quoter: price    = 300
+        symbol   = IBM
+        full name= International Business Machines
+SampleInfo.sample_rank = 0
+Quoter: price    = 400
+        symbol   = IBM
+        full name= International Business Machines
+SampleInfo.sample_rank = 0
+Quoter: price    = 500
+        symbol   = IBM
+        full name= International Business Machines
+SampleInfo.sample_rank = 0
+Quoter: price    = 600
+        symbol   = IBM
+        full name= International Business Machines
+SampleInfo.sample_rank = 0
+Quoter: price    = 700
+        symbol   = IBM
+        full name= International Business Machines
+SampleInfo.sample_rank = 0
+Quoter: price    = 800
+        symbol   = IBM
+        full name= International Business Machines
+SampleInfo.sample_rank = 0
+Quoter: price    = 900
+        symbol   = IBM
+        full name= International Business Machines
+SampleInfo.sample_rank = 0
+(10075|3076434864) Peer has gracefully disconnected.
+
+For the publisher:
+------------------
+(8817|3078018752) Writer::start
+(8817|3029060528) Writer::svc begins.
+ 13:05:44.534618 (8817|3029060528) Writer::svc starting to write.
+(8817|3029060528) Writer::svc finished.
+(8817|3078018752) Writer::end

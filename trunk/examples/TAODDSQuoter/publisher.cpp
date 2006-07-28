@@ -18,12 +18,16 @@
 #include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration.h>
 #include <ace/streams.h>
 
-const TAO::DCPS::TransportIdType TCP_IMPL_ID = 0;
+// Match this value with what the benchmark test (implicitly) has
+// just to be safe.
+//const TAO::DCPS::TransportIdType TCP_IMPL_ID = 0;
+const TAO::DCPS::TransportIdType TCP_IMPL_ID = 1;
 
 const char* pub_ready_filename    = "publisher_ready.txt";
 const char* pub_finished_filename = "publisher_finished.txt";
 const char* sub_ready_filename    = "subscriber_ready.txt";
 const char* sub_finished_filename = "subscriber_finished.txt";
+const char *writer_address_str = "default";
 
 
 int main (int argc, char *argv[]) {
@@ -64,9 +68,32 @@ int main (int argc, char *argv[]) {
       exit(1);
     }
 
+    // There are problems with publisher and subscriber being on separate
+    // machines. Take the transport configuration from the benchmark tests
+    // to see if that fixes the problem.
     TAO::DCPS::TransportImpl_rch tcp_impl =
       TheTransportFactory->create_transport_impl (TCP_IMPL_ID, 
-                                                  ::TAO::DCPS::AUTO_CONFIG);
+                                                  //::TAO::DCPS::AUTO_CONFIG);
+                                                  ::TAO::DCPS::DONT_AUTO_CONFIG);
+
+    TAO::DCPS::TransportConfiguration_rch writer_config =
+      TheTransportFactory->get_configuration (TCP_IMPL_ID);
+
+    TAO::DCPS::SimpleTcpConfiguration* writer_tcp_config =
+      static_cast <TAO::DCPS::SimpleTcpConfiguration*> (writer_config.in ());
+
+    if (0 != ACE_OS::strcmp("default", writer_address_str)) {
+      ACE_INET_Addr writer_address (writer_address_str);
+      writer_tcp_config->local_address_ = writer_address;
+    }
+
+    if (0 != tcp_impl->configure (writer_config.in ())) {
+      ACE_ERROR ((LM_ERROR,
+                  ACE_TEXT("(%P|%t) ::main: ")
+                  ACE_TEXT("Failed to configure the transport.\n")));
+      exit(1);
+    }
+    // End of transport configuration changes
 
     DDS::Publisher_var pub =
       participant->create_publisher(PUBLISHER_QOS_DEFAULT,

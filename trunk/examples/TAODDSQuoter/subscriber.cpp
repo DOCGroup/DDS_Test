@@ -24,6 +24,7 @@ const char* pub_ready_filename    = "publisher_ready.txt";
 const char* pub_finished_filename = "publisher_finished.txt";
 const char* sub_ready_filename    = "subscriber_ready.txt";
 const char* sub_finished_filename = "subscriber_finished.txt";
+const char *reader_address_str    = "default";
 
 
 int main (int argc, char *argv[])
@@ -67,13 +68,8 @@ int main (int argc, char *argv[])
       cerr << "Failed to create_topic." << endl;
       exit(1);
     }
-
-    // Initialize the transport
-    TAO::DCPS::TransportImpl_rch tcp_impl =
-      TheTransportFactory->create_transport_impl (TCP_IMPL_ID, ::TAO::DCPS::AUTO_CONFIG);
     
-    // Create the subscriber and attach to the corresponding
-    // transport.
+    // Create the subscriber
     DDS::Subscriber_var sub =
       participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT,
                                      DDS::SubscriberListener::_nil());
@@ -81,6 +77,36 @@ int main (int argc, char *argv[])
       cerr << "Failed to create_subscriber." << endl;
       exit(1);
     }
+
+    // jhoffert
+    // There are problems with publisher and subscriber being on separate
+    // machines. Take the transport configuration from the benchmark tests
+    // to see if that fixes the problem.
+
+    // Initialize the transport
+    TAO::DCPS::TransportImpl_rch tcp_impl =
+      TheTransportFactory->create_transport_impl (TCP_IMPL_ID,
+                                                  //::TAO::DCPS::AUTO_CONFIG);
+                                                  ::TAO::DCPS::DONT_AUTO_CONFIG);
+    TAO::DCPS::TransportConfiguration_rch reader_config =
+      //TheTransportFactory->get_configuration (SUB_TRAFFIC);
+      TheTransportFactory->get_configuration (TCP_IMPL_ID);
+
+    TAO::DCPS::SimpleTcpConfiguration* reader_tcp_config =
+      static_cast <TAO::DCPS::SimpleTcpConfiguration*> (reader_config.in ());
+
+    if (0 != ACE_OS::strcmp ("default", reader_address_str)) {
+      ACE_INET_Addr reader_address (reader_address_str);
+      reader_tcp_config->local_address_ = reader_address;
+    }
+
+    if (0 != tcp_impl->configure (reader_config.in ())) {
+      ACE_ERROR ((LM_ERROR,
+                  ACE_TEXT("(%P|%t) ::main: ")
+                  ACE_TEXT("Failed to configure the transport.\n")));
+      exit(1);
+    }
+    // jhoffert - End of transport configuration changes
 
     // Attach the subscriber to the transport.
     TAO::DCPS::SubscriberImpl* sub_impl =

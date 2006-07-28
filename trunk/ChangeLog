@@ -1,3 +1,16 @@
+Fri Jul 28 13:11:10 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
+
+        * examples/TAODDSQuoter/README
+        * examples/TAODDSQuoter/publisher.cpp
+        * examples/TAODDSQuoter/run_test.pl
+        * examples/TAODDSQuoter/subscriber.cpp
+
+          Changed the transport configuration so that the publisher and
+          subscriber could be on different machines. Not exactly sure why
+          all the changes were needed - I essentially copied relevant
+          parts from the benchmark test.
+
+          Added the examples directory along with the implementation examples
 Fri Jul 28 11:17:01 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
 
         * examples/TAODDSQuoter/*
