@@ -437,7 +437,7 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     udpv4Property.send_socket_buffer_size
 	= udpv4Property.parent.message_size_max;
     udpv4Property.recv_socket_buffer_size
-	= 2 * udpv4Property.send_socket_buffer_size;
+	= 15 * udpv4Property.send_socket_buffer_size;
     //udpv4Property.no_zero_copy = RTI_TRUE;
 
     if(NDDSTransportSupport::set_builtin_transport_property(

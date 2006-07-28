@@ -51,7 +51,7 @@ if( $settings{'nodelist'} eq 'true' )
 $parameters =   "-NOBITS -o $dcpsrepo_ior "
                    . " -ORBDottedDecimalAddresses 1"
                    . " -ORBEndpoint iiop://$repo:$repo_port"
-                   . " -d $domains_file -DCPSConfigFile \"conf.ini\"";
+                   . " -ORBSvcConf repo.conf -d $domains_file -DCPSConfigFile \"conf.ini\"";
 
 open( FILE, '>' . $settings{'results'} . '.params' );
   print FILE $parameters . "\n";

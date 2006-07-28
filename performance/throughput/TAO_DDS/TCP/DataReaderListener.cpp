@@ -42,7 +42,7 @@ read (::DDS::DataReader_ptr reader)
 
   DDS::ReturnCode_t status;
 
-  status = dr_servant->read (samples,
+  status = dr_servant->take (samples,
                              infos,
                              max_read_samples,
                              ::DDS::NOT_READ_SAMPLE_STATE, 
@@ -55,6 +55,7 @@ read (::DDS::DataReader_ptr reader)
         {
           ACE_DEBUG ((LM_DEBUG, "multiple samples read\n"));
         }
+      std::cerr << "Received message (" << samples[0].timestamp << ")\n";
     }
   else if (::DDS::RETCODE_NO_DATA == status)
     {
@@ -147,6 +148,7 @@ DataReaderListenerImpl::on_subscription_match (
     CORBA::SystemException
   ))
   {
+ACE_DEBUG ((LM_DEBUG, "(%P|%t)on_subscription_match\n"));
     ACE_UNUSED_ARG (reader) ;
     ACE_UNUSED_ARG (status) ;
 /*
@@ -184,6 +186,7 @@ DataReaderListenerImpl::on_data_available (
     CORBA::SystemException
   ))
   {
+    std::cerr << "Data is available.\n";
     GuardType guard (this->lock_);
     
     ACE_CDR::ULong ts = read_samples (reader);
@@ -309,6 +312,12 @@ DataReaderListenerImpl::read_samples (::DDS::DataReader_ptr reader)
     break;
   };
 
+/*  if( num_read > 1 )
+  {
+    fprintf(stderr, "The 'impossible' has happened and we took more than ");
+    fprintf(stderr, " 1 (actually %d)\n", num_read);
+  }  
+*/
   return num_read;
 }
 

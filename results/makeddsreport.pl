@@ -61,15 +61,15 @@ while (@ARGV > 0) {
     if (-e $remove_dir1 || -e $remove_dir2 || -e $remove_dir3) {
       print "Removing report for test #" . $remove_id . "...\n";
       if (chdir $remove_dir1) {
-        unlink <*>;
+        unlink (<*>);
         rmdir $remove_dir1;
       }
       elsif (chdir $remove_dir2) {
-        unlink <*>;
+        unlink (<*>);
         rmdir $remove_dir2;  
       }
       elsif (chdir $remove_dir3) {
-        unlink <*>;
+        unlink (<*>);
         rmdir $remove_dir3;
       }
     } else {
@@ -92,6 +92,8 @@ while (@ARGV > 0) {
     if (-e $del_dir . "TAO_DDS_Linux/Throughput") {
       system ("rm -r /export/home/tczar/Grapha/Bunch_Of_Results/_Result/TAO_DDS_Linux/Throughput");
     }
+    
+    print "Cleaning report... Done!\n";
 
     exit (0);
   }
@@ -210,7 +212,7 @@ foreach $element (@sublist) {
   $subargs .= " ";
   $subargs .= $element;
 }
-system ("perl ./collect_convert.pl " . $test_dir . $subargs);
+system ("perl /export/home/tczar/DDS/results/collect_convert.pl " . $test_dir . $subargs);
 
 #create subdirs under Bagatel tree so the converted
 #results can be copied to their proper locations.
@@ -290,8 +292,11 @@ if ($use_report_for_summary == 1) {
   print "Use this report for summary graph...\n";
   print "File to copy: " . $test_dir . "subs_range.stats.0\n";
   print "Copy to: " . $newdir_path . "\n";
+  print "File to copy: " . $test_dir . "pub0.stats.0\n";
+  print "Copy to: " . $newdir_path . "\n";
 
   copy($test_dir . "subs_range.stats.0", $newdir_path);
+  copy($test_dir . "pub0.stats.0", $newdir_path);
 }
 
 #let Bagatel take over,

@@ -7,18 +7,19 @@
 # maxSize - maximum packet size
 
 #implementation
-impl=TAO-DDS
-#impl=NDDS
+#impl=TAO-DDS
+impl=NDDS
+#impl=Splice
 
 type=throughput
 
-minSize=4
-maxSize=16384
+minSize=4096
+maxSize=4096
 primer=100
-statsMessages=10000
+statsMessages=2000
 
 #QoS settings file
-qos=/export/home/tczar/DDS/settings/qos/default.txt
+qos=/export/home/tczar/DDS/settings/qos/defaults.txt
 
 #Network settings file
 net=/export/home/tczar/DDS/settings/net/blade39-45.settings

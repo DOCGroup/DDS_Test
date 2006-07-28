@@ -19,12 +19,15 @@ node1=blade40.isislab.vanderbilt.edu
 node2=blade41.isislab.vanderbilt.edu
 node3=blade42.isislab.vanderbilt.edu
 node4=blade43.isislab.vanderbilt.edu
-node5=blade44.isislab.vanderbilt.edu
-node6=blade45.isislab.vanderbilt.edu
+#node0=blade44.isislab.vanderbilt.edu
+#node6=blade45.isislab.vanderbilt.edu
 
+# backup stuff, just in case too many nodes are specified.
+# still, a new net settings file should be created if
+# more than 6 apps are used on TAO-DDS (because of the repo)
+# and 7 apps on NDDS (like 1 pub, 6 sub)
 
-
-#node0=blade30.isislab.vanderbilt.edu
+#node7=blade30.isislab.vanderbilt.edu
 #node1=blade31.isislab.vanderbilt.edu
 #node2=blade32.isislab.vanderbilt.edu
 #node3=blade33.isislab.vanderbilt.edu

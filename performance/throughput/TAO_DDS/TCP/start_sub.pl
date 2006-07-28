@@ -22,8 +22,24 @@ chdir("/home/tczar/DDS/performance/throughput/TAO_DDS/TCP");
 system("/export/home/tczar/scripts/enable_cores.sh");
 
 
-#print "Subscriber CWD: " . getcwd() . "\n";
-#exit(0);
+
+# Because we now have to use sudo on our tests, we have to reset some
+# environment variables that sudo clears for 'security' reasons
+# see the manpage for sudo for details.
+
+#$lib='/home/tczar/ACE_wrappers/ace';
+#$lib.=':/home/tczar/ACE_wrappers/lib';
+#$lib.=':/home/tczar/ACE_wrappers/TAO/TAO_IDL';
+#$lib.=':/export/home/tczar/ACE_wrappers/TAO/DDS/lib';
+#$lib.=':/home/tczar/rti/ndds.4.1c/lib/i86Linux2.6gcc3.4.3';
+#$lib.=':/export/home/tczar/DDS/Stats';
+#$lib.=':/export/home/tczar/DDS/performance/throughput/TAO_DDS/TypeNoKeyBounded';
+
+#$lib.=':/home/tczar/OpenSplice/V2.0beta/x86.linux2.6/lib';
+#
+#$ENV{'LD_LIBRARY_PATH'} = $lib;
+
+
 
 
 &readSettingsFromArgs();
@@ -55,7 +71,27 @@ else
 
 $pub_writer_id=0;
 $repo_port = 60001;
-$repo = "blade30.isislab.vanderbilt.edu";
+$repo = "blade37.isislab.vanderbilt.edu";
+
+
+# Because our settings files no longer allow simple QoS labels in the
+# settings files, convert our QoS key/values into simpler ones
+
+$settings{'samples.maxperinstance'} = $settings{'datareader.resourcelimits.' .
+                                    'maxsamplesperinstance'};
+$settings{'samples.max'} = $settings{'datareader.resourcelimits.' .
+                                    'maxsamples'};
+$settings{'instances.max'} = $settings{'datareader.resourcelimits.' .
+                                    'maxinstances'};
+$settings{'reliability'} = $settings{'datareader.reliability.kind'};
+$settings{'durability'} = $settings{'datareader.durability.kind'};
+$settings{'history'} = $settings{'datareader.history.kind'};
+$settings{'history.depth'} = $settings{'datareader.history.depth'};
+
+if( $settings{'results'} eq "" )
+{
+  $settings{'results'} = "sub0";
+}
 
 if( $settings{'nodelist'} eq 'true' )
 {
@@ -65,16 +101,85 @@ if( $settings{'nodelist'} eq 'true' )
 # (possibly allocated by not yet queue by the transport because of greedy read).$num_messages=$primer_messages + $stats_messages;
 
 
-$parameters = "-DCPSConfigFile conf.ini -w 1"
+
+$parameters = " -w 1"
               . " -DCPSDebugLevel 0  -ORBVerboseLogging 1"
               . " -ORBDottedDecimalAddresses 1"
               . " -DCPSInfoRepo corbaloc:iiop:$repo:$repo_port/DCPSInfoRepo"
-              . " -p $primer_messages -s $stats_messages"
-              . " -msi " . $settings{'samples.maxperinstance'}
-              . ' -mxs ' . $settings{'samples.max'}
-              . ' -r ' . $settings{'results'} . '.stats -n ' . $settings{'net'}
-              . ' -q ' . $settings{'qos'};
+              . " -p $primer_messages -s $stats_messages";
 
+$settings{'protocol'} =~ s/ //g;
+
+@protocols = split(/\|/,$settings{'protocol'});
+$done = 0;
+while( $done == 0 && @protocols > 0 )
+{
+  $protocol = shift(@protocols);
+  if( $protocol eq "udp" )
+  {
+    $parameters .= ' -DCPSConfigFile udp.ini';
+    $parameters .= ' -ORBSvcConf udp.conf';
+    $parameters .= ' -udp';
+    $done = 1;
+  }
+  elsif( $protocol eq "tcp" )
+  {
+    $parameters .= ' -DCPSConfigFile tcp.ini';
+    $done = 1;
+  }
+}
+
+
+if( $settings{'subscribers'} eq "" )
+{
+  $settings{'subscribers'} = 1;
+}
+
+if( $settings{'samples.maxperinstance'} ne "" )
+{
+  $parameters .= " -msi " . $settings{'samples.maxperinstance'};
+}
+
+if( $settings{'samples.max'} ne "" )
+{
+  $parameters .= ' -mxs ' . $settings{'samples.max'};
+}
+
+if( $settings{'instances.max'} ne "" )
+{
+  $parameters .= ' -mxi ' . $settings{'instances.max'};
+}
+
+if( $settings{'reliability'} eq "keepall" )
+{
+  $parameters .= ' -keep_all';
+}
+
+
+if( $settings{'results'} ne "" )
+{
+  $parameters .= ' -r ' . $settings{'results'} 
+}
+
+if( $settings{'net'} ne "" )
+{
+  $parameters .= '.stats -n ' . $settings{'net'};
+}
+
+if( $settings{'qos'} ne "" )
+{
+  $parameters .= ' -q ' . $settings{'qos'};
+}
+
+if( $settings{'minsize'} eq "" )
+{
+  $settings{'minsize'} = 4;
+}
+
+if( $settings{'maxsize'} eq "" )
+{
+  $settings{'maxsize'} = 256;
+}
 
 # log parameters and settings used by the subscriber
 
@@ -101,7 +206,8 @@ foreach $data_size (@dataSizes)
 
   &touch($settings{'results'} . '.' .  $data_size);
 
-  $Subscriber = new PerlACE::Process ("subscriber", $parameters
+  $Subscriber = new PerlACE::Process( 
+              "subscriber" ,  $parameters
               . " -d " . $data_size . " -top test_topic_" . $data_size);
   print $Subscriber->CommandLine(), "\n";
 

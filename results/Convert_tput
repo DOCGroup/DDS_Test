@@ -44,7 +44,7 @@ for A_DATA in $@; do
 
       A_SIZE=$(head --lines $A_SIZE_LINE_INDEX $A_DATA | tail --lines 1)
 
-      echo -e [MEASUREMENT]\\t[1]\\tSamples\\t1\\t[1]\\tSize\\t$A_SIZE\\t >> $A_FILE
+      echo -e [MEASUREMENT]\\t[1]\\tSamples\\t1\\t[1]\\tBytes\\t$A_SIZE\\t >> $A_FILE
     
       echo "Generate standard results for size  $A_SIZE .."
 
@@ -54,17 +54,6 @@ for A_DATA in $@; do
 
     
       printf "[SAMPLE]\t[$A_SAMPLES_COUNT]\tThroughputSolo\t$A_SAMPLES\n" >> $A_FILE;
-
-#      echo -n -e [SAMPLE]\\t[$A_SAMPLES_COUNT]\\tRoundtripAverage\\t >> $A_FILE
-
-#      for ((A_SAMPLE_INDEX = 1; A_SAMPLE_INDEX <= A_SAMPLES_COUNT; A_SAMPLE_INDEX++ ))
-#        do
-#        A_ROUNDTRIP=$(echo $A_SAMPLES | cut --delim " " --field $A_SAMPLE_INDEX)
-#        echo -n -e $A_ROUNDTRIP\\t >> $A_FILE
-#        echo "here is roundtrip for $A_SAMPLE_INDEX"
-#      done
-
-#      echo -e [1]\\tRoundtripSolo\\t0  >> $A_FILE
 
     done
 done

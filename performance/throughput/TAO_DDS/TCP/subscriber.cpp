@@ -39,7 +39,7 @@
 
 /* QoS settings */
 bool isReliable = false;
-bool QoS_KEEP_ALL = false;
+bool QoS_KEEP_ALL = true;
 
 
 // This can be changed to the desired value.
@@ -98,6 +98,11 @@ parse_args (int argc, char *argv[])
       {
         num_datawriters = ACE_OS::atoi (currentArg);
         arg_shifter.consume_arg ();
+      }
+    else if( arg_shifter.cur_arg_strncasecmp ("-udp") == 0 )
+      {
+        std::cerr << "Using UDP...\n";
+        arg_shifter.consume_arg();
       }
     else if ((currentArg = arg_shifter.get_the_parameter ("-d")) != 0) 
       {
@@ -201,13 +206,15 @@ main (int argc, char *argv[])
   // Try to set real-time scheduling class. Requires login as
   // superuser or administrator.
   // set_rt ();
-  
+ 
+  printf("SUBSCRIBER MAIN\n");
+ 
   int status = 0;
 
   ACE_TRY_NEW_ENV
     {
-      //ACE_DEBUG ((LM_INFO,
-      //            "%P|%t %T subscriber main\n"));
+      ACE_DEBUG ((LM_INFO,
+                  "(%P|%t) subscriber main\n"));
 
       ::DDS::DomainParticipantFactory_var dpf =
         TheParticipantFactoryWithArgs (argc, argv);
@@ -466,16 +473,20 @@ main (int argc, char *argv[])
                              DATA_SIZE),
                             1); 
         }
+
+
               
       ::DDS::TopicQos topic_qos;
       dp->get_default_topic_qos (topic_qos);
 
+
+      topic_qos.resource_limits.max_samples_per_instance = MAX_SAMPLES_PER_INSTANCE;
+      topic_qos.resource_limits.max_instances = MAX_INSTANCES;
+      topic_qos.resource_limits.max_samples = MAX_SAMPLES;
+
+
       if (isReliable)
         {
-          topic_qos.resource_limits.max_samples_per_instance =
-            MAX_SAMPLES_PER_INSTANCE;
-          topic_qos.resource_limits.max_instances = MAX_INSTANCES;
-          topic_qos.resource_limits.max_samples = MAX_SAMPLES;
 
           topic_qos.reliability.kind = ::DDS::RELIABLE_RELIABILITY_QOS;
           topic_qos.reliability.max_blocking_time.sec = max_mili_sec_blocking / 1000;
@@ -652,6 +663,8 @@ main (int argc, char *argv[])
           ACE_OS::sleep (1);
         }
 
+ACE_DEBUG ((LM_DEBUG, "(%P|%t) subscriber finished\n"));
+
       // Clean up subscriber objects.
       sub->delete_contained_entities ();
 
@@ -664,6 +677,17 @@ main (int argc, char *argv[])
       dpf->delete_participant (dp.in () ACE_ENV_ARG_PARAMETER);
       ACE_TRY_CHECK;
 
+      ::DDS::InstanceHandleSeq handles;
+ACE_DEBUG ((LM_DEBUG, "subscriber wait for 0 matched publications \n"));
+      while (1)
+        {
+           ACE_OS::sleep(1);
+           the_dr->get_matched_publications(handles);
+           if (handles.length() == 0)
+             break;
+        }
+ACE_DEBUG ((LM_DEBUG, "subscriber release transport\n"));
+      ACE_OS::sleep (2);
       TheTransportFactory->release ();
       TheServiceParticipant->shutdown (); 
 

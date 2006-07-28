@@ -18,7 +18,7 @@ primer=100
 statsMessages=10000
 
 #QoS settings file
-qos=/export/home/tczar/DDS/settings/qos/default.txt
+qos=/export/home/tczar/DDS/settings/qos/defaults.txt
 
 #Network settings file
 net=/export/home/tczar/DDS/settings/net/mixed_tcp_udp.settings
