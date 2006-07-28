@@ -1,0 +1,11 @@
+//
+// $Id$
+//
+// The #pragma is specific to TAO DDS
+#pragma DCPS_DATA_TYPE "Quoter"
+
+struct Quoter {
+    double price;
+    string symbol;
+    string full_name;
+};
