@@ -1,3 +1,23 @@
+Mon Jul 31 20:23:43 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/NDDS/dds_config_file.cpp:
+        * performance/throughput/NDDS/publisher.cxx:
+        * performance/throughput/NDDS/subscriber.cxx:
+        
+          Commented out unused variables, fixed signed/unsigned
+          mismatch, and initialized uninitialized variables.
+        
+        * performance/throughput/TAO_DDS/TCP/TCP.mpc:
+        * performance/throughput/TAO_DDS/TypeNoKeyBounded/TypeNoKeyBounded.mpc:
+
+          Changed naming convention of generated projects to be
+          more consistent.
+          
+        * performance/throughput/NDDS/NDDS_throughput.mpc:
+        
+          New file, generates Visual Studio projects or gnu
+          makefiles for NDDS throughput test.
+
 Mon Jul 31 15:16:59 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
         * examples/TAODDSQuoter/DataReaderListener.cpp
         * examples/TAODDSQuoter/DataReaderListener.h

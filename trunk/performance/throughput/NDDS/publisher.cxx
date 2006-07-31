@@ -502,7 +502,7 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     const struct DDS_Duration_t sleepTime = {1,0}, waitTime = {10, 0};
     struct RTIClock *clock = RTIHighResolutionClock_new();
     NDDSLatencyDataProcessor dataProcessor;
-    int i = 0, packetsize, retval = 0;
+    int i = 0, packetsize = 0, retval = 0;
     DDS_Octet *dataBuffer = NULL;
 
     struct DDS_DomainParticipantFactoryQos factoryQos;         
@@ -517,7 +517,7 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     DDSDomainParticipantListener* participant_listener = NULL;
 
     /* Subscriber declarations */
-    DDSSubscriber* subscriber;
+//    DDSSubscriber* subscriber;
     DDS_SubscriberQos subscriber_qos;
     DDSSubscriberListener* subscriber_listener = NULL;
 
@@ -531,17 +531,17 @@ static RTIBool NddsPublisherMain(int nddsDomain,
     DDS_TopicQos data_topic_qos;
     DDSTopicListener* data_topic_listener = NULL;
 
-    DDSTopic* echo_topic;
+//    DDSTopic* echo_topic;
     DDS_TopicQos echo_topic_qos;
     DDSTopicListener* echo_topic_listener = NULL;
 
     /* DataReader declarations */
-    DDSDataReader* reader;
+//    DDSDataReader* reader;
     DDS_DataReaderQos reader_qos;
 
     /* DataWriter declarations */
     DDSDataWriter* writer;
-    NDDSLatencyPacketDataWriter* latencyPacketDataWriter;
+//    NDDSLatencyPacketDataWriter* latencyPacketDataWriter;
     DDS_DataWriterQos writer_qos;
 
     /* Listener declarations */

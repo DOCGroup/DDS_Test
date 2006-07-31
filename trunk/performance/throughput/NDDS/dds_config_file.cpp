@@ -35,7 +35,7 @@ namespace {
 
   void lowercase( std::string& target )
   {
-    for( int i = 0; i < target.size(); i++ )
+    for( unsigned long i = 0; i < target.size(); i++ )
     {
       target[i] = tolower(target[i]);
     }

@@ -312,7 +312,7 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     DDSSubscriberListener* subscriber_listener = NULL;
 
     /* Publisher declarations */
-    DDSPublisher* publisher;
+//    DDSPublisher* publisher;
     DDS_PublisherQos publisher_qos;
     DDSPublisherListener* publisher_listener = NULL;
 
@@ -321,7 +321,7 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     DDS_TopicQos data_topic_qos;
     DDSTopicListener* data_topic_listener = NULL;
 
-    DDSTopic* echo_topic;
+//    DDSTopic* echo_topic;
     DDS_TopicQos echo_topic_qos;
     DDSTopicListener* echo_topic_listener = NULL;
 
@@ -330,8 +330,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain,
     DDS_DataReaderQos reader_qos;
 
     /* DataWriter declarations */
-    DDSDataWriter* writer;
-    NDDSLatencyPacketDataWriter* latencyPacketDataWriter;
+//    DDSDataWriter* writer;
+//    NDDSLatencyPacketDataWriter* latencyPacketDataWriter;
     DDS_DataWriterQos writer_qos;
     DDSDataWriterListener* writer_listener = NULL;
 

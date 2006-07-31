@@ -1,4 +1,4 @@
-project(DCPS_Perf_Throughput*Pub): dcpsexe, portableserver {
+project(*Pub): dcpsexe, portableserver {
   exename   = publisher
   libpaths += ../TypeNoKeyBounded
   libs     += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
@@ -17,7 +17,7 @@ project(DCPS_Perf_Throughput*Pub): dcpsexe, portableserver {
   }
 }
 
-project(DCPS_Perf_Throughput*Sub): dcpsexe, portableserver {
+project(*Sub): dcpsexe, portableserver {
   exename   = subscriber
   libpaths += ../TypeNoKeyBounded
   libs     += DCPS_Perf_Throughput_TypeNoKeyBounded Stats

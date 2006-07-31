@@ -1,4 +1,4 @@
-project(DCPS_Perf_Throughput*) : dcps, portableserver {
+project(TAO_DDS_throughput_TypeLib) : dcps, portableserver {
   idlflags    += -Sc -St \
                  -Wb,export_macro=TPTTypeLib_Export \
                  -Wb,export_include=TPTTypeLib_Export.h

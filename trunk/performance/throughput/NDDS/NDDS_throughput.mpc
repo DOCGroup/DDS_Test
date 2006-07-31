@@ -1,0 +1,54 @@
+project(*Pub): nddsexe {
+  exename   = publisher
+  libpaths += 
+  libs     += Stats
+  after    +=
+  includes += $(STATS_ROOT)
+  
+  NDDSTypeSupport_Files {
+    TP_Packet.idl
+  }
+
+  Source_Files {
+    dds_config_file.cpp
+    publisher.cxx
+    TP_Packet.cxx
+    TP_PacketPlugin.cxx
+    TP_PacketSupport.cxx
+  }
+
+  Header_Files {
+    common.h
+    dds_config_file.h      
+    TP_Packet.h
+    TP_PacketPlugin.h
+    TP_PacketSupport.h
+  }
+}
+
+project(*Sub): nddsexe {
+  exename   = subscriber
+  libpaths += 
+  libs     += Stats
+  after    += 
+  includes += $(STATS_ROOT)
+
+  NDDSTypeSupport_Files {
+    TP_Packet.idl
+  }
+
+  Source_Files {
+    subscriber.cxx
+    TP_Packet.cxx
+    TP_PacketPlugin.cxx
+    TP_PacketSupport.cxx
+  }
+  
+  Header_Files {
+    common.h
+    TP_Packet.h
+    TP_PacketPlugin.h
+    TP_PacketSupport.h
+  }
+}
+
