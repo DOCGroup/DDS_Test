@@ -1,3 +1,10 @@
+Mon Jul 31 07:18:01 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
+
+        * examples/TAODDSQuoter/tcp.ini
+
+          Added this file for the example. It should have been added with
+          the other files below but it was overlooked.
+
 Fri Jul 28 13:11:10 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
 
         * examples/TAODDSQuoter/README
