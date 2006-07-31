@@ -22,9 +22,17 @@ DataReaderListenerImpl::~DataReaderListenerImpl ()
 void DataReaderListenerImpl::on_data_available(DDS::DataReader_ptr reader)
   throw (CORBA::SystemException)
 {
+  // To Do: Update any values for determining when the subscriber is finished
+  // (e.g., the number of reads).
   num_reads_ ++;
+  // End: Update any values for determining when the subscriber is finished
+  // (e.g., the number of reads).
 
   try {
+    // To Do: narrow the reader pointer to the concrete data reader
+    // subclass (in our case, QuoterDataReader); take the next sample
+    // from the data reader; and manipulate the received data as
+    // necessary (e.g., output the stock information);
     QuoterDataReader_var quoter_dr = QuoterDataReader::_narrow(reader);
     if (CORBA::is_nil (quoter_dr.in ())) {
       cerr << "read: _narrow failed." << endl;
@@ -42,21 +50,26 @@ void DataReaderListenerImpl::on_data_available(DDS::DataReader_ptr reader)
 
     if (status == DDS::RETCODE_OK) {
       cout << "Quoter: price    = " << quoter.price << endl
-           //<< "         subject_id = " << quoter.subject_id   << endl
            << "        symbol   = " << quoter.symbol.in()    << endl
            << "        full name= " << quoter.full_name        << endl;
-      cout << "SampleInfo.sample_rank = " << si.sample_rank << endl;
+      //cout << "SampleInfo.sample_rank = " << si.sample_rank << endl;
     } else if (status == DDS::RETCODE_NO_DATA) {
       cerr << "ERROR: reader received DDS::RETCODE_NO_DATA!" << endl;
     } else {
       cerr << "ERROR: read Quoter: Error: " <<  status << endl;
     }
+    // End: downcast the reader pointer to the concrete data reader
+    // subclass (in our case, QuoterDataReader); take the next sample
+    // from the data reader; and manipulate the received data as
+    // necessary (e.g., output the stock information);
   } catch (CORBA::Exception& e) {
     cerr << "Exception caught in read:" << endl << e << endl;
     exit(1);
   }
 }
 
+// To Do: Provide implementations for the other DataReaderListenerImpl
+// methods.
 void DataReaderListenerImpl::on_requested_deadline_missed (
     DDS::DataReader_ptr,
     const DDS::RequestedDeadlineMissedStatus &)
@@ -128,4 +141,5 @@ void DataReaderListenerImpl::on_subscription_lost (
 {
   cerr << "DataReaderListenerImpl::on_subscription_lost" << endl;
 }
-
+// End: Provide implementations for the other DataReaderListenerImpl
+// methods.

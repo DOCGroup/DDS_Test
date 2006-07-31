@@ -49,40 +49,50 @@ Writer::svc ()
 
     while (1)
     {
+      // To Do: Wait until there are matched subscriptions
       writer_->get_matched_subscriptions(handles);
       if (handles.length() > 0)
         break;
       else
         ACE_OS::sleep(ACE_Time_Value(0,200000));
+      // End: Wait until there are matched subscriptions
     }
 
+    // To Do: Narrow the data writer to a Quoter data writer
     QuoterDataWriter_var quoter_dw
       = QuoterDataWriter::_narrow(writer_.in());
     if (CORBA::is_nil (quoter_dw.in ())) {
       cerr << "Data Writer could not be narrowed"<< endl;
       exit(1);
     }
+    // End: Narrow the data writer to a Quoter data writer
 
-    Quoter quoter;
-    //quoter.subject_id = 99;
-    ::DDS::InstanceHandle_t handle = quoter_dw->_cxx_register (quoter);
+    // To Do: Create a Quoter object (or objects),
+    // register it (or them) with the infrastructure
+    // (via the quoter_dw's _cxx_register() method), and
+    // modify the data values as desired.
+    // For convenience you can use CORBA::string_dup to copy strings.
+    Quoter ibmQuoter;
+    ::DDS::InstanceHandle_t ibmHandle = quoter_dw->_cxx_register (ibmQuoter);
 
-    // Start CS395 - This is where the published data initially gets set.
-    quoter.price     = 100;
-    quoter.symbol    = CORBA::string_dup("IBM");
-    quoter.full_name = CORBA::string_dup("International Business Machines");
-    //quoter.count     = 0; jhoffert - Do we want this for later?
-    // End CS 395
+    ibmQuoter.price     = 100;
+    ibmQuoter.symbol    = CORBA::string_dup("IBM");
+    ibmQuoter.full_name = CORBA::string_dup("International Business Machines");
+
+    Quoter msftQuoter;
+    ::DDS::InstanceHandle_t msftHandle = quoter_dw->_cxx_register (msftQuoter);
+
+    msftQuoter.price     = 10;
+    msftQuoter.symbol    = CORBA::string_dup("MSFT");
+    msftQuoter.full_name = CORBA::string_dup("Microsoft Corporation");
 
     ACE_DEBUG((LM_DEBUG,
               ACE_TEXT("%T (%P|%t) Writer::svc starting to write.\n")));
     for (int i = 0; i< num_messages; i ++) {
 
-      // Start CS395 - This is where the published data gets updated.
-      quoter.price = i * 100;
-      // End CS395
+      ibmQuoter.price = (i + 1) * 100;
 
-      ::DDS::ReturnCode_t ret = quoter_dw->write(quoter, handle);
+      ::DDS::ReturnCode_t ret = quoter_dw->write(ibmQuoter, ibmHandle);
 
       if (ret != ::DDS::RETCODE_OK) {
         ACE_ERROR ((LM_ERROR,
@@ -93,8 +103,25 @@ Writer::svc ()
           timeout_writes_ ++;
         }
       }
-      //quoter.count++;
+
+      msftQuoter.price = (i + 1) * 10;
+      ret = quoter_dw->write(msftQuoter, msftHandle);
+
+      if (ret != ::DDS::RETCODE_OK) {
+        ACE_ERROR ((LM_ERROR,
+                    ACE_TEXT("(%P|%t)ERROR  Writer::svc, ")
+                    ACE_TEXT ("%dth write() returned %d.\n"),
+                    i, ret));
+        if (ret == ::DDS::RETCODE_TIMEOUT) {
+          timeout_writes_ ++;
+        }
+      }
     }
+    // End: Create a Quoter object (or objects),
+    // register it (or them) with the infrastructure
+    // (via the quoter_dw's _cxx_register() method), and
+    // modify the data values as desired.
+    // For convenience you can use CORBA::string_dup to copy strings.
   } catch (CORBA::Exception& e) {
     cerr << "Exception caught in svc:" << endl
 	 << e << endl;
@@ -102,11 +129,13 @@ Writer::svc ()
 
   while (1)
     {
+      // To Do: Wait until there are no longer any matched subscriptions
       writer_->get_matched_subscriptions(handles);
       if (handles.length() == 0)
         break;
       else
         ACE_OS::sleep(1);
+      // End: Wait until there are no longer any matched subscriptions
     }
   ACE_DEBUG((LM_DEBUG, ACE_TEXT("(%P|%t) Writer::svc finished.\n")));
 

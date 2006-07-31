@@ -37,6 +37,8 @@ int main (int argc, char *argv[]) {
   try {
     DDS::DomainParticipantFactory_var dpf =
       TheParticipantFactoryWithArgs(argc, argv);
+
+    // To Do: Create the participant
     DDS::DomainParticipant_var participant =
       dpf->create_participant(domainId,
                               PARTICIPANT_QOS_DEFAULT,
@@ -45,17 +47,21 @@ int main (int argc, char *argv[]) {
       cerr << "create_participant failed." << endl;
       return 1;
     }
+    // End: Create the participant
 
     QuoterTypeSupportImpl* servant = new QuoterTypeSupportImpl();
     PortableServer::ServantBase_var safe_servant = servant;
 
+    // To Do: Register the type
     if (DDS::RETCODE_OK != servant->register_type(participant.in (), "")) {
       cerr << "register_type failed." << endl;
       exit(1);
     }
+    // End: Register the type
   
     CORBA::String_var type_name = servant->get_type_name ();
 
+    // To Do: Get the (default) topic QoS and create the topic
     DDS::TopicQos topic_qos;
     participant->get_default_topic_qos(topic_qos);
     DDS::Topic_var topic =
@@ -67,6 +73,7 @@ int main (int argc, char *argv[]) {
       cerr << "create_topic failed." << endl;
       exit(1);
     }
+    // End: Get the (default) topic QoS and create the topic
 
     // There are problems with publisher and subscriber being on separate
     // machines. Take the transport configuration from the benchmark tests
@@ -95,6 +102,7 @@ int main (int argc, char *argv[]) {
     }
     // End of transport configuration changes
 
+    // To Do: Create the publisher
     DDS::Publisher_var pub =
       participant->create_publisher(PUBLISHER_QOS_DEFAULT,
                                     DDS::PublisherListener::_nil());
@@ -102,6 +110,7 @@ int main (int argc, char *argv[]) {
       cerr << "create_publisher failed." << endl;
       exit(1);
     }
+    // End: Create the publisher
 
     // Attach the publisher to the transport.
     TAO::DCPS::PublisherImpl* pub_impl =
@@ -134,7 +143,7 @@ int main (int argc, char *argv[]) {
       exit(1);
     }
 
-    // Create the datawriter
+    // To Do: Get the (default) data writer QoS and create the datawriter
     DDS::DataWriterQos dw_qos;
     pub->get_default_datawriter_qos (dw_qos);
     DDS::DataWriter_var dw =
@@ -145,6 +154,7 @@ int main (int argc, char *argv[]) {
       cerr << "create_datawriter failed." << endl;
       exit(1);
     }
+    // End: Get the (default) data writer QoS and create the datawriter
     Writer* writer = new Writer(dw.in());
 
     // Indicate that the publisher is ready
@@ -155,16 +165,22 @@ int main (int argc, char *argv[]) {
     }
     ACE_OS::fclose(writers_ready);
 
+    // To Do: Start the writer task and wait until it is finished
     writer->start ();
     while ( !writer->is_finished()) {
       ACE_Time_Value small(0,250000);
       ACE_OS::sleep (small);
     }
+    // End: Start the writer task and wait until it is finished
 
     // Cleanup
     writer->end ();
     delete writer;
+    
+    // To Do: Delete the participant's contained entities when finished
     participant->delete_contained_entities();
+    // End: Delete the participant's contained entities when finished
+
     dpf->delete_participant(participant.in ());
     TheTransportFactory->release();
     TheServiceParticipant->shutdown ();

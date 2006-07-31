@@ -37,6 +37,8 @@ int main (int argc, char *argv[])
     DDS::DomainParticipant_var participant;
 
     dpf = TheParticipantFactoryWithArgs(argc, argv);
+
+    // To Do: Create the participant
     participant =
       dpf->create_participant(domainId,
                               PARTICIPANT_QOS_DEFAULT,
@@ -45,18 +47,22 @@ int main (int argc, char *argv[])
       cerr << "create_participant failed." << endl;
       return 1 ;
     }
+    // End: Create the participant
 
-    QuoterTypeSupportImpl* mts_servant = new QuoterTypeSupportImpl();
-    PortableServer::ServantBase_var safe_servant = mts_servant;
+    QuoterTypeSupportImpl* servant = new QuoterTypeSupportImpl();
+    PortableServer::ServantBase_var safe_servant = servant;
 
-    if (DDS::RETCODE_OK != mts_servant->register_type(participant.in (),
+    // To Do: Register the type
+    if (DDS::RETCODE_OK != servant->register_type(participant.in (),
                                                       "")) {
       cerr << "Failed to register the QuoterTypeTypeSupport." << endl;
       exit(1);
     }
+    // End: Register the type
 
-    CORBA::String_var type_name = mts_servant->get_type_name ();
+    CORBA::String_var type_name = servant->get_type_name ();
 
+    // To Do: Get the (default) topic QoS and create the topic
     DDS::TopicQos topic_qos;
     participant->get_default_topic_qos(topic_qos);
     DDS::Topic_var topic =
@@ -68,8 +74,9 @@ int main (int argc, char *argv[])
       cerr << "Failed to create_topic." << endl;
       exit(1);
     }
+    // End: Get the (default) topic QoS and create the topic
     
-    // Create the subscriber
+    // To Do: Create the subscriber
     DDS::Subscriber_var sub =
       participant->create_subscriber(SUBSCRIBER_QOS_DEFAULT,
                                      DDS::SubscriberListener::_nil());
@@ -77,11 +84,11 @@ int main (int argc, char *argv[])
       cerr << "Failed to create_subscriber." << endl;
       exit(1);
     }
+    // End: Create the subscriber
 
     // jhoffert
-    // There are problems with publisher and subscriber being on separate
-    // machines. Take the transport configuration from the benchmark tests
-    // to see if that fixes the problem.
+    // There seem to be problems using auto configurations with an application
+    // distributed across different nodes. Take this out for now.
 
     // Initialize the transport
     TAO::DCPS::TransportImpl_rch tcp_impl =
@@ -150,7 +157,7 @@ int main (int argc, char *argv[])
       exit(1);
     }
 
-    // Create the Datareaders
+    // To Do: Get default data reader QoS and create the data reader.
     DDS::DataReaderQos dr_qos;
     sub->get_default_datareader_qos (dr_qos);
     DDS::DataReader_var dr = sub->create_datareader(topic.in (),
@@ -160,16 +167,22 @@ int main (int argc, char *argv[])
       cerr << "create_datareader failed." << endl;
       exit(1);
     }
+    // End: Get default data reader QoS and create the data reader.
 
-
+    // To Do: Set up the constraints for when the subscriber is done
+    // receiving updates.
     int expected = 10;
     while ( listener_servant.num_reads() < expected) {
       ACE_OS::sleep (1);
     }
+    // End: Set up the constraints for how long the subscriber should
+    // receive updates.
 
+    // To Do: Delete the participant's contained entities
     if (!CORBA::is_nil (participant.in ())) {
       participant->delete_contained_entities();
     }
+    // End: Delete the participant's contained entities
     if (!CORBA::is_nil (dpf.in ())) {
       dpf->delete_participant(participant.in ());
     }
