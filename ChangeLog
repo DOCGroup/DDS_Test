@@ -1,3 +1,18 @@
+Thu Aug  3 000:39:15 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/NDDS/common.h:
+        * performance/throughput/NDDS/publisher.cxx:
+        
+          Removed unused stuff and generally cleaned up the rest.
+        
+        * performance/throughput/NDDS/ndds.mpb:
+        * performance/throughput/NDDS/ndds_ts_defaults.mpb:
+        * performance/throughput/NDDS/nddsexe.mpb:
+        
+          New files, needed by the recently checked in
+          NDDS_throughput.mpc. These files should go into another
+          directory at some point, we'll have to decide where.
+
 Mon Jul 31 20:23:43 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/NDDS/dds_config_file.cpp:

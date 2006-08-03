@@ -33,23 +33,11 @@ latency. The basic algorithm is as follow:
 #include "TP_PacketSupport.h"
 #include "TP_Packet.h"
 
-
-/* Comment this line if you wish to test NDDS original codes */
-#define I_HAVE_MY_OWN_TEST_CODES
-
-
-#ifdef I_HAVE_MY_OWN_TEST_CODES
- #define MY_OWN_TEST_OVERHEAD sizeof(DDS_UnsignedLong)
-#else
- #define MY_OWN_TEST_OVERHEAD 0
-#endif
-
-
+#define MY_OWN_TEST_OVERHEAD sizeof(DDS_UnsignedLong)
 
 /* Uncomment this line if you want to debug the publication match */
 
 //#define I_WANT_TO_DEBUG
-
 
 /* Type name */
 #define LATENCY_TYPE_NAME "PacketDataType"
