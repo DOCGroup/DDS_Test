@@ -44,8 +44,6 @@ latency. The basic algorithm is as follow:
 
 /* Topic names define what information is exchanged between pub/sub apps */
 
-/* The max length of topic named used */
-#define TOPIC_NAME_LENGTH_MAX (10)
 /* DataTopic: from LatencyWriter to LatencyReader */
 #define LATENCY_DATA_TOPIC_NAME    "DataTopic"
 /* EchoTopic: from LatencyReader to LatencyWriter */

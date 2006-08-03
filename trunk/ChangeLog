@@ -1,3 +1,11 @@
+Thu Aug  3 22:35:35 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/NDDS/common.h:
+        * performance/throughput/NDDS/subscriber.cxx:
+        
+          More general cleanup and formatting of code, in preparation
+          for refactoring.
+
 Thu Aug  3 000:39:15 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/NDDS/common.h:
