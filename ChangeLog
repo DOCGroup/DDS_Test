@@ -1,3 +1,17 @@
+Fri Aug  4 22:26:21 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/NDDS/common.h:
+        
+          Removed unnecessary variables and includes.
+        
+        * performance/throughput/NDDS/publisher.cxx:
+        
+          Minor changes.
+          
+        * performance/throughput/NDDS/subscriber.cxx:
+        
+          Removed 'loan'-related code from subscriber.
+
 Thu Aug  3 22:35:35 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/NDDS/common.h:
