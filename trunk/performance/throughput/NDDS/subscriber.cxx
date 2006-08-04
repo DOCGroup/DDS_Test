@@ -101,49 +101,25 @@ dr_read (DDSDataReader *datareader)
     }
   else
     {
+      // We need just a single timestamp from the sequence.
       ts = instance_seq[0].timestamp;
-
-      //// Examine every sample returned
-      for (int i = 0; i < instance_seq.length (); ++i)
-        {
-
-          /* Must check the 'valid_data' because for some
-            samples the instance_seq[i] will be NULL */
-          if (info_seq[i].valid_data)
-            {
-              instance.data.loan_contiguous (instance_seq[i].data.
-                                             get_contiguous_bufferI (),
-                                             instance_seq[i].data.length (),
-                                             instance_seq[i].data.maximum ());
-
-              instance.data.unloan ();/* return loan */
-            }
-        }
     }
-
-  // Let the service know the application no longer needs the data and
-  // info buffers
-  dr->return_loan (instance_seq, info_seq);
 
   return ts;
 }
 
-
 class NDDSLatencyPacketListener : public DDSDataReaderListener
 {
   private:
-    /* Data declarations */
     NDDSLatencyPacket _instance;
     DDS_InstanceHandle_t _instanceHandle;
     NDDSLatencyPacketDataWriter* _writer;
     int _sequenceNumber;
-
     int packetsize_;
     int prime_num_;
     int stats_num_;
     PubSub_Stats stats_;
     bool is_finished_;
-
     long lost_num_;
 
   public:
@@ -160,9 +136,9 @@ class NDDSLatencyPacketListener : public DDSDataReaderListener
       this->is_finished_ = false;
     }
 
-    virtual ~NDDSLatencyPacketListener() {} 
+    virtual ~NDDSLatencyPacketListener (void)
+    {} 
 
-    // DDSDataReaderListener
     virtual void on_requested_deadline_missed (
       DDSDataReader* /*reader*/,
 	    const DDS_RequestedDeadlineMissedStatus& /*status*/)
@@ -203,18 +179,7 @@ class NDDSLatencyPacketListener : public DDSDataReaderListener
       return is_finished_;
     }
 };
-/*
-static RTIBool NddsSubscriberMain (int nddsDomain,
-                                   int thePacketSize,
-                                   int prime_num,
-                                   int stats_num,
-                                   int role,
-				                           bool isReliable,
-				                           bool receiveOnMulticast,
-                                   bool receiveOnWaitSet)
-{
-}
-*/
+
 void NDDSLatencyPacketListener::on_sample_rejected (
   DDSDataReader* /*reader*/,
   const DDS_SampleRejectedStatus& /*status*/)

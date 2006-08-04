@@ -18,13 +18,13 @@ const char * TEST_TOPIC_NAME = "TEST_TOPIC";
 const char * TEST_ECHO_TOPIC_NAME = "TEST_ECHO_TOPIC";
 const char * TEST_TOPIC_TYPE_NAME = "TEST_TOPIC_TYPE";
 
-
 /* global QoS settings */
 bool QoS_KEEP_ALL = false;
 long QoS_MAX_SAMPLES_PER_INSTANCE = DDS_LENGTH_UNLIMITED;
 long QoS_MAX_SAMPLES = DDS_LENGTH_UNLIMITED;
 long QoS_MAX_INSTANCES = DDS_LENGTH_UNLIMITED;
 long QoS_HISTORY_DEPTH = 1;
+const long UNFRAGMENTED_UDP_PACKET_SIZE_MAX = 1500 - 14 - 20 - 8;
 
 // This can be changed to the desired value.
 const int PRIORITY =
