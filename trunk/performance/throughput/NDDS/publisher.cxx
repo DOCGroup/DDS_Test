@@ -15,7 +15,6 @@ const char * pub_output_file = "stats_pub";
 const char * qos_config_file = "qos";
 const char * net_config_file = "net";
 const char * TEST_TOPIC_NAME = "TEST_TOPIC";
-const char * TEST_ECHO_TOPIC_NAME = "TEST_ECHO_TOPIC";
 const char * TEST_TOPIC_TYPE_NAME = "TEST_TOPIC_TYPE";
 
 /* global QoS settings */

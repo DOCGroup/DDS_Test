@@ -3,8 +3,6 @@ project(TAO_DDS_throughput_TypeLib) : dcps, portableserver {
                  -Wb,export_macro=TPTTypeLib_Export \
                  -Wb,export_include=TPTTypeLib_Export.h
   dynamicflags = TPTTYPELIB_BUILD_DLL
-  pch_header   =
-  pch_source   =
   dcps_ts_flags += --export=TPTTypeLib_Export --module=Mine
 
   TypeSupport_Files {
@@ -283,6 +281,66 @@ project(TAO_DDS_throughput_TypeLib) : dcps, portableserver {
     TPTDefC.h
     TPTDefS.h
     TPTTypeLib_Export.h
+  }
+  
+  Inline_Files {
+    Bytes1024TypeSupportC.inl
+    Bytes1024TypeSupportS.inl
+    Bytes128TypeSupportC.inl
+    Bytes128TypeSupportS.inl
+    Bytes16384TypeSupportC.inl
+    Bytes16384TypeSupportS.inl
+    Bytes16TypeSupportC.inl
+    Bytes16TypeSupportS.inl
+    Bytes2048TypeSupportC.inl
+    Bytes2048TypeSupportS.inl
+    Bytes256TypeSupportC.inl
+    Bytes256TypeSupportS.inl
+    Bytes32TypeSupportC.inl
+    Bytes32TypeSupportS.inl
+    Bytes4096TypeSupportC.inl
+    Bytes4096TypeSupportS.inl
+    Bytes4TypeSupportC.inl
+    Bytes4TypeSupportS.inl
+    Bytes512TypeSupportC.inl
+    Bytes512TypeSupportS.inl
+    Bytes64TypeSupportC.inl
+    Bytes64TypeSupportS.inl
+    Bytes8192TypeSupportC.inl
+    Bytes8192TypeSupportS.inl
+    Bytes8TypeSupportC.inl
+    Bytes8TypeSupportS.inl
+    Complex1024TypeSupportC.inl
+    Complex1024TypeSupportS.inl
+    Complex128TypeSupportC.inl
+    Complex128TypeSupportS.inl
+    Complex16384TypeSupportC.inl
+    Complex16384TypeSupportS.inl
+    Complex16TypeSupportC.inl
+    Complex16TypeSupportS.inl
+    Complex2048TypeSupportC.inl
+    Complex2048TypeSupportS.inl
+    Complex256TypeSupportC.inl
+    Complex256TypeSupportS.inl
+    Complex32TypeSupportC.inl
+    Complex32TypeSupportS.inl
+    Complex4096TypeSupportC.inl
+    Complex4096TypeSupportS.inl
+    Complex4TypeSupportC.inl
+    Complex4TypeSupportS.inl
+    Complex512TypeSupportC.inl
+    Complex512TypeSupportS.inl
+    Complex64TypeSupportC.inl
+    Complex64TypeSupportS.inl
+    Complex8192TypeSupportC.inl
+    Complex8192TypeSupportS.inl
+    Complex8TypeSupportC.inl
+    Complex8TypeSupportS.inl
+    TPTDefC.inl
+    TPTDefS.inl
+  }
+  
+  Template_Files {
   }
 }
 
