@@ -54,9 +54,11 @@ modification history
 #include "QuoterSupport.h"
 
 // jhoffert - for getting pid
+#include <string>
+#include <iostream>
+#include <sstream>
 #include <sys/types.h>
 #include <unistd.h>
-#include <string>
 
 class QuoterListener : public DDSDataReaderListener {
   public:
@@ -225,10 +227,25 @@ extern "C" int subscriber_main(int domainId, int sample_count,
 
     // jhoffert - Create content filtered topic
     std::string filteredTopicName(filteredTopicBaseName);
-    filteredTopicName += ::getpid();
+    std::ostringstream pidStr;
+    long id = ::getpid();
+    //pidStr << static_cast<long>(::getpid());
+    pidStr << id;
+    filteredTopicName += pidStr.str().c_str();
     std::string filterExpr("symbol = ");
-    filterExpr += subscribedSymbol;
+    filterExpr += "'" + subscribedSymbol + "'";
     DDS_StringSeq filterParams;
+
+    // RTI says I need to add "symbol" to the parameters
+    //filterParams[0] = "symbol";
+    //filterParams.size(1);
+
+    // START DEBUG
+    std::cout << "id = " << id << std::endl;
+    std::cout << "pidStr = " << pidStr << std::endl;
+    std::cout << "filteredTopicName = " << filteredTopicName << std::endl;
+    std::cout << "filterExpr = " << filterExpr << std::endl;
+    // END DEBUG
     DDSContentFilteredTopic *filteredTopic =
       participant->create_contentfilteredtopic(filteredTopicName.c_str(),
                                                topic,
@@ -274,6 +291,17 @@ extern "C" int subscriber_main(int domainId, int sample_count,
     return status;
 }
 
+void print_usage()
+{
+  std::cout << "Options are: " << std::endl;
+  std::cout << "  -d domainId (for domain id, [0 = default])" << std::endl;
+  std::cout << "  -c count (for # of times to loop, 0 = unbounded [default]) "
+            << std::endl;
+  std::cout << "  -s stock [for the stock to receive, e.g., IBM]" << std::endl;
+  std::cout << "  -h [to print out this help]" << std::endl;
+  std::cout << "  -? [to print out this help]" << std::endl;
+}
+
 #if !defined(RTI_VXWORKS) && !defined(RTI_PSOS)
 int main(int argc, char *argv[])
 {
@@ -282,15 +310,18 @@ int main(int argc, char *argv[])
     // Make IBM the default stock in which we're interested.
     // Can be overridden on the command line as the 3rd parameter.
     std::string subscribedStock("IBM");
+    char optChar;
 
-    if (argc >= 2) {
-        domainId = atoi(argv[1]);
-    }
-    if (argc >= 3) {
-        sample_count = atoi(argv[2]);
-    }
-    if (argc >= 4) {
-        subscribedStock = argv[2];
+    while ((optChar = ::getopt(argc, argv, "d:c:s:h?")) != -1)
+    {
+      switch (optChar)
+      {
+        case 'd': domainId = ::atoi(optarg); break;
+        case 'c': sample_count = ::atoi(optarg); break;
+        case 's': subscribedStock = optarg; break;
+        case 'h':
+        case '?': print_usage(); ::exit(0);
+      }
     }
 
     /* Uncomment this to turn on additional logging
