@@ -1,3 +1,18 @@
+Mon Aug  7 21:59:05 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Test_Framework/Stats.cpp:
+        * Test_Framework/Stats.h:
+        * Test_Framework/TestBase.cpp:
+        * Test_Framework/TestBase.h:
+        * Test_Framework/Test_Framework.mpc:
+        * Test_Framework/test_framework_export.h:
+        
+          New files in a new directory, created for the ongoing work
+          on the DDS test code framework. Stats.cpp and Stats.h are
+          copied from the DDS/Stats directory. These classe will
+          become part of the test framework, and the Stats directory
+          will eventually be removed.
+
 Mon Aug  7 18:03:46 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DDS_RTWS06.pdf:

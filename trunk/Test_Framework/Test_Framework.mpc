@@ -1,0 +1,17 @@
+//  -*- MPC -*- now wouldn't this be cool...
+// $Id$
+
+project (Test_Framework) : acelib {
+  dynamicflags += TEST_FRAMEWORK_BUILD_DLL
+  
+  Source_Files {
+    Stats.cpp
+    TestBase.cpp
+  }
+  
+  Header_Files {
+    Stats.h
+    test_framework_export.h
+    TestBase.h
+  }
+}
