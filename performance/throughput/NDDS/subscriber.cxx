@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//#include "transport/transport_log.h"
 #include "common.h"
 #include "Stats.h"
 
@@ -19,7 +18,6 @@ const char * sub_output_file = "stats_sub";
 const char * qos_config_file = "qos";
 const char * net_config_file = "net";
 const char * TEST_TOPIC_NAME = "TEST_TOPIC";
-const char * TEST_ECHO_TOPIC_NAME = "TEST_ECHO_TOPIC";
 const char * TEST_TOPIC_TYPE_NAME = "TEST_TOPIC_TYPE";
 
 

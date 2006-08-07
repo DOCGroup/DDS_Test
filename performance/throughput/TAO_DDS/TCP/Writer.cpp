@@ -77,15 +77,6 @@ void write (long /* id */,
     {
       stats.file_dump_throughput ();
     }
-
-/*    for (ACE_CDR::ULong i = 0; i < num_messages; ++i)
-    {
-
-      pt_servant->write (payload,
-                         handle);
-    }
-*/
-
 }
 
 Writer::Writer (::DDS::DataWriter_ptr writer,

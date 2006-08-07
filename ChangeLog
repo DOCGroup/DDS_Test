@@ -1,3 +1,23 @@
+Mon Aug  7 18:03:46 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DDS_RTWS06.pdf:
+        
+          Removed this file, it now resides on the website.
+          
+        * performance/throughput/NDDS/publisher.cxx:
+        * performance/throughput/NDDS/subscriber.cxx:
+        
+          Removed lines related the non-existent 'echo' topic.
+          
+        * performance/throughput/TAO_DDS/TCP/Writer.cpp:
+        
+          Removed some commented out code.
+          
+        * performance/throughput/TAO_DDS/TypeNoKeyBounded/TypeNoKeyBounded.mpc:
+        
+          Added explicit list of inline files, to eliminate the inclusion of
+          non-existent template .inl files in the generated file.
+
 Mon Aug  7 09:32:46 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
         * examples/NDDSQuoter/withContentFilteredTopic/Quoter_subscriber.cxx
 
