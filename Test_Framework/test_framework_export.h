@@ -1,0 +1,46 @@
+// -*- C++ -*-
+// $Id$
+// Definition for Win32 Export directives.
+// ------------------------------
+
+#ifndef TEST_FRAMEWORK_EXPORT_H
+#define TEST_FRAMEWORK_EXPORT_H
+
+#include "ace/config-lite.h"
+
+#if defined (ACE_AS_STATIC_LIBS)
+
+# if !defined (TEST_FRAMEWORK_HAS_DLL)
+#   define TEST_FRAMEWORK_HAS_DLL 0
+# endif /* ! TEST_FRAMEWORK_HAS_DLL */
+#else
+# if !defined (TEST_FRAMEWORK_HAS_DLL)
+#   define TEST_FRAMEWORK_HAS_DLL 1
+# endif /* ! TEST_FRAMEWORK_HAS_DLL */
+#endif /* ACE_AS_STATIC_LIB */
+
+#if defined (TEST_FRAMEWORK_HAS_DLL)
+#  if (TEST_FRAMEWORK_HAS_DLL == 1)
+#    if defined (TEST_FRAMEWORK_BUILD_DLL)
+#      define Test_Framework_Export ACE_Proper_Export_Flag
+#      define TEST_FRAMEWORK_SINGLETON_DECLARATION(T) ACE_EXPORT_SINGLETON_DECLARATION (T)
+#      define TEST_FRAMEWORK_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK) ACE_EXPORT_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK)
+#    else
+#      define Test_Framework_Export ACE_Proper_Import_Flag
+#      define TEST_FRAMEWORK_SINGLETON_DECLARATION(T) ACE_IMPORT_SINGLETON_DECLARATION (T)
+#      define TEST_FRAMEWORK_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK) ACE_IMPORT_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK)
+#    endif /* TEST_FRAMEWORK_BUILD_DLL */
+#  else
+#    define Test_Framework_Export
+#    define TEST_FRAMEWORK_SINGLETON_DECLARATION(T)
+#    define TEST_FRAMEWORK_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK)
+#  endif   /* ! TEST_FRAMEWORK_HAS_DLL == 1 */
+#else
+#  define Test_Framework_Export
+#  define TEST_FRAMEWORK_SINGLETON_DECLARATION(T)
+#  define TEST_FRAMEWORK_SINGLETON_DECLARE(SINGLETON_TYPE, CLASS, LOCK)
+#endif     /* TEST_FRAMEWORK_HAS_DLL */
+
+#endif /* TEST_FRAMEWORK_EXPORT_H */
+
+
