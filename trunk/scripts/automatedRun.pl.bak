@@ -1,0 +1,121 @@
+#!/usr/bin/perl
+
+$command = "~/scripts/benchmark.pl";
+$terminate = "~/scripts/terminate.pl";
+
+@implementations = ("TAO-DDS","NDDS","SPLICE");
+@notifications = ("listener","wait");
+@transports = ("unicast","multicast");
+
+# implementations
+
+$i = 0;
+$nodes = 6;
+$SUBS_START = 4;
+$SUBS_INC = 4;
+$MAX_SUBS = 12;
+
+$notify = 0;
+$transport = 0;
+
+$testprefix = "~/DDS/settings/test/official_";
+
+$NUM_IMPL = @implementations;
+
+# check args
+
+
+if( @ARGV > 0 )
+{
+  if( @ARGV[0] eq "-h" )
+  {
+    print "\n" .
+      "Usage:\n\n" .
+      "  automatedRun.pl [-h] [-subs numSubs] [-unicast] [-multicast]
+                         [-listener] [-wait]\n\n";
+    print "[-subs numSubs] specifies number of subscribers to start test.\n";
+    print "[-unicast] specifies to test only unicast.\n";
+    print "[-multicast] specifies to test only multicast.\n";
+    print "[-listener] specifies to test only listener based.\n";
+    print "[-wait] specifies to test only wait based.\n";
+    exit(0);
+  }
+}
+
+
+
+while( @ARGV > 0 )
+{
+  $temp = shift(@ARGV);
+  if( $temp eq "-i" )
+  {
+    $impl = uc(shift(@ARGV));
+
+    if( $impl eq "TAO" || $impl eq "TAODDS" || $impl eq "TAO_DDS" )
+    {
+      $impl = "TAO-DDS";
+    }
+    elsif( $impl eq "OPENSPLICE" || $impl eq "OPEN-SPLICE" )
+    {
+      $impl = "SPLICE";
+    }
+
+    @implementations = ($impl);
+  }
+  elsif( $temp eq "-subs" )
+  {
+    $SUBS_START = shift(@ARGV);
+  }
+  elsif( $temp eq "-unicast" || $temp eq "-broadcast" )
+  {
+    @transports = ("unicast");
+  }
+  elsif( $temp eq "-multicast" )
+  {
+    @transports = ("multicast");
+  }
+  elsif( $temp eq "-listener" )
+  {
+    @notifications = ("listener");
+  }
+  elsif( $temp eq "-wait" )
+  {
+    @notifications = ("wait");
+  }
+}
+
+# first test - Unicast/broadcast
+
+for( $i = 0; $i < @implementations; $i++ )
+{
+  $impl = @implementations[$i];
+
+  print "impl == $impl\n";
+
+  $subs = $SUBS_START;
+  $nodes = $subs + 2;
+
+  for( ; $subs <= $MAX_SUBS; $subs += $SUBS_INC, $nodes += $SUBS_INC )
+  {
+  for( $transport = 0; $transport < @transports; $transport++ )
+  {
+    for( $notify = 0; $notify < @notifications; $notify++ )
+    {
+      $testfile = $testprefix . @transports[$transport] . '_';
+      $testfile .= @notifications[$notify] . '.test';
+#      print "$command -i $impl -nodes $nodes -subs $subs $testfile\n";
+      system("$command -i $impl -nodes $nodes -subs $subs $testfile");
+      system("$terminate -i $impl -nodes $nodes -subs $subs $testfile");
+
+      if( $impl eq "TAO-DDS" )
+      {
+        $notify = @notifications + 1;
+      }
+    }
+    if( $impl eq "TAO-DDS" )
+    {
+      $transport = @transports + 1;
+    }
+  }
+  }
+}
