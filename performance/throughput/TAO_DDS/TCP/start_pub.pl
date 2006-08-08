@@ -10,16 +10,16 @@ eval '(exit $?0)' && eval 'exec perl -S $0 ${1+"$@"}'
 
 use Env (ACE_ROOT);
 use Env (DDS_ROOT);
+use Env (DBE_SCRIPTS);
+use Env (DBE_ROOT);
 use lib "$ACE_ROOT/bin";
 use PerlACE::Run_Test;
-use Cwd;
 
-require  "/export/home/tczar/scripts/scripts.lib";
+require  "$DBE_SCRIPTS/scripts.lib";
 
-# no terminal? no problem...
+chdir("$DBE_ROOT/performance/throughput/TAO_DDS/TCP");
+system("$DBE_SCRIPTS/enable_cores.sh");
 
-chdir("/home/tczar/DDS/performance/throughput/TAO_DDS/TCP");
-system("/export/home/tczar/scripts/enable_cores.sh");
 
 
 # Because we now have to use sudo on our tests, we have to reset some
