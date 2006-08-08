@@ -1,0 +1,1 @@
+./objs/i86Linux2.6gcc3.4.3/publisher -pn 100 -sn 10000 -Size $1 -top $2  -r pub_result -reliable -keep_all
