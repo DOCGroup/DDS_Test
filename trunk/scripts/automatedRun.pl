@@ -1,5 +1,9 @@
 #!/usr/bin/perl
 
+use Env (DBE_SCRIPTS);
+use Env (DBE_ROOT);
+
+
 $command = "$DBE_SCRIPTS/benchmark.pl";
 $terminate = "$DBE_SCRIPTS/terminate.pl";
 
