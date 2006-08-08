@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-require "/export/home/tczar/scripts/scripts.lib";
+require "$DBE_SCRIPTS/scripts.lib";
 
 
 if( @ARGV > 0 )

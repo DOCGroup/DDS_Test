@@ -6,7 +6,7 @@
 
 # Author: James Edmondson
 
-require "/export/home/tczar/scripts/scripts.lib";
+require "$DBE_SCRIPTS/scripts.lib";
 
 
 if( @ARGV > 0 )
@@ -27,14 +27,14 @@ if( @ARGV > 0 )
 
 
 
-$current = &getId("/export/home/tczar/DDS/settings/id.gen");
+$current = &getId("$DBE_ROOT/settings/id.gen");
 
 for( $i = 1; $i < $current; $i++ )
 {
-  system("rm -r /export/home/tczar/DDS/results/$i");
+  system("rm -r $DBE_ROOT/results/$i");
 }
 
-system("rm /export/home/tczar/DDS/results/tests.list");
-system('echo 1 > /export/home/tczar/DDS/settings/id.gen');
+system("rm $DBE_ROOT/results/tests.list");
+system("echo 1 > $DBE_ROOT/settings/id.gen");
 
 exit 0;

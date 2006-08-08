@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 
-require "/export/home/tczar/scripts/scripts.lib";
+require "$DBE_SCRIPTS/scripts.lib";
 
 # AUTHOR'S NOTE!!!
 
