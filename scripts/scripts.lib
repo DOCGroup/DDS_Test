@@ -1,0 +1,747 @@
+#############################################################
+# function: readSettingsFromArgs
+# args: (...) variable list, should be greater than 0, but not
+#             required.
+# purpose:    reads settings from the command line. Also reads
+#             settings from files specified by -n and -q, if
+#             provided. Further, if a settings file is specified
+#             then the 'net' and 'qos' files are loaded from there.
+#
+#             All keys in the %settings variable are changed to
+#             lower case and stripped of commas and underscores.
+#             This was done to simplify the programmer interface
+#             and allow for easier to read settings files. Consequently,
+#             the following are completely identical when read by this
+#             function:
+#
+#             minSize=4
+#             minsize=4
+#             min_size=4
+#             Min_Size=4
+#             MinSize=4
+#             
+#             Command line args are usually case insensitive. There is
+#             one exception. If a settings file is provided, then
+#             the case must (and is) maintained. We do not mandate that
+#             the user has all lowercase directory and file names.
+#
+#             Command line arguments trump settings in test files. Also
+#             the first occurence of the setting trumps all later attempts
+#             at changing a setting. We recommend not having duplications
+#             of settings throughout settings files. This can be very
+#             confusing.
+#############################################################
+
+sub readSettingsFromArgs
+{
+  while( @ARGV > 0 )
+  {
+    my $orig = shift(@ARGV);
+    my $temp = lc($orig);
+
+    if( $temp eq '-i' )
+    {
+      # user has specified a DDS implementation ('NDDS' is ex.)
+      $settings{'impl'} = shift(@ARGV);
+    }
+    elsif( $temp eq '-n' )
+    {
+      # user has specified a network settings file
+      $settings{'net'} = shift(@ARGV);
+      &readSettings($settings{'net'});
+    }
+    elsif( $temp eq '-q' )
+    {
+      # user has specified a qos settings file
+      $settings{'qos'} = shift(@ARGV);
+      &readSettings($settings{'qos'});
+    }
+    elsif( $temp eq '-minsize' )
+    {
+      # user has specified min packet size (or test specific minSize)
+      $settings{'minsize'} = shift(@ARGV);
+    }
+    elsif( $temp eq '-maxsize' )
+    {
+      # user has specified max packet size (or test specific maxSize)
+      $settings{'maxsize'} = shift(@ARGV);
+    }
+    elsif( $temp eq '-nodes' )
+    {
+      $settings{'nodes'} = shift(@ARGV);
+    }
+    elsif( $temp eq '-subs' )
+    {
+      $settings{'subscribers'} = shift(@ARGV);
+    }
+    elsif( $temp eq '-pubs' )
+    {
+      $settings{'publishers'} = shift(@ARGV);
+    }
+    elsif( $temp eq '-type' )
+    {
+      # user has specified test type ('throughput' for ex.)
+      $settings{'type'} = shift(@ARGV);
+    }
+    elsif( $temp eq '-r' )
+    {
+      # results file setting
+      $settings{'results'} = shift(@ARGV);
+    }
+    elsif( $temp eq '-primer' )
+    {
+      # primer messages to get system ready for tests
+      $settings{'primer'} = shift(@ARGV);
+    }
+    elsif( $temp eq '-stats' )
+    {
+      # after primer, number of messages to actually test
+      $settings{'statsmessages'} = shift(@ARGV);
+    }
+    elsif( $temp eq '-test' )
+    {
+      $settings{'testsettings'} = shift(@ARGV);
+      &readSettings($settings{'testsettings'});
+    }
+    elsif( $temp eq '-script' )
+    {
+      $settings{'script'} = shift(@ARGV);
+      &readSettings($settings{'script'});
+    }
+    else
+    {
+
+    $settings{'testsettings'} = $orig;
+
+    open( FILE, $orig ) || die "Unable to open $orig to read settings file.\n";
+
+      my @lines = <FILE>;
+      chomp(@lines);
+
+      foreach $line (@lines)
+      {
+        if( substr($line,0,1) ne "#" && length($line) > 0 )
+        {
+          my @pair = split(/=/,$line);
+          if( @pair == 2 )
+          {
+            my $key = lc(shift(@pair));
+            $key =~ s/[ _]//g;
+            my $value = shift(@pair);
+
+            if( $key eq 'net' || $key eq 'qos' || $key eq 'script' )
+            {
+              &readSettings($value);
+            }
+            elsif( !($key eq 'testliststring' || $key eq 'testlistingstring') )
+            {
+              $value = lc($value);
+              $value =~ s/[ _]//g;
+            }
+
+            # the following means that other command line args are more
+            # important than test settings in the file. This makes sense
+            # as a user would not specify command args if the settings
+            # were already covered in the test file. The most likely scenario
+            # is that a user would like to change just a couple of settings
+            # from a given test file, without having to create an entirely
+            # new test file.
+
+            if( !$settings{$key} )
+            {
+              $settings{$key} = $value;
+            }
+
+          }
+          else
+          {
+            print "Bad pairing in file ($filename). No equals found on line.\n";
+          }
+        }
+      }
+
+    close(FILE);
+    }
+  }
+}
+
+#########################################################
+# function: readSettings
+# args: (filename)
+# purpose: reads settings from the specified file and puts
+#          them into the global hash %settings.
+#########################################################
+
+sub readSettings
+{
+  my $filename = shift;
+
+  open(FILE,$filename) || die "Unable to open file ($filename).\n";
+
+    my @lines = <FILE>;
+    chomp(@lines);
+    foreach $line (@lines)
+    {
+      if( substr($line,0,1) ne "#" && length($line) > 0 )
+      {
+        my @pair = split(/=/,$line);
+        if( @pair == 2 )
+        {
+          my $key = lc(shift(@pair));
+          $key =~ s/[ _]//g;
+          my $value = shift(@pair);
+
+
+          if( !( $key =~ /qos$/ || $key =~ /net$/ || $key =~ /script$/ ) )
+          {
+            $value =~ s/[ _]//g;
+            $value = lc($value);
+          }
+
+          if( !$settings{$key} )
+          {
+            $settings{$key} = $value;
+          }
+        }
+        else
+        {
+          print "Bad pairing in file ($filename). No equals found on line.\n";
+        }
+      }
+    }
+  close(FILE);
+}
+
+#########################################################
+# function: writeSettings
+# args: (filename)
+# purpose: writes all keys in the global %settings hash variable to the
+#          specified file
+#########################################################
+
+sub writeSettings
+{
+  my $filename = shift;
+  open(FILE,'>' . $filename) || die "Could not open " .
+                  $filename . " to write too\n";
+
+    foreach $key ( sort( keys %settings ) )
+    {
+      print FILE $key . '=' . $settings{$key} . "\n";
+    }
+
+  close(FILE);
+}
+
+#########################################################
+# function: generateDataSizes
+# args: (minSize=4,maxSize=1048576)
+# purpose: generates a list of data sizes for testing. Each
+#          element of the list is a multiple of two of it's
+#          predecessor. For example, if minSize=4 and maxSize=16384
+#          the list generated is:
+#
+#          4 8 16 32 64 128 256 512 1024 2048 4096 8192 16384
+#########################################################
+
+sub generateDataSizes
+{
+
+  my $minSize = 4;
+  my $maxSize = 1048576;
+
+  if( @_ == 2 )
+  {
+    $minSize = shift;
+    $maxSize = shift;
+  }
+
+  my @dataSizes = ();
+
+  for(my $i = $minSize; $i <= $maxSize; $i = $i << 1)
+  {
+    push @dataSizes, $i;
+  }
+
+  return @dataSizes;
+
+}
+
+#############################################################
+# function: getId
+# args: (filename)
+# purpose: returns an ID from the specified file. File must already
+#          exist and be read/writeablea. File is updated with the next
+#          ID value.
+#
+#          Unfortunately, flock doesn't work across many NFS partitions
+#          until state based algorithms are used in NFS 4.0. At that
+#          time, flock(ID,2) should be uncommented.
+#############################################################
+
+sub getId
+{
+  my $testid;
+  my $filename = shift;
+
+# this is not perfect. If we can ever get flock() to work across
+# our NFS partition, it should definitely be used instead.
+# even though we 'attempt' to stop a race condition here, we
+# are doing so with non-atomic operations and the race condition
+# still exists, although we have limited the possibility some
+# -- James (7/20/2006)
+
+  while( -e $filename . '.lock' )
+  {
+    # loop around until the id.gen is unlocked
+  }
+
+  &touch($filename . '.lock');
+
+  open( ID, '+<' .  $filename ) || die "bad id file: $filename." . $!;
+
+#  print "Arrived at flock\n";
+
+   # apparently NFS and file locking do not work well together in Fedora
+   # this IS a race condition, but there is not much we can do about it.
+
+   # to minimize the likelihood of this ever happening, please do not
+   # call the benchmark script simulatenously
+#  flock(ID,2);
+
+  #print "Past lock\n";
+
+  # begin at front of file. do not start appending
+  seek(ID,0,0);
+
+  # read the test id for this test instance
+  $testid = <ID>;
+  chomp($testid);
+
+  # go back to the beginning of the file
+  seek(ID,0,0);
+
+  print ID  ($testid + 1);
+#  flock(ID,8);
+  close( ID );
+
+  unlink($filename . '.lock');
+
+  return $testid;
+}
+
+##############################################################
+# function: updateTestsListingFile
+# args: () - none
+# purpose: Appends test information to the test listing. Settings
+#          should be stored in the %settings hash. Currently accesses
+#          the following keys: id,nodes,repos,publishers,subscribers,
+#                              nodelist
+##############################################################
+
+sub updateTestsListingFile
+{
+
+  my $subMessage, $pubMessage;
+  my $printstring, $temp = "";
+  my @parameters;
+  my $i = 0;
+
+  my $testlistfile ;
+
+  if( @_ > 0 )
+  {
+    $testlistfile = shift(@_);
+  }
+  else
+  {
+    $testlistfile = "/export/home/tczar/DDS/results/tests.list";
+  }
+
+  if( $settings{'testliststring'} ne "" )
+  {
+    $temp = $settings{'testliststring'};
+  }
+  elsif( $settings{'testlistingstring'} ne "" )
+  {
+    $temp = $settings{'testlistingstring'};
+  }
+
+  if( $temp ne "" )
+  {
+    @printfParameters = split(/,/ , $settings{'testlistparams'});
+
+    for( $i = 0; $i < @printfParameters; $i++ ) 
+    {
+      @printfParameters[$i] = $settings{@printfParameters[$i]};
+    }
+
+    $temp =~ s/\\n//g;
+    $printstring = sprintf($temp,@printfParameters);
+
+    open(LIST,">>$testlistfile") ||
+                          die "Couldn't open test.list.\n";
+
+      print LIST $settings{'id'} . ',' . $printstring . "\n";
+
+    close(LIST);
+    print $settings{'id'} . ',' . $printstring . "\n";
+  }
+  else
+  {
+    $subMessage = $settings{'subscribers'} > 1 ? 'Subscribers' : 'Subscriber';
+    $pubMessage = $settings{'publishers'} > 1 ? 'Publishers' : 'Publisher';
+
+    $printstring = $settings{'id'} . ', ' . uc($settings{'impl'}) .
+             '(' . $settings{'type'} . ':' . $settings{'minsize'} .
+             '-' . $settings{'maxsize'} . '): ' .
+             $settings{'publishers'} . " $pubMessage and " .
+             $settings{'subscribers'} . " $subMessage" .
+             "\n";
+
+    print $printstring;
+
+    open(LIST,">>$testlistfile") ||
+                          die "Couldn't open test.list.\n";
+
+   
+
+#  flock(LIST,2);
+
+      print LIST $printstring; 
+
+#  flock(LIST,8);
+
+    close(LIST);
+  }
+}
+
+##############################################################
+# function: writeEnvironmentForSSH
+# args: () - none
+# purpose: writes environment variables to the user's ssh env
+#          file. Because SSH does not open a terminal session during
+#          remote execution, this is required to setup the environment
+#          during a remote execution session.
+##############################################################
+
+sub writeEnvironmentForSSH
+{
+  open(FILE,'>/export/home/tczar/.ssh/environment') || die "Could not open" .
+             " .ssh/environment for writing.\n";
+
+  foreach $key (keys %ENV)
+  {
+    print FILE $key . '=' . $ENV{$key} . "\n";
+  }
+
+  close(FILE);
+    
+}
+
+################################################################
+# function: touch
+# args: ($file)   $file - file to create
+# purpose:        touch (create without any data) the specified file
+#                 this function is just a wrapper for system('touch')
+################################################################
+
+sub touch
+{
+  system('touch ' . shift);
+}
+
+
+##############################################################
+# function: printSummary
+# args: () - none
+# purpose: prints test summary to stdout. summary has the same
+#          format as updateTestListing function.
+#
+#          #id, #impl(#type): #publishers Publishers and #subscribers Sub...: 
+##############################################################
+
+sub printSummary
+{
+
+
+  my $subMessage, $pubMessage;
+
+  $subMessage = $settings{'subscribers'} > 1 ? 'Subscribers' : 'Subscriber';
+  $pubMessage = $settings{'publishers'} > 1 ? 'Publishers' : 'Publisher';
+
+    print    $settings{'id'} . ', ' . uc($settings{'impl'}) .
+             '(' . $settings{'type'} . '): ' .
+             $settings{'publishers'} . " $pubMessage and " .
+             $settings{'subscribers'} . " $subMessage" .
+             "\n";
+
+}
+
+###############################################################
+# function: getTestDirectory
+# args: none (uses the global variable %settings)
+# purpose: Returns the test directory by looking at %settings{'results'}.
+# This function is used in start_pub and start_sub to find out
+# where the results for the test are being stored when only provided
+# the specific place where each pub or sub is to place its own results.
+###############################################################
+
+
+sub getTestDirectory
+{
+  my $resultFile = $settings{'results'};
+  my $testDirectory = "";
+
+  $resultFile =~ /(.*)\/[^\/]*$/;
+  $testDirectory = $1;
+
+  return $testDirectory;
+
+}
+
+################################################################
+# function: getIndividualId
+# args: none (uses the global variable %settings)
+# purpose: Returns the id of the individual publisher, subscriber, or repo.
+# This id is found by looking at %settings{'results'} and grabbing
+# the id at the end. This id is unique in the realm of the participant's
+# function only (ie. that publisher id is unique to all publishers,
+# it is not meant as a unique participant id.) If a unique participant
+# id is needed, you will likely have to pass the node# from benchmark.pl
+# and strip the last part of that, since each node has its own number.
+################################################################
+
+sub getIndividualId
+{
+  my $resultFile = $settings{'results'};
+  my $id = "";
+
+  $resultFile =~ /([0-9]+)$/;
+  $id = $1;
+
+  return $id;
+
+}
+
+#################################################################
+# function: setupNDDSDiscovery
+# args: (1 == PUBLISHER, 2 == SUBSCRIBER)
+# purpose: setup environment variable NDDSDISCOVERYPEERS. Subscribers
+#          and publishers both require different values in this variable.
+#          For some reason, this is not currently working. Hoping to
+#          talk to Ming about this sometime soon.
+#################################################################
+
+sub setupNDDSDiscovery
+{
+  my $type = shift;
+  my $pubs = $settings{'publishers'};
+  my $subs = $settings{'subscribers'};
+  my $nodes = $settings{'nodes'};
+
+  print "nodes is $nodes, pubs is $pubs, subs is $subs, type is $type\n";
+
+  my $key = 'NDDS_DISCOVERY_PEERS';
+
+  $ENV{$key} = ""; 
+
+
+  if( $type == 2 )
+  {
+    $ENV{$key} = 'udpv4://' . $settings{'node0'};
+#    writeEnvironmentForSSH();
+    return;
+  }
+  elsif( $type != 1 )
+  {
+    print "ERROR: SetupNDDSDiscovery has wrong type.\n";
+    return;
+  }
+
+
+  my $nodeNum = $pubs;
+  my $subNum = 1;
+  
+  $ENV{$key} = ($subNum + 5) . '@udpv4://' . $settings{'node' . $nodeNum};
+  $subNum++;
+
+  for( $nodeNum = ($pubs + 1) % $nodes; $subNum <= $subs; 
+                            $nodeNum = ($nodeNum + 1) % $nodes, $subNum++ )
+  {
+    $ENV{$key} .= ',' . ($subNum + 30) . '@udp4://' . $settings{'node' . $nodeNum}; 
+  } 
+
+#  writeEnvironmentForSSH();  
+  return;
+}
+
+############################################################
+# function: writeSpliceConfig
+# args: ($file) - specifies file to write splice config too
+# purpose: supposed to create splice config files on the fly.
+#          currently not functional. After Hieu gets the new
+#          Splice code up and running, we'll try getting this
+#          functionality going. Right now, do not use this function.
+#          -- James (7/20/2006)
+############################################################
+
+sub writeSpliceConfig
+{
+  $filename = shift(@_);
+
+#  $ENV{'OSPL_URI'} = $filename;
+
+  $multicast = "false";
+
+  if( $settings{'transport'} )
+  {
+
+    $settings{'transport'} =~ s/ //g;
+
+    @transports = split(/\|/,$settings{'transport'});
+    $done == 0;
+    while( $done == 0 )
+    {
+      $transport = shift(@transports);
+      if( $transport eq "multicast" || $transport eq "multi-cast"  )
+      {
+        $multicast = "true";
+        $done = 1;
+      }
+    }
+  }
+  open(FILE,">$filename") || die "Could not open OSPL config ($filename)\n";
+
+  print FILE '<OpenSplice>
+     <Domain>
+        <Name>DDS Benchmark Domain</Name>
+
+        <Lease>
+            <ExpiryTime update_factor="0.5">5.0</ExpiryTime>
+        </Lease>
+        <Service name="networking">
+            <Command>networking</Command>
+            <Configuration>file://' . $filename . '</Configuration>
+        </Service>
+    </Domain>
+
+
+    <NetworkService name="networking">
+        <Channels>
+            <Channel enabled="true" name="BestEffort" reliable="false" default="true">
+                <Multicast enabled="' . $multicast . '">
+                    <Address>225.3.2.1</Address>
+                </Multicast>
+                <PortNr>3340</PortNr>
+            </Channel>
+            <Channel enabled="true" name="Reliable" reliable="true">
+                <Multicast enabled="' . $multicast . '">
+                    <Address>225.3.2.1</Address>
+                </Multicast>
+                <PortNr>3350</PortNr>
+            </Channel>
+            <NetworkInterfaceAddress>first available</NetworkInterfaceAddress>
+        </Channels>
+    </NetworkService>
+  </OpenSplice>';
+
+  print FILE "\n";
+
+
+
+  close(FILE);
+
+  print "Config file is $filename\n";
+  print "OSPL_URI is " . $ENV{'OSPL_URI'} . "\n";
+}
+
+###############################################################
+# function: getTestListing
+# args: ($file)  $file - specifies the test listing file to read
+# purpose: read and return the contents of the test listing file
+#          the function returns the contents in an array, where
+#          newlines in the test listing file would have specified
+#          array index delimiters, ie
+#
+#          1, Text 1
+#          2, Text 2
+#
+#          is returned as:
+#
+#          @array('1, Text 1', '2, Text 2')
+###############################################################
+
+sub getTestListing
+{
+
+  my $testlistfile ;
+  my @listings;
+
+  if( @_ > 0 )
+  {
+    $testlistfile = shift(@_);
+  }
+  else
+  {
+    $testlistfile = "/export/home/tczar/DDS/results/tests.list";
+  }
+
+  open(FILE, "<$testlistfile");
+    @listings = <FILE>;
+  close(FILE);
+
+  return @listings;
+
+}
+
+##############################################################
+# function: getDescriptionFromTestListing
+# args: ($id, @listings)   $id - specifies test id to get description of
+#               @listing - lists of tests most likely returned from
+#                          &getTestListing($somefile)
+##############################################################
+
+sub getDescriptionFromTestListing
+{
+  my $id = shift(@_);
+  my @listings = @_;
+  my $temp, $thisID, $thisDescription;
+
+
+  foreach $listing (@listings)
+  {
+    $listing =~ m/^([^,]*),(.*)/;
+    $thisID = $1;
+    $thisDescription = $2;
+
+    if( $id eq $thisID )
+    {
+      return $thisDescription;
+    }
+  }
+
+  return "";
+}
+
+#################################################################
+# function: addSimpleTextToTestListing
+# args: ($file,$id,$description)   $file - file to append test info to
+#                   $id - test id that the description should be associated to
+#                   $description - description to add
+# purpose: appends a test listing file with an id and description separated
+#          by a comma (,).
+#################################################################
+
+sub addSimpleTextToTestListing
+{
+  my $testListingFile = shift(@_);
+  my $id = shift(@_);
+  my $description = shift(@_);
+
+  open(LISTING,">>$testListingFile");
+    print LISTING $id . ',' . $description . "\n";
+  close(LISTING);
+}
+
+1;
