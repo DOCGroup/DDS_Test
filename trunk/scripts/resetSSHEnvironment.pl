@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-require "scripts.lib";
+require "$DBE_SCRIPTS/scripts.lib";
 
 
 if( @ARGV > 0 )

@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 
-require "/export/home/tczar/scripts/scripts.lib";
+require "$DBE_SCRIPTS/scripts.lib";
 
 
 if( @ARGV > 0 )
@@ -26,7 +26,7 @@ if( @ARGV > 0 )
 }
 
 $destination = shift(@ARGV);
-@listings = &getTestListing("/export/home/tczar/DDS/results/tests.list");
+@listings = &getTestListing("$DBE_ROOT/results/tests.list");
 
 while( @ARGV > 0 )
 {
@@ -34,8 +34,8 @@ while( @ARGV > 0 )
 
   $description = &getDescriptionFromTestListing($testid,@listings);
 
-  print "\nCopying $testid from ~/DDS/results to $destination...";
-  system("cp -r ~/DDS/results/$testid $destination");
+  print "\nCopying $testid from $DBE_ROOT/results to $destination...";
+  system("cp -r $DBE_ROOT/results/$testid $destination");
   print "Done.\n";
 
   print "Appending test information for $testid to test listing file...";

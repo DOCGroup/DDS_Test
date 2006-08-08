@@ -16,7 +16,7 @@ $nodes = 6;
 $notify = 0;
 $transport = 0;
 
-$testprefix = "~/DDS/settings/test/official_";
+$testprefix = "$DBE_ROOT/settings/test/official_";
 
 $NUM_IMPL = @implementations;
 
