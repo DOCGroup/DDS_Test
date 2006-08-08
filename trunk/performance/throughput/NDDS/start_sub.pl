@@ -10,13 +10,15 @@ eval '(exit $?0)' && eval 'exec perl -S $0 ${1+"$@"}'
 
 use Env (ACE_ROOT);
 use Env (DDS_ROOT);
+use Env (DBE_SCRIPTS);
+use Env (DBE_ROOT);
 use lib "$ACE_ROOT/bin";
 use PerlACE::Run_Test;
 
-require  "/export/home/tczar/scripts/scripts.lib";
+require  "$DBE_SCRIPTS/scripts.lib";
 
-chdir("/home/tczar/DDS/performance/throughput/NDDS");
-system("/export/home/tczar/scripts/enable_cores.sh");
+chdir("$DBE_ROOT/performance/throughput/NDDS");
+system("$DBE_SCRIPTS/enable_cores.sh");
 
 
 # Because we now have to use sudo on our tests, we have to reset some
@@ -35,7 +37,7 @@ $ENV{'LD_LIBRARY_PATH'} = $lib;
 
 #&setupNDDSDiscovery(2);
 
-print "DISCOVERY = " . $ENV{'NDDS_DISCOVERY_PEERS'} . "\n";
+#print "DISCOVERY = " . $ENV{'NDDS_DISCOVERY_PEERS'} . "\n";
 
 $status = 0;
 
@@ -278,7 +280,11 @@ foreach $data_size (@dataSizes)
     sleep($start);
   }          
 
-  $SubscriberResult = $Subscriber->TerminateWaitKill ($stop);
+  $Subscriber->Spawn();
+
+  $Subscriber->Wait($stop);
+
+  $SubscriberResult = $Subscriber->TerminateWaitKill (0);
 
   if ($SubscriberResult != 0) {
       print STDERR "ERROR: subscriber returned $SubscriberResult \n";

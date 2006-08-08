@@ -10,13 +10,16 @@ eval '(exit $?0)' && eval 'exec perl -S $0 ${1+"$@"}'
 
 use Env (ACE_ROOT);
 use Env (DDS_ROOT);
+use Env (DBE_SCRIPTS);
+use Env (DBE_ROOT);
 use lib "$ACE_ROOT/bin";
 use PerlACE::Run_Test;
 
-require  "/export/home/tczar/scripts/scripts.lib";
 
-chdir("/home/tczar/DDS/performance/throughput/NDDS");
-system("/export/home/tczar/enable_cores.sh");
+require  "$DBE_SCRIPTS/scripts.lib";
+
+chdir("$DBE_ROOT/performance/throughput/NDDS");
+system("$DBE_SCRIPTS/enable_cores.sh");
 
 
 # Because we now have to use sudo on our tests, we have to reset some
@@ -35,7 +38,7 @@ $ENV{'LD_LIBRARY_PATH'} = $lib;
 #&setupNDDSDiscovery(1);
 $status = 0;
 
-print "Discovery is " . $ENV{'NDDS_DISCOVERY_PEERS'} . "\n";
+#print "Discovery is " . $ENV{'NDDS_DISCOVERY_PEERS'} . "\n";
 
 PerlACE::add_lib_path('../TypeNoKeyBounded');
 
@@ -76,6 +79,9 @@ if( $settings{'default.stop'} eq "" )
 {
   $settings{'default.stop'} = 1200;
 }
+
+print "Defaults for start/stop: " . $settings{'default.start'} .
+      "/" . $settings{'default.stop'} . "\n";
 
 # Because our settings files no longer allow simple QoS labels in the
 # settings files, convert our QoS key/values into simpler ones
@@ -273,14 +279,21 @@ foreach $data_size (@dataSizes)
 
   # pause for $start seconds
 
+  print STDERR "Start is $start\n";
+
   if( $start > 0 )
   {
+    print STDERR "Sleeping for $start\n";
     sleep($start);
   }
 
   $Publisher->Spawn ();
 
-  $PublisherResult = $Publisher->TerminateWaitKill ($stop);
+  print STDERR "Stop is $stop\n";
+
+  $Publisher->Wait($stop);
+
+  $PublisherResult = $Publisher->TerminateWaitKill (0);
 
   if ($PublisherResult != 0) {
       print STDERR "ERROR: publisher returned $PublisherResult \n";
