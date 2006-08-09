@@ -18,8 +18,48 @@ DDS Benchmark Environment (DBE) Scripts User Manual:
 
 1. Installation
 
-  (not covered yet)
+   Download benchmark.tar from the following website:
+   
+   http://www.dre.vanderbilt.edu/DDS/html/dbe.html
 
+   Untar benchmark.tar to an NFS partition or if you are only going
+   to be running tests on a single machine, untar the file to some
+   local partition.
+
+   Afterwards, set the following environment variables (all required):
+
+   DBE_ROOT: The directory that you untarred everything to plus /DDS.
+     For instance, if you untarred everything to /home/user then
+     DBE_ROOT=/home/user/DDS.
+
+   DBE_LOCAL_ROOT: The directory that files should be copied to. This
+     won't make much sense if you are only running the DBE on one machine.
+     However, it still needs to be set. If DBE_ROOT=/export/home/user/DDS,
+     then you might try DBE_LOCAL_ROOT=/home/user/DDS for local files.
+
+   DBE_SCRIPTS: The directory that houses the DBE scripts. If you don't
+     plan on moving anything, do the following: DBE_SCRIPTS=$DBE_ROOT/scripts.
+
+   DBE_RESULTS_BACKUP: The directory to store all successful test results
+     into. DBE_ROOT/results will hold all test results, but it does not
+     distinguish between completed tests and those that were unsuccessful.
+     This directory is an easy go to if you need to find a valid test result
+     quickly. You may want to try DBE_RESULTS_BACKUP=DBE_ROOT/completed.
+
+
+   ADDITIONAL INSTRUCTIONS:
+
+
+   Currently, DBE_SCRIPTS/benchmark.pl has a reference that is hard coded to
+   our network. The OSPL_CONFIG file is copied to a place that is pretty
+   specific to our network. If the OSPL_CONFIG location never changes, and
+   you are okay with referencing the config file over the network, this may
+   not be a problem. We're working on an elegant solution to this.
+
+   DBE_LOCAL_ROOT needs to contain a valid directory structure for the DBE
+   to function properly. A script that does this for you is in the works.
+   However, a quick fix would be recursively copying DBE_ROOT to
+   DBE_LOCAL_ROOT.
 
 
 2. Running Benchmark.pl
