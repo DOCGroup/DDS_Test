@@ -1,3 +1,15 @@
+Thu Aug 10 15:11:35 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
+        * examples/NDDSQuoter/cs395/*
+
+          Added application files for a publisher, a subscriber, and
+          a subscriber that republishes filtered data. This example
+          uses some of the DDS QoS features such as reliability, history,
+          and durability along with content filtered topic and dynamic
+          filtering. There are still some problems with the dynamic filtering
+          (i.e., Quoter_subscriber_republisher crashes) but I wanted to
+          check in what I had since I had accidentally deleted some source
+          files previously and the blades aren't backed up.
+
 Mon Aug  7 21:59:05 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Test_Framework/Stats.cpp:
