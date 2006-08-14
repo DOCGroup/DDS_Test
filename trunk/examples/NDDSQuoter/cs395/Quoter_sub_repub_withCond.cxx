@@ -287,7 +287,9 @@ static int handle_new_minmax(DDSDataReader* reader)
     }
 }
 
-extern "C" int subscriber_main(int domainId, int sample_count)
+extern "C" int subscriber_main(int domainId,
+                               int sample_count,
+                               const std::string &subscribed_symbol)
 {
     DDSDomainParticipant *participant = NULL;
     DDSSubscriber *subscriber = NULL;
@@ -302,8 +304,15 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     // jhoffert - Additions
     const int MAX_NUM_SAMPLES = 1000;
     const char *filteredTopicBaseName = "Max Min Quoter";
-    // Filter expression to handle maximum and minimum.
-    const std::string filterExpr("(price > %0) or (price < %1)");
+
+    // Filter expression to handle maximum and minimum for a particular
+    // stock.
+    //const std::string filterExpr("(price > %0) or (price < %1)");
+    const std::string priceFilterExpr("((price > %0) or (price < %1))");
+    std::string symFilterExpr("symbol = ");
+    std::string filterExpr = symFilterExpr + "'" + subscribed_symbol + "' and "
+      + priceFilterExpr;
+
     // Filter expression to handle maximum.
     //const std::string filterExpr("price > %0");
 
@@ -472,17 +481,38 @@ extern "C" int subscriber_main(int domainId, int sample_count)
     return status;
 }
 
+void print_usage()
+{
+  std::cout << "Options are: " << std::endl;
+  std::cout << "  -d domainId (for domain id, [0 = default])" << std::endl;
+  std::cout << "  -c count (for # of times to loop, 0 = unbounded [default]) "
+            << std::endl;
+  std::cout << "  -s stock (for the stock to track, e.g., IBM [default])"
+            << std::endl;
+  std::cout << "  -h [to print out this help]" << std::endl;
+  std::cout << "  -? [to print out this help]" << std::endl;
+}
+
 #if !defined(RTI_VXWORKS) && !defined(RTI_PSOS)
 int main(int argc, char *argv[])
 {
     int domainId = 0;
     int sample_count = 0; /* infinite loop */
+    // Make IBM the default stock in which we're interested.
+    // Can be overridden on the command line as the 3rd parameter.
+    std::string subscribed_stock("IBM");
+    char optChar;
 
-    if (argc >= 2) {
-        domainId = atoi(argv[1]);
-    }
-    if (argc >= 3) {
-        sample_count = atoi(argv[2]);
+    while ((optChar = ::getopt(argc, argv, "d:c:s:h?")) != -1)
+    {
+      switch (optChar)
+      {
+        case 'd': domainId = ::atoi(optarg); break;
+        case 'c': sample_count = ::atoi(optarg); break;
+        case 's': subscribed_stock = optarg; break;
+        case 'h':
+        case '?': print_usage(); ::exit(0);
+      }
     }
 
     /* Uncomment this to turn on additional logging
@@ -491,7 +521,8 @@ int main(int argc, char *argv[])
                                   NDDS_CONFIG_LOG_VERBOSITY_STATUS_ALL);
     */
                                   
-    return subscriber_main(domainId, sample_count);
+    return subscriber_main(domainId,
+                           sample_count,
+                           subscribed_stock);
 }
 #endif
-
