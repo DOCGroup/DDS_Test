@@ -1,7 +1,16 @@
+Mon Aug 14 14:21:01 UTC 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * examples/NDDSQuoter/cs395/Quoter_sub_repub_withCond.cxx:
+        * examples/NDDSQuoter/cs395/README.txt:
+
+          Updated the output of the Quoter_sub_repub_withCond executable
+          and added a README.txt file to attempt to explain what the
+          executables do.
+
 Mon Aug 14 15:30:53 CDT 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
 
         * examples/NDDSQuoter/cs395/Quoter_sub_repub_withCond.cxx:
-        
+
           This subscriber application now takes an optional stock symbol
           which is used to track the maximum and minimum stock values.
 
