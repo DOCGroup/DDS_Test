@@ -1,8 +1,15 @@
+Mon Aug 14 15:30:53 CDT 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * examples/NDDSQuoter/cs395/Quoter_sub_repub_withCond.cxx:
+        
+          This subscriber application now takes an optional stock symbol
+          which is used to track the maximum and minimum stock values.
+
 Mon Aug 14 12:22:14 CDT 2006  Joe Hoffert <jhoffert@dre.vanderbilt.edu>
 
         * examples/NDDSQuoter/cs395/Quoter_sub_repub_withCond.cxx:
         * examples/NDDSQuoter/cs395/makefile_Quoter_i86Linux2.6gcc3.4.3:
-        
+
           Added a new executable that will subscribe to stock prices and
           filter on the maximum and minimum prices dynamically using
           filter parameters. There is still some work to be done on this
