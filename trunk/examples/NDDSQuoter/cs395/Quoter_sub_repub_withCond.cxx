@@ -214,15 +214,6 @@ static int handle_new_minmax(DDSDataReader* reader)
           // If we have values here then we either have a new maximum
           // or a new minimum. (Maybe this should be split out separately?)
           // Reset the new max or min and publish the data.
-          //QuoterTypeSupport::print_data(&data_seq[i]);
-          // Print out the values here
-          std::cout << "Index  = " << i << std::endl;
-          std::cout << "New max/min price for " << data_seq[i].symbol << " = "
-                    << data_seq[i].price << std::endl;
-
-          //DDSContentFilteredTopic *filteredTopic =
-          //    dynamic_cast<DDSContentFilteredTopic *>(topicDesc);
-
           DDSTopicDescription *topicDesc = reader->get_topicdescription();
           DDSContentFilteredTopic *filteredTopic =
             DDSContentFilteredTopic::narrow(topicDesc);
@@ -231,19 +222,11 @@ static int handle_new_minmax(DDSDataReader* reader)
               std::cerr << "Filtered Topic narrow error" << std::endl;
               return -1;
             }
-          std::cout << "Before call to get_expression_parameters"
-                    << std::endl;
           filteredTopic->get_expression_parameters(filterParams);
-
-          std::cout << "Getting Filter Params[0] == "
-                    << filterParams[0] << std::endl;
-          std::cout << "Getting Filter Params[1] == "
-                    << filterParams[1] << std::endl;
 
           // Figure out if new max or new min has been set.
           std::string lastMaxStr = filterParams[0];
           double lastMax = ::atof(lastMaxStr.c_str());
-          std::cout << "Last Max value = " << lastMax << std::endl;
           std::ostringstream newPriceStr;
           newPriceStr << data_seq[i].price;
           if (lastMax < data_seq[i].price)
