@@ -19,7 +19,8 @@ gets triggered in the data reader listener's on_data_available method. In
 short, this executable together with Quoter_publisher demonstrates the use
 of:
 
-        1) setting history, reliability, and durability policies,
+        1) setting history, reliability, durability, and resource limits
+           policies,
         2) using content filtered topics,
         3) updating the filtering expression/parameters for a content
            filtered topic dynamically (i.e., while the executable is running),
