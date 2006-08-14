@@ -1,4 +1,15 @@
-Thu Aug 10 15:11:35 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
+Mon Aug 14 12:22:14 CDT 2006  Joe Hoffert <jhoffert@dre.vanderbilt.edu>
+
+        * examples/NDDSQuoter/cs395/Quoter_sub_repub_withCond.cxx:
+        * examples/NDDSQuoter/cs395/makefile_Quoter_i86Linux2.6gcc3.4.3:
+        
+          Added a new executable that will subscribe to stock prices and
+          filter on the maximum and minimum prices dynamically using
+          filter parameters. There is still some work to be done on this
+          since the max and min values are for all stocks but I wanted to
+          check in what I had.
+
+Thu Aug 10 15:11:35 CDT 2006  Joe Hoffert <jhoffert@dre.vanderbilt.edu>
         * examples/NDDSQuoter/cs395/*
 
           Added application files for a publisher, a subscriber, and
@@ -18,7 +29,7 @@ Mon Aug  7 21:59:05 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * Test_Framework/TestBase.h:
         * Test_Framework/Test_Framework.mpc:
         * Test_Framework/test_framework_export.h:
-        
+
           New files in a new directory, created for the ongoing work
           on the DDS test code framework. Stats.cpp and Stats.h are
           copied from the DDS/Stats directory. These classe will
@@ -28,24 +39,24 @@ Mon Aug  7 21:59:05 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 Mon Aug  7 18:03:46 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DDS_RTWS06.pdf:
-        
+
           Removed this file, it now resides on the website.
-          
+
         * performance/throughput/NDDS/publisher.cxx:
         * performance/throughput/NDDS/subscriber.cxx:
-        
+
           Removed lines related the non-existent 'echo' topic.
-          
+
         * performance/throughput/TAO_DDS/TCP/Writer.cpp:
-        
+
           Removed some commented out code.
-          
+
         * performance/throughput/TAO_DDS/TypeNoKeyBounded/TypeNoKeyBounded.mpc:
-        
+
           Added explicit list of inline files, to eliminate the inclusion of
           non-existent template .inl files in the generated file.
 
-Mon Aug  7 09:32:46 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
+Mon Aug  7 09:32:46 CDT 2006  Joe Hoffert <jhoffert@dre.vanderbilt.edu>
         * examples/NDDSQuoter/withContentFilteredTopic/Quoter_subscriber.cxx
 
           Added content filtered topics plus some command line arguments to
@@ -54,22 +65,22 @@ Mon Aug  7 09:32:46 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
 Fri Aug  4 22:26:21 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/NDDS/common.h:
-        
+
           Removed unnecessary variables and includes.
-        
+
         * performance/throughput/NDDS/publisher.cxx:
-        
+
           Minor changes.
-          
+
         * performance/throughput/NDDS/subscriber.cxx:
-        
+
           Removed 'loan'-related code from subscriber.
 
 Thu Aug  3 22:35:35 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/NDDS/common.h:
         * performance/throughput/NDDS/subscriber.cxx:
-        
+
           More general cleanup and formatting of code, in preparation
           for refactoring.
 
@@ -77,13 +88,13 @@ Thu Aug  3 000:39:15 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/NDDS/common.h:
         * performance/throughput/NDDS/publisher.cxx:
-        
+
           Removed unused stuff and generally cleaned up the rest.
-        
+
         * performance/throughput/NDDS/ndds.mpb:
         * performance/throughput/NDDS/ndds_ts_defaults.mpb:
         * performance/throughput/NDDS/nddsexe.mpb:
-        
+
           New files, needed by the recently checked in
           NDDS_throughput.mpc. These files should go into another
           directory at some point, we'll have to decide where.
@@ -93,22 +104,22 @@ Mon Jul 31 20:23:43 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * performance/throughput/NDDS/dds_config_file.cpp:
         * performance/throughput/NDDS/publisher.cxx:
         * performance/throughput/NDDS/subscriber.cxx:
-        
+
           Commented out unused variables, fixed signed/unsigned
           mismatch, and initialized uninitialized variables.
-        
+
         * performance/throughput/TAO_DDS/TCP/TCP.mpc:
         * performance/throughput/TAO_DDS/TypeNoKeyBounded/TypeNoKeyBounded.mpc:
 
           Changed naming convention of generated projects to be
           more consistent.
-          
+
         * performance/throughput/NDDS/NDDS_throughput.mpc:
-        
+
           New file, generates Visual Studio projects or gnu
           makefiles for NDDS throughput test.
 
-Mon Jul 31 15:16:59 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
+Mon Jul 31 15:16:59 CDT 2006  Joe Hoffert <jhoffert@dre.vanderbilt.edu>
         * examples/TAODDSQuoter/DataReaderListener.cpp
         * examples/TAODDSQuoter/DataReaderListener.h
         * examples/TAODDSQuoter/Writer.cpp
@@ -117,14 +128,14 @@ Mon Jul 31 15:16:59 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
 
           Added comments for CS 395 assignment and cleaned up some of the code.
 
-Mon Jul 31 07:18:01 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
+Mon Jul 31 07:18:01 CDT 2006  Joe Hoffert <jhoffert@dre.vanderbilt.edu>
 
         * examples/TAODDSQuoter/tcp.ini
 
           Added this file for the example. It should have been added with
           the other files below but it was overlooked.
 
-Fri Jul 28 13:11:10 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
+Fri Jul 28 13:11:10 CDT 2006  Joe Hoffert <jhoffert@dre.vanderbilt.edu>
 
         * examples/TAODDSQuoter/README
         * examples/TAODDSQuoter/publisher.cpp
@@ -136,7 +147,7 @@ Fri Jul 28 13:11:10 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
           all the changes were needed - I essentially copied relevant
           parts from the benchmark test.
 
-Fri Jul 28 11:17:01 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
+Fri Jul 28 11:17:01 CDT 2006  Joe Hoffert <jhoffert@dre.vanderbiltXS.edu>
 
         * examples/TAODDSQuoter/*
         * examples/NDDSQuoter/*
@@ -149,14 +160,14 @@ Fri Jul 28 11:17:01 CDT 2006  Joe Hoffert <jhoffert@vanderbilt.edu>
 Fri Jul  7 15:41:09 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DDS_RTWS06.pdf:
-        
+
           Added latest version of OMG RT Workshop slides.
 
 Sun Jun 25 04:39:35 UTC 2006  xiong,ming  <ming.xiong@vanderbilt.edu>
 
         * performance/throughput/TAO_DDS/TCP/publisher.cpp
         * performance/throughput/TAO_DDS/TCP/subscriber.cpp
-        
+
         Added "-reliable" and "-keep_all" option
 
 Tue Jun 13 20:37:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -172,14 +183,14 @@ Tue Jun 13 20:37:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * performance/throughput/Splice/SpliceCompile/pingpongSacDcps.h:
         * performance/throughput/Splice/SpliceCompile/pingpongSplDcps.c:
         * performance/throughput/Splice/SpliceCompile/pingpongSplDcps.h:
-        
+
           Removed more unneeded files from the Splice throughput test
           directory.
 
 Tue Jun 13 19:31:06 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/Splice/SpliceCompile/*.o:
-        
+
           Removed the object files mistakenly checked in.
 
 Fri Jun  9 20:29:26 UTC 2006  xiong,ming  <ming.xiong@vanderbilt.edu>
@@ -192,26 +203,26 @@ Fri Jun  9 20:29:26 UTC 2006  xiong,ming  <ming.xiong@vanderbilt.edu>
 Fri Jun  9 19:35:37 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/TAO_DDS/TCP/dds_config_file.cpp:
-        
+
           Fixed signed/unsigned mismatch warning.
-          
+
         * performance/throughput/TAO_DDS/TCP/run_test-1p1s.pl:
         * performance/throughput/TAO_DDS/TCP/run_test-1p4s.pl:
-        
-          Minor change to debug locally on a Windows machine. These 
+
+          Minor change to debug locally on a Windows machine. These
           scripts are no longer used in our actual test runs.
-          
+
         * performance/throughput/TAO_DDS/TypeNoKeyBounded/TypeNoKeyBounded.mpc:
-        
+
           Removed line 'libout = .' so lib will be output to the usual
           place for ACE+TAO+DDS builds.
-          
+
         * performance/throughput/TAO_DDS/TCP/TCP.mpc:
-        
+
           Added dds_config_file.{h,cpp} to the publisher project.
 
 Fri Mar 24 22:10:00 UTC 2006    <mxiong@anduril.dre.vanderbilt.edu>
-        
+
         * Created ChangeLog
 
 Local Variables:

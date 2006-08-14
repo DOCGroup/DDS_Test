@@ -41,7 +41,7 @@ LIBS = -L$(NDDSHOME)/lib/i86Linux2.6gcc3.4.3  \
 
 CDRSOURCES    = Quoter.idl
 COMMONSOURCES = Quoter.cxx QuoterPlugin.cxx QuoterSupport.cxx
-EXEC          = Quoter_subscriber Quoter_publisher Quoter_subscriber_republisher
+EXEC          = Quoter_subscriber Quoter_publisher Quoter_subscriber_republisher Quoter_sub_repub_withCond
 DIRECTORIES   = objs.dir objs/i86Linux2.6gcc3.4.3.dir
 COMMONOBJS    = $(COMMONSOURCES:%.cxx=objs/i86Linux2.6gcc3.4.3/%.o)
 
