@@ -222,6 +222,11 @@ extern "C" int publisher_main(int domainId, int sample_count)
             printf("write error %d\n", retcode);
         }
 
+        std::cout << "Stock " << ibmInstance->symbol << " at "
+                  << ibmInstance->price << std::endl;
+        std::cout << "Stock " << msftInstance->symbol << " at "
+                  << msftInstance->price << std::endl;
+
         NDDSUtility::sleep(send_period);
     }
 

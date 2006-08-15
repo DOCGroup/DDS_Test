@@ -1,3 +1,16 @@
+Tue Aug 15 17:07:55 UTC 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * examples/NDDSQuoter/Quoter.idl:
+
+          Removed the long name of the stock. This is to reduce overhead
+          and is not necessary for the examples.
+        
+        * examples/NDDSQuoter/Quoter_publisher.cxx:
+        * examples/NDDSQuoter/withContentFilteredTopic/Quoter_publisher.cxx:
+
+          Updated these publishers to print out updated values to the
+          screen.
+
 Tue Aug 15 09:26:16 CDT 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
 
         * examples/NDDSQuoter/withDynamicFilter/*:
