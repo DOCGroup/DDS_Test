@@ -1,4 +1,12 @@
-Mon Aug 14 14:21:01 UTC 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+Tue Aug 15 09:26:16 CDT 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * examples/NDDSQuoter/withDynamicFilter/*:
+
+          Renamed cs395 subdirectory to withDynamicFilter. I'm having
+          some problems getting rid of the cs395 directory so that may
+          stick around for a while. However, it is a lame duck.
+
+Mon Aug 14 14:21:01 CDT 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
 
         * examples/NDDSQuoter/cs395/Quoter_sub_repub_withCond.cxx:
         * examples/NDDSQuoter/cs395/README.txt:
