@@ -1,5 +1,0 @@
-struct Quoter {
-    double price;
-    string symbol;
-    //string full_name;
-};
