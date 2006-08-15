@@ -135,6 +135,7 @@ void QuoterListener::on_data_available(DDSDataReader* reader)
     }
 
   set_guard_condition(DDS_BOOLEAN_TRUE);
+  set_guard_condition(DDS_BOOLEAN_FALSE);
 }
 
 /* Delete all entities */
@@ -447,7 +448,7 @@ extern "C" int subscriber_main(int domainId,
             // We only have one condition - the guard condition set by
             // the listener when new data arrives. Reset the guard condition
             // and then calculate the min or max value.
-            reader_listener->set_guard_condition(DDS_BOOLEAN_FALSE);
+            //reader_listener->set_guard_condition(DDS_BOOLEAN_FALSE);
             handle_new_minmax(reader);
           }
 

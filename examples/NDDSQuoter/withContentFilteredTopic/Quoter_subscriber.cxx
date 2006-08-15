@@ -161,7 +161,8 @@ static int subscriber_shutdown(
     return status;
 }
 
-extern "C" int subscriber_main(int domainId, int sample_count,
+extern "C" int subscriber_main(int domainId,
+                               int sample_count,
                                const std::string &subscribedSymbol)
 {
     // jhoffert - make the topic name const for convenience and clarity
@@ -235,10 +236,6 @@ extern "C" int subscriber_main(int domainId, int sample_count,
     std::string filterExpr("symbol = ");
     filterExpr += "'" + subscribedSymbol + "'";
     DDS_StringSeq filterParams;
-
-    // RTI says I need to add "symbol" to the parameters
-    //filterParams[0] = "symbol";
-    //filterParams.size(1);
 
     // START DEBUG
     std::cout << "id = " << id << std::endl;
