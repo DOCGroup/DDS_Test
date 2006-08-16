@@ -1,3 +1,4 @@
+// IDL schema definition for Stock Quoter application.
 struct Quoter {
     double price;
     string symbol;

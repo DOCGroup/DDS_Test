@@ -1,10 +1,18 @@
+Wed Aug 16 08:20:24 UTC 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * examples/NDDSQuoter/Quoter.idl:
+        * examples/NDDSQuoter/quoter1-NDDS.html:
+
+          Added a comment to Quoter.idl and added the CS 395 assignment #1
+          writeup file.
+
 Tue Aug 15 17:07:55 UTC 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
 
         * examples/NDDSQuoter/Quoter.idl:
 
           Removed the long name of the stock. This is to reduce overhead
           and is not necessary for the examples.
-        
+
         * examples/NDDSQuoter/Quoter_publisher.cxx:
         * examples/NDDSQuoter/withContentFilteredTopic/Quoter_publisher.cxx:
 
