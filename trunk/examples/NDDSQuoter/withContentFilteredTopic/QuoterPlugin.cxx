@@ -74,14 +74,6 @@ RTIBool QuoterPlugin_serialize(
         return RTI_FALSE;
     }
             
-    if (sample->full_name == NULL) {
-        return RTI_FALSE;
-    }
-    if (!RTICdrStream_serializeString(
-        stream, sample->full_name, (255) + 1)) {
-        return RTI_FALSE;
-    }
-            
     return RTI_TRUE;
 }
 
@@ -101,11 +93,6 @@ RTIBool QuoterPlugin_deserialize(
         return RTI_FALSE;
     }
             
-    if (!RTICdrStream_deserializeString(
-        stream, sample->full_name, (255) + 1)) {
-        return RTI_FALSE;
-    }
-            
     return RTI_TRUE;
 }
 
@@ -119,9 +106,6 @@ unsigned int QuoterPlugin_get_max_size_serialized(
 
     current_alignment +=  RTICdrType_getDoubleMaxSizeSerialized(
         current_alignment);
-            
-    current_alignment +=  RTICdrType_getStringMaxSizeSerialized(
-        current_alignment, (255) + 1);
             
     current_alignment +=  RTICdrType_getStringMaxSizeSerialized(
         current_alignment, (255) + 1);
@@ -161,14 +145,6 @@ void QuoterPlugin_print(
     } else {
         RTICdrType_printString(
             sample->symbol, "symbol", indent_level + 1);                
-    }
-            
-    if (&sample->full_name==NULL) {
-        RTICdrType_printString(
-            NULL, "full_name", indent_level + 1);                
-    } else {
-        RTICdrType_printString(
-            sample->full_name, "full_name", indent_level + 1);                
     }
             
 }

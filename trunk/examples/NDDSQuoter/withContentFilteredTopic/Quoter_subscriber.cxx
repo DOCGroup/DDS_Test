@@ -239,7 +239,6 @@ extern "C" int subscriber_main(int domainId,
 
     // START DEBUG
     std::cout << "id = " << id << std::endl;
-    std::cout << "pidStr = " << pidStr << std::endl;
     std::cout << "filteredTopicName = " << filteredTopicName << std::endl;
     std::cout << "filterExpr = " << filterExpr << std::endl;
     // END DEBUG

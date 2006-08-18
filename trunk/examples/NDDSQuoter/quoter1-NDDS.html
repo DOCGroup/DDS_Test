@@ -122,7 +122,7 @@ the domain ids used will both be 0.</B><P>
 If anything fails to work properly the subscriber should simply print out
 the appropriate exception and exit with a return status of 1.  If
 everything works correctly, the subscriber should exit with a return
-status of 0. <P>
+status of 0 when the correct number of iterations have been executed. <P>
 
 <H4>Publisher Functionality</H4> 
 
@@ -147,16 +147,19 @@ the domain ids used will both be 0.</B><P>
 If anything fails to work properly the publisher should simply print out
 the appropriate exception and exit with a return status of 1.  If
 everything works correctly, the publisher should exit with a return
-status of 0. <P>
+status of 0 when the correct number of iterations have been executed.<P>
 
 <HR>
 <H3><A name=Building>Building and Running NDDS Applications</A></H3>
 
 When using nddsgen with the -example command line option, a makefile is
-generated for you (e.g., <EM>makefile_Quoter_i86Linux2.6gcc3.4.3</EM>).
-You can use this
-makefile to generate the object files and executables (e.g., <CODE>make -f
-makefile_Quoter_i86Linux2.6gcc3.4.3</CODE>). The makefile will create
+generated for you on Linux (e.g.,
+<EM>makefile_Quoter_i86Linux2.6gcc3.4.3</EM>) and a solution is generated
+for you for Windows (e.g., <EM>Quoter_i86Win32VS2003.sln</EM>).
+You can use this makefile or solution to generate the object files and
+executables (e.g., <CODE>make -f makefile_Quoter_i86Linux2.6gcc3.4.3</CODE>
+for Linux or double click the <EM>i86Win32VS2003</EM> solution on Windows).
+The makefile or solution will create
 an <CODE>objs/</CODE><EM><B>architecture</B></EM> subdirectory (e.g.,
 <CODE>objs/i86Linux2.6gcc3.4.3</CODE>) and put
 the object files and executables in there.<P>
