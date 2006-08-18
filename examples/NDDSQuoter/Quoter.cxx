@@ -48,9 +48,8 @@ DDS_TypeCode* Quoter_get_typecode()
     static RTIBool is_initialized = RTI_FALSE;
 
     static DDS_TypeCode Quoter_g_tc_symbol_string = DDS_INITIALIZE_STRING_TYPECODE(255);
-    static DDS_TypeCode Quoter_g_tc_full_name_string = DDS_INITIALIZE_STRING_TYPECODE(255);
 
-    static DDS_TypeCode_Member Quoter_g_tc_members[3]=
+    static DDS_TypeCode_Member Quoter_g_tc_members[2]=
     {
         {
             (char *)"price",/* Member name */
@@ -75,18 +74,6 @@ DDS_TypeCode* Quoter_get_typecode()
             NULL, /* Ignored */
             DDS_BOOLEAN_FALSE, /* Is a key? */
             DDS_PRIVATE_MEMBER /* Ignored */
-        },
-        {
-            (char *)"full_name",/* Member name */
-            DDS_BOOLEAN_FALSE,/* Is a pointer? */
-            -1, /* Bitfield bits */
-            NULL,/* Member type code is assigned later */
-            0, /* Ignored */
-            0, /* Ignored */
-            0, /* Ignored */
-            NULL, /* Ignored */
-            DDS_BOOLEAN_FALSE, /* Is a key? */
-            DDS_PRIVATE_MEMBER /* Ignored */
         }
     };
 
@@ -100,7 +87,7 @@ DDS_TypeCode* Quoter_get_typecode()
         0, /* Ignored */
         0, /* Ignored */
         NULL, /* Ignored */
-        3, /* Number of members */
+        2, /* Number of members */
         Quoter_g_tc_members, /* Members */
         DDS_VM_NONE /* Ignored */
     }}; /* Type code for Quoter*/
@@ -112,7 +99,6 @@ DDS_TypeCode* Quoter_get_typecode()
 
     Quoter_g_tc_members[0]._typeCode = (RTICdrTypeCode *)&DDS_g_tc_double;
     Quoter_g_tc_members[1]._typeCode = (RTICdrTypeCode *)&Quoter_g_tc_symbol_string;
-    Quoter_g_tc_members[2]._typeCode = (RTICdrTypeCode *)&Quoter_g_tc_full_name_string;
 
     is_initialized = RTI_TRUE;
 
@@ -138,11 +124,6 @@ RTIBool Quoter_initialize_ex(
         return RTI_FALSE;
     }
             
-    sample->full_name = DDS_String_alloc((255));
-    if (sample->full_name == NULL) {
-        return RTI_FALSE;
-    }
-            
 
     return RTI_TRUE;
 }
@@ -159,8 +140,6 @@ void Quoter_finalize_ex(
 
     DDS_String_free(sample->symbol);                
             
-    DDS_String_free(sample->full_name);                
-            
 }
 
 RTIBool Quoter_copy(
@@ -175,11 +154,6 @@ RTIBool Quoter_copy(
             
     if (!RTICdrType_copyString(
         dst->symbol, src->symbol, (255) + 1)) {
-        return RTI_FALSE;
-    }
-            
-    if (!RTICdrType_copyString(
-        dst->full_name, src->full_name, (255) + 1)) {
         return RTI_FALSE;
     }
             

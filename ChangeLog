@@ -1,4 +1,23 @@
-Wed Aug 16 08:20:24 UTC 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+Thu Aug 17 20:15:09 CDT 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * examples/NDDSQuoter/Quoter.cxx:
+        * examples/NDDSQuoter/Quoter.h:
+        * examples/NDDSQuoter/QuoterPlugin.cxx:
+        * examples/NDDSQuoter/quoter1-NDDS.html:
+
+        * examples/NDDSQuoter/withContentFilteredTopic/Quoter.cxx:
+        * examples/NDDSQuoter/withContentFilteredTopic/Quoter.h:
+        * examples/NDDSQuoter/withContentFilteredTopic/Quoter.idl:
+        * examples/NDDSQuoter/withContentFilteredTopic/QuoterPlugin.cxx:
+        * examples/NDDSQuoter/withContentFilteredTopic/Quoter_publisher.cxx:
+        * examples/NDDSQuoter/withContentFilteredTopic/Quoter_subscriber.cxx:
+        * examples/NDDSQuoter/withContentFilteredTopic/quoter2-NDDS.html:
+
+          Updated the IDL and generated files to remove the full_name
+          variable to decrease network bandwidth. Also updated html writeups
+          for the CS 395 assignments.
+
+Wed Aug 16 08:20:24 CDT 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
 
         * examples/NDDSQuoter/Quoter.idl:
         * examples/NDDSQuoter/quoter1-NDDS.html:

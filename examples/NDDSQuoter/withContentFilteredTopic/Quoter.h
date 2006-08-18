@@ -42,7 +42,6 @@ typedef struct Quoter
 {
     DDS_Double  price;
     char*  symbol; /* maximum length = (255) */
-    char*  full_name; /* maximum length = (255) */
 
 } Quoter;
     

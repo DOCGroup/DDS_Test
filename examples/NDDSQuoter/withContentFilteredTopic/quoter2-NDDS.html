@@ -1,0 +1,246 @@
+<html>
+
+<!-- Assumptions
+
+1) The student should create unique content filtered topic names (e.g.,
+by appending the process Id). This isn't strictly needed for this assignment
+since if more than one subscriber is executed each content filtered topic
+will have its own domain participant. However, it seems good practice to
+do this in case more than one content filtered topic is created from the
+same domain participant.
+
+2) The level of granularity for setting update and publish rates is in
+milliseconds.
+
+3) With this assignment students can start to play around with and
+investigate timing and reliability especially by having the publisher
+update and publish as quickly as possible and also by having multiple
+publishers and subscribers and noting the effect this has on the
+flow of data. However, this assignment has the publisher and subscriber
+printing out values. Maybe this should be removed or maybe there is
+enough interesting behavior related to timing even with these printouts.
+I don't know how "realistic" we can expect the environment to be especially
+if the student is running everything on the same machine.
+-->
+
+<!-- Questions
+1) Should the student be expected to use C++ and STL constructs over C? For
+example, the student will need to manipulate and output text. Should the
+student be required to use std::string and std::cout as opposed to char*
+and printf? An argument might be made that C is more efficient or faster
+although this is situational and rarely the case if C++ is coded
+appropriately. The nddsgen generated code is C++ but has a C feel to it
+(e.g., using printf).
+-->
+
+<title>DDS Stock Quoter Service (Assignment 2)</title>
+
+<BODY text = "#000000"
+link="#000fff"
+vlink="#ff0f0f"
+bgcolor="#ffffff">
+
+<h2>Publish/Subscribe DDS Stock Quoter Service (Assignment 2)</h2>
+
+<H3>Table of Contents</H3>
+<UL>
+<LI><A HREF="#Overview">Overview</A>
+<LI><A HREF="#Building">Building and Running NDDS Applications</A>
+<LI><A HREF="#Learning">Learning and Using NDDS</A>
+<LI><A HREF="#Concluding">Concluding Remarks</A>
+</UL>
+
+<HR>
+<H3><A name=Overview>Overview</A></H3>
+
+In this assignment, you will build on the simple NDDS Stock Quoter application
+from assignment 1. With assignment 1, the subscriber was subscribing to all
+the published stocks. In this assignment you will create a content filtered
+topic to subscribe only to the stock symbol that the user specifies on the
+command line. You will also make some changes as to how often stock prices
+are updated and published.<P>
+
+
+<H4>DDS IDL Specification</H4>
+
+You will use the same IDL specification used for assignment 1 here. This
+specification is shown below for convenience.
+
+<PRE><CODE>
+// IDL schema definition for Stock Quoter application.
+struct Quoter
+{
+  double price;
+  string symbol;
+};
+</PRE></CODE>
+
+You can start with the publisher and subscriber executables from
+assignment 1 as a baseline and modify them for this assignment.<P>
+
+<H4>Subscriber Functionality</H4>
+
+On the subscriber side, you'll need to add a content filtered topic so
+that only the stock specified by the user on the command line is received.
+As part of this you will need to modify the processing of command line
+arguments so that
+the desired stock symbol can be specified on the command line. You will
+also need to print out a usage statement if improper arguments are used
+or if the user explicitly asks for help (e.g., using the "-h" command
+line argument). Be flexible with the processing of the command line
+arguments. Allow the user to specify only the values of interest and
+provide defaults for all the others.
+
+You will need to make the appropriate NDDS API calls to create a
+content filtered topic. Steps in doing this include creating a unique
+topic name, creating the filter expression, and creating the content
+filtered topic using the name and filter expression. Make sure that the
+content filtered topic name is unique for each content filtered topic
+that is created. This is required if the content filtered topics are
+created with the same domain participant. This shouldn't be the case
+for this class but it is good practice to have. Also, be sure you know
+the format (or notation) needed for the values used in the filter
+expression. There are examples in the <EM>Content Filtered Topics</EM>
+section of the
+<A HREF="http://www.dre.vanderbilt.edu/~mxiong/RTI_DDS_UsersManual.pdf">
+User Manual</A>.<P>
+
+Your modified code should now take at least three command line parameters:
+1) the domain id, 2) the number of iterations, and 3) the stock symbol
+to which the subscriber should subscribe. The user should be able to specify
+the stock symbol for the stock that is of interest.
+<P>
+
+<B>NOTE: The domain ids for the subscriber and the publisher must match.
+Otherwise, there will be no data flowing between the two.</B><P>
+
+If anything fails to work properly the subscriber should simply print out
+the appropriate exception and exit with a return status of 1.  If
+everything works correctly, the subscriber should exit with a return
+status of 0 when the correct number of iterations have been executed.<P>
+
+<H4>Publisher Functionality</H4> 
+
+The publisher implementation generated by nddsgen has the publisher
+updating stock values every 4 seconds. You will need to change the
+publisher implementation so that the user can specify how often the
+stock price should be updated. The user should be able to pass this
+value in on the command line. The granularity used for this should be
+milliseconds. That is, the user should be able to specify if
+the publisher updates and publishes every 1 ms, every 2 ms, every
+3 ms, etc. There should be a way for the user
+to specify that the publisher update and publish values as quickly as
+possible. Be flexible with the processing of the command line
+arguments. Allow the user to specify only the values of interest and
+provide defaults for all the others.
+
+Your modified code should now take at least three command line parameters:
+1) the domain id, 2) the number of iterations, and 3) the rate at which
+the publisher should update and publish stock values.
+<P>
+
+<B>NOTE: The domain ids for the subscriber and the publisher must match.
+Otherwise, there will be no data flowing between the two. By default,
+the domain ids used will both be 0.</B><P>
+
+If anything fails to work properly the publisher should simply print out
+the appropriate exception and exit with a return status of 1.  If
+everything works correctly, the publisher should exit with a return
+status of 0 when the correct number of iterations have been executed.<P>
+
+<HR>
+<H3><A name=Building>Building and Running NDDS Applications</A></H3>
+
+Unless you add new source files to the build the makefile (for Linux)
+or solution (for Visual Studio) generated for
+assignment 1 should work as is for assignment 2. If you've added source
+files or executables then these will need to be added to the makefile
+or solution as well.
+<P>
+
+The executables that are built are stand-alone and can be run from
+anywhere. Also, the order in which the executables are invoked is not
+important although by default the subscriber will only receive published
+updates since the time it was started. Again, later, we'll see how to
+change this so the subscriber can receive updates published before the
+subscriber started.<P>
+
+<H4>Example Output</H4>
+
+The following is an example of what your output might look like.<P>
+
+Example output for the supplier: <P>
+
+<PRE><CODE>
+$ Quoter_subscriber
+Quoter subscriber sleeping for 4 sec...
+Quoter subscriber sleeping for 4 sec...
+   price: 100.000000
+   symbol: "IBM"
+   price: 200.000000
+   symbol: "IBM"
+Quoter subscriber sleeping for 4 sec...
+   price: 300.000000
+   symbol: "IBM"
+   price: 400.000000
+   symbol: "IBM"
+Quoter subscriber sleeping for 4 sec...
+   price: 500.000000
+   symbol: "IBM"
+
+</PRE></CODE>
+
+Example output for the publisher: <P>
+
+<PRE><CODE>
+$ Quoter_publisher -r 2000
+Writing Quoter, count 0
+Stock IBM at 0
+Stock MSFT at 0
+Writing Quoter, count 1
+Stock IBM at 100
+Stock MSFT at 10
+Writing Quoter, count 2
+Stock IBM at 200
+Stock MSFT at 20
+Writing Quoter, count 3
+Stock IBM at 300
+Stock MSFT at 30
+Writing Quoter, count 4
+Stock IBM at 400
+Stock MSFT at 40
+Writing Quoter, count 5
+Stock IBM at 500
+Stock MSFT at 50
+
+</PRE></CODE>
+
+<HR>
+<H3><A name=Learning>Learning and Using DDS</A></H3>
+
+We will be using <A HREF="http://rti.com">Real-Time Innovations</A>' <A
+HREF="http://www.rti.com/products/data_distribution/index.html">NDDS</A>
+Data Distribution Service (DDS) implementation.
+Here is a link to the <A HREF=
+"http://www.dre.vanderbilt.edu/~mxiong/ndds41c-i86Linux2.6gcc3.4.3.tar.gz">
+NDDS Linux distribution</A> and here is a link to the <A
+HREF="http://www.dre.vanderbilt.edu/~mxiong/ndds41c-i86Win32VS2003.zip">
+NDDS Windows distribution</A>. The
+<A HREF="http://www.dre.vanderbilt.edu/~mxiong/RTI_DDS_GettingStarted.pdf">
+Getting Started document</A> will help you in setting up your environment for
+NDDS.
+The <A HREF="http://www.dre.vanderbilt.edu/~mxiong/RTI_DDS_UsersManual.pdf">
+NDDS User's Manual</A> outlines the API for developing NDDS applications.
+
+<HR>
+<H3><A name=Concluding>Concluding Remarks</A></H3>
+
+This first DDS assignment is very simple.  However, it will
+illustrate the basic skills required to become adept at using DDS
+publish/subscribe middleware to developed distributed applications.
+Subsequent assignments will build on this assignment, so make sure you
+get it working correctly. <P>
+
+<HR><P>
+Back to <A HREF="http://www.cs.wustl.edu/~schmidt/cs395/">CS 395</A> home page.
+</html>

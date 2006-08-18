@@ -93,7 +93,9 @@ static int publisher_shutdown(
     return status;
 }
 
-extern "C" int publisher_main(int domainId, int sample_count)
+extern "C" int publisher_main(int domainId,
+                              int sample_count,
+                              int updateRate)
 {
     DDSDomainParticipant *participant = NULL;
     DDSPublisher *publisher = NULL;
@@ -102,8 +104,12 @@ extern "C" int publisher_main(int domainId, int sample_count)
     QuoterDataWriter * Quoter_writer = NULL;
     DDS_ReturnCode_t retcode;
     const char *type_name = NULL;
-    int count = 0;  
-    struct DDS_Duration_t send_period = {4,0};
+    int count = 0;
+    // Units for this are in seconds, nanoseconds. Scale the milliseconds
+    // to nanoseconds.
+    const int NANOSECONDS_IN_MILLISECONDS = 1000000;
+    struct DDS_Duration_t send_period =
+      {0, updateRate * NANOSECONDS_IN_MILLISECONDS};
 
     /* To customize participant QoS, use 
        DDSTheParticipantFactory->get_default_participant_qos()
@@ -177,8 +183,6 @@ extern "C" int publisher_main(int domainId, int sample_count)
     // Set constant information for the IBM stock
     std::string ibmSymbol("IBM");
     ::strcpy(ibmInstance->symbol, ibmSymbol.c_str());
-    std::string ibmName("International Business Machines");
-    ::strcpy(ibmInstance->full_name, ibmName.c_str());
 
     // Create Microsoft data sample for writing
     Quoter *msftInstance = QuoterTypeSupport::create_data();
@@ -191,8 +195,6 @@ extern "C" int publisher_main(int domainId, int sample_count)
     // Set constant information for the Microsoft stock
     std::string msftSymbol("MSFT");
     ::strcpy(msftInstance->symbol, msftSymbol.c_str());
-    std::string msftName("Microsoft Corporation");
-    ::strcpy(msftInstance->full_name, msftName.c_str());
 
     /* For data type that has key, if the same instance is going to be
        written multiple times, initialize the key here
@@ -227,7 +229,10 @@ extern "C" int publisher_main(int domainId, int sample_count)
         std::cout << "Stock " << msftInstance->symbol << " at "
                   << msftInstance->price << std::endl;
 
-        NDDSUtility::sleep(send_period);
+        if (updateRate != 0)
+          {
+            NDDSUtility::sleep(send_period);
+          }
     }
 
 /*
@@ -256,25 +261,50 @@ extern "C" int publisher_main(int domainId, int sample_count)
     return publisher_shutdown(participant);
 }
 
+void print_usage()
+{
+  std::cout << "Options are: " << std::endl;
+  std::cout << "  -d domainId (for domain id [0 = default])" << std::endl;
+  std::cout << "  -c count (for # of times to loop, 0 = unbounded [default]) "
+            << std::endl;
+  std::cout << "  -r rate (at which to update values in ms [1 = default])"
+            << std::endl;
+  std::cout << "  -h (to print out this help)" << std::endl;
+  std::cout << "  -? (to print out this help)" << std::endl;
+}
+
 #if !defined(RTI_VXWORKS) && !defined(RTI_PSOS)
 int main(int argc, char *argv[])
 {
     int domainId = 0;
     int sample_count = 0; /* infinite loop */
 
-    if (argc >= 2) {
-        domainId = atoi(argv[1]);
-    }
-    if (argc >= 3) {
-        sample_count = atoi(argv[2]);
-    }
+    // Make 1 ms the default rate for updating and publishing stock
+    // values.
+    // Can be overridden on the command line as the 3rd parameter.
+    int updateRate = 1;
+    char optChar;
+
+    while ((optChar = ::getopt(argc, argv, "d:c:r:h?")) != -1)
+      {
+        switch (optChar)
+          {
+          case 'd': domainId = ::atoi(optarg); break;
+          case 'c': sample_count = ::atoi(optarg); break;
+          case 'r': updateRate = ::atoi(optarg); break;
+          case 'h':
+          case '?': print_usage(); ::exit(0);
+          }
+      }
 
     /* Uncomment this to turn on additional logging
     NDDSConfigLogger::get_instance()->
         set_verbosity_by_category(NDDS_CONFIG_LOG_CATEGORY_API, 
                                   NDDS_CONFIG_LOG_VERBOSITY_STATUS_ALL);
     */
-    
-    return publisher_main(domainId, sample_count);
+
+    return publisher_main(domainId,
+                          sample_count,
+                          updateRate);
 }
 #endif
