@@ -1,0 +1,105 @@
+                    DDS TEST FRAMEWORK
+
+
+last updated 09/06/06
+
+
+The aim is to factor out and encapsulate differences due to
+
+- DDS implementation
+- test data type
+- publisher vs subscriber
+- QoS policy settings
+- other settings and configurations
+
+The framework is only part way there and hasn't been
+test for much except build errors currently. I'm
+checking in the changes so folks can inspect what's
+there so far and get familiar and/or offer comments
+and suggestions. Only TAO DDS and NDDS are supported
+so far. Splice will be added when we get the new
+version from the vendor.
+
+No stats-related stuff has been added yet - the Stats
+class has been moved to this lib, but it needs some
+changes, and those will affect how it is used and
+called. Some discussion among the DDS team members
+will be needed.
+
+As of now, the intended form of test code will be
+something like
+
+#include "NDDS_Test_Pub_T.h"
+#include "FooSupport.h"
+
+NDDS_Test_Pub_T<Foo,
+                FooTypeSupport,
+                FooDataWriter> foo_pub_test;
+
+or
+
+#include "TAO_DDS_Test_Sub_T.h"
+#include "FooTypeSupportImpl.h"
+
+TAO_DDS_Sub_Test_T<Foo,
+                   FooSeq,
+                   FooTypeSupportImpl,
+                   FooDataReaderImpl> foo_sub_test;
+
+
+then
+
+int
+main (int argc, char *argv[])
+{
+  int status = foo_pub_test.Init ();
+
+  if (status != 0) { . . . }
+
+/* add custom listener (default overrides
+only on_data_available() so far), modify QoS,
+or plug in a data initializer or verifier
+here. Not all of this is supported yet. */
+
+  status = foo_pub_test.Run ();
+
+  if (status != 0) { . . . }
+
+  return 0;
+}
+
+
+The two main calls above are virtual functions, so
+they can be made on a base class TestBase, if it's
+convenient to instantiate the test class elsewhere
+and then pass in a pointer or reference. However,
+the stuff referred to in the comment isn't so
+friendly yet. Once NDDS puts out a release that's
+more conformant to the C++ mapping (right now it's
+mostly the C mapping of IDL), modifying the QoS
+and the listener(s) will be doable on the base
+class as well. Plugging in a data initializer or
+verifier (via pointer to function) requires
+knowledge of the data type, so that one will 
+always have to be made on the derived class.
+
+Note that, since TAO DDS is built on top of the
+TAO ORB, that the classes corresponding to CORBA
+'servant' classes are what has to be instantiated,
+so the template parameter values are a little 
+different, and differently named accordingly as
+a reminder to the user.
+
+Note also the extra template parameter required for
+a subscriber test class. It's the corresponding
+sequence of the IDL data type, generated for
+convenience so that multiple samples can be read
+in one shot. If the vendors can someday be convinced
+to generate typedefs that make explicit the
+relationships between the types used as template
+parameters, the number of such parameters could
+be greatly reduced.
+
+Finally, Run() handles under the hood various
+issues like waiting for test activity to finish,
+and cleanup of all DDS entities.

@@ -1,17 +1,39 @@
 //  -*- MPC -*- now wouldn't this be cool...
 // $Id$
 
-project (Test_Framework) : acelib {
+project (Test_Framework) : dcps, portableserver, ndds {
   dynamicflags += TEST_FRAMEWORK_BUILD_DLL
+  libout = $(DDS_TESTLIB_ROOT)
   
   Source_Files {
     Stats.cpp
+    TAO_DDS_Listeners.cpp
     TestBase.cpp
   }
   
   Header_Files {
+    DataReaderListener_T.h
+    DataWriterListener_T.h
+    NDDS_Test_T.h
+    NDDS_Test_Pub_T.h
+    NDDS_Test_Sub_T.h
     Stats.h
+    TAO_DDS_Listeners.h
+    TAO_DDS_Test_T.h
+    TAO_DDS_Test_Pub_T.h
+    TAO_DDS_Test_Sub_T.h
     test_framework_export.h
     TestBase.h
+  }
+  
+  Template_Files {
+    DataReaderListener_T.cpp
+    DataWriterListener_T.cpp
+    NDDS_Test_T.cpp
+    NDDS_Test_Pub_T.cpp
+    NDDS_Test_Sub_T.cpp
+    TAO_DDS_Test_T.cpp
+    TAO_DDS_Test_Pub_T.cpp
+    TAO_DDS_Test_Sub_T.cpp
   }
 }

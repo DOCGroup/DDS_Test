@@ -1,3 +1,36 @@
+Wed Sep  6 23:01:23 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Test_Framework/DataReaderListener_T.cpp:
+        * Test_Framework/DataReaderListener_T.h:
+        * Test_Framework/DataWriterListener_T.cpp:
+        * Test_Framework/DataWriterListener_T.h:
+        * Test_Framework/NDDS_Test_Pub_T.cpp:
+        * Test_Framework/NDDS_Test_Pub_T.h:
+        * Test_Framework/NDDS_Test_Sub_T.cpp:
+        * Test_Framework/NDDS_Test_Sub_T.h:
+        * Test_Framework/NDDS_Test_T.cpp:
+        * Test_Framework/NDDS_Test_T.h:
+        * Test_Framework/TAO_DDS_Listeners.cpp:
+        * Test_Framework/TAO_DDS_Listeners.h:
+        * Test_Framework/TAO_DDS_Test_Pub_T.cpp:
+        * Test_Framework/TAO_DDS_Test_Pub_T.h:
+        * Test_Framework/TAO_DDS_Test_Sub_T.cpp:
+        * Test_Framework/TAO_DDS_Test_Sub_T.h:
+        * Test_Framework/TAO_DDS_Test_T.cpp:
+        * Test_Framework/TAO_DDS_Test_T.h:
+        * Test_Framework/README:
+
+          New files, adding support for TAO DDS
+          and NDDS to the framework, and a text file
+          explaining what has been done so far.
+
+        * Test_Framework/TestBase.cpp:
+        * Test_Framework/TestBase.h:
+        * Test_Framework/Test_Framework.mpc:
+
+          Changes corresponding to the added
+          functionality described above.
+
 Thu Aug 17 20:15:09 CDT 2006  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
 
         * examples/NDDSQuoter/Quoter.cxx:
