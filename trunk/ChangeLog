@@ -1,3 +1,19 @@
+Fri Sep  8 22:19:44 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Test_Framework/NDDS_Test_Pub_T.cpp:
+        * Test_Framework/NDDS_Test_Sub_T.cpp:
+        * Test_Framework/NDDS_Test_T.cpp:
+        * Test_Framework/NDDS_Test_T.h:
+        * Test_Framework/TAO_DDS_Test_Pub_T.cpp:
+        * Test_Framework/TAO_DDS_Test_Pub_T.h:
+        * Test_Framework/TAO_DDS_Test_Sub_T.cpp:
+        * Test_Framework/TAO_DDS_Test_Sub_T.h:
+        * Test_Framework/TAO_DDS_Test_T.cpp:
+        * Test_Framework/TAO_DDS_Test_T.h:
+        
+          Minor changes resulting from debugging very simple
+          test runs.
+
 Wed Sep  6 23:01:23 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Test_Framework/DataReaderListener_T.cpp:

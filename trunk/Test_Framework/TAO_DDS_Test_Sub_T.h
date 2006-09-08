@@ -66,7 +66,9 @@ private:
   typename DATA_READER_IMPL::_stub_var_type typed_data_reader_;
   DATA_READER_IMPL *data_reader_servant_;
   DDS::DataReaderQos data_reader_qos_;
+  
   DDS::DataReaderListener_var data_reader_listener_;
+  PortableServer::ServantBase_var safe_dr_listener_;
   
   // Smart pointer type ('r'eference 'c'ounted 'h'andle)
   TAO::DCPS::TransportImpl_rch reader_transport_impl_;

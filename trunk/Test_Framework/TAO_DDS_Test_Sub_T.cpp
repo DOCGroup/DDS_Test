@@ -17,9 +17,7 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
                    DATA_READER_IMPL>::TAO_DDS_Test_Sub_T (void)
-  : subscriber_qos_ (SUBSCRIBER_QOS_DEFAULT),   // TODO - TweakQoS
-    data_reader_servant_ (0),
-    data_reader_qos_ (DATAREADER_QOS_DEFAULT),  // TODO - TweakQoS
+  : data_reader_servant_ (0),
     reader_address_str_ ("default"),
     data_verifier_ (0)
 {
@@ -53,13 +51,18 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
         this->TAO_DDS_Test_T<
           DATA_TYPE,
           TYPE_SUPPORT_IMPL>::Init (argc, argv);
-        
+       
       if (status != 0)
         {
           // Error message already output.
           return -1;
         }
     
+      // TODO - set with TweakQoS.
+      // Must be called after TheParticipantFactoryWithArgs().    
+      this->subscriber_qos_ = SUBSCRIBER_QOS_DEFAULT;
+      this->data_reader_qos_ = DATAREADER_QOS_DEFAULT;
+        
       // We call this base class method here so we can pass in
       // the string and get a more informative error message.
       if (this->DataTypeAndTopic ("Subscriber") != 0)
@@ -317,12 +320,6 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
       return -1;
     }
     
-  if (this->CreateDataReader () != 0)
-    {
-      // Error message already output.
-      return -1;
-    }
-  
   return 0;
 }
 
@@ -375,9 +372,7 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
                        DDS::DataReader> *servant =
     new DataReaderListener_T<TAO_DDS_DataReaderListener,
                              DDS::DataReader> (this);
-    
-  // Gives memory management to InfoRepo ORB.
-  PortableServer::ServantBase_var safe_servant = servant;
+  this->safe_dr_listener_ = servant; 
   
   // This listener overrides only on_data_available), the one
   // necessary callback.

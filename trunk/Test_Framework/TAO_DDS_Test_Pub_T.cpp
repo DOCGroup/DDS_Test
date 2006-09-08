@@ -15,9 +15,7 @@ template<typename DATA_TYPE,
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
                    DATA_WRITER_IMPL>::TAO_DDS_Test_Pub_T (void)
-  : publisher_qos_ (PUBLISHER_QOS_DEFAULT),     // TODO - TweakQoS
-    data_writer_servant_ (0),
-    data_writer_qos_ (DATAWRITER_QOS_DEFAULT),  // TODO - TweakQoS
+  : data_writer_servant_ (0),
     writer_address_str_ ("default"),
     data_initializer_ (0)
 {
@@ -53,6 +51,11 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
           // Error message already output.
           return -1;
         }
+    
+      // TODO - set with TweakQoS.
+      // Must be called after TheParticipantFactoryWithArgs().    
+      this->publisher_qos_ = PUBLISHER_QOS_DEFAULT;
+      this->data_writer_qos_ = DATAWRITER_QOS_DEFAULT;
     
       // We call this base class method here so we can pass in
       // the string and get a more informative error message.
@@ -293,12 +296,6 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
           // Error message already output.
           return -1;
         }
-        
-      if (this->CreateDataWriter () != 0)
-        {
-          // Error message already output.
-          return -1;
-        }
     }                            
   ACE_CATCHANY
     {
@@ -363,10 +360,8 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
                        DDS::DataWriter> *servant =
     new DataWriterListener_T<TAO_DDS_DataWriterListener,
                              DDS::DataWriter>;
+  this->safe_dw_listener_ = servant;
     
-  // Gives memory management to InfoRepo ORB.
-  PortableServer::ServantBase_var safe_servant = servant;
-  
   // This listener overrides only on_publication_matched(), a useful
   // callback for making sure all subscribers are ready.
   // Users can reset this later with a hand-written listener.  

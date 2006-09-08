@@ -198,10 +198,8 @@ NDDS_Test_Sub_T<DATA_TYPE,
                 TYPE_SUPPORT,
                 DATA_READER>::CreateSubscriber (void)
 {
-  DDS::ReturnCode_t retcode = DDS_RETCODE_OK;
-  
   // TODO - integrate with TweakQoS.
-  retcode =
+  DDS::ReturnCode_t retcode =
     this->participant_->get_default_subscriber_qos (
       this->subscriber_qos_);
       

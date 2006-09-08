@@ -14,9 +14,7 @@
 
 template<typename DATA_TYPE, typename TYPE_SUPPORT_IMPL>
 TAO_DDS_Test_T<DATA_TYPE, TYPE_SUPPORT_IMPL>::TAO_DDS_Test_T (void)
-  : participant_qos_ (PARTICIPANT_QOS_DEFAULT), // TODO - TweakQoS
-    topic_qos_ (TOPIC_QOS_DEFAULT),
-    ts_servant_ (0)
+  : ts_servant_ (0)
 {
 }
 
@@ -29,20 +27,25 @@ template<typename DATA_TYPE, typename TYPE_SUPPORT_IMPL>
 int
 TAO_DDS_Test_T<DATA_TYPE, TYPE_SUPPORT_IMPL>::Init (int argc, char *argv[])
 {
-  this->argc_ = argc;
-  this->argv_ = argv;
-  
   // This call must be made before ParseArgs(), so the -DCPSxxx
   // options can be stripped from the command line.
   this->participant_factory_ =
-    TheParticipantFactoryWithArgs (this->argc_, this->argv_);
+    TheParticipantFactoryWithArgs (argc, argv);
 
   if (CORBA::is_nil (this->participant_factory_.in ()))
     {
       this->NullReturnErrorMsg ("Init", "TheParticipantFactoryWithArgs");
       return -1;
     }
-    
+  
+  // TODO - set with TweakQoS.
+  // Must be called after TheParticipantFactoryWithArgs().    
+  this->participant_qos_ = PARTICIPANT_QOS_DEFAULT;
+  this->topic_qos_ = TOPIC_QOS_DEFAULT;
+      
+  this->argc_ = argc;
+  this->argv_ = argv;
+  
   if (this->ParseArgs () != 0)
     {
       // Error message already output.
@@ -62,10 +65,8 @@ TAO_DDS_Test_T<DATA_TYPE, TYPE_SUPPORT_IMPL>::Init (int argc, char *argv[])
     }
     
   // Used in type registration and topic creation.  
-  this->ts_servant_ = new TYPE_SUPPORT_IMPL ();
-        
-  // Gives memory management to InfoRepo ORB.
-  PortableServer::ServantBase_var safe_servant = this->ts_servant_; 
+  this->ts_servant_ = new TYPE_SUPPORT_IMPL ();       
+  this->safe_ts_servant_ = this->ts_servant_; 
   
   return 0;
 }

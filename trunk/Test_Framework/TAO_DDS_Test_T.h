@@ -77,6 +77,7 @@ protected:
   DDS::TopicQos topic_qos_;
   
   TYPE_SUPPORT_IMPL *ts_servant_;
+  PortableServer::ServantBase_var safe_ts_servant_;
 };
 
 #if defined (ACE_TEMPLATES_REQUIRE_SOURCE)

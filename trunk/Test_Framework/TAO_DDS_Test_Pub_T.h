@@ -64,7 +64,9 @@ private:
   typename DATA_WRITER_IMPL::_stub_var_type typed_data_writer_;
   DATA_WRITER_IMPL *data_writer_servant_;
   DDS::DataWriterQos data_writer_qos_;
+  
   DDS::DataWriterListener_var data_writer_listener_;
+  PortableServer::ServantBase_var safe_dw_listener_;
   
   // Smart pointer type ('r'eference 'c'ounted 'h'andle)
   TAO::DCPS::TransportImpl_rch writer_transport_impl_;
