@@ -1,7 +1,7 @@
                     DDS TEST FRAMEWORK
 
 
-last updated 09/06/06
+last updated 09/08/06
 
 
 The aim is to factor out and encapsulate differences due to
@@ -103,3 +103,54 @@ be greatly reduced.
 Finally, Run() handles under the hood various
 issues like waiting for test activity to finish,
 and cleanup of all DDS entities.
+
+    Outstanding Issues
+    
+There are many, but here are the ones most pressing
+that I can think of right now.
+
+- make agreed changes to Stats class
+- integrate Stats class with test framework
+- coordinate command line options with DBE
+- integrate TweakQoS with test framework
+- allow for oversending, if we must do it
+- add OpenSplice support
+
+Here are a few things specific to NDDS that need
+to be resolved
+
+- get version with C++ IDL mapping
+
+  I mostly need this for the DDS namespace, so more
+  code can be common and hence factored out. If they
+  keep their C implementation and just typedef stuff
+  inside a DDS namespace as I have, it won't help.
+  
+- ask about the many magic numbers
+
+  There are at least half a dozen of these in the example
+  test code we modified to use for benchmarks, most of
+  it related to transport buffer size. If this size is
+  not large enough (how large is that?) an error 
+  message is output when creating the participant 
+  (the buffer size is an NDDS-specific part of its QoS)
+  and there is also a return code error when deleting
+  the participant.
+  
+- ask about supporting non-deprecated IDL
+
+  A sequence data type, which is always contained
+  in a struct, must be anonymous, since NDDS IDL
+  processing completely ignores typedef IDL 
+  sequence declarations. Anonymous sequences
+  have been deprecated by the OMG for some time.
+  
+  
+  
+One final thing, I'd like to ask all vendors to add
+typedefs to their code generation from IDL that
+makes explicit the implied relationships among the
+data type and associated typesupport, datawriter
+and datareader types. It would allow template 
+programming in the test framework to be a whole lot
+more elegant ;-).
