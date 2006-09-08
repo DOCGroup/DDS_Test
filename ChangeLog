@@ -1,3 +1,10 @@
+Fri Sep  8 22:47:01 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Test_Framework/README:
+        
+          Added a list of outstanding issues, some of them
+          vendor-specific.
+
 Fri Sep  8 22:19:44 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Test_Framework/NDDS_Test_Pub_T.cpp:
