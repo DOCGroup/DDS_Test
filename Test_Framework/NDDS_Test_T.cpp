@@ -27,6 +27,7 @@ NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::NDDS_Test_T (void)
     topic_listener_ (0),
     udpv4_property_ (udpv4Property),
     shmem_property_ (shmemProperty),
+    host_id_ (2UL),
     shared_memory_ (false)
 {
 }
@@ -221,16 +222,15 @@ NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::SetParticipantQos (void)
   // make the send order deterministic (b/c order is decided by hostId-appId)
   // Pick the same host_id on both publisher and the subscriber.
   // May need dedicated command line arg with multiple topics per domain.
-  this->participant_qos_.wire_protocol.rtps_host_id = this->domain_id_;
+  this->participant_qos_.wire_protocol.rtps_host_id = this->host_id_;
   
   // Lower bound of 1 on role.
   long role = (this->entity_id_ < 1 ? 1 : this->entity_id_);
   this->participant_qos_.wire_protocol.rtps_app_id = role;
   this->participant_qos_.discovery.participant_index = role;
 
-  long bufsize = this->payload_item_size_ * this->payload_length_;
   this->participant_qos_.receiver_pool.buffer_size =
-    bufsize + NDDS_OVERHEAD + MY_OWN_TEST_OVERHEAD;
+    MAX_MSG_LENGTH + NDDS_OVERHEAD + MY_OWN_TEST_OVERHEAD;
     
   if (this->shared_memory_)
     {
@@ -238,7 +238,7 @@ NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::SetParticipantQos (void)
     }
   
   // TODO - find out about and get rid of these magic numbers.
-  if (bufsize + NDDS_OVERHEAD + 14 + 20 + 8 > 64 * 1024)
+  if (MAX_MSG_LENGTH + NDDS_OVERHEAD + 14 + 20 + 8 > 64 * 1024)
     {
       this->participant_qos_.transport_builtin.mask &= ~DDS_TRANSPORTBUILTIN_UDPv4;
     }
@@ -266,9 +266,8 @@ NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::ConfigureTransport (void)
 	        return -1;
 	      }
 
-      long bufsize = this->payload_item_size_ * this->payload_length_;
 	    this->udpv4_property_.parent.message_size_max =
-	      bufsize + NDDS_OVERHEAD + MY_OWN_TEST_OVERHEAD;
+	      MAX_MSG_LENGTH + NDDS_OVERHEAD + MY_OWN_TEST_OVERHEAD;
 	      
 	    this->udpv4_property_.send_socket_buffer_size =
         this->udpv4_property_.parent.message_size_max;
@@ -279,7 +278,7 @@ NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::ConfigureTransport (void)
 	    this->udpv4_property_.recv_socket_buffer_size =
         15 * this->udpv4_property_.send_socket_buffer_size;
            
-	    if (bufsize > UNFRAGMENTED_UDP_PACKET_SIZE_MAX - NDDS_OVERHEAD)
+	    if (MAX_MSG_LENGTH > UNFRAGMENTED_UDP_PACKET_SIZE_MAX - NDDS_OVERHEAD)
 	      {
 	        this->udpv4_property_.no_zero_copy = RTI_TRUE;
 	      }
@@ -326,9 +325,8 @@ NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::ConfigShmemTransport (void)
       return -1;
     }
 
-  long bufsize = this->payload_item_size_ * this->payload_length_;
   this->shmem_property_.parent.message_size_max =
-    bufsize + NDDS_OVERHEAD + MY_OWN_TEST_OVERHEAD;
+    MAX_MSG_LENGTH + NDDS_OVERHEAD + MY_OWN_TEST_OVERHEAD;
     
   this->shmem_property_.received_message_count_max = 8;
   

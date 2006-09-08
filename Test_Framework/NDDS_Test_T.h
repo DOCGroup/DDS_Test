@@ -55,6 +55,7 @@ namespace DDS
   
   typedef DDS_StatusMask StatusMask;
   
+  typedef DDS_InstanceHandle_t InstanceHandle_t;
   typedef DDS_InstanceHandleSeq InstanceHandleSeq;
   
   typedef DDSStatusCondition StatusCondition;
@@ -64,6 +65,7 @@ namespace DDS
 
 // Magic numbers we want to get rid of eventually.
 const long UNFRAGMENTED_UDP_PACKET_SIZE_MAX = 1500 - 14 - 20 - 8;
+const long MAX_MSG_LENGTH = 16384;
 const long MY_OWN_TEST_OVERHEAD  = sizeof(DDS_UnsignedLong);
 const long NDDS_OVERHEAD  = 52; // Issue overhead + potential INFO_TS
 const DDS::Duration_t WAIT_TIME = {500, 0};
@@ -116,6 +118,11 @@ protected:
   // Collections of transport settings.
   NDDS_Transport_UDPv4_Property_t udpv4_property_;
   NDDS_Transport_Shmem_Property_t shmem_property_;
+  
+  // May have to eventually set this from file or command line.
+  // Must be same for pubs & subs if they are remote, unique if
+  // they are collocated.
+  unsigned long host_id_;
   
   // Do we need to set shmem-related tranport stuff?
   bool shared_memory_;

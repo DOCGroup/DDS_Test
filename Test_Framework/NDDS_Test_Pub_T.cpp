@@ -246,6 +246,44 @@ NDDS_Test_Pub_T<DATA_TYPE,
                 TYPE_SUPPORT,
                 DATA_WRITER>::Write (void)
 {
+  DDS::InstanceHandleSeq handles;
+  this->data_writer_->get_matched_subscriptions (handles);
+  unsigned long num_connected_subs = handles.length ();
+  
+  while (num_connected_subs != this->nreaders_)
+    {
+      ACE_OS::sleep (1);
+      this->data_writer_->get_matched_subscriptions (handles);
+      num_connected_subs = handles.length ();
+    }
+    
+  DATA_TYPE payload;
+  // TODO - don't depend on name of payload member.
+  payload.data.length (this->payload_length_);
+  
+  if (this->data_initializer_ != 0)
+    {
+      (*this->data_initializer_)(payload);
+    }
+    
+  DDS::InstanceHandle_t handle =
+    this->typed_data_writer_->register_instance (payload);
+   
+  // TODO - resolve oversending issue.  
+  unsigned long num_messages =
+    this->primer_samples_ + this->stats_samples_;
+    
+  for (unsigned long i = 0UL; i < num_messages; ++i)
+    {
+      // TODO - use Stats class
+      // TODO - set timestamp?
+      // TODO - control send rate?
+      
+      this->typed_data_writer_->write (payload, handle);
+    }
+    
+  // TODO - dump stats to file.
+  
   return 0;
 }
 
