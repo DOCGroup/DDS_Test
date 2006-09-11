@@ -1,0 +1,9 @@
+// -*- MPC -*-
+// $Id$
+
+project {
+  libpaths  += $(DDS_TESTLIB_ROOT)
+  after     += Test_Framework
+  libs      += Test_Framework
+  includes  += $(DDS_TESTLIB_ROOT)
+}

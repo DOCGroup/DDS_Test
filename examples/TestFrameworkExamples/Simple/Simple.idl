@@ -1,0 +1,19 @@
+//#ifndef SIMPLE_IDL
+//#define SIMPLE_IDL
+
+module Simple
+{
+  struct Bytes
+  {
+    unsigned long timestamp;
+    
+    // Deprecated syntax, but necessary for NDDS.
+    sequence<octet> data;
+  };
+
+  // Tells TAO DDS that Bytes is to be a DDS data type.
+  #pragma DCPS_DATA_TYPE "Simple::Bytes"
+};
+
+//#endif /* SIMPLE_IDL */
+

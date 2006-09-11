@@ -1,3 +1,41 @@
+Mon Sep 11 21:11:19 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DDSTest.mwc:
+        
+          New MPC workspace file for the entire DDS test tree.
+          
+        * Test_Framework/MPC/ddstest.mpb:
+        
+          New file containing MPC project to be added as a
+          base project for tests that link to the Test_Framework
+          library.
+          
+        * Test_Framework/MPC/ndds.mpb:
+        * Test_Framework/MPC/ndds_ts_defaults.mpb:
+        * Test_Framework/MPC/nddsexe.mpb:
+
+          New files containing a hierachry of MPC projects related
+          to NDDS. The top-level base project is nddsexe, which is
+          to be added to DDS tests using NDDS. Makefiles or Visual
+          Studio projects generated for such tests will then
+          execute the nddsgen script on the specified IDL file(s)
+          automatically.
+          
+        * examples/TestFrameworkExamples/Simple/Simple.idl:
+        * examples/TestFrameworkExamples/Simple/Simple.mpc:
+        * examples/TestFrameworkExamples/Simple/Simple.mwc:
+        * examples/TestFrameworkExamples/Simple/SimplePubNDDS.cpp:
+        * examples/TestFrameworkExamples/Simple/SimplePubTAODDS.cpp:
+        * examples/TestFrameworkExamples/Simple/SimpleSubNDDS.cpp:
+        * examples/TestFrameworkExamples/Simple/SimpleSubTAODDS.cpp:
+        * examples/TestFrameworkExamples/Simple/main.cpp:
+        
+          New files, comprising a new examples that demonstrates the
+          use of the Test Framework library. So far, the example
+          includes executables for an NDDS publisher, and NDDS
+          subscriber, a TAO DDS publisher and a TAO DDS subscriber,
+          all using IDL and a main() in common.
+
 Mon Sep 11 14:26:22 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performanace/throughput/NDDS/TP_Packet.cxx:
