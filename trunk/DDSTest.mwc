@@ -1,0 +1,9 @@
+// -*- MPC -*-
+// $Id$
+
+workspace {
+  cmdline += -include $(DDS_TESTLIB_ROOT)/MPC
+  exclude {
+    Stats
+  }
+}

@@ -1,0 +1,123 @@
+project(SimplePubNDDS): nddsexe, ddstest {
+  exename   = simple_pub_ndds
+  
+  NDDSTypeSupport_Files {
+    Simple.idl
+  }
+
+  Source_Files {
+    SimplePubNDDS.cpp 
+    Simple.cxx
+    SimplePlugin.cxx
+    SimpleSupport.cxx
+  }
+
+  Header_Files {
+    Simple.h
+    SimplePlugin.h
+    SimpleSupport.h
+  }
+}
+
+project(SimpleSubNDDS): nddsexe, ddstest {
+  exename   = simple_sub_ndds
+
+  NDDSTypeSupport_Files {
+    Simple.idl >> Simple.cxx \
+                  Simple.h \
+                  SimplePlugin.cxx \
+                  SimplePlugin.h \
+                  SimpleSupport.cxx \
+                  SimpleSupport.h
+  }
+
+  Source_Files {
+    SimpleSubNDDS.cpp
+    Simple.cxx
+    SimplePlugin.cxx
+    SimpleSupport.cxx
+  }
+  
+  Header_Files {
+    Simple.h
+    SimplePlugin.h
+    SimpleSupport.h
+  }
+}
+
+project(SimplePubTAODDS): dcpsexe, portableserver, ddstest {
+  exename   = simple_pub_taodds
+  idlflags -= -GT
+  idlflags += -St
+  dcps_ts_flags += --module=Mine
+
+  Header_Files {
+    *TypeSupportC.h
+    *TypeSupportImpl.h
+    *TypeSupportS.h
+    SimpleC.h
+    SimpleS.h
+  }
+
+  Source_Files {
+    *TypeSupportC.cpp
+    *TypeSupportImpl.cpp
+    *TypeSupportS.cpp
+    SimplePubTAODDS.cpp
+    SimpleC.cpp
+    SimpleS.cpp
+  }
+  
+  Template_Files {
+  }
+
+  TypeSupport_Files {
+    Simple.idl >> BytesTypeSupport.idl \
+                  BytesTypeSupportImpl.h \
+                  BytesTypeSupportImpl.cpp
+  }
+  
+  IDL_Files {
+    BytesTypeSupport.idl
+    Simple.idl
+  }
+}
+
+project(SimpleSubTAODDS): dcpsexe, portableserver, ddstest {
+  exename   = simple_sub_taodds
+  idlflags -= -GT
+  idlflags += -St
+  dcps_ts_flags += --module=Mine
+
+  Header_Files {
+    *TypeSupportC.h
+    *TypeSupportImpl.h
+    *TypeSupportS.h
+    SimpleC.h
+    SimpleS.h
+  }
+
+  Source_Files {
+    *TypeSupportC.cpp
+    *TypeSupportImpl.cpp
+    *TypeSupportS.cpp
+    SimpleSubTAODDS.cpp
+    SimpleC.cpp
+    SimpleS.cpp
+  }
+  
+  Template_Files {
+  }
+
+  TypeSupport_Files {
+    Simple.idl >> BytesTypeSupport.idl \
+                  BytesTypeSupportImpl.h \
+                  BytesTypeSupportImpl.cpp
+  }
+  
+  IDL_Files {
+    BytesTypeSupport.idl
+    Simple.idl
+  }
+}
+
