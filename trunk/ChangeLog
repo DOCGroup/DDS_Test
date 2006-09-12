@@ -1,3 +1,20 @@
+Mon Sep 11 23:04:53 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Test_Framework/README:
+        
+          Added outstanding issue related to NDDS - the failure
+          of the nddsgen script to handle #ifndef guards around IDL.
+          
+        * examples/TestFrameworkExamples/Simple/Simple.idl:
+        
+          Added comments explaining why the #ifndef guards must
+          be commented out - see above item.
+          
+        * examples/TestFrameworkExamples/Simple/README:
+        
+          New file documenting the ongoing work with the test
+          framework example.
+
 Mon Sep 11 21:11:19 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DDSTest.mwc:

@@ -1,3 +1,7 @@
+//
+// $Id$
+//
+// NDDS can't handle these.
 //#ifndef SIMPLE_IDL
 //#define SIMPLE_IDL
 
