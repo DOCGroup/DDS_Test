@@ -145,7 +145,12 @@ to be resolved
   sequence declarations. Anonymous sequences
   have been deprecated by the OMG for some time.
   
-  
+- ask about nddsgen problems with #ifndef guards in IDL
+
+  I have not been able to find a syntax varianat or
+  a whitespace format that nddsgen will accept, so
+  I've had to simple eliminate such guards for now
+  in IDL.
   
 One final thing, I'd like to ask all vendors to add
 typedefs to their code generation from IDL that
