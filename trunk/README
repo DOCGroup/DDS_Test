@@ -1,0 +1,21 @@
+                    DDS Benchmarking Environment
+
+
+last updated 12/15/06
+
+
+               Generating builds with MPC
+
+From this directory, type
+
+mwc.pl -include MPC/config DDSTest.mwc
+
+for GNU makefiles. For Visual Studio, insert
+
+-type vc71
+
+or
+
+-type vc8
+
+in the above command line.
