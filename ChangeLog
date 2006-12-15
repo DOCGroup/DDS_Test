@@ -1,3 +1,24 @@
+Fri Dec 15 18:49:14 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * MPC/config/ndds_ts_defaults.mpb:
+        * MPC/config/ndds.mpb:
+        * MPC/config/ddstest.mpb:
+        * MPC/config/nddsexe.mpb:
+        
+          Moved these files from Test_Framework/MPC (removed,
+          see below) to this new path, consistent with similar
+          paths in the TAO, CIAO, and DDS modules.
+          
+        * Test_Framework/MPC:
+        
+          Removed this directory, all its files were moved as
+          described above.
+          
+        * README:
+        
+          New file, containing minimal info about generating builds
+          for this workspace with MPC.
+
 Mon Sep 11 23:04:53 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Test_Framework/README:
