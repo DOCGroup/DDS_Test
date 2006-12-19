@@ -14,6 +14,7 @@ project (Test_Framework) : dcps, portableserver, ndds {
   Header_Files {
     DataReaderListener_T.h
     DataWriterListener_T.h
+    dds_config.h
     NDDS_Test_T.h
     NDDS_Test_Pub_T.h
     NDDS_Test_Sub_T.h
