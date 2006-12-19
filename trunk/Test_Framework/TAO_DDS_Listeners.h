@@ -14,6 +14,10 @@
 #ifndef TAO_DDS_LISTENERS_H
 #define TAO_DDS_LISTENERS_H
 
+#include "dds_config.h"
+
+#ifdef TAO_DDS_CONFIG
+
 #include "dds/DdsDcpsPublicationS.h"
 #include "dds/DdsDcpsSubscriptionS.h"
 
@@ -48,6 +52,8 @@ public:
   TAO_DDS_DataReaderListener (void);
   virtual ~TAO_DDS_DataReaderListener (void);
 };
+
+#endif /* TAO_DDS_CONFIG */
 
 #endif /* TAO_DDS_LISTENERS_H */
 
