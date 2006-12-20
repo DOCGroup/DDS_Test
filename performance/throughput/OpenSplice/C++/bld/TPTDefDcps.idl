@@ -1,0 +1,4007 @@
+#ifndef TPTDEFDCPS_IDL_
+#define TPTDEFDCPS_IDL_
+
+#include "dds_dcps.idl"
+#include "TPTDef.idl"
+
+module TP_Test {
+
+    typedef sequence<QuitMsg> QuitMsgSeq;
+    
+    local interface QuitMsgTypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface QuitMsgDataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in QuitMsg instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in QuitMsg instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in QuitMsg instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in QuitMsg instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in QuitMsg instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in QuitMsg instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in QuitMsg instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in QuitMsg instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout QuitMsg key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface QuitMsgDataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout QuitMsg received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout QuitMsg received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout QuitMsgSeq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout QuitMsg key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in QuitMsg instance);
+    };
+    typedef sequence<Bytes4> Bytes4Seq;
+    
+    local interface Bytes4TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes4DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes4 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes4 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes4 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes4 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes4 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes4 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes4 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes4 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes4 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes4DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes4 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes4 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes4 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes4 instance);
+    };
+    typedef sequence<Bytes8> Bytes8Seq;
+    
+    local interface Bytes8TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes8DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes8 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes8 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes8 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes8 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes8 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes8 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes8 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes8 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes8 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes8DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes8 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes8 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes8 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes8 instance);
+    };
+    typedef sequence<Bytes16> Bytes16Seq;
+    
+    local interface Bytes16TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes16DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes16 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes16 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes16 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes16 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes16 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes16 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes16 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes16 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes16 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes16DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes16 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes16 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes16 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes16 instance);
+    };
+    typedef sequence<Bytes32> Bytes32Seq;
+    
+    local interface Bytes32TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes32DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes32 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes32 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes32 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes32 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes32 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes32 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes32 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes32 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes32 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes32DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes32 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes32 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes32 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes32 instance);
+    };
+    typedef sequence<Bytes64> Bytes64Seq;
+    
+    local interface Bytes64TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes64DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes64 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes64 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes64 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes64 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes64 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes64 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes64 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes64 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes64 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes64DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes64 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes64 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes64 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes64 instance);
+    };
+    typedef sequence<Bytes128> Bytes128Seq;
+    
+    local interface Bytes128TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes128DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes128 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes128 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes128 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes128 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes128 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes128 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes128 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes128 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes128 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes128DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes128 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes128 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes128 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes128 instance);
+    };
+    typedef sequence<Bytes256> Bytes256Seq;
+    
+    local interface Bytes256TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes256DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes256 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes256 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes256 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes256 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes256 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes256 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes256 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes256 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes256 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes256DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes256 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes256 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes256 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes256 instance);
+    };
+    typedef sequence<Bytes512> Bytes512Seq;
+    
+    local interface Bytes512TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes512DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes512 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes512 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes512 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes512 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes512 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes512 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes512 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes512 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes512 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes512DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes512 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes512 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes512 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes512 instance);
+    };
+    typedef sequence<Bytes1024> Bytes1024Seq;
+    
+    local interface Bytes1024TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes1024DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes1024 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes1024 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes1024 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes1024 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes1024 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes1024 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes1024 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes1024 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes1024 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes1024DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes1024 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes1024 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes1024 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes1024 instance);
+    };
+    typedef sequence<Bytes2048> Bytes2048Seq;
+    
+    local interface Bytes2048TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes2048DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes2048 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes2048 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes2048 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes2048 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes2048 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes2048 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes2048 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes2048 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes2048 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes2048DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes2048 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes2048 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes2048 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes2048 instance);
+    };
+    typedef sequence<Bytes4096> Bytes4096Seq;
+    
+    local interface Bytes4096TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes4096DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes4096 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes4096 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes4096 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes4096 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes4096 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes4096 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes4096 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes4096 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes4096 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes4096DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes4096 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes4096 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes4096 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes4096 instance);
+    };
+    typedef sequence<Bytes8192> Bytes8192Seq;
+    
+    local interface Bytes8192TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes8192DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes8192 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes8192 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes8192 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes8192 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes8192 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes8192 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes8192 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes8192 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes8192 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes8192DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes8192 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes8192 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes8192 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes8192 instance);
+    };
+    typedef sequence<Bytes16384> Bytes16384Seq;
+    
+    local interface Bytes16384TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Bytes16384DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Bytes16384 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Bytes16384 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Bytes16384 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Bytes16384 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Bytes16384 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Bytes16384 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Bytes16384 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Bytes16384 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes16384 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Bytes16384DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Bytes16384 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Bytes16384 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Bytes16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Bytes16384 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Bytes16384 instance);
+    };
+    typedef sequence<Complex4> Complex4Seq;
+    
+    local interface Complex4TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex4DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex4 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex4 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex4 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex4 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex4 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex4 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex4 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex4 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex4 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex4DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex4 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex4 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex4Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex4 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex4 instance);
+    };
+    typedef sequence<Complex8> Complex8Seq;
+    
+    local interface Complex8TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex8DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex8 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex8 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex8 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex8 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex8 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex8 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex8 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex8 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex8 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex8DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex8 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex8 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex8Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex8 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex8 instance);
+    };
+    typedef sequence<Complex16> Complex16Seq;
+    
+    local interface Complex16TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex16DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex16 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex16 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex16 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex16 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex16 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex16 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex16 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex16 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex16 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex16DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex16 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex16 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex16Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex16 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex16 instance);
+    };
+    typedef sequence<Complex32> Complex32Seq;
+    
+    local interface Complex32TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex32DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex32 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex32 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex32 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex32 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex32 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex32 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex32 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex32 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex32 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex32DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex32 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex32 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex32Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex32 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex32 instance);
+    };
+    typedef sequence<Complex64> Complex64Seq;
+    
+    local interface Complex64TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex64DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex64 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex64 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex64 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex64 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex64 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex64 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex64 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex64 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex64 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex64DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex64 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex64 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex64Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex64 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex64 instance);
+    };
+    typedef sequence<Complex128> Complex128Seq;
+    
+    local interface Complex128TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex128DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex128 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex128 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex128 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex128 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex128 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex128 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex128 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex128 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex128 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex128DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex128 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex128 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex128Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex128 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex128 instance);
+    };
+    typedef sequence<Complex256> Complex256Seq;
+    
+    local interface Complex256TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex256DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex256 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex256 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex256 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex256 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex256 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex256 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex256 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex256 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex256 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex256DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex256 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex256 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex256Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex256 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex256 instance);
+    };
+    typedef sequence<Complex512> Complex512Seq;
+    
+    local interface Complex512TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex512DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex512 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex512 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex512 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex512 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex512 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex512 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex512 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex512 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex512 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex512DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex512 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex512 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex512Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex512 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex512 instance);
+    };
+    typedef sequence<Complex1024> Complex1024Seq;
+    
+    local interface Complex1024TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex1024DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex1024 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex1024 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex1024 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex1024 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex1024 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex1024 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex1024 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex1024 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex1024 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex1024DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex1024 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex1024 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex1024Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex1024 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex1024 instance);
+    };
+    typedef sequence<Complex2048> Complex2048Seq;
+    
+    local interface Complex2048TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex2048DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex2048 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex2048 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex2048 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex2048 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex2048 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex2048 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex2048 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex2048 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex2048 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex2048DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex2048 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex2048 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex2048Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex2048 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex2048 instance);
+    };
+    typedef sequence<Complex4096> Complex4096Seq;
+    
+    local interface Complex4096TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex4096DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex4096 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex4096 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex4096 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex4096 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex4096 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex4096 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex4096 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex4096 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex4096 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex4096DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex4096 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex4096 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex4096Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex4096 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex4096 instance);
+    };
+    typedef sequence<Complex8192> Complex8192Seq;
+    
+    local interface Complex8192TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex8192DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex8192 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex8192 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex8192 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex8192 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex8192 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex8192 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex8192 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex8192 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex8192 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex8192DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex8192 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex8192 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex8192Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex8192 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex8192 instance);
+    };
+    typedef sequence<Complex16384> Complex16384Seq;
+    
+    local interface Complex16384TypeSupportInterface : DDS::TypeSupport {
+        DDS::ReturnCode_t register_type(
+    		in DDS::DomainParticipant participant,
+    		in string type_name);
+    
+        string get_type_name();
+    };
+    
+    local interface Complex16384DataWriter : DDS::DataWriter {
+        DDS::InstanceHandle_t register_instance(
+    		in Complex16384 instance_data);
+    
+        DDS::InstanceHandle_t register_instance_w_timestamp(
+    		in Complex16384 instance_data,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t unregister_instance(
+    		in Complex16384 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t unregister_instance_w_timestamp(
+    		in Complex16384 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t write(
+    		in Complex16384 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t write_w_timestamp(
+    		in Complex16384 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t dispose(
+    		in Complex16384 instance_data,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::ReturnCode_t dispose_w_timestamp(
+    		in Complex16384 instance_data,
+    		in DDS::InstanceHandle_t handle,
+    		in DDS::Time_t source_timestamp);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex16384 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    };
+    
+    local interface Complex16384DataReader : DDS::DataReader {
+        DDS::ReturnCode_t read(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_w_condition(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_w_condition(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t read_next_sample(
+    		inout Complex16384 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t take_next_sample(
+    		inout Complex16384 received_data,
+    		inout DDS::SampleInfo sample_info);
+    
+        DDS::ReturnCode_t read_instance(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_instance(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t take_next_instance(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::SampleStateMask sample_states,
+    		in DDS::ViewStateMask view_states,
+    		in DDS::InstanceStateMask instance_states);
+    
+        DDS::ReturnCode_t read_next_instance_w_condition(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t take_next_instance_w_condition(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq,
+    		in long max_samples,
+    		in DDS::InstanceHandle_t a_handle,
+    		in DDS::ReadCondition a_condition);
+    
+        DDS::ReturnCode_t return_loan(
+    		inout Complex16384Seq received_data,
+    		inout DDS::SampleInfoSeq info_seq);
+    
+        DDS::ReturnCode_t get_key_value(
+    		inout Complex16384 key_holder,
+    		in DDS::InstanceHandle_t handle);
+    
+        DDS::InstanceHandle_t lookup_instance(
+    		in Complex16384 instance);
+    };
+};
+
+#endif

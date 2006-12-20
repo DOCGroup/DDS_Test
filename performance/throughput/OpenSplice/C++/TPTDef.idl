@@ -1,0 +1,227 @@
+#ifndef THROUGHPUTTEST_IDL
+#define THROUGHPUTTEST_IDL
+
+module TP_Test
+{
+  struct QuitMsg
+    {
+	boolean		    quit;
+    };
+  #pragma keylist QuitMsg
+
+  typedef sequence<octet, 4> Bytes4Sequence;
+  typedef sequence<octet, 8> Bytes8Sequence;
+  typedef sequence<octet, 16> Bytes16Sequence;
+  typedef sequence<octet, 32> Bytes32Sequence;
+  typedef sequence<octet, 64> Bytes64Sequence;
+  typedef sequence<octet, 128> Bytes128Sequence;
+  typedef sequence<octet, 256> Bytes256Sequence;
+  typedef sequence<octet, 512> Bytes512Sequence;
+  typedef sequence<octet, 1024> Bytes1024Sequence;
+  typedef sequence<octet, 2048> Bytes2048Sequence;
+  typedef sequence<octet, 4096> Bytes4096Sequence;
+  typedef sequence<octet, 8192> Bytes8192Sequence;
+  typedef sequence<octet, 16384> Bytes16384Sequence;
+  
+  struct Bytes4
+  {
+    unsigned long timestamp;
+    Bytes4Sequence data;
+  };
+  
+  struct Bytes8
+  {
+    unsigned long timestamp;
+    Bytes8Sequence data;
+  };
+  
+  struct Bytes16
+  {
+    unsigned long timestamp;
+    Bytes16Sequence data;
+  };
+  
+  struct Bytes32
+  {
+    unsigned long timestamp;
+    Bytes32Sequence data;
+  };
+  
+  struct Bytes64
+  {
+    unsigned long timestamp;
+    Bytes64Sequence data;
+  };
+  
+  struct Bytes128
+  {
+    unsigned long timestamp;
+    Bytes128Sequence data;
+  };
+  
+  struct Bytes256
+  {
+    unsigned long timestamp;
+    Bytes256Sequence data;
+  };
+  
+  struct Bytes512
+  {
+   unsigned long timestamp;
+   Bytes512Sequence data;
+  };
+  
+  struct Bytes1024
+  {
+    unsigned long timestamp;
+    Bytes1024Sequence data;
+  };
+  
+  struct Bytes2048
+  {
+    unsigned long timestamp;
+    Bytes2048Sequence data;
+  };
+  
+  struct Bytes4096
+  {
+    unsigned long timestamp;
+    Bytes4096Sequence data;
+  };
+  
+  struct Bytes8192
+  {
+    unsigned long timestamp;
+    Bytes8192Sequence data;
+  };
+  
+  struct Bytes16384
+  {
+    unsigned long timestamp;
+    Bytes16384Sequence data;
+  };
+    
+  #pragma keylist Bytes4
+  #pragma keylist Bytes8
+  #pragma keylist Bytes16
+  #pragma keylist Bytes32
+  #pragma keylist Bytes64
+  #pragma keylist Bytes128
+  #pragma keylist Bytes256
+  #pragma keylist Bytes512
+  #pragma keylist Bytes1024
+  #pragma keylist Bytes2048
+  #pragma keylist Bytes4096
+  #pragma keylist Bytes8192
+  #pragma keylist Bytes16384
+  
+  struct Nested
+  {
+    string info;
+    long index;
+  };
+  
+  typedef sequence<Nested> NestedSequence;
+  
+  struct Outer
+  {
+    long length;
+    NestedSequence nested_member;
+  };
+  
+  typedef sequence<Outer, 4> Complex4Sequence;
+  typedef sequence<Outer, 8> Complex8Sequence;
+  typedef sequence<Outer, 16> Complex16Sequence;
+  typedef sequence<Outer, 32> Complex32Sequence;
+  typedef sequence<Outer, 64> Complex64Sequence;
+  typedef sequence<Outer, 128> Complex128Sequence;
+  typedef sequence<Outer, 256> Complex256Sequence;
+  typedef sequence<Outer, 512> Complex512Sequence;
+  typedef sequence<Outer, 1024> Complex1024Sequence;
+  typedef sequence<Outer, 2048> Complex2048Sequence;
+  typedef sequence<Outer, 4096> Complex4096Sequence;
+  typedef sequence<Outer, 8192> Complex8192Sequence;
+  typedef sequence<Outer, 16384> Complex16384Sequence;
+  
+  struct Complex4
+  {
+    Complex4Sequence data;
+  };
+  
+  struct Complex8
+  {
+    Complex8Sequence data;
+  };
+  
+  struct Complex16
+  {
+    Complex16Sequence data;
+  };
+  
+  struct Complex32
+  {
+    Complex32Sequence data;
+  };
+  
+  struct Complex64
+  {
+    Complex64Sequence data;
+  };
+  
+  struct Complex128
+  {
+    Complex128Sequence data;
+  };
+  
+  struct Complex256
+  {
+    Complex256Sequence data;
+  };
+  
+  struct Complex512
+  {
+    Complex512Sequence data;
+  };
+  
+  struct Complex1024
+  {
+    Complex1024Sequence data;
+  };
+  
+  struct Complex2048
+  {
+    Complex2048Sequence data;
+  };
+  
+  struct Complex4096
+  {
+    Complex4096Sequence data;
+  };
+  
+  struct Complex8192
+  {
+    Complex8192Sequence data;
+  };
+  
+  struct Complex16384
+  {
+    Complex16384Sequence data;
+  };
+    
+  #pragma keylist Complex4
+  #pragma keylist Complex8
+  #pragma keylist Complex16
+  #pragma keylist Complex32
+  #pragma keylist Complex64
+  #pragma keylist Complex128
+  #pragma keylist Complex256
+  #pragma keylist Complex512
+  #pragma keylist Complex1024
+  #pragma keylist Complex2048
+  #pragma keylist Complex4096
+  #pragma keylist Complex8192
+  #pragma keylist Complex16384
+};
+
+#endif /* THROUGHPUTTEST_IDL */
+

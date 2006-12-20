@@ -1,0 +1,982 @@
+In file included from ../Stats.h:21,
+                 from ../publisher.cpp:4:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:47: syntax error before `{
+   ' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:55: non-member function `
+   bool good_bit()' cannot have `const' method qualifier
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:63: non-member function `
+   size_t total_length()' cannot have `const' method qualifier
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:132: syntax error before `
+   private'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:135: syntax error before `
+   &' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:164: syntax error before `
+   private'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:171: syntax error before `
+   protected'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:175: syntax error before `
+   }' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:179: `ACE_SizeCDR' was not 
+   declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:179: `ss' was not declared 
+   in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:180: syntax error before `
+   &' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:180: `bool operator<<(...)
+   ' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:180: `bool operator<<(...)
+   ' must take exactly two arguments
+In file included from /export/home/tczar/TAO_Splice/include/ace/CDR_Size.h:185,
+                 from ../Stats.h:21,
+                 from ../publisher.cpp:4:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:9: syntax error before `
+   inline'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:20: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:26: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:32: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:41: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:47: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:53: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:61: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:67: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:73: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:79: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:85: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:91: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:97: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:103: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:109: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:115: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:127: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:139: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:151: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:172: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:182: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:192: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:202: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:212: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:222: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:232: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:242: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:253: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:263: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:277: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:277: `ss' was not 
+   declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:277: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:279: `ss' undeclared 
+   (first use this function)
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:279: (Each undeclared 
+   identifier is reported only once for each function it appears in.)
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:279: `x' undeclared 
+   (first use this function)
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:284: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:284: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:291: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:291: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:298: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:298: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:305: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:305: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:312: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:312: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:319: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:319: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:326: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:326: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:333: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:333: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:340: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:340: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:347: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:347: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:354: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:354: syntax error before 
+   `::' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:362: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:362: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:369: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:369: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:376: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:376: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:383: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:383: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:390: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:390: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:405: `ACE_SizeCDR' was 
+   not declared in this scope
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:405: syntax error before 
+   `)' token
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: `bool 
+   operator<<(...)' must have an argument of class or enumerated type
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: `bool 
+   operator<<(...)' must take exactly two arguments
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl: In function `bool 
+   operator<<(...)':
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:391: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:384: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:377: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:370: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:363: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:355: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:348: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:341: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:334: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:327: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:320: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:313: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:306: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:299: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:292: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:285: `bool 
+   operator<<(...)' previously defined here
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:406: redefinition of `
+   bool operator<<(...)'
+/export/home/tczar/TAO_Splice/include/ace/CDR_Size.inl:278: `bool 
+   operator<<(...)' previously defined here
+In file included from /export/home/tczar/TAO_Splice/include/ace/High_Res_Timer.h:24,
+                 from ../Stats.h:22,
+                 from ../publisher.cpp:4:
+/export/home/tczar/TAO_Splice/include/ace/OS_NS_time.h: At global scope:
+/export/home/tczar/TAO_Splice/include/ace/OS_NS_time.h:43: syntax error before 
+   `static'
