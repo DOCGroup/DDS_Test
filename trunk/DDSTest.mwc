@@ -2,8 +2,5 @@
 // $Id$
 
 workspace {
-  cmdline += -include $(DDS_TESTLIB_ROOT)/MPC
-  exclude {
-    Stats
-  }
+  cmdline += -include $DDSTEST_ROOT/MPC/config
 }

@@ -5,8 +5,8 @@
 #include "ace/Log_Msg.h"
 
 // Uncomment exactly one of these.
-//#define NDDS_CONFIG
-#define TAO_DDS_CONFIG
+#define NDDS_CONFIG
+//#define TAO_DDS_CONFIG
 //#define SPLICE_CONFIG
 
 #if defined (NDDS_CONFIG)
