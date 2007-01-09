@@ -1,0 +1,14 @@
+// -*- MPC -*-
+// $Id$
+
+project {
+  Define_Custom(SpliceTypeSupport) {
+    automatic             = 1
+    command               = $(OSPL_HOME)/bin/idlpp
+    dependent             = $(OSPL_HOME)/bin/idlpp
+    source_outputext      = .c
+    keyword splice_ts_flags = commandflags
+  }
+
+  splice_ts_flags += -l c
+}
