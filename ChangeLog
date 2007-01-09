@@ -1,3 +1,12 @@
+Tue Jan  9 22:29:55 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/NDDS\ndds.mpb:
+        * performance/throughput/NDDS\ndds_ts_defaults.mpb:
+        * performance/throughput/NDDS\nddsexe.mpb:
+        
+          Removed these files, they are now duplicates of files in
+          MPC/config.
+
 Tue Jan  9 22:24:39 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Stats/Stats.cpp:
