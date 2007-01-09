@@ -1,3 +1,27 @@
+Tue Jan  9 19:47:14 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Stats/*.*:
+        
+          Removed this directory and its associated buid, the
+          stats stuff is now contained in the Test_Framework
+          library.
+          
+        * DDSTest.mwc:
+        
+          Removed the exclude of the Stats directory, which has
+          been removed. Also modified the cmdline addition to
+          have the correct syntax when referring to an
+          environment variable.
+          
+        * Test_Framework/dds_config.h:
+        
+          Cosmetic changes.
+          
+        * Test_Framework/TAO_DDS_Listeners.cpp:
+        
+          Added guard to exclude this file from the build unless
+          we are building the TAO DDS version of Test_Framework.
+
 Tue Dec 19 19:54:15 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Test_Framework/dds_config.h:
