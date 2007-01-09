@@ -1,3 +1,14 @@
+Tue Jan  9 22:24:39 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Stats/Stats.cpp:
+        * Stats/Stats.h:
+        * Stats/stats_export.h:
+        * Stats/Stats.mpc:
+        
+          Restored these files and their directory, they can't be
+          removed until the DDS test framework is integrated with
+          all test code - my mistake.
+
 Tue Jan  9 19:54:50 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Stats/*.*:
