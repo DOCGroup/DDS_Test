@@ -1,11 +1,13 @@
-Tue Jan  9 19:47:14 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+Tue Jan  9 19:54:50 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Stats/*.*:
         
           Removed this directory and its associated buid, the
           stats stuff is now contained in the Test_Framework
           library.
-          
+
+Tue Jan  9 19:47:14 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
         * DDSTest.mwc:
         
           Removed the exclude of the Stats directory, which has
