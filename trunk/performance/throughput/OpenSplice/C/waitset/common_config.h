@@ -8,6 +8,7 @@
 #include "Stats.h"
 #include "ace/CDR_Base.h"
 #include "ace/Sched_Params.h"
+#include "ace/OS_NS_unistd.h"
 
 const char *pub_output_file ("stats_pub");
 const char *sub_output_file ("stats_sub");
@@ -79,7 +80,7 @@ writewstats (DDS_ReturnCode_t (*ptr2writerwrite) (FooDataWriter,
   //data_sample->data = 0;  
   data_sample->timestamp = 0;
 
-  for (int i = 0; i < PRIMER_SAMPLES + 5*STATS_SAMPLES; i++) {    
+  for (unsigned int i = 0; i < PRIMER_SAMPLES + 5*STATS_SAMPLES; i++) {    
     mystats->sample_for_throughput (data_sample->timestamp);     
 
     // dump publisher's throughput stats to file
@@ -96,7 +97,7 @@ writewstats (DDS_ReturnCode_t (*ptr2writerwrite) (FooDataWriter,
   // send more off-the-record samples to make sure 
   // all the subscribers get enough samples.
   for (int j = 0; j < 19; j++) {
-    for (int i = 0; i < PRIMER_SAMPLES + 5*STATS_SAMPLES; i++)
+    for (unsigned int i = 0; i < PRIMER_SAMPLES + 5*STATS_SAMPLES; i++)
       retcode = (*ptr2writerwrite) (datawriter, data_sample, DDS_HANDLE_NIL);
     ACE_OS::sleep (3);
   }    

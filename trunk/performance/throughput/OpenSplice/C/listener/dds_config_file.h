@@ -24,7 +24,5 @@ private:
   std::map<std::string, std::string> parsed_;
 };
 
-//#include "dds_config_file.cpp"
-
 #endif /* DDS_CONFIG_FILE_H */
 
