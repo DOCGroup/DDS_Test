@@ -2,8 +2,14 @@
 // $Id$
 
 project : acelib, splice_ts_defaults {
-  libs        += database dcpssac
+  libs        += ddsdatabase dcpssac
   libpaths    += $(OSPL_HOME)/lib
 
-  includes    += $(OSPL_HOME)/include
+  includes    += $(OSPL_HOME)/include \
+                 $(OSPL_HOME)/include/sys \
+                 $(OSPL_HOME)/include/dcps/C/SAC
+                 
+  specific(nmake, vc71, vc8) {
+    compile_flags += /wd4101
+  }
 }

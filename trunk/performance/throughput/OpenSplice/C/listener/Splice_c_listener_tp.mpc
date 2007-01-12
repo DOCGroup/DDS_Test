@@ -1,0 +1,60 @@
+project(*Pub): spliceexe {
+  exename   = publisher
+  libpaths += 
+  libs     += Stats
+  after    +=
+  includes += $(STATS_ROOT)
+  
+  SpliceTypeSupport_Files {
+    TPTDef.idl
+  }
+
+  Source_Files {
+    dds_config_file.cpp
+    qos_file_format.cpp
+    publisher.cpp
+    TPTDefSacDcps.c
+    TPTDefSplDcps.c
+    tweak_qos.cpp
+  }
+
+  Header_Files {
+    common_config.hs
+    dds_config_file.h
+    getopt.h
+    qos_file_format.h
+    publisher_aux.h
+    TPTDefSacDcps.h
+    TPTDefSplDcps.h
+    TPTDefDcps.h
+    TPTDef.h
+    types_registration.h
+    tweak_qos.h
+  }
+}
+
+project(*Sub): spliceexe {
+  exename   = subscriber
+  libpaths += 
+  libs     += Stats
+  after    += 
+  includes += $(STATS_ROOT)
+
+  SpliceTypeSupport_Files {
+    TPTDef.idl
+  }
+
+  Source_Files {
+    subscriber.cpp
+    TPTDefSacDcps.c
+    TPTDefSplDcps.c
+  }
+  
+  Header_Files {
+    TPTDefSacDcps.h
+    TPTDefSplDcps.h
+    TPTDefDcps.h
+    TPTDef.h
+  }
+}
+

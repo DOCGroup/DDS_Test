@@ -2,8 +2,8 @@
 //
 // $Id: dds_config_file.h,v 1.1 2006/04/06 21:55:48 mxiong Exp $
 
-#ifndef DDS_CONFIG_FILE
-#define DDS_CONFIG_FILE
+#ifndef DDS_CONFIG_FILE_H
+#define DDS_CONFIG_FILE_H
 
 #include <string>
 #include <iostream>
@@ -24,7 +24,7 @@ private:
   std::map<std::string, std::string> parsed_;
 };
 
-#include "dds_config_file.cpp"
+//#include "dds_config_file.cpp"
 
-#endif /* DDS_CONFIG_FILE */
+#endif /* DDS_CONFIG_FILE_H */
 
