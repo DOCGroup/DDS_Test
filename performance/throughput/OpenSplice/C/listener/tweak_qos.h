@@ -33,6 +33,4 @@ private:
   DDS_Config_File *qos_hash_;
 };
 
-//#include "tweak_qos.cpp"
-
 #endif /* __TWEAK_QOS_H */

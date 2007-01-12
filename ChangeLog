@@ -1,3 +1,27 @@
+Fri Jan 12 20:32:18 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/OpenSplice/C/waitset/dds_config_file..cpp:
+        * performance/throughput/OpenSplice/C/waitset/tweak_qos.h:
+        * performance/throughput/OpenSplice/C/waitset/dds_config_file.h:
+        * performance/throughput/OpenSplice/C/waitset/qos_file_format.h:
+        * performance/throughput/OpenSplice/C/waitset/common_config.h:
+        * performance/throughput/OpenSplice/C/listener/tweak_qos.h:
+        * performance/throughput/OpenSplice/C/listener/dds_config_file.h:
+        * performance/throughput/OpenSplice/C/listener/common_config.h:
+        * performance/throughput/OpenSplice/C/listener/subscriber_aux.h:
+        
+          Removed #includes of .cpp file in corresponding .h file, added
+          ACE includes, fixed signed/unsigned mismatches, added Splice
+          includes.
+          
+        * performance/throughput/OpenSplice/C/listener/Splice_c_listener_tp.mpc:
+        
+          Added files to Header_Files block of subscriber project.
+          
+        * performance/throughput/OpenSplice/C/waitset/Splice_c_waitset_tp.mpc:
+        
+          New file, MPC project file for Splice waitset test code.
+
 Fri Jan 12 19:25:23 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC/config/splice_ts_defaults.mpb:

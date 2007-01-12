@@ -26,7 +26,7 @@ bool transfer_complete = false;
 
 const timeval *listener_start_time;
 const timeval *listener_current_time;
-ACE_CDR::ULong listener_time_to_live = 100; // 100 seconds
+time_t listener_time_to_live = 100; // 100 seconds
 unsigned long num_received_samples = 0;
 
 

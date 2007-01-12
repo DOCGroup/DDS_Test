@@ -195,8 +195,6 @@ private:
 };
 
 
-#include "qos_file_format.cpp"
-
 } // end of namespace QosFormat
 
 #endif /* __QOS_FILE_FORMAT_H */

@@ -11,6 +11,9 @@
 #include "tweak_qos.h"
 
 #include "ace/CDR_Base.h"
+#include "ace/OS_NS_sys_time.h"
+#include "ace/OS_NS_unistd.h"
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -181,12 +184,6 @@ void BenchmarkMainSub (int argc, char *argv[])
     //DDS_free(temprQos2);
     // end of mydebug
 
-
-
-
-
-
-
     // load Qos from hash table
     myqos.setDataReaderQos (*drQos);    
 
@@ -194,14 +191,6 @@ void BenchmarkMainSub (int argc, char *argv[])
                                                     test_topic, 
 						    drQos, 
 						    NULL);
-
-    
-
-
-
-
-
-
 
     // mydebug
     //DDS_DataReaderQos *temprQos;
@@ -242,14 +231,6 @@ void BenchmarkMainSub (int argc, char *argv[])
     //DDS_free (temprQos);
     // end of mydebug
 
-
-
-
-
-
-
-
-
     // initialize DataReader's Listener, activate on_data_available method    
     DDS_DataReaderListener *dr_listener;
     dr_listener = DDS_DataReaderListener__alloc ();
@@ -267,9 +248,6 @@ void BenchmarkMainSub (int argc, char *argv[])
     retcode = DDS_DataReader_set_listener (data_reader,
                                            dr_listener,
 					   DDS_DATA_AVAILABLE_STATUS);
-
-
-
 
     /*------------------------------------------------------------------------*
      *                        Listen for data                                 *
