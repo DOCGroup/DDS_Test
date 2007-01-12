@@ -4,9 +4,9 @@
 project {
   Define_Custom(SpliceTypeSupport) {
     automatic             = 1
-    command               = $(OSPL_HOME)/bin/idlpp
-    dependent             = $(OSPL_HOME)/bin/idlpp
-    source_outputext      = .c
+    command               = <%quote%>$(OSPL_HOME)/bin/idlpp<%quote%>
+    dependent             = <%quote%>$(OSPL_HOME)/bin/idlpp<%quote%>
+    source_outputext      = SacDcps.c
     keyword splice_ts_flags = commandflags
   }
 

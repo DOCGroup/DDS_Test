@@ -90,7 +90,7 @@ writewstats (DDS_ReturnCode_t (*ptr2writerwrite) (FooDataWriter,
   
   // comment out to measure loss rate
   //for (int i = 0; i < PRIMER_SAMPLES + 5*STATS_SAMPLES; i++) {    
-  for (int i = 0; i < PRIMER_SAMPLES + STATS_SAMPLES; i++) {    
+  for (unsigned int i = 0; i < PRIMER_SAMPLES + STATS_SAMPLES; i++) {    
     mystats->sample_for_throughput (data_sample->timestamp);     
 
     // dump publisher's throughput stats to file

@@ -195,7 +195,7 @@ private:
 };
 
 
-#include "qos_file_format.cpp"
+//#include "qos_file_format.cpp"
 
 } // end of namespace QosFormat
 
