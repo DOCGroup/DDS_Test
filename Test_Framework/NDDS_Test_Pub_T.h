@@ -18,6 +18,18 @@
 #include "NDDS_Test_T.h"
 #include "DataWriterListener_T.h"
 
+// For better compliance with OMG IDL PSM C++ mapping.
+namespace DDS
+{
+  typedef DDSPublisher Publisher;
+  typedef DDS_PublisherQos PublisherQos;
+  typedef DDSPublisherListener PublisherListener;
+  
+  typedef DDSDataWriter DataWriter;
+  typedef DDS_DataWriterQos DataWriterQos;
+  typedef DDSDataWriterListener DataWriterListener; 
+}
+
 /*
  * @class NDDS_Test_Pub_T
  *
@@ -36,17 +48,17 @@ public:
   NDDS_Test_Pub_T (void);
   virtual ~NDDS_Test_Pub_T (void);
   
-  virtual int Init (int argc, char *argv[]);
-  virtual int SetWriterListener (DDS::DataWriterListener *listener,
-                                 DDS::StatusMask mask = 0);
+  int Init (int argc, char *argv[]);
+  int SetWriterListener (DDS::DataWriterListener *listener,
+                         DDS::StatusMask mask = 0);
   void SetDataInitializer (DATA_INITIALIZER);
-  virtual int Run (void);
-  
-private:
+  int Run (void);
+  int Fini (void);
   int CreatePublisher (void);
   int CreateDataWriter (void);
   int Write (void);
-  int Fini (void);
+  
+private:
   virtual const char *ClassName (void) const;
   virtual bool IsFinished (void);
   

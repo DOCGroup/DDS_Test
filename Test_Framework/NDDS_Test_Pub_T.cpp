@@ -14,9 +14,11 @@ NDDS_Test_Pub_T<DATA_TYPE,
                 TYPE_SUPPORT,
                 DATA_WRITER>::NDDS_Test_Pub_T (void)
   : publisher_ (0),
+    publisher_qos_ (0),
     publisher_listener_ (0),
     data_writer_ (0),
     typed_data_writer_ (0),
+    data_writer_qos_ (0),
     data_initializer_ (0)
 {
 }
@@ -69,7 +71,7 @@ NDDS_Test_Pub_T<DATA_TYPE,
           // Error message already output.
           return -1;
         }
-   }
+    }
   catch (...)
     {
       this->ExceptionErrorMsg ("Init");
@@ -162,10 +164,8 @@ NDDS_Test_Pub_T<DATA_TYPE,
                 TYPE_SUPPORT,
                 DATA_WRITER>::CreatePublisher (void)
 {
-  DDS::ReturnCode_t retcode = DDS_RETCODE_OK;
-  
   // TODO - integrate with TweakQos.
-  retcode =
+  DDS::ReturnCode_t retcode =
     this->participant_->get_default_publisher_qos (
       this->publisher_qos_);
       

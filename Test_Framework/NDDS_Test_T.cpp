@@ -106,7 +106,6 @@ NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::ParseArgs (void)
 {
   ACE_Arg_Shifter arg_shifter (this->argc_, this->argv_);
   bool good = true;
-  const char *currentArg = 0;
   
   // Ignore the command - argv[0].
   arg_shifter.ignore_arg ();
@@ -116,7 +115,7 @@ NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::ParseArgs (void)
       if (arg_shifter.cur_arg_strncasecmp ("-shmem") == 0) 
         {
           this->shared_memory_ = true;
-          arg_shifter.consume_arg();
+          arg_shifter.consume_arg ();
         }
       else if (this->ParseArgsBase (arg_shifter) != 0)
         {
@@ -144,8 +143,31 @@ NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::Usage (void) const
   this->UsageBase ();
 }
 
-template<typename DATA_TYPE,
-         typename TYPE_SUPPORT>
+template<typename DATA_TYPE, typename TYPE_SUPPORT>
+int
+NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::DataTypeAndTopic (
+  const char *entity_type)
+{
+  DDS::ReturnCode_t retcode =
+    TYPE_SUPPORT::register_type (this->participant_,
+                                 TYPE_SUPPORT::get_type_name ());
+    
+  if (retcode != DDS_RETCODE_OK)
+    {
+      this->RetcodeErrorMsg ("DataTypeAndTopic", "register_type", retcode);
+      return -1;
+    }
+        
+  if (this->CreateTopic () != 0)
+    {
+      // Error message already output.
+      return -1;
+    }
+    
+  return 0;
+}
+
+template<typename DATA_TYPE, typename TYPE_SUPPORT>
 int
 NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::InitParticipantFactory (void)
 {
@@ -377,30 +399,6 @@ NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::CreateTopic (void)
   if (this->topic_ == 0)
     {
       this->NullReturnErrorMsg ("CreateTopic", "create_topic");
-      return -1;
-    }
-    
-  return 0;
-}
-
-template<typename DATA_TYPE, typename TYPE_SUPPORT>
-int
-NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::DataTypeAndTopic (
-  const char *entity_type)
-{
-  DDS::ReturnCode_t retcode =
-    TYPE_SUPPORT::register_type (this->participant_,
-                                 TYPE_SUPPORT::get_type_name ());
-    
-  if (retcode != DDS_RETCODE_OK)
-    {
-      this->RetcodeErrorMsg ("DataTypeAndTopic", "register_type", retcode);
-      return -1;
-    }
-        
-  if (this->CreateTopic () != 0)
-    {
-      // Error message already output.
       return -1;
     }
     

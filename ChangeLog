@@ -1,3 +1,29 @@
+Tue Jan 30 23:12:06 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Test_Framework/Splice_Test_Pub_T.h:
+        * Test_Framework/Splice_Test_Sub_T.h:
+        * Test_Framework/Splice_Test_T.cpp:
+        * Test_Framework/Splice_Test_Pub_T.cpp:
+        * Test_Framework/Splice_Test_Sub_T.cpp:
+        * Test_Framework/Splice_Test_T.h:
+        
+          New files, minimum integration of OpenSplice into the
+          test framework.
+          
+        * Test_Framework/Test_Framework.mpc:
+        
+          Added new files to the MPC file.
+          
+        * Test_Framework/dds_config.h:
+        * Test_Framework/NDDS_Test_T.h:
+        * Test_Framework/NDDS_Test_Pub_T.h:
+        * Test_Framework/NDDS_Test_Sub_T.h:
+        * Test_Framework/NDDS_Test_T.cpp:
+        * Test_Framework/NDDS_Test_Pub_T.cpp:
+        * Test_Framework/NDDS_Test_Sub_T.cpp:
+        
+          Minor changes.
+
 Fri Jan 12 20:32:18 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/OpenSplice/C/waitset/dds_config_file..cpp:

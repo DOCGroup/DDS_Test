@@ -5,9 +5,9 @@
 #include "ace/Log_Msg.h"
 
 // Uncomment exactly one of these.
-#define NDDS_CONFIG
+//#define NDDS_CONFIG
 //#define TAO_DDS_CONFIG
-//#define SPLICE_CONFIG
+#define SPLICE_CONFIG
 
 #if defined (NDDS_CONFIG)
 
@@ -33,6 +33,8 @@
 # if defined (NDDS_CONFIG) || defined (TAO_DDS_CONFIG)
 # error Only one implementation config flag should be uncommented
 # endif
+
+#include "dds_dcps.h"
 
 #endif /* if defined */
 

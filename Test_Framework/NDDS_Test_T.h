@@ -17,9 +17,7 @@
 
 #include "TestBase.h"
 
-#include "ndds/ndds_cpp.h"
-
-// For better concurrence with OMG IDL PSM.
+// For better compliance with OMG IDL PSM C++ mapping.
 namespace DDS
 {
   typedef DDSDomainParticipantFactory DomainParticipantFactory;
@@ -28,10 +26,6 @@ namespace DDS
   typedef DDS_DomainParticipantQos DomainParticipantQos;
   typedef DDSDomainParticipantListener DomainParticipantListener;
   
-  typedef DDSPublisher Publisher;
-  typedef DDS_PublisherQos PublisherQos;
-  typedef DDSPublisherListener PublisherListener;
-  
   typedef DDSSubscriber Subscriber;
   typedef DDS_SubscriberQos SubscriberQos;
   typedef DDSSubscriberListener SubscriberListener;
@@ -39,10 +33,6 @@ namespace DDS
   typedef DDSTopic Topic;
   typedef DDS_TopicQos TopicQos;
   typedef DDSTopicListener TopicListener;
-  
-  typedef DDSDataWriter DataWriter;
-  typedef DDS_DataWriterQos DataWriterQos;
-  typedef DDSDataWriterListener DataWriterListener;
   
   typedef DDSDataReader DataReader;
   typedef DDS_DataReaderQos DataReaderQos;
@@ -76,8 +66,7 @@ const DDS::Duration_t WAIT_TIME = {500, 0};
  * @brief Template class for NDDS tests.
  *
  */
-template<typename DATA_TYPE,
-         typename TYPE_SUPPORT>
+template<typename DATA_TYPE, typename TYPE_SUPPORT>
 class NDDS_Test_T : public TestBase
 {
 protected:
@@ -85,10 +74,10 @@ protected:
   virtual ~NDDS_Test_T (void);
 
   int Init (int argc, char *argv[]);
+  int Fini (void);
   int ParseArgs (void);
   void Usage (void) const;
   int DataTypeAndTopic (const char *entity_type);
-  int Fini (void);
 
 private:
   int InitParticipantFactory (void);
