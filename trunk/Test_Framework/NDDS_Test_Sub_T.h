@@ -36,17 +36,17 @@ public:
   NDDS_Test_Sub_T (void);
   virtual ~NDDS_Test_Sub_T (void);
   
-  virtual int Init (int argc, char *argv[]);
-  virtual int SetReaderListener (DDS::DataReaderListener *listener,
-                                 DDS::StatusMask mask = 0);
+  int Init (int argc, char *argv[]);
+  int SetReaderListener (DDS::DataReaderListener *listener,
+                         DDS::StatusMask mask = 0);
   void SetDataVerifier (DATA_VERIFIER);
-  virtual int Run (void);
-  
-private:
+  int Run (void);
   int CreateSubscriber (void);
   int CreateDataReader (void);
-  virtual void Read (void);
+  void Read (void);
   int Fini (void);
+  
+private:
   virtual const char *ClassName (void) const;
   virtual bool IsFinished (void);
   

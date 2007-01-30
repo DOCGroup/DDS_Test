@@ -78,7 +78,7 @@ NDDS_Test_Sub_T<DATA_TYPE,
           // Error message already output.
           return -1;
         }
-   }
+    }
   catch (...)
     {
       this->ExceptionErrorMsg ("Init");
@@ -292,7 +292,7 @@ NDDS_Test_Sub_T<DATA_TYPE,
                                  retcode);
           return -1;
         }
-   }
+    }
   else
     {  
       // This listener overrides only on_data_available(), the one
@@ -412,8 +412,7 @@ NDDS_Test_Sub_T<DATA_TYPE,
     }    
 
   // Last, call the base class Fini().
-  int status =  
-    this->NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::Fini ();
+  int status = this->NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>::Fini ();
     
   if (status != 0)
     {

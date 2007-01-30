@@ -1,9 +1,9 @@
 //  -*- MPC -*- now wouldn't this be cool...
 // $Id$
 
-project (Test_Framework) : dcps, portableserver, ndds {
+project (Test_Framework) : portableserver, ndds, splice, dcps {
   dynamicflags += TEST_FRAMEWORK_BUILD_DLL
-  libout = $(DDS_TESTLIB_ROOT)
+  libout = $(DDSTEST_ROOT)
   
   Source_Files {
     Stats.cpp
@@ -18,6 +18,9 @@ project (Test_Framework) : dcps, portableserver, ndds {
     NDDS_Test_T.h
     NDDS_Test_Pub_T.h
     NDDS_Test_Sub_T.h
+    Splice_Test_T.h
+    Splice_Test_Pub_T.h
+    Splice_Test_Sub_T.h
     Stats.h
     TAO_DDS_Listeners.h
     TAO_DDS_Test_T.h
@@ -33,6 +36,9 @@ project (Test_Framework) : dcps, portableserver, ndds {
     NDDS_Test_T.cpp
     NDDS_Test_Pub_T.cpp
     NDDS_Test_Sub_T.cpp
+    Splice_Test_T.cpp
+    Splice_Test_Pub_T.cpp
+    Splice_Test_Sub_T.cpp
     TAO_DDS_Test_T.cpp
     TAO_DDS_Test_Pub_T.cpp
     TAO_DDS_Test_Sub_T.cpp
