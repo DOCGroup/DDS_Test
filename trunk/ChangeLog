@@ -1,4 +1,29 @@
-Wed Jan 31 21:20:14 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
+Wed Jan 31 21:50:42 UTC 2007  James Edmondson  <jedmondson@gmail.com>
+
+        * performance/throughput/OpenSplice/C/waitset/SpliceCompile
+        * performance/throughput/OpenSplice/C/listener/SpliceCompile
+        * performance/throughput/OpenSplice/C/listener/qos_wrapper/SpliceCompile
+        * performance/throughput/OpenSplice/C++/bld
+        * performance/throughput/NDDS/#a#
+        * performance/throughput/NDDS/sub_result
+        * performance/throughput/NDDS/stats_pub
+        * performance/throughput/NDDS/#publisher.cxx#
+        * performance/throughput/NDDS/stats_sub
+        * performance/throughput/NDDS/a
+        * performance/throughput/NDDS/pub_result
+        * performance/throughput/NDDS/1
+        * performance/throughput/NDDS/pub_results
+        * performance/throughput/NDDS/sub_result1
+        * performance/throughput/NDDS/sub_result2
+        * performance/throughput/NDDS/sub_results
+        * performance/throughput/NDDS/sub_result3
+        * performance/throughput/NDDS/sub_result4
+        * performance/throughput/NDDS/#START_SUB#
+        
+          All of these files were removed from the repository as they were
+          either duplicates, binaries, or automatically generated files.
+
+Wed Jan 31 21:20:14 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 
         * settings/*
         
