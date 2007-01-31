@@ -1,0 +1,179 @@
+#current test code's supported Qos
+#comment out any qos settings to use defaults.
+
+#Topic's Qos
+#---------------------------------------------------------------------------
+   # Durability:
+   # This policy expresses if the data should 'outlive' their writing
+   # time
+      # Durability's kind 
+      # Possible values: volatile
+      #                  transient_local
+      #                  transient
+      #                  persistent
+#      topic.durability.kind=volatile
+
+      # Durability's service_cleanup_delay:
+      # Possible values: sec, nanosec
+#      topic.durability.service_cleanup_delay=1,10
+  
+   # Deadline:
+      # A deadline duration for topic 
+      # Possible values: sec, nanosec
+#      topic.deadline.period=1,10
+   
+   # Latency Budget:
+      # A duration that specifies the max acceptable delay from the
+      # time the data is written until the data is inserted in the
+      # receiver's application-cache and the receiving application
+      # is notified of the fact.
+      # Possible values: sec, nanosec
+#      topic.latency_budget.duration=1,10
+
+   # Liveliness:
+   # Determines the mechanism and parameters used by application to
+   # detertime whether an Entity is "active" (alive).
+      # Liveliness' kind:
+      # Possible values: automatic
+      #                  manual_by_participant
+      #                  manual_by_topic 
+#      topic.liveliness.kind=automatic
+
+      # Liveliness' lease duration:
+      # Possible values: sec, nanosec (0, 0 - default)
+#      topic.liveliness.lease_duration=1,10
+
+   # Reliability
+#      topic.reliability.kind=volatile
+  
+#      topic.reliability.max_blocking_time=1,10
+
+
+   # History
+#      topic.history.kind=keep_last
+   
+#      topic.history.depth=1
+
+   # Resource Limits
+#      topic.resource_limits.max_samples=100000
+     
+#      topic.resource_limits.max_instances=100000
+ 
+#      topic.resource_limits.max_samples_per_instance=100000
+
+   # Lifespan
+#      topic.lifespan.duration=10,10
+     
+   # Ownership
+      #Possible values: shared
+      #                 exclusive
+#      topic.ownership.kind=shared
+#---------------------------------------------------------------------------
+
+
+
+
+#Publisher's Qos
+#---------------------------------------------------------------------------
+   # Presentation
+      # Possible values: instance
+      #                  topic
+      #                  group
+#      publisher.presentation.access_scope=topic
+
+#      publisher.presentation.coherent_access=true
+
+#      publisher.presentation.ordered_access=true
+#---------------------------------------------------------------------------
+
+
+
+#Subscriber's Qos
+#---------------------------------------------------------------------------
+   # Presentation
+      # Possible values: instance
+      #                  topic
+      #                  group
+#      subscriber.presentation.access_scope=topic
+
+#      subscriber.presentation.coherent_access=true
+
+#      subscriber.presentation.ordered_access=true
+#---------------------------------------------------------------------------
+
+
+
+
+#DataWriter's Qos
+#---------------------------------------------------------------------------
+   # Durability
+      datawriter.durability.kind=persistent
+    
+   # Deadline
+      datawriter.deadline.period=10,0x12
+
+   # Latency Budget
+      datawriter.latency_budget.duration=8,0x12
+   
+   # Liveliness
+      datawriter.liveliness.kind=manual_by_participant
+      datawriter.liveliness.lease_duration=20,0x23
+   
+   # Reliability
+      datawriter.reliability.kind=reliable
+      datawriter.reliability.max_blocking_time=1,0x15
+
+#datawriter.destination_order.kind=by_source_timestamp
+
+   # History  
+      datawriter.history.kind=keep_all
+      datawriter.history.depth=5
+
+   # Resource Limits
+      datawriter.resource_limits.max_samples=12
+      datawriter.resource_limits.max_instances=13
+      datawriter.resource_limits.max_samples_per_instance=14
+
+#datawriter.user_data.value.length=1
+#datawriter.reader_data_lifecyle.autopurge_nowriter_samples_delay=1,0x10
+#datawriter.time_based_filter.minimum_separation=1,0x15
+
+#---------------------------------------------------------------------------
+
+
+
+
+#DataReader's Qos
+#---------------------------------------------------------------------------
+   # Durability
+#      datareader.durability.kind=transient
+      
+   # Deadline
+#      datareader.deadline.period=10,0x12
+
+   # Latency Budget
+#      datareader.latency_budget.duration=7,0x12
+      
+   # Liveliness
+#      datareader.liveliness.kind=manual_by_participant
+#      datareader.liveliness.lease_duration=20,0x23
+      
+   # Reliability
+#      datareader.reliability.kind=reliable
+#      datareader.reliability.max_blocking_time=1,0x15
+#datareader.destination_order.kind=by_source_timestamp
+
+   # History
+#      datareader.history.kind=keep_all
+#      datareader.history.depth=5
+      
+   # Resource Limits
+#      datareader.resource_limits.max_samples=12
+#      datareader.resource_limits.max_instances=13
+#      datareader.resource_limits.max_samples_per_instance=14
+      
+#datareader.user_data.value.length=1
+#datareader.time_based_filter.minimum_separation=1,8
+#datareader.reader_data_lifecyle.autopurge_nowriter_samples_delay=1,0x10
+
+#--------------------------------------------------------------------------

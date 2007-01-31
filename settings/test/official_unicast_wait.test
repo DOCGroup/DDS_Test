@@ -1,0 +1,35 @@
+# default benchmark file
+
+# what is expected here:
+# impl - specifies implementation
+# type - type of benchmark: throughput is currently supported
+# minSize - minimum packet size
+# maxSize - maximum packet size
+
+#implementation
+#impl=TAO-DDS
+#impl=NDDS
+
+type=throughput
+
+transport=unicast|broadcast|multicast
+#transport=multicast|broadcast|unicast
+protocol=udp|tcp
+#notify=listener|wait
+notify=wait|listener
+
+
+minSize=4
+maxSize=16384
+primer=100
+statsMessages=10000
+
+testListString=%s %d Sub. OFFICIAL - KeepLast, BestEffort, Uni-wait.
+testListParams=impl,subscribers
+
+#QoS settings file
+qos=/export/home/tczar/DDS/settings/qos/defaults.txt
+
+#Network settings file
+net=/export/home/tczar/DDS/settings/net/blade30-45.settings
+

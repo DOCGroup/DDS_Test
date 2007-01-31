@@ -1,3 +1,11 @@
+Wed Jan 31 21:20:14 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
+
+        * settings/*
+        
+          Added the DBE settings files currently on the blade. These provide
+          default network, qos, and test settings for easy setup and
+          configuration of the DBE.
+
 Wed Jan 31 21:11:01 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 
         * performance/latency/*
