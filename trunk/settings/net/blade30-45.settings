@@ -1,0 +1,31 @@
+# num nodes
+nodes=14
+
+# num repositories
+repos=1
+publishers=1
+subscribers=12
+
+# nodeList == true   use the nodes listed in this file
+# nodeList == false  let the system generate its own node list
+nodeList=true
+
+# nodes to use
+node6=blade36.isislab.vanderbilt.edu
+node7=blade37.isislab.vanderbilt.edu
+node8=blade38.isislab.vanderbilt.edu
+node9=blade39.isislab.vanderbilt.edu
+node10=blade40.isislab.vanderbilt.edu
+node11=blade41.isislab.vanderbilt.edu
+node12=blade42.isislab.vanderbilt.edu
+node13=blade43.isislab.vanderbilt.edu
+node14=blade44.isislab.vanderbilt.edu
+node15=blade45.isislab.vanderbilt.edu
+#node10=blade29.isislab.vanderbilt.edu
+
+node0=blade45.isislab.vanderbilt.edu
+node1=blade31.isislab.vanderbilt.edu
+node2=blade32.isislab.vanderbilt.edu
+node3=blade33.isislab.vanderbilt.edu
+node4=blade34.isislab.vanderbilt.edu
+node5=blade35.isislab.vanderbilt.edu

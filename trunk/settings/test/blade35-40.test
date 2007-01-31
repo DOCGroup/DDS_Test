@@ -1,0 +1,35 @@
+# default benchmark file
+
+# what is expected here:
+# impl - specifies implementation
+# type - type of benchmark: throughput is currently supported
+# minSize - minimum packet size
+# maxSize - maximum packet size
+
+#implementation
+#impl=TAO-DDS
+impl=Splice
+
+type=throughput
+
+#transport=unicast|broadcast|multicast
+transport=multicast|broadcast|unicast
+protocol=udp|tcp
+notify=listener|wait
+#notify=wait|listener
+
+
+minSize=4
+maxSize=16384
+primer=1000
+statsMessages=100000
+
+testListString=%s %d Pub, %d Sub, BestEffort, Multicast, S-KeepAll, P-KeepLast
+testListParams=impl,publishers,subscribers
+
+#QoS settings file
+qos=/export/home/tczar/DDS/settings/qos/blade35-40.settings
+
+#Network settings file
+net=/export/home/tczar/DDS/settings/net/blade35-40.settings
+

@@ -1,0 +1,23 @@
+# Data Reader QoS
+
+datareader.reliability.kind=best_effort
+#datareader.reliability.kind=reliable
+#datareader.durability.kind=transient
+#datareader.history.kind=keep_last
+#datareader.history.kind=keep_all
+#datareader.history.depth=1000
+#datareader.resource_limits.max_samples=1000
+#datareader.resource_limits.max_instances=1
+#datareader.resource_limits.max_samples_per_instance=1000
+
+# Data Writer QoS
+
+datawriter.reliability.kind=best_effort
+#datawriter.reliability.kind=reliable
+#datawriter.durability.kind=transient
+#datawriter.history.kind=keep_last
+#datawriter.history.kind=keep_all
+#datawriter.history.depth=1000
+#datawriter.resource_limits.max_samples=1
+#datawriter.resource_limits.max_instances=1
+#datawriter.resource_limits.max_samples_per_instance=1
