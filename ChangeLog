@@ -1,3 +1,15 @@
+Wed Jan 31 20:31:58 UTC 2007  James Edmondson  <jedmondson@gmail.com>
+
+        * scripts/ospl_stop
+        * scripts/ospl-info.log
+        * scripts/ospl_start
+        * scripts/ospl_runtime_stop.sh
+        * scripts/ospl_runtime_init.sh
+        
+          Added scripts for starting and stopping the splice daemon
+          as root with real-time scheduling.
+        
+
 Wed Jan 31 20:12:06 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 
         * README
