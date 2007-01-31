@@ -36,5 +36,5 @@ svn update --username #user
 
 To commit files to the repository:
 
-svn commit --username #user
+svn commit --username #user -m "ChangeLogTag:`head -n1 ChangeLog`"
 
