@@ -1,3 +1,10 @@
+Wed Jan 31 20:12:06 UTC 2007  James Edmondson  <jedmondson@gmail.com>
+
+        * README
+        
+          Added description of SVN commands for this repository.      
+        
+
 Tue Jan 30 23:12:06 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Test_Framework/Splice_Test_Pub_T.h:

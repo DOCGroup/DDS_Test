@@ -1,7 +1,7 @@
                     DDS Benchmarking Environment
 
 
-last updated 12/15/06
+last updated 1/31/07
 
 
                Generating builds with MPC
@@ -19,3 +19,22 @@ or
 -type vc8
 
 in the above command line.
+
+
+              SVN COMMANDS FOR THIS PROJECT:
+
+Legend:
+  #user = your dre.vanderbilt.edu username
+
+To checkout a fresh copy:
+
+svn co https://svn.dre.vanderbilt.edu/DOC/DDS_Test/trunk/ --username #user .
+
+To update the files to the latest version from the repository:
+
+svn update --username #user
+
+To commit files to the repository:
+
+svn commit --username #user
+
