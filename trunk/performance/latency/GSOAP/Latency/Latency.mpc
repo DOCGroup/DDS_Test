@@ -1,0 +1,48 @@
+project (*Client) : aceexe, gsoapdefaults {
+  exename = client
+  libs += Stats
+  includes += $(STATS_ROOT)
+  soapflags += -L -w
+
+  Source_Files {
+    Client.cpp
+    soapC.cpp
+    soapClient.cpp
+    stdsoap2.cpp
+  }
+  
+  Header_Files {
+    soapH.h
+    soaplatencyProxy.h
+    soapStub.h
+    stdsoap2.h
+  }
+  
+  SOAP_Files {
+    Test.h >> soapC.cpp soapClient.cpp soapServer.cpp soapH.h soapStub.h \
+              soaplatencyObject.h soaplatencyProxy.h latency.nsmap
+  }
+}
+
+project (*Server) : aceexe {
+  exename = server
+  after += *Client
+
+  Source_Files {
+    Server.cpp
+    soapListener.cpp
+    soapC.cpp
+    soapServer.cpp
+    stdsoap2.cpp
+    Test.cpp
+  }
+  
+  Header_Files {
+    latency.nsmap
+    soapH.h
+    soapListener.h
+    soapStub.h
+    stdsoap2.h
+    Test.h
+  }
+}

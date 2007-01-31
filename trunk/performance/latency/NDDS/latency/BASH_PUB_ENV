@@ -1,0 +1,5 @@
+#!/bin/bash
+
+unset NDDS_DISCOVERY_PEERS
+
+export  NDDS_DISCOVERY_PEERS=4@udpv4://blade31.isislab.vanderbilt.edu,4@udpv4://blade32.isislab.vanderbilt.edu,4@udpv4://blade33.isislab.vanderbilt.edu,4@udpv4://blade34.isislab.vanderbilt.edu,5@udpv4://blade35.isislab.vanderbilt.edu,6@udpv4://blade36.isislab.vanderbilt.edu

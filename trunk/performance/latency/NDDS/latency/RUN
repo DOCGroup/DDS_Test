@@ -1,0 +1,33 @@
+#!/bin/bash
+
+RESULT_FILE=./results_ndds
+
+if [[ -e "$RESULT_FILE" ]]
+then 
+  echo "Remove the current results..."
+  rm $RESULT_FILE  
+fi
+
+for size in $@; do
+  
+  echo "Message Size: $size"
+  echo
+
+  echo "Launching subscriber..."
+  objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_subscriber &
+
+#  t=`pidof NDDSLatencyPacket_subscriber`
+  sleep 3
+
+  echo "Launching publisher..."
+  objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_publisher -s $size
+
+  cat ./results >> $RESULT_FILE
+
+  sleep 2
+
+
+  echo
+  echo
+done
+

@@ -1,0 +1,17 @@
+source ./env.com
+
+if [[ ! -n "$1" ]]
+then 
+  echo "Usage:`basename $0` <size of forwarded messages>"
+  echo "Example: ./RUN 4"
+  exit
+fi
+
+
+size=$1
+
+appclient -client SimpleSynchConsumer.jar jms/Topic topic $size &
+
+sleep 3
+
+appclient -client SimpleProducer.jar jms/Topic topic $size

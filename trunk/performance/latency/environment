@@ -1,0 +1,30 @@
+Linux blade14 2.6.14-1.1637_FC4smp #1 SMP Wed Nov 9 18:34:11 EST 2005 i686 i686 i386 GNU/Linux
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 15
+model		: 2
+model name	: Intel(R) Xeon(TM) CPU 2.80GHz
+stepping	: 9
+cpu MHz		: 2799.861
+cache size	: 512 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 1
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 2
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe cid xtpr
+bogomips	: 5608.77
+
+Linux version 2.6.14-1.1637_FC4smp (bhcompile@hs20-bc1-4.build.redhat.com) (gcc version 4.0.1 20050727 (Red Hat 4.0.1-5)) #1 SMP Wed Nov 9 18:34:11 EST 2005
+g++ (GCC) 3.2.3 20030502 (Red Hat Linux 3.2.3-47.fc4)
+Copyright (C) 2002 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+

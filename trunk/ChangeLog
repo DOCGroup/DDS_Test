@@ -1,3 +1,15 @@
+Wed Jan 31 21:11:01 UTC 2007  James Edmondson  <jedmondson@gmail.com>
+
+        * performance/latency/*
+        
+          Added the latency code base to the repository. For information
+          about most of these tests, see Ming. One note should be added
+          concerning performance/latency/JMS. I left the jar files in the
+          commit list because I saw no information in the directory for
+          rebuilding the 2 jar files. Obviously, someone else is free to
+          delete them, but please leave instructions for their recreation
+          in that directory.
+
 Wed Jan 31 20:31:58 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 
         * scripts/ospl_stop

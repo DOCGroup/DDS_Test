@@ -1,0 +1,5 @@
+# MY Pub Sub PONG measurements (in us) 
+# Executed at:Sat Sep 24 11:29:32 2005
+#       Roundtrip time [us]
+Count     mean      min      max    std_dev
+ 200        1147.06     961      2286     200.233

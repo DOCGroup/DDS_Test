@@ -1,0 +1,25 @@
+#!/bin/sh
+
+#
+# $Id: make
+#
+# Author: Ming Xiong
+# Summary: Convert raw stat output to the grapha standard output, from which
+#          we generate various graphs
+#
+
+
+# Copy results to the current directory
+cp ./TAO_DDS/results_taodds .
+# Convert the results to standard format
+$HOME/Grapha/Convert ./results_taodds
+# Copy the standard results to designated directory so that graph can take over
+cp -f ./results_taodds.client.out.0 $HOME/Grapha/Bunch_Of_Results/_Result/TAO_DDS_Linux/Round_Trip/Client.out.0
+
+# generate the plot
+cd $HOME/Grapha
+
+./make
+
+
+exit 0
