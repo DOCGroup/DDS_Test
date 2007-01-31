@@ -1,0 +1,243 @@
+#!/bin/bash
+
+
+RESULT_FILE=./results_splicedds
+
+if [[ -e "$RESULT_FILE" ]]
+then 
+  echo "Remove the current results..."
+  rm $RESULT_FILE  
+fi
+
+
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+source ./env.com
+
+size=$1
+count=$2
+
+echo "size: 4"
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 2000 -s 4 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+sleep 3
+
+echo "size: 8"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 2000 -s 8 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+sleep 3
+
+echo "size: 16"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 2000 -s 16 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+
+sleep 3
+
+echo "size: 32"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 2000 -s 32 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+
+sleep 3
+
+echo "size: 64"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 2000 -s 64 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+sleep 3
+
+echo "size: 128"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 2000 -s 128 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+sleep 3
+
+echo "size: 256"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 2000 -s 256 -d 1
+
+sdds stop
+
+
+cat ./results >> $RESULT_FILE
+
+sleep 3
+
+echo "size: 512"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 2000 -s 512 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+sleep 3
+
+echo "size: 1024"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 2000 -s 1024 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+
+sleep 3
+
+echo "size: 2048"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 2000 -s 2048 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+sleep 3
+
+echo "size: 4096"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 1500 -s 4096 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+sleep 3
+
+echo "size: 8192"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 800 -s 8192 -d 1
+
+sdds stop
+
+cat ./results >> $RESULT_FILE
+
+
+sleep 3
+
+echo "size: 16384"
+
+sdds start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -c 500 -s 16384 -d 1
+
+sdds stop
+
+
+cat ./results >> $RESULT_FILE
+
+
+
+
+
+
+
+
+

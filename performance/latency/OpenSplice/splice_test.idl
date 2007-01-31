@@ -1,0 +1,41 @@
+module DDSPerfTest {
+
+  typedef sequence<octet> OctetSequence;
+
+  struct PubMessage {
+    long seqnum;
+    OctetSequence data;
+  };
+
+#pragma keylist PubMessage seqnum
+
+
+  struct Nested
+  {
+    long n_seqnum;
+    string n_data;
+  };
+
+  typedef sequence<Nested> NestedSequence;
+
+  struct Outer
+  {
+    long o_seqnum;
+    NestedSequence o_data;
+  };
+
+  struct PubMessage_Nest
+  {
+    long seqnum;
+    sequence<Outer> data;
+  };
+
+#pragma keylist PubMessage_Nest seqnum
+
+  struct AckMessage {
+    long seqnum;
+  };
+
+#pragma keylist AckMessage seqnum
+
+};

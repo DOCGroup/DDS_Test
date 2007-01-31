@@ -1,0 +1,43 @@
+project (*Client) : aceexe {
+  exename = client
+  libs += Stats
+  includes += $(STATS_ROOT)
+
+  Source_Files {
+    Client.cpp
+    soapC.cpp
+    soapClient.cpp
+    stdsoap2.cpp
+  }
+  
+  Header_Files {
+    soapconversionProxy.h
+    soapH.h
+    soapStub.h
+    stdsoap2.h
+  }
+}
+
+project (*Server) : aceexe {
+  exename = server
+  libs += Stats
+  includes += $(STATS_ROOT)
+
+  Source_Files {
+    Server.cpp
+    soapListener.cpp
+    soapC.cpp
+    soapServer.cpp
+    stdsoap2.cpp
+    Test.cpp
+  }
+  
+  Header_Files {
+    conversion.nsmap
+    soapH.h
+    soapListener.h
+    soapStub.h
+    stdsoap2.h
+    Test.h
+  }
+}

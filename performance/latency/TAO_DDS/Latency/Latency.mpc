@@ -1,0 +1,132 @@
+project(*Pub): taoexe, portableserver, dcps {
+  requires += exceptions
+  exename = tao_pub
+  idlflags += -Sc -St
+  libs += Stats
+  includes += $(STATS_ROOT)
+
+  TypeSupport_Files {
+    DDSPerfTest.idl >> PubMessageTypeSupport.idl \
+                       PubMessageTypeSupportImpl.h \
+                       PubMessageTypeSupportImpl.cpp \
+                       AckMessageTypeSupport.idl \
+                       AckMessageTypeSupportImpl.h \
+                       AckMessageTypeSupportImpl.cpp 
+
+  }
+  
+  IDL_Files {
+    DDSPerfTest.idl
+    PubMessageTypeSupport.idl
+    PubComplexMessageTypeSupport.idl
+    AckMessageTypeSupport.idl
+  }
+
+  Source_Files {
+    AckMessageTypeSupportC.cpp
+    AckMessageTypeSupportImpl.cpp
+    AckMessageTypeSupportS.cpp
+    DDSPerfTestC.cpp
+    DDSPerfTestS.cpp
+    PubComplexMessageTypeSupportC.cpp
+    PubComplexMessageTypeSupportImpl.cpp
+    PubComplexMessageTypeSupportS.cpp
+    PubListener.cpp
+    PubMessageTypeSupportC.cpp
+    PubMessageTypeSupportImpl.cpp
+    PubMessageTypeSupportS.cpp
+    sample_pub.cpp
+  }
+  
+  Header_Files {
+    AckMessageTypeSupportC.h
+    AckMessageTypeSupportImpl.h
+    AckMessageTypeSupportS.h
+    DDSPerfTestC.h
+    DDSPerfTestS.h
+    PubComplexMessageTypeSupportC.h
+    PubComplexMessageTypeSupportImpl.h
+    PubComplexMessageTypeSupportS.h
+    PubListener.h
+    PubMessageTypeSupportC.h
+    PubMessageTypeSupportImpl.h
+    PubMessageTypeSupportS.h
+  }
+  
+  Inline_Files {
+    AckMessageTypeSupportC.inl
+    AckMessageTypeSupportS.inl
+    DDSPerfTestC.inl
+    DDSPerfTestS.inl
+    PubComplexMessageTypeSupportC.inl
+    PubComplexMessageTypeSupportS.inl
+    PubMessageTypeSupportC.inl
+    PubMessageTypeSupportS.inl
+  }
+}
+
+project(*Sub): taoexe, portableserver, dcps {
+  requires += exceptions
+  exename = tao_sub
+  idlflags += -Sc -St
+
+  TypeSupport_Files {
+    DDSPerfTest.idl >> PubMessageTypeSupport.idl \
+                       PubMessageTypeSupportImpl.h \
+                       PubMessageTypeSupportImpl.cpp \
+                       AckMessageTypeSupport.idl \
+                       AckMessageTypeSupportImpl.h \
+                       AckMessageTypeSupportImpl.cpp 
+
+  }
+
+  
+  IDL_Files {
+    DDSPerfTest.idl
+    PubComplexMessageTypeSupport.idl
+    PubMessageTypeSupport.idl
+    AckMessageTypeSupport.idl
+  }
+
+  Source_Files {
+    AckMessageTypeSupportC.cpp
+    AckMessageTypeSupportImpl.cpp
+    AckMessageTypeSupportS.cpp
+    DDSPerfTestC.cpp
+    DDSPerfTestS.cpp
+    PubComplexMessageTypeSupportC.cpp
+    PubComplexMessageTypeSupportImpl.cpp
+    PubComplexMessageTypeSupportS.cpp
+    PubMessageTypeSupportC.cpp
+    PubMessageTypeSupportImpl.cpp
+    PubMessageTypeSupportS.cpp
+    sample_sub.cpp
+    SubListener.cpp
+  }
+  
+  Header_Files {
+    AckMessageTypeSupportC.h
+    AckMessageTypeSupportImpl.h
+    AckMessageTypeSupportS.h
+    DDSPerfTestC.h
+    DDSPerfTestS.h
+    PubComplexMessageTypeSupportC.h
+    PubComplexMessageTypeSupportImpl.h
+    PubComplexMessageTypeSupportS.h
+    PubMessageTypeSupportC.h
+    PubMessageTypeSupportImpl.h
+    PubMessageTypeSupportS.h
+    SubListener.h
+  }
+  
+  Inline_Files {
+    AckMessageTypeSupportC.inl
+    AckMessageTypeSupportS.inl
+    DDSPerfTestC.inl
+    DDSPerfTestS.inl
+    PubComplexMessageTypeSupportC.inl
+    PubComplexMessageTypeSupportS.inl
+    PubMessageTypeSupportC.inl
+    PubMessageTypeSupportS.inl
+  }
+}

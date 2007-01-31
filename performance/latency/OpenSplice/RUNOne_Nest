@@ -1,0 +1,36 @@
+#!/bin/bash
+
+
+RESULT_FILE=./results_splicedds_nest
+
+if [[ -e "$RESULT_FILE" ]]
+then 
+  echo "Remove the current results..."
+  rm $RESULT_FILE  
+fi
+
+
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+source ./env.com
+
+size=$1
+count=$2
+
+echo "size: $size"
+ospl start
+
+exec/splice_sub &
+
+sleep 3
+
+exec/splice_pub -t c -c $count -s $size -d 1
+
+ospl stop
+
+cat ./results >> $RESULT_FILE

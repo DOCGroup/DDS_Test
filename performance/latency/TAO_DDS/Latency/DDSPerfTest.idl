@@ -1,0 +1,49 @@
+#ifndef DDSPERFTEST_IDL
+#define DDSPERFTEST_IDL
+
+module DDSPerfTest
+{
+  typedef sequence<octet> OctetSeq;
+  
+  struct Nested
+  {
+    string info;
+    long index;
+  };
+  
+  typedef sequence<Nested> NestedSeq;
+  
+  struct Outer
+  {
+    long length;
+    NestedSeq nested_member;
+  };
+  
+  typedef sequence<Outer> OuterSeq;
+
+#pragma DCPS_DATA_TYPE "DDSPerfTest::PubMessage"
+
+  struct PubMessage
+  {
+    unsigned long seqnum;
+    OctetSeq data;
+  };
+
+#pragma DCPS_DATA_TYPE "DDSPerfTest::PubComplexMessage"
+
+  struct PubComplexMessage
+  {
+    unsigned long seqnum;
+    OuterSeq data;
+  };
+
+#pragma DCPS_DATA_TYPE "DDSPerfTest::AckMessage"
+       
+  struct AckMessage
+  {
+    long seqnum;
+  };
+};
+
+
+#endif /* DDSPERFTEST_IDL */

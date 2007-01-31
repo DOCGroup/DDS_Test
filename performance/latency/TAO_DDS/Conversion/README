@@ -1,0 +1,68 @@
+README
+-----------------------------
+   This file explains the compilation and running of testcode.
+   Be sure to read it before running the test.
+
+What is in the directory?
+-----------------------------
+  - Source codes for test
+  - mpb files used for mpc
+  - program running script ./RUN ./RUNRepo
+  - README
+
+
+What does the program do?
+----------------------------
+  The test program basically carries out synchronous hand-shake
+  operation, with a publisher sending out messages with the size
+  you specified along with a sequence number and a subscriber
+  sending back the same sequence number as an acknowledgement.
+  Note that you should keep in mind that the publisher process
+  in this case is also a subscriber to the subscriber node
+  (subscribe to AckMessage topic). As a result you will see in
+  the code, the initialization of subscriber and publisher is 
+  very complex. Check out the code for details. 
+
+
+How to compile the program?
+----------------------------
+  Assuming that you have TAO DDS 0.6 installed (which is what i
+  got from download.ociweb.com/DDS/) and the environment variables
+  properly set, a mwc.pl + a make will do the job in this case.
+  I copied the *.mpb in $DDS_ROOT in case the mwc.pl would complain.
+  There will be warnings in the compilation, but that's for generated
+  TypeSupport files. Please let me know if the warnings are related
+  to my code.
+
+
+How to run the program
+---------------------------
+  The way I run the program is
+  1) open an new session/shell
+  2) ./RUNRepo
+  3) Back to the current session
+  4) sudo ./RUN
+
+
+  To run the program properly, you NEED to be the root or in the
+  \sudoer list. The way i run the program is to use sudo.But what
+  happens to me is that when i run the program as a ROOT, it does
+  not recognize some environment variables that i set as ME. So
+  I put the export stuff in the ./RUN file so that everytime the
+  program is run, the environment is set up in advance. If you stay
+  with the way i run the program, you may want to change them to
+  suit your specific environments. 
+
+
+About the test parameter
+---------------------------
+
+  In the ./RUN file, you may specify the size of the messages (in bytes)
+  sent by publisher by setting the -s option for tao_pub. Two parameters
+  you may want to look into is 4 and 16384. The result (average round-trip time)
+  I got for these two parameters are 40838 us and 758 us respectively.
+  I got similar result as 4 (byte) when i set the parameter to 8, 16,
+  32, 64, 128, 256, 512, 1024, 4096, 8912. 
+
+
+Please send any comment to ming.xiong@vanderbilt.edu. Thanks

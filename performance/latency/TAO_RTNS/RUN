@@ -1,0 +1,37 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+CVS_RSH=ssh
+CVSROOT=cvs.doc.wustl.edu:/project/cvs-repository
+#CVSROOT=/project/tangotmp/mxiong/cvshome
+ACE_ROOT=/project/tangotmp/mxiong/ACE_wrappers
+#ACE_ROOT=/project/tangotmp/mxiong/SPLICE/SPLICE_TAO
+MY_ROOT=/project/tangotmp/mxiong
+TAO_ROOT=$ACE_ROOT/TAO
+#TAO_ROOT=/project/tangotmp/mxiong/SPLICE/SPLICE_TAO
+CIAO_ROOT=$TAO_ROOT/CIAO
+ZIPARCHIVEROOT=~/ziplib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ACE_ROOT/ace:$ACE_ROOT/lib:$ZIPARCHIVEROOT/lib:$ZIPARCHIVEROOT/include
+JAVA_HOME=/project/tangotmp/mxiong/SUNWappserver/jdk
+J2EE_HOME=/project/tangotmp/mxiong/SUNWappserver
+PATH=$PATH:$HOME/bin:$ACE_ROOT/bin:$TAO_ROOT/bin
+PATH=$PATH:$TAO_ROOT/TAO_IDL:/project/tangotmp/mxiong/SUNWappserver/jdk/bin:/project/tangotmp/mxiong/SUNWappserver/bin
+
+export PATH
+export CVS_RSH
+export CVSROOT
+export ACE_ROOT
+export TAO_ROOT
+export CIAO_ROOT
+export ZIPARCHIVEROOT
+export LD_LIBRARY_PATH
+export MY_ROOT
+unset USERNAME
+
+./run_test.pl

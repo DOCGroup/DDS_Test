@@ -1,0 +1,23 @@
+#!/bin/bash
+
+RESULT_FILE=./results_ndds
+
+if [[ -e "$RESULT_FILE" ]]
+then 
+  echo "Remove the current results..."
+  rm $RESULT_FILE  
+fi
+
+sleep 3
+
+echo "Launching publisher..."
+objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_publisher -s $1 -t c
+
+cat ./results >> $RESULT_FILE
+
+sleep 2
+
+
+echo
+echo
+

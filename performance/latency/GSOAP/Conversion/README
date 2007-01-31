@@ -1,0 +1,40 @@
+The files that comprise this application are breifly described below.
+
+  Latency.mpc       - generates makefile or Visual Studio project for this application
+  gsoapdefaults.mpb - base MPC project used by all GSOAP MPC files
+  soapListener.h    - header file describing methods in soapListener.cpp
+  soapListener.cpp  - listens for SOAP requests and processes them
+  Server.cpp        - server implementation that uses listen() method in soapListener
+  Test.h            - header file for server-side implementation
+  Test.cpp          - server-side implementation
+  Client.cpp        - client-side implementation
+  stdsoap2.h        - header file describing methods in stdsoap2.cpp
+  stdsoap2.cpp      - implements soap_* methods uses by both client and server code
+
+The environment variable ACE_ROOT must be set.
+Suggested value is /usr/local/ACE_wrappers.
+LD_LIBRARY_PATH must include $ACE_ROOT/lib.
+GSoap must be installed.
+The environment variable SOAP_ROOT must be set to the GSoap installation directory.
+
+To create the makefile, type 'mwc.pl' in this directory.
+Executing the makefile creates the client and server executables.
+
+To run the server, enter "server" in a shell.
+To run the client, enter "client" in another shell.
+
+This test sends an array of bytes to the server and receives an int ack.
+
+The command line options for the client are:
+  -t type of data used in the test
+  -s sample size of the byte array 
+  -i number of iterations included in the stats
+  -p number of primer iterations (to avoid 'cold start' anomalies)
+  -o name of file for stats output
+
+To change the host/port on which the client communicates,
+modify Test.h and change the comment that begins with
+//gsoap ns service port:
+
+There is also a perl script run_test.pl that will run client and server. It accepts
+the same command line options as the client.

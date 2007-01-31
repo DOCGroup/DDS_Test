@@ -1,0 +1,8 @@
+
+The following are scripts and should not be removed. --James Edmondson
+
+start_pub - use this script to start a publisher with a real-time class
+start_sub - use this script to start a subscriber with a real-time class
+splice_pub_init.sh - ran by start_pub
+splice_sub_init.sh - ran by start_sub
+

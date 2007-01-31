@@ -1,0 +1,4 @@
+BLOKSIZE=30
+BLOKCOUNT=10
+
+appclient -client SimpleSynchConsumer.jar jms/Topic topic

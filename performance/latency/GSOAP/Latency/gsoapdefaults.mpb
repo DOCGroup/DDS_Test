@@ -1,0 +1,18 @@
+// -*- MPC -*-
+// $Id: gsoapdefaults.mpb,v 1.11 2005/10/07 21:00:18 jtc Exp $
+
+project {
+  specific(vc71, vc8) {
+    compile_flags += /wd4800
+    lit_libs += wsock32
+  }
+
+  Define_Custom(SOAP) {
+    automatic            = 0
+    dependent            = $(SOAP_ROOT)/soapcpp2
+    command              = $(SOAP_ROOT)/soapcpp2
+    libpath              = $(SOAP_ROOT)
+    inputext             = .h
+    keyword soapflags    = commandflags
+  }
+}

@@ -1,0 +1,7 @@
+
+objs/i86Linux2.6gcc3.4.3/HelloWorld_subscriber &
+
+sleep 2
+
+
+objs/i86Linux2.6gcc3.4.3/HelloWorld_publisher

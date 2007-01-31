@@ -1,0 +1,8 @@
+module pubdata
+{
+  struct pubmessage
+  {
+    long seqnum;
+    sequence<octet> data;
+  };
+};
