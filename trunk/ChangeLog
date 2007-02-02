@@ -1,3 +1,12 @@
+Fri Feb  2 22:29:08 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/NDDS/TP_Packet.idl:
+        
+          Removed all declarations of bounded sequences, left only
+          a struct containing an unbounded octet sequence, along
+          with some comments about possible future changes and
+          problems.
+
 Wed Jan 31 21:50:42 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 
         * performance/throughput/OpenSplice/C/waitset/SpliceCompile
