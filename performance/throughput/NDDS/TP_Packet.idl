@@ -6,119 +6,24 @@
  This code contains trade secrets of Real-Time Innovations, Inc.
 */
 
-/* If you want to test the shared memory transport plugin's capability to
-   send messages larger than UDP packet size limit of 64K, increase this
-   value.  Please note that doing so will turn off the built-in UDPv4 plugin.
-*/
+// (JP) If we change the name of this IDL file, we can remove
+// the copyright block above. The hope is to use the same IDL
+// file for all implementations, but that may not yet be
+// possible (see below).
 
-// Set the max message length for all the packets
+// (JP) It's preferred practice in IDL to typedef a sequence or
+// an array outside the scope where it's to be used as a
+// member. Using it directly isn't forbidden (yet) but
+// deprecated. NDDS handles this ok, but I think one of the
+// others may have a problem with it. We'll soon discover
+// if it's true, then we can report it to the vendor, and
+// change the IDL if we have to. In any case, we'll have to
+// declare an empty keylist for OpenSplice.
+typedef sequence<octet> OctetSeq;
 
-const short MAX_MSG_LENGTH = 16384;//131072;
-
-
-
-
-// NDDS_EXAMPLE_CODES
-
-const short LATENCY_MSG_LENGTH = 16384;
-
-struct NDDSLatencyPacket {
-  long sequenceNumber;
-  sequence<octet, LATENCY_MSG_LENGTH> data;
-};
-
-
-// MY_OWN_TEST_CODES
-
-const short BYTES4_MSG_LENGTH=4;
-const short BYTES8_MSG_LENGTH=8;
-const short BYTES16_MSG_LENGTH=16;
-const short BYTES32_MSG_LENGTH=32;
-const short BYTES64_MSG_LENGTH=64;
-const short BYTES128_MSG_LENGTH=128;
-const short BYTES256_MSG_LENGTH=256;
-const short BYTES512_MSG_LENGTH=512;
-const short BYTES1024_MSG_LENGTH=1024;
-const short BYTES2048_MSG_LENGTH=2048;
-const short BYTES4096_MSG_LENGTH=4096;
-const short BYTES8192_MSG_LENGTH=8192;
-const short BYTES16384_MSG_LENGTH=16384;
-
-
-struct Bytes4
+struct BytesData
 {
   unsigned long timestamp;
-  sequence<octet, BYTES4_MSG_LENGTH> data;
+  OctetSeq data;
 };
   
-struct Bytes8
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES8_MSG_LENGTH> data;
-};
-  
-struct Bytes16
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES16_MSG_LENGTH > data;
-};
-  
-struct Bytes32
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES32_MSG_LENGTH> data;
-};
-  
-struct Bytes64
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES64_MSG_LENGTH> data;
-};
-  
-struct Bytes128
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES128_MSG_LENGTH> data;
-};
-  
-struct Bytes256
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES256_MSG_LENGTH> data;
-};
-  
-struct Bytes512
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES512_MSG_LENGTH> data;
-};
-  
-struct Bytes1024
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES1024_MSG_LENGTH> data;
-};
-  
-struct Bytes2048
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES2048_MSG_LENGTH> data;
-};
-  
-struct Bytes4096
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES4096_MSG_LENGTH> data;
-};
-  
-struct Bytes8192
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES8192_MSG_LENGTH> data;
-};
-  
-struct Bytes16384
-{
-  unsigned long timestamp;
-  sequence<octet, BYTES16384_MSG_LENGTH> data;
-};
