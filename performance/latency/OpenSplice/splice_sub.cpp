@@ -132,6 +132,7 @@ int main(int argc, char *argv[])
 
        if( argc > 2 )
        {
+          DPRINTF("splice_sub: setting size ... ");
           strcpy(sz_size,argv[2]);
           size = atoi(sz_size);
        }
@@ -149,7 +150,7 @@ int main(int argc, char *argv[])
                                      PARTICIPANT_QOS_DEFAULT, 
                                      NULL);
        if (dp == NULL) {
-         cout << argv[0] << "MY_PING: ERROR - Splice Daemon not running";
+         cout << argv[0] << "SUB: ERROR - Splice Daemon not running";
          exit (1);
        }
        DPRINTF("done\n")

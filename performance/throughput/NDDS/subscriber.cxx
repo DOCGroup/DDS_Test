@@ -106,12 +106,12 @@ dr_read (DDSDataReader *datareader)
   return ts;
 }
 
-class NDDSLatencyPacketListener : public DDSDataReaderListener
+class BytesDataListener : public DDSDataReaderListener
 {
   private:
-    NDDSLatencyPacket _instance;
+    BytesData _instance;
     DDS_InstanceHandle_t _instanceHandle;
-    NDDSLatencyPacketDataWriter* _writer;
+    BytesDataDataWriter* _writer;
     int _sequenceNumber;
     int packetsize_;
     int prime_num_;
@@ -121,7 +121,7 @@ class NDDSLatencyPacketListener : public DDSDataReaderListener
     long lost_num_;
 
   public:
-    NDDSLatencyPacketListener (int packetsize,
+    BytesDataListener (int packetsize,
                                int prime_num,
                                int stats_num)
 	    : _instanceHandle (DDS_HANDLE_NIL),
@@ -134,7 +134,7 @@ class NDDSLatencyPacketListener : public DDSDataReaderListener
       this->is_finished_ = false;
     }
 
-    virtual ~NDDSLatencyPacketListener (void)
+    virtual ~BytesDataListener (void)
     {} 
 
     virtual void on_requested_deadline_missed (
@@ -166,7 +166,7 @@ class NDDSLatencyPacketListener : public DDSDataReaderListener
 
     virtual void on_data_available (DDSDataReader* /*reader*/);
 
-    void set_writer (NDDSLatencyPacketDataWriter* writer)
+    void set_writer (BytesDataDataWriter* writer)
     { 
       _writer = writer;
     }
@@ -178,111 +178,28 @@ class NDDSLatencyPacketListener : public DDSDataReaderListener
     }
 };
 
-void NDDSLatencyPacketListener::on_sample_rejected (
+void BytesDataListener::on_sample_rejected (
   DDSDataReader* /*reader*/,
   const DDS_SampleRejectedStatus& /*status*/)
 {
   cout << "Yet another rejected sample" << endl;
 }
 
-void NDDSLatencyPacketListener::on_sample_lost (
+void BytesDataListener::on_sample_lost (
   DDSDataReader* /*reader*/,
   const DDS_SampleLostStatus& /*status*/) 
 {
   cout << "Yet another lost sample: " << this->lost_num_++ << endl;
 }
 
-void NDDSLatencyPacketListener::on_data_available (
+void BytesDataListener::on_data_available (
   DDSDataReader* datareader)
 {
   ACE_CDR::ULong ts = 0;
-  
-  switch (this->packetsize_)
-    {
-      case 4:
-        ts = 
-          dr_read< Bytes4,
-                   Bytes4Seq,
-                   Bytes4DataReader > (datareader);
-        break;
-      case 8:
-        ts = 
-          dr_read< Bytes8,
-                   Bytes8Seq,
-                   Bytes8DataReader > (datareader);
-        break;
-      case 16:
-        ts = 
-          dr_read< Bytes16,
-                   Bytes16Seq,
-                   Bytes16DataReader > (datareader);
-        break;
-      case 32:
-        ts = 
-          dr_read< Bytes32,
-                   Bytes32Seq,
-                   Bytes32DataReader > (datareader);
-        break;
-      case 64:
-        ts = 
-          dr_read< Bytes64,
-                   Bytes64Seq,
-                   Bytes64DataReader > (datareader);
-        break;
-      case 128:
-        ts = 
-          dr_read< Bytes128,
-                   Bytes128Seq,
-                   Bytes128DataReader > (datareader);
-        break;
-      case 256:
-        ts = 
-          dr_read< Bytes256,
-                   Bytes256Seq,
-                   Bytes256DataReader > (datareader);
-        break;
-      case 512:
-        ts = 
-          dr_read< Bytes512,
-                   Bytes512Seq,
-                   Bytes512DataReader > (datareader);
-        break;
-      case 1024:
-        ts = 
-          dr_read< Bytes1024,
-                   Bytes1024Seq,
-                   Bytes1024DataReader > (datareader);
-        break;
-      case 2048:
-        ts = 
-          dr_read< Bytes2048,
-                   Bytes2048Seq,
-                   Bytes2048DataReader > (datareader);
-        break;
-      case 4096:
-        ts = 
-          dr_read< Bytes4096,
-                   Bytes4096Seq,
-                   Bytes4096DataReader > (datareader);
-        break;
-      case 8192:
-        ts = 
-          dr_read< Bytes8192,
-                   Bytes8192Seq,
-                   Bytes8192DataReader > (datareader);
-        break;
-      case 16384:
-        ts = 
-          dr_read< Bytes16384,
-                   Bytes16384Seq,
-                   Bytes16384DataReader > (datareader);
-        break;
-      default:
-        ACE_ERROR ((LM_ERROR,
-                    "subscriber (%P|%t): bad data size: %d\n",
-                    this->packetsize_));
-        break;
-    };
+
+  dr_read <BytesData,
+    BytesDataSeq,
+    BytesDataDataReader> (datareader);
 
   this->stats_.sample_for_throughput (ts, false);
 
@@ -458,7 +375,7 @@ int main (int argc, char *argv[])
   DDS_DataReaderQos reader_qos;
 
   /* Listener declarations */
-  NDDSLatencyPacketListener reader_listener (thePacketSize,
+  BytesDataListener reader_listener (thePacketSize,
                                              prime_num,
                                              stats_num);
 
@@ -673,67 +590,8 @@ Register data types, and create topics: data_topic and echo_topic.
   cout << "Registering participant with data type \""
        << TEST_TOPIC_TYPE_NAME << "\"......";
 
-  switch (thePacketSize)
-    {
-      case 4:
-        Bytes4TypeSupport::register_type (participant,
-                                          TEST_TOPIC_TYPE_NAME);
-        break;
-      case 8:
-        Bytes8TypeSupport::register_type (participant,
-                                          TEST_TOPIC_TYPE_NAME);
-        break;
-      case 16:
-        Bytes16TypeSupport::register_type (participant,
-                                           TEST_TOPIC_TYPE_NAME);
-        break;
-      case 32:
-        Bytes32TypeSupport::register_type (participant,
-                                           TEST_TOPIC_TYPE_NAME);
-        break;
-      case 64:
-        Bytes64TypeSupport::register_type (participant,
-                                           TEST_TOPIC_TYPE_NAME);
-        break;
-      case 128:
-        Bytes128TypeSupport::register_type (participant,
-                                            TEST_TOPIC_TYPE_NAME);
-        break;
-      case 256:
-        Bytes256TypeSupport::register_type (participant,
-                                            TEST_TOPIC_TYPE_NAME);
-        break;
-      case 512:
-        Bytes512TypeSupport::register_type (participant,
-                                            TEST_TOPIC_TYPE_NAME);
-        break;
-      case 1024:
-        Bytes1024TypeSupport::register_type (participant,
-                                             TEST_TOPIC_TYPE_NAME);
-        break;
-      case 2048:
-        Bytes2048TypeSupport::register_type (participant,
-                                             TEST_TOPIC_TYPE_NAME);
-        break;
-      case 4096:
-        Bytes4096TypeSupport::register_type (participant,
-                                             TEST_TOPIC_TYPE_NAME);
-        break;
-      case 8192:
-        Bytes8192TypeSupport::register_type (participant,
-                                             TEST_TOPIC_TYPE_NAME);
-        break;
-      case 16384:
-        Bytes16384TypeSupport::register_type (participant,
-                                              TEST_TOPIC_TYPE_NAME);
-        break;
-      default:
-        ACE_ERROR_RETURN ((LM_ERROR,
-                           "subscriber (%P|%t): bad data size: %d\n",
-                           thePacketSize),
-                          -1);
-    }
-
+  BytesDataTypeSupport::register_type (participant,
+                                       TEST_TOPIC_TYPE_NAME);
   cout << "[Done]" << endl;
 					    
   /* initialize topic_qos with default values */
@@ -883,94 +741,11 @@ Stay in a the while loop unitl receiving a termination message.
                 {
                   if (condition == conditionList[i])
                     {
-                      switch (thePacketSize)
-                        {
-                          case 4:
-                            ts = 
-                              dr_read< Bytes4,
-                                      Bytes4Seq,
-                                      Bytes4DataReader > (reader);
-                            break;
-                          case 8:
-                            ts = 
-                              dr_read< Bytes8,
-                                      Bytes8Seq,
-                                      Bytes8DataReader > (reader);
-                            break;
-                          case 16:
-                            ts = 
-                              dr_read< Bytes16,
-                                      Bytes16Seq,
-                                      Bytes16DataReader > (reader);
-                            break;
-                          case 32:
-                            ts = 
-                              dr_read< Bytes32,
-                                      Bytes32Seq,
-                                      Bytes32DataReader > (reader);
-                            break;
-                          case 64:
-                            ts = 
-                              dr_read< Bytes64,
-                                      Bytes64Seq,
-                                      Bytes64DataReader > (reader);
-                            break;
-                          case 128:
-                            ts = 
-                              dr_read< Bytes128,
-                                      Bytes128Seq,
-                                      Bytes128DataReader > (reader);
-                            break;
-                          case 256:
-                            ts = 
-                              dr_read< Bytes256,
-                                      Bytes256Seq,
-                                      Bytes256DataReader > (reader);
-                            break;
-                          case 512:
-                            ts = 
-                              dr_read< Bytes512,
-                                      Bytes512Seq,
-                                      Bytes512DataReader > (reader);
-                            break;
-                          case 1024:
-                            ts = 
-                              dr_read< Bytes1024,
-                                      Bytes1024Seq,
-                                      Bytes1024DataReader > (reader);
-                            break;
-                          case 2048:
-                            ts = 
-                              dr_read< Bytes2048,
-                                      Bytes2048Seq,
-                                      Bytes2048DataReader > (reader);
-                            break;
-                          case 4096:
-                            ts = 
-                              dr_read< Bytes4096,
-                                      Bytes4096Seq,
-                                      Bytes4096DataReader > (reader);
-                            break;
-                          case 8192:
-                            ts = 
-                              dr_read< Bytes8192,
-                                      Bytes8192Seq,
-                                      Bytes8192DataReader > (reader);
-                            break;
-                          case 16384:
-                            ts = 
-                              dr_read< Bytes16384,
-                                      Bytes16384Seq,
-                                      Bytes16384DataReader > (reader);
-                            break;
-                          default:
-                            ACE_ERROR_RETURN ((LM_ERROR,
-                                              "subscriber (%P|%t): bad "
-                                              "data size: %d\n",
-                                              thePacketSize),
-                                              -1);
-                            break;
-                        };
+
+
+                      dr_read <BytesData,
+                        BytesDataSeq,
+                        BytesDataDataReader> (reader);
 
                       stats_.sample_for_throughput (ts, true);
 

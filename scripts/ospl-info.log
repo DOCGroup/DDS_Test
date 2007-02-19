@@ -727,3 +727,1417 @@ Node        : blade40.isislab.vanderbilt.edu
 Process     : 3217
 Thread      : main thread 131fc0
 Timestamp   : 1169500627.711106000 (Mon Jan 22 15:17:07 200)
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 267
+Code        : 0
+Description : The service has successfully started.
+Domain      : "OpenSpliceV2.2" with 10239 Kbytes storage space.
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.130933000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_kfmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 88
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.131118000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_shmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 59
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.131239000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175179000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175253000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175291000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175328000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175374000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175413000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175514000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175549000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175584000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175619000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175653000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.175688000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.178005000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161427.179341000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 249
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade40.isislab.vanderbilt.edu
+Process     : durability (28626)
+Thread      : main thread b7d6b6c0
+Timestamp   : 1171161427.222295000 (Sat Feb 10 20:37:07 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_groupLocalListener.c
+Line        : 667
+Code        : 0
+Description : Persistency not enabled!
+Node        : blade40.isislab.vanderbilt.edu
+Process     : durability (28626)
+Thread      : main thread b7d6b6c0
+Timestamp   : 1171161430.145799000 (Sat Feb 10 20:37:10 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 871
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28619
+Thread      : main thread b7db16c0
+Timestamp   : 1171161438.718631000 (Sat Feb 10 20:37:18 200)
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 267
+Code        : 0
+Description : The service has successfully started.
+Domain      : "OpenSpliceV2.2" with 10239 Kbytes storage space.
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.114811000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_kfmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 88
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.114991000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_shmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 59
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.115113000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.158977000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159051000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159089000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159125000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159161000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159208000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159306000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159342000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159375000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159409000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159443000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.159477000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service durability
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.161248000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service networking
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161441.162303000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 249
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade40.isislab.vanderbilt.edu
+Process     : durability (28668)
+Thread      : main thread b7d5c6c0
+Timestamp   : 1171161441.220776000 (Sat Feb 10 20:37:21 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_groupLocalListener.c
+Line        : 667
+Code        : 0
+Description : Persistency not enabled!
+Node        : blade40.isislab.vanderbilt.edu
+Process     : durability (28668)
+Thread      : main thread b7d5c6c0
+Timestamp   : 1171161443.394010000 (Sat Feb 10 20:37:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 871
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade40.isislab.vanderbilt.edu
+Process     : 28661
+Thread      : main thread b7de06c0
+Timestamp   : 1171161495.267591000 (Sat Feb 10 20:38:15 200)
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 267
+Code        : 0
+Description : The service has successfully started.
+Domain      : "OpenSpliceV2.2" with 10239 Kbytes storage space.
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.476698000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_kfmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 82
+Code        : 1
+Description : Read and Write access for group must be paired, ignoring group access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.476871000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_kfmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 88
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.476901000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_shmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 53
+Code        : 1
+Description : Read and Write access for group must be paired, ignoring group access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.477004000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_shmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 59
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.477022000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519231000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519301000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519337000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519382000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519419000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519455000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519549000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519582000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519615000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519648000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519681000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.519714000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.523450000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326965.524438000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 249
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade30.isislab.vanderbilt.edu
+Process     : durability (22204)
+Thread      : main thread b7dea6c0
+Timestamp   : 1171326965.620703000 (Mon Feb 12 18:36:05 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_groupLocalListener.c
+Line        : 667
+Code        : 0
+Description : Persistency not enabled!
+Node        : blade30.isislab.vanderbilt.edu
+Process     : durability (22204)
+Thread      : main thread b7dea6c0
+Timestamp   : 1171326968.621080000 (Mon Feb 12 18:36:08 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 871
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22197
+Thread      : main thread b7d2f6c0
+Timestamp   : 1171326977.059376000 (Mon Feb 12 18:36:17 200)
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 267
+Code        : 0
+Description : The service has successfully started.
+Domain      : "OpenSpliceV2.2" with 10239 Kbytes storage space.
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.936662000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_kfmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 82
+Code        : 1
+Description : Read and Write access for group must be paired, ignoring group access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.936830000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_kfmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 88
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.936852000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_shmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 53
+Code        : 1
+Description : Read and Write access for group must be paired, ignoring group access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.936962000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_shmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 59
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.936980000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978542000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978614000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978661000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978697000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978733000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978770000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978865000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978899000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978933000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978966000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.978999000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.979032000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.982988000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171327317.986708000 (Mon Feb 12 18:41:57 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 249
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade30.isislab.vanderbilt.edu
+Process     : durability (22262)
+Thread      : main thread b7d8a6c0
+Timestamp   : 1171327318.040250000 (Mon Feb 12 18:41:58 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_groupLocalListener.c
+Line        : 667
+Code        : 0
+Description : Persistency not enabled!
+Node        : blade30.isislab.vanderbilt.edu
+Process     : durability (22262)
+Thread      : main thread b7d8a6c0
+Timestamp   : 1171327321.039502000 (Mon Feb 12 18:42:01 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 871
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22255
+Thread      : main thread b7dd46c0
+Timestamp   : 1171328173.397185000 (Mon Feb 12 18:56:13 200)
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 267
+Code        : 0
+Description : The service has successfully started.
+Domain      : "OpenSpliceV2.2" with 10239 Kbytes storage space.
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.474436000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_kfmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 82
+Code        : 1
+Description : Read and Write access for group must be paired, ignoring group access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.474606000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_kfmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 88
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.474627000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_shmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 53
+Code        : 1
+Description : Read and Write access for group must be paired, ignoring group access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.474730000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_shmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 59
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.474748000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516314000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516395000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516432000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516468000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516504000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516540000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516635000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516669000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516702000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516734000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516767000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.516805000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service durability
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.520522000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service networking
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328177.523899000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 249
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade30.isislab.vanderbilt.edu
+Process     : durability (22320)
+Thread      : main thread b7dc16c0
+Timestamp   : 1171328177.587443000 (Mon Feb 12 18:56:17 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_groupLocalListener.c
+Line        : 667
+Code        : 0
+Description : Persistency not enabled!
+Node        : blade30.isislab.vanderbilt.edu
+Process     : durability (22320)
+Thread      : main thread b7dc16c0
+Timestamp   : 1171328180.587174000 (Mon Feb 12 18:56:20 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 871
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade30.isislab.vanderbilt.edu
+Process     : 22313
+Thread      : main thread b7d926c0
+Timestamp   : 1171328186.557400000 (Mon Feb 12 18:56:26 200)
+### Report Message ###
+Type        : INFO
+Context     : The OpenSplice domain service
+File        : ../../code/u_kernel.c
+Line        : 267
+Code        : 0
+Description : The service has successfully started.
+Domain      : "OpenSpliceV2.2" with 10239 Kbytes storage space.
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.394502000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_kfmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 82
+Code        : 1
+Description : Read and Write access for group must be paired, ignoring group access
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.394684000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_kfmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 88
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.394707000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_shmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 53
+Code        : 1
+Description : Read and Write access for group must be paired, ignoring group access
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.394824000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : WARNING
+Context     : os_svr4_get_shmumask
+File        : ../../svr4/code/os_sharedmem_seg.c
+Line        : 59
+Code        : 1
+Description : Read and Write access for other must be paired, ignoring other access
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.394850000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service durability
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438032000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service durability
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438107000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service durability
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438145000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service durability
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438182000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service durability
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438218000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service durability
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438256000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 80
+Code        : 0
+Description : Taking default for <Configuration> parameter service networking
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438351000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 139
+Code        : 0
+Description : Taking default for <Scheduling/Class> parameter service networking
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438387000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 189
+Code        : 0
+Description : Taking default for <MemoryLocking> parameter service networking
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438421000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 234
+Code        : 0
+Description : Taking default for <Scheduling/Priority> parameter service networking
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438465000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 289
+Code        : 0
+Description : Taking default for <Scheduling/Priority[@priority_kind]> parameter for  service networking
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438501000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/sr_serviceInfo.c
+Line        : 350
+Code        : 0
+Description : Taking default for <FailureAction> parameter service networking
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.438535000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service durability
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.441135000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 347
+Code        : 0
+Description : Started service networking
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171325363.442745000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_configuration.c
+Line        : 249
+Code        : 0
+Description : No Domain configuration found. Applying default Lease...
+Node        : blade31.isislab.vanderbilt.edu
+Process     : durability (5944)
+Thread      : main thread b7d296c0
+Timestamp   : 1171325363.500160000 (Mon Feb 12 18:09:23 200)
+### Report Message ###
+Type        : WARNING
+Context     : DurabilityService
+File        : ../../code/d_groupLocalListener.c
+Line        : 667
+Code        : 0
+Description : Persistency not enabled!
+Node        : blade31.isislab.vanderbilt.edu
+Process     : durability (5944)
+Thread      : main thread b7d296c0
+Timestamp   : 1171325366.495644000 (Mon Feb 12 18:09:26 200)
+### Report Message ###
+Type        : INFO
+Context     : OpenSplice domain service
+File        : ../../code/spliced.c
+Line        : 871
+Code        : 0
+Description : The service has successfully terminated.
+Node        : blade31.isislab.vanderbilt.edu
+Process     : 5937
+Thread      : main thread b7da06c0
+Timestamp   : 1171326301.489158000 (Mon Feb 12 18:25:01 200)

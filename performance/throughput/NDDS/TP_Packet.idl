@@ -19,7 +19,11 @@
 // if it's true, then we can report it to the vendor, and
 // change the IDL if we have to. In any case, we'll have to
 // declare an empty keylist for OpenSplice.
-typedef sequence<octet> OctetSeq;
+
+const short MAX_MSG_LENGTH = 16384;//131072;
+
+
+typedef sequence<octet, MAX_MSG_LENGTH> OctetSeq;
 
 struct BytesData
 {

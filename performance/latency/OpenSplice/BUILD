@@ -79,9 +79,9 @@ g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c ../splice_sub.cpp \
 	-I$OSPL_HOME/include/dcps/C++/CCPP
 
 echo "Linking Splice_pub"
-g++3.2.3 -o ../exec/splice_pub -L$OSPL_HOME/lib tester.o splice_pub.o splice_testC.o splice_testDcpsC.o splice_testDcps_impl.o splice_testSplDcps.o -L$TAO_ROOT/lib -lTAO -lddsdatabase -ldcpsccpp -lstdc++
+g++3.2.3 -o ../exec/publisher -L$OSPL_HOME/lib tester.o splice_pub.o splice_testC.o splice_testDcpsC.o splice_testDcps_impl.o splice_testSplDcps.o -L$TAO_ROOT/lib -lTAO -lddsdatabase -ldcpsccpp -lstdc++
 
 echo "Linking Splice_sub"
-g++3.2.3 -o ../exec/pong -L$OSPL_HOME/lib tester.o splice_sub.o splice_testC.o splice_testDcpsC.o splice_testDcps_impl.o splice_testSplDcps.o -L$TAO_ROOT/lib -lTAO -lddsdatabase -ldcpsccpp -lstdc++
+g++3.2.3 -o ../exec/subscriber -L$OSPL_HOME/lib tester.o splice_sub.o splice_testC.o splice_testDcpsC.o splice_testDcps_impl.o splice_testSplDcps.o -L$TAO_ROOT/lib -lTAO -lddsdatabase -ldcpsccpp -lstdc++
 
 cd ..

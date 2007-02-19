@@ -1,44 +1,19 @@
 #!/usr/bin/perl
 
-use Env (DBE_SCRIPTS);
-use Env (DBE_ROOT);
-use Env (DBE_LOCAL_ROOT);
-use Env (DBE_RESULTS_BACKUP);
+use Env(DBE_SCRIPTS);
+use Env(DBE_ROOT);
+use Env(DDS_ROOT);
+use Env(ACE_ROOT);
 
+require "$DBE_SCRIPTS/scripts.lib"
 
-require "$DBE_SCRIPTS/scripts.lib";
+&setEnvironment("$DBE_ROOT/settings/environment");
 
+system("env");
 
-if( @ARGV > 0 )
-{
-  if( @ARGV[0] eq "-h" )
-  {
-    print "\n" .
-      "Usage:\n\n" .
-      "  tester.pl [-h]
-                         \n";
-    print "  [-h] print usage information for this script.
+print "\n\n\n";
 
-    This script is for development purposes only and is just used
-    for testing specific features of a new library call from scripts.lib
-    or some other type of test for which benchmark.pl or associated scripts
-    do not really need to be modified.
+&setEnvironment("$DBE_ROOT/settings/ospl_environment");
 
-    Use of this script is not necessarily recommended for end-users.\n\n";
-    exit(0);
-  }
-}
-
-
-
-%settings = ();
-&readSettingsFromArgs();
-
-setupNDDSDiscovery(1);
-
-print $ENV{'NDDS_DISCOVERY_PEERS'} . "\n";
-
-setupNDDSDiscovery(2);
-
-print $ENV{'NDDS_DISCOVERY_PEERS'} . "\n";
+system("env");
 

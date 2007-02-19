@@ -417,17 +417,19 @@ sub updateTestsListingFile
 }
 
 ##############################################################
-# function: writeEnvironmentForSSH
+# function: writeEnvironment
 # args: () - none
-# purpose: writes environment variables to the user's ssh env
+# purpose: writes environment variables to the specified
 #          file. Because SSH does not open a terminal session during
 #          remote execution, this is required to setup the environment
-#          during a remote execution session.
+#          during a remote execution session. This may also be useful
+#          for recording environment variable settings from tests.
 ##############################################################
 
-sub writeEnvironmentForSSH
+sub writeEnvironment
 {
-  open(FILE,'>/export/home/tczar/.ssh/environment') || die "Could not open" .
+  my $file = shift(@_);
+  open(FILE,">$file") || die "Could not open" .
              " .ssh/environment for writing.\n";
 
   foreach $key (keys %ENV)
@@ -497,6 +499,25 @@ sub getTestDirectory
   $testDirectory = $1;
 
   return $testDirectory;
+
+}
+
+
+################################################################
+# function: getPath
+# args: filename to parse
+# purpose: Returns the path of the file
+################################################################
+
+sub getPath
+{
+  my $file = shift(@_);
+  my $directory = "";
+
+  $file =~ /(.*)\/[^\/]*$/;
+  $directory = $1;
+
+  return $directory;
 
 }
 
@@ -742,6 +763,35 @@ sub addSimpleTextToTestListing
   open(LISTING,">>$testListingFile");
     print LISTING $id . ',' . $description . "\n";
   close(LISTING);
+}
+
+################################################################
+# function: getEnvironment
+# args: environment file
+# purpose: allows settings environment variables with a file like
+#          the one in ~/.ssh/environment. File should be arranged as follows:
+#          PATH=/usr/bin:/usr/lib
+#          LD_LIBRARY_PATH=/home/user/TAO_Splice
+################################################################
+
+sub setEnvironment
+{
+  my $environmentFile = shift(@_);
+  my @envSettings;
+  my @envTemp;
+
+  open(ENVIRONMENT,$environmentFile);
+    @envSettings = <ENVIRONMENT>;
+  close(ENVIRONMENT);
+
+  chomp(@envSettings);
+
+  foreach $setting (@envSettings)
+  {
+    @envTemp = split(/=/,$setting);
+    $ENV{$envTemp[0]} = $envTemp[1];
+  }
+
 }
 
 1;

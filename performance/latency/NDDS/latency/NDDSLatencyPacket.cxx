@@ -2,10 +2,10 @@
 /*
   WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 
-  This file was generated from NDDSLatencyPacket.idl using "nddsgen".
-  The nddsgen tool is part of the NDDS distribution.
-  For more information, type 'nddsgen -help' at a command shell
-  or consult the NDDS manual.
+  This file was generated from NDDSLatencyPacket.idl using "rtiddsgen".
+  The rtiddsgen tool is part of the RTI Data Distribution Service distribution.
+  For more information, type 'rtiddsgen -help' at a command shell
+  or consult the RTI Data Distribution Service manual.
 */
 
 

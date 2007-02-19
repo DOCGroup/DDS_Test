@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h> /*for sqrt */
 #include <iostream>
 
@@ -24,13 +25,14 @@
 #include "ace/Env_Value_T.h"
 
 #define TOTAL_PRIMER_SAMPLES 100
-
+#define RESULT_FILE_NAME_MAX 1024
 #define SCALAR 1
 
 static int isComplex = 0;
 static char topic_id = 's';
 int publication_matched = 0;
 int NDDS_DEBUG_LEVEL = 0;
+char resultsFile[RESULT_FILE_NAME_MAX] = "results";
 
 
 typedef struct
@@ -206,7 +208,7 @@ AckMessageDataProcessor::AckMessageDataProcessor()
       _arrayIndex(0)
 {
   init_stats (round_trip, "round_trip");
-  result_file.open ("results");
+  result_file.open (resultsFile);
 }
 
 RTIOsapiSemaphoreStatus AckMessageDataProcessor::wait(
@@ -1126,11 +1128,11 @@ int main(int argc, char **argv)
       while ((ich = getopt (argc, argv, OPTION_STRING)) != EOF) {
         switch (ich) {
                 
-        case 'c': /* c specifes number of samples */
+        case 's': /* c specifes number of samples */
           count = atoi(optarg);
           break;
         
-        case 's': /* s specifes size of the message */
+        case 'd': /* s specifes size of the message */
           size = atoi(optarg);
           break;
 
@@ -1139,8 +1141,12 @@ int main(int argc, char **argv)
           topic_id = *optarg;
           break;
 
-        case 'r': /* t specifies data types */
+        case 'e': /* e specifies reliable */
           isReliable = RTI_TRUE;
+          break;
+
+        case 'r': /* t specifies data types */
+          strncpy(resultsFile,optarg,RESULT_FILE_NAME_MAX - 1);
           break;
 
         case 'm': /* t specifies data types */

@@ -12,6 +12,8 @@
 #include <getopt.h>
 #include <sys/types.h>
 
+#define RESULT_FILE_NAME_MAX 1024
+
 using namespace std;
 using namespace DDS;
 using namespace CORBA;
@@ -174,8 +176,8 @@ void print_help()
 {
         printf("usage: splice_pub [options]\n\n");
         printf("       -p       number of primer samples(default=100)\n");
-        printf("       -c       number of samples(default=100)\n");
-        printf("       -s       message size(default=4)\n");
+        printf("       -s       number of samples(default=100)\n");
+        printf("       -d       message size(default=4)\n");
         printf("       -r       range of histogram(default=1000)\n");
         printf("       -b       number of bins in histogram(default=500)\n");
         printf("       -h       help, print this message\n");
@@ -212,6 +214,7 @@ int main(int argc, char *argv[])
        int                                  amount;
        char sz_size[100];
        char sz_topic[1000];
+       char sz_results[RESULT_FILE_NAME_MAX];
 
 
        struct timeval start, end;
@@ -235,7 +238,7 @@ int main(int argc, char *argv[])
        while ((ich = getopt (argc, argv, OPTION_STRING)) != EOF) {
         switch (ich) {
                 
-        case 'c': /* c specifes number of samples */
+        case 's': /* c specifes number of samples */
         total_samples = atoi(optarg);
 
         if(total_samples < 0) {
@@ -245,7 +248,7 @@ int main(int argc, char *argv[])
                 
         break;
         
-        case 's': /* s specifes size of the message */
+        case 'd': /* s specifes size of the message */
         size = atoi(optarg);
         strcpy(sz_size,optarg);
         
@@ -256,12 +259,15 @@ int main(int argc, char *argv[])
         
         break;
 
-        case 'd': /* s specifes size of the message */
+        case 'q': /* s specifes size of the message */
         debug = atoi(optarg);
-        
         
         break;
 
+        case 'r': /* r specifies results file */
+        strncpy(sz_results,optarg,RESULT_FILE_NAME_MAX - 1);
+        
+        break;
 
         case 't': /* t specifies data types */
         topic_id = *optarg;
@@ -294,7 +300,7 @@ int main(int argc, char *argv[])
                                      PARTICIPANT_QOS_DEFAULT, 
                                      NULL);
        if (dp == NULL) {
-         cout << argv[0] << "MY_PING: ERROR - Splice Daemon not running";
+         cout << argv[0] << "PUB: ERROR - Splice Daemon not running";
          exit (1);
        }
        DPRINTF("done\n")
@@ -637,7 +643,7 @@ int main(int argc, char *argv[])
        }
 
 
-       result_file.open ("results");
+       result_file.open (sz_results,ios_base::app);
        result_file << size << std::endl;
 
        result_file << round_trip.min << std::endl;

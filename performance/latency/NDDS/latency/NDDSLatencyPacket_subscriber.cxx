@@ -672,6 +672,7 @@ int main(int argc, char *argv[])
     RTIBool useMulticast = RTI_FALSE;
     RTIBool isReliable = RTI_FALSE;
 
+
     const char *usageStr =
 	"Usage: [-d #] [-noecho] [-multicast] [-reliable] [-role #]\n"
 	"\t-d NDDS domain\n"

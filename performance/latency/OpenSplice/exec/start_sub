@@ -1,4 +1,6 @@
 #!/bin/bash
 
+echo "/splice_sub_init.sh $1 $2 $3 $4 $5 $6"
+
 sudo /export/home/tczar/DDS/performance/latency/OpenSplice/exec/splice_sub_init.sh $1 $2
 

@@ -11,6 +11,7 @@
 
 #include "ace/Sched_Params.h"
 
+
 const char * pub_output_file = "stats_pub";
 const char * qos_config_file = "qos";
 const char * net_config_file = "net";
@@ -175,6 +176,10 @@ public:
 
 int main (int argc, char **argv)
 {
+
+
+  //  ThroughputPublisherArgs args (argc, argv);
+
   int nddsDomain = 89;
   int role = 0;
   int thePacketSize = 4;
@@ -429,9 +434,9 @@ Create participant to join the domain and allocate system resources
   
   participant =
     factory->create_participant (domain_id,
-					                       participant_qos,
-					                       0,
-					                       DDS_STATUS_MASK_NONE);
+                                 participant_qos,
+                                 0,
+                                 DDS_STATUS_MASK_NONE);
 					                      
   if (participant == 0)
     {
@@ -556,8 +561,8 @@ Create a publisher and a subsciber, both with default QoSes.
   cout << "Creating data publisher............";
   publisher =
     participant->create_publisher (publisher_qos,
-					                          publisher_listener,
-					                          DDS_STATUS_MASK_NONE);
+                                   publisher_listener,
+                                   DDS_STATUS_MASK_NONE);
 					                          
   if (publisher == 0)
     {
@@ -576,66 +581,8 @@ Register data types, and create topics: echo_topic and data_topic
   cout << "Registering participant with data type \""
        << TEST_TOPIC_TYPE_NAME << "\"......";
 
-  switch (thePacketSize)
-    {
-      case 4:
-        Bytes4TypeSupport::register_type (participant,
-                                          TEST_TOPIC_TYPE_NAME);
-        break;
-      case 8:
-        Bytes8TypeSupport::register_type (participant,
-                                          TEST_TOPIC_TYPE_NAME);
-        break;
-      case 16:
-        Bytes16TypeSupport::register_type (participant,
-                                            TEST_TOPIC_TYPE_NAME);
-        break;
-      case 32:
-        Bytes32TypeSupport::register_type (participant,
-                                            TEST_TOPIC_TYPE_NAME);
-        break;
-      case 64:
-        Bytes64TypeSupport::register_type (participant,
-                                            TEST_TOPIC_TYPE_NAME);
-        break;
-      case 128:
-        Bytes128TypeSupport::register_type (participant,
-                                            TEST_TOPIC_TYPE_NAME);
-        break;
-      case 256:
-        Bytes256TypeSupport::register_type (participant,
-                                            TEST_TOPIC_TYPE_NAME);
-        break;
-      case 512:
-        Bytes512TypeSupport::register_type (participant,
-                                            TEST_TOPIC_TYPE_NAME);
-        break;
-      case 1024:
-        Bytes1024TypeSupport::register_type (participant,
-                                            TEST_TOPIC_TYPE_NAME);
-        break;
-      case 2048:
-        Bytes2048TypeSupport::register_type (participant,
-                                              TEST_TOPIC_TYPE_NAME);
-        break;
-      case 4096:
-        Bytes4096TypeSupport::register_type (participant,
-                                              TEST_TOPIC_TYPE_NAME);
-        break;
-      case 8192:
-        Bytes8192TypeSupport::register_type (participant,
-                                              TEST_TOPIC_TYPE_NAME);
-        break;
-      case 16384:
-        Bytes16384TypeSupport::register_type (participant,
-                                              TEST_TOPIC_TYPE_NAME);
-        break;
-      default:
-        ACE_ERROR_RETURN ((LM_ERROR,
-                           "publisher (%P|%t): bad data size: %d\n",
-                           packetsize),
-                          -1);
-    }
+  BytesDataTypeSupport::register_type (participant,
+                                       TEST_TOPIC_TYPE_NAME);
 
   cout << "[Done]" << endl;
 					    
@@ -747,118 +694,12 @@ The core latency test is in the following for() loop.
 
   NDDSUtility::sleep (sleepTime);
 
-  switch (packetsize)
-    {
-    case 4:
-      retval = dw_write< Bytes4,
-        Bytes4DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 8:
-      retval = dw_write< Bytes8,
-        Bytes8DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 16:
-      retval = dw_write< Bytes16,
-        Bytes16DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 32:
-      retval = dw_write< Bytes32,
-        Bytes32DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 64:
-      retval = dw_write< Bytes64,
-        Bytes64DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 128:
-      retval = dw_write< Bytes128,
-        Bytes128DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 256:
-      retval = dw_write< Bytes256,
-        Bytes256DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 512:
-      retval = dw_write< Bytes512,
-        Bytes512DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 1024:
-      retval = dw_write< Bytes1024,
-        Bytes1024DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 2048:
-      retval = dw_write< Bytes2048,
-        Bytes2048DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 4096:
-      retval = dw_write< Bytes4096,
-        Bytes4096DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 8192:
-      retval = dw_write< Bytes8192,
-        Bytes8192DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    case 16384:
-      retval = dw_write< Bytes16384,
-        Bytes16384DataWriter>
-        (packetsize,
-          prime_num + stats_num,
-          writer,
-          stats_);
-      break;
-    default:
-      ACE_ERROR_RETURN ((LM_ERROR,
-                         "publisher (%P|%t): bad data size: %d\n",
-                         packetsize),
-                        -1);
-    }
+
+  retval = dw_write <BytesData, BytesDataDataWriter>
+    (packetsize,
+     prime_num + stats_num,
+     writer,
+     stats_);
 
   if (-1 == retval)
     {

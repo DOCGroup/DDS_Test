@@ -2,10 +2,10 @@
 /*
   WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 
-  This file was generated from NDDSLatencyPacket.idl using "nddsgen".
-  The nddsgen tool is part of the NDDS distribution.
-  For more information, type 'nddsgen -help' at a command shell
-  or consult the NDDS manual.
+  This file was generated from NDDSLatencyPacket.idl using "rtiddsgen".
+  The rtiddsgen tool is part of the RTI Data Distribution Service distribution.
+  For more information, type 'rtiddsgen -help' at a command shell
+  or consult the RTI Data Distribution Service manual.
 */
 
 #ifndef NDDSLatencyPacketSupport_h
@@ -40,7 +40,7 @@
    implementing generics in C and C++.
 */
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, start exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -73,7 +73,7 @@ DDS_DATAREADER_C(PubMessageDataReader, PubMessageSeq, PubMessage);
 
 #endif
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, stop exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -92,7 +92,7 @@ DDS_DATAREADER_C(PubMessageDataReader, PubMessageSeq, PubMessage);
    implementing generics in C and C++.
 */
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, start exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -125,7 +125,7 @@ DDS_DATAREADER_C(NestedDataReader, NestedSeq, Nested);
 
 #endif
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, stop exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -144,7 +144,7 @@ DDS_DATAREADER_C(NestedDataReader, NestedSeq, Nested);
    implementing generics in C and C++.
 */
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, start exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -177,7 +177,7 @@ DDS_DATAREADER_C(OuterDataReader, OuterSeq, Outer);
 
 #endif
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, stop exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -196,7 +196,7 @@ DDS_DATAREADER_C(OuterDataReader, OuterSeq, Outer);
    implementing generics in C and C++.
 */
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, start exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -229,7 +229,7 @@ DDS_DATAREADER_C(PubMessage_NestDataReader, PubMessage_NestSeq, PubMessage_Nest)
 
 #endif
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, stop exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -248,7 +248,7 @@ DDS_DATAREADER_C(PubMessage_NestDataReader, PubMessage_NestSeq, PubMessage_Nest)
    implementing generics in C and C++.
 */
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, start exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -281,7 +281,7 @@ DDS_DATAREADER_C(AckMessageDataReader, AckMessageSeq, AckMessage);
 
 #endif
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, stop exporting symbols.
    */
   #undef NDDSUSERDllExport
