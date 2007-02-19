@@ -18,6 +18,9 @@ require "$DBE_SCRIPTS/scripts.lib";
 # with information about the test that was run, so we can make intelligent
 # killall calls. If nothing is specified, we blindly kill anything on 30-45.
 
+&setEnvironment("$DBE_ROOT/settings/environment");
+&setEnvironment("$DBE_ROOT/settings/ospl_environment");
+
 $node;
 
 if( @ARGV > 0 )
@@ -66,14 +69,15 @@ if( @ARGV == 0 )
 {
   for( $i = 30; $i <= 45; $i++ )
   {
-    system("ssh tczar\@blade$i.isislab.vanderbilt.edu 'killall $signal -v perl'");
-    system("ssh tczar\@blade$i.isislab.vanderbilt.edu 'killall $signal -v DCPSInfoRepo'");
-    system("ssh tczar\@blade$i.isislab.vanderbilt.edu 'killall $signal -v subscriber'");
-    system("ssh tczar\@blade$i.isislab.vanderbilt.edu 'killall $signal -v publisher'");
+    print "\nTerminating processes on blade$i.\n";
+    system("ssh tczar\@blade$i.isislab.vanderbilt.edu 'sudo killall $signal -v perl'");
+    system("ssh tczar\@blade$i.isislab.vanderbilt.edu 'sudo killall $signal -v DCPSInfoRepo'");
+    system("ssh tczar\@blade$i.isislab.vanderbilt.edu 'sudo killall $signal -v subscriber'");
+    system("ssh tczar\@blade$i.isislab.vanderbilt.edu 'sudo killall $signal -v publisher'");
 
     sleep(4);
 
-    system("ssh tczar\@blade$i.isislab.vanderbilt.edu 'ospl stop'");
+    system("ssh tczar\@blade$i.isislab.vanderbilt.edu $DBE_SCRIPTS/ospl_stop");
   }
   exit(0);
 }
@@ -138,15 +142,15 @@ if( $settings{'nodelist'} eq "true" )
     if( $host ne "" )
     {
       print "Killing all publishers on $host...\n";
-      system("ssh tczar\@$host 'killall $signal -v perl'");
+      system("ssh tczar\@$host 'sudo killall $signal -v perl'");
       sleep(1);
-      system("ssh tczar\@$host 'killall $signal -v publisher'");
+      system("ssh tczar\@$host 'sudo killall $signal -v publisher'");
 
       if( $impl eq "splice" )
       {
         sleep(2);
-        print "ssh tczar\@$host 'ospl stop'\n";
-        system("ssh tczar\@$host 'ospl stop'");
+        print "ssh tczar\@$host 'sudo ospl stop'\n";
+        system("ssh tczar\@$host $DBE_SCRIPTS/ospl_stop");
       }
     }
     else
@@ -176,14 +180,14 @@ if( $settings{'nodelist'} eq "true" )
     if( $host ne "" )
     {
       print "Killing all subscribers on $host...\n";
-      system("ssh tczar\@$host 'killall $signal -v perl'");
+      system("ssh tczar\@$host 'sudo killall $signal -v perl'");
       sleep(1);
-      system("ssh tczar\@$host 'killall $signal -v subscriber'");
+      system("ssh tczar\@$host 'sudo killall $signal -v subscriber'");
 
       if( $impl eq "splice" )
       {
         sleep(2);
-        system("ssh tczar\@$host 'ospl stop'");
+        system("ssh tczar\@$host $DBE_SCRIPTS/ospl_stop");
       }
     }
     else
@@ -210,9 +214,9 @@ if( $settings{'nodelist'} eq "true" )
     if( $host ne "" )
     {
       print "Killing all repos on $host...\n";
-      system("ssh tczar\@$host 'killall $signal -v perl'");
+      system("ssh tczar\@$host 'sudo killall $signal -v perl'");
       sleep(1);
-      system("ssh tczar\@$host 'killall $signal -v DCPSInfoRepo'");
+      system("ssh tczar\@$host 'sudo killall $signal -v DCPSInfoRepo'");
 
     }
     else

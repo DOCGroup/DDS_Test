@@ -1,10 +1,10 @@
 # num nodes
-nodes=7
+nodes=5
 
 # num repositories
 repos=0
 publishers=1
-subscribers=6
+subscribers=4
 
 # nodeList == true   use the nodes listed in this file
 # nodeList == false  let the system generate its own node list

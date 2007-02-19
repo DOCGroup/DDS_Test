@@ -1,3 +1,30 @@
+Mon Feb 19 23:13:33 UTC 2007  James Edmondson  <jedmondson@gmail.com>
+
+        * scripts/benchmark.pl
+        * scripts/terminate.pl
+        * scripts/ospl_*
+        * settings/environment
+        * settings/ospl_environment
+        * settings/test/latency*
+        * settings/net/one_node.settings
+        * settings/net/two_node.settings
+        * performance/latency/NDDS/latency/*
+        * performance/latency/OpenSplice/*
+        
+          Benchmark.pl and terminate.pl now start processes up as root
+          for rt_class usage. Several bash scripts were replaced with
+          perl scripts for portability. DDS environment files were added
+          to aid setting up environment (especially LD_LIBRARY_PATH).
+        
+          OpenSplice latency code has been incorporated into the DBE. Initial
+          pass at NDDS latency code (it compiles but has not been incorporated
+          yet).
+        
+          Added new settings files for latency tests and testing on the same
+          node. Functionality has been there for a long time. This was just done
+          to add a template file for others to use.
+
+
 Fri Feb  2 22:29:08 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/NDDS/TP_Packet.idl:

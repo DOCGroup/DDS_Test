@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo /export/home/tczar/DDS/scripts/ospl_runtime_init.sh
+sudo $DBE_SCRIPTS/ospl_runtime_init.pl
 

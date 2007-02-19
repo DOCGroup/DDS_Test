@@ -43,7 +43,7 @@ if( @ARGV > 0 )
              [-primer numPrimerMessages] [-stats numStatsMessages]
              [testSettingsFile]\n";
     print "  [-h] prints usage information for this script.\n";
-    print "  [-i impl] specifies the DDS implementatio to test (NDDS, etc.)\n";
+    print "  [-i impl] specifies the DDS implementation to test (NDDS, etc.)\n";
     print "  [-minsize #] specifies the min data size to test (4, 8, etc.)\n";
     print "  [-maxsize #] specifies the max data size to test (16384, etc.)\n";
     print "  [-n netSettings] specifies the network settings to test.\n";
@@ -63,6 +63,7 @@ print "Made it to the read settings function..\n";
 
 %settings = ();
 
+&setEnvironment("$DBE_ROOT/settings/environment");
 &readSettingsFromArgs();
 
 print "Settings have been read..\n";
@@ -76,7 +77,18 @@ print "Settings have been read..\n";
 
 # setup base path for all executables
 
-$path = "$DBE_ROOT/performance/throughput/";
+$path = "$DBE_ROOT/performance/";
+
+$type = lc($settings{'type'});
+
+if( $type eq "latency" )
+{
+  $path .= "latency/";
+}
+else
+{
+  $path .= "throughput/";
+}
 
 #$settings{'results'} = $path;
 
@@ -104,7 +116,7 @@ elsif( $impl eq "splice" || $impl eq "opensplice" || $impl eq "open-splice"
      || $impl eq "open_splice" )
 {
   $impl = 'splice';
-  $path .= "Splice/";
+  $path .= "OpenSplice/";
 }
 else
 {
@@ -177,16 +189,17 @@ if( $impl eq "splice" )
 
   for( $i = 0; $i < $settings{'nodes'}; $i++ )
   {
-    $sourcePath = "/export/home/tczar/OpenSplice/V2.0beta/x86.linux2.6/etc/" .
-                "config";
-    $destPath = "/home/tczar/OpenSplice/V2.0beta/x86.linux2.6/etc/config";
-    $file = "ospl.xml";
+    #$sourcePath = "/export/home/tczar/OpenSpliceV2.1/HDE/x86.linux2.6/etc/" .
+    #            "config";
+    #$destPath = "/home/tczar/OpenSplice/V2.0beta/x86.linux2.6/etc/config";
+    #$file = "ospl.xml";
 
-    $node = $settings{"node$i"};
+    ##$node = $settings{"node$i"};
 #    print "scp $node:$sourcePath/$file $node:$destPath/$file";
-      system("scp $node:$sourcePath/$file $node:$destPath/$file");
+    #system("scp $node:$sourcePath/$file $node:$destPath/$file");
 
-  system("ssh -f tczar@$node $DBE_SCRIPTS/spl_multicast_route.pl 225.3.2.1");
+    #print "ssh -f tczar\@$node $DBE_SCRIPTS/spl_multicast_route.pl 225.3.2.1";
+    #system("ssh -f tczar\@$node $DBE_SCRIPTS/spl_multicast_route.pl 225.3.2.1");
 
 
   }
@@ -203,31 +216,44 @@ if( $impl eq "splice" )
 
 @files;
 
-if( $impl eq 'tao' )
+if( $type eq 'throughput' )
 {
-  $sourcePath = '$DBE_ROOT/performance/throughput/TAO_DDS/TCP';
-  @files = ( 'subscriber', 'publisher', 'start_sub.pl' ,
+  if( $impl eq 'tao' )
+  {
+    $sourcePath = '$DBE_ROOT/performance/throughput/TAO_DDS/TCP';
+    @files = ( 'subscriber', 'publisher', 'start_sub.pl' ,
                    'start_pub.pl' , 'start_repo.pl', 'repo.conf',
                    'udp.ini', 'udp.conf', 'tcp.ini'
-                 );
-  $destPath = '$DBE_LOCAL_ROOT/performance/throughput/TAO_DDS/TCP';
-}
-elsif( $impl eq 'ndds' )
-{
-  $sourcePath = '$DBE_ROOT/performance/throughput/NDDS';
-  @files = ( 'objs/i86Linux2.6gcc3.4.3/subscriber',
-             'objs/i86Linux2.6gcc3.4.3/publisher', 'start_sub.pl' ,
+              );
+    $destPath = '$DBE_LOCAL_ROOT/performance/throughput/TAO_DDS/TCP';
+  }
+  elsif( $impl eq 'ndds' )
+  {
+    $sourcePath = '$DBE_ROOT/performance/throughput/NDDS';
+    @files = ( 'objs/i86Linux2.6gcc3.4.3/subscriber',
+               'objs/i86Linux2.6gcc3.4.3/publisher', 'start_sub.pl' ,
                    'start_pub.pl' 
-                 );
-  $destPath = '$DBE_LOCAL_ROOT/performance/throughput/NDDS';
+              );
+    $destPath = '$DBE_LOCAL_ROOT/performance/throughput/NDDS';
+  }
+  elsif( $impl eq 'splice' )
+  {
+    $sourcePath = '$DBE_ROOT/performance/throughput/OpenSplice';
+    @files = ( 'listener/subscriber', 'listener/publisher',
+               'waitset/subscriber', 'waitset/publisher',
+               'start_sub.pl', 'start_pub.pl' );
+    $destPath = '$DBE_LOCAL_ROOT/performance/throughput/OpenSplice';
+  }
 }
-elsif( $impl eq 'splice' )
+else
 {
-  $sourcePath = '$DBE_ROOT/performance/throughput/Splice';
-  @files = ( 'listener/subscriber', 'listener/publisher',
-             'waitset/subscriber', 'waitset/publisher',
-             'start_sub.pl', 'start_pub.pl' );
-  $destPath = '$DBE_LOCAL_ROOT/performance/throughput/Splice';
+  if( $impl eq 'splice' )
+  {
+    $sourcePath = '$DBE_ROOT/performance/latency/OpenSplice';
+    @files = ( 'exec/subscriber', 'exec/publisher',
+               'start_sub.pl', 'start_pub.pl' );
+    $destPath = '$DBE_LOCAL_ROOT/performance/latency/OpenSplice';
+  }
 }
 
 
@@ -260,7 +286,7 @@ for( $i = 0, $j = 0;
 {
   print "Starting Repo (" . $settings{'node' . $i} . ")...\n";
 
-  $command = "'perl " . $path . 'start_repo.pl' .
+  $command = "'sudo perl " . $path . 'start_repo.pl' .
              " -r $DBE_ROOT/results/$testid/repo$j" .
              ' -n ' . $settings{'net'} . ' -minSize ' . $settings{'minsize'} .
              ' -maxSize ' . $settings{'maxsize'} . ' -type ' .
@@ -311,7 +337,7 @@ for( $i = $temp % $NUM_NODES, $j = 0;
 
   touch($resultsDir . "/sub$j" . '.exists');
 
-  $command = "'perl " . $path . 'start_sub.pl' .
+  $command = "'sudo perl " . $path . 'start_sub.pl' .
              " -r $DBE_ROOT/results/$testid/sub$j" .
              ' -n ' . $settings{'net'}  . ' -minSize ' . $settings{'minsize'} .
              ' -maxSize ' . $settings{'maxsize'} . ' -type ' .
@@ -364,7 +390,7 @@ for( $i = $settings{'repos'} % $NUM_NODES,  $j = 0;
 
   touch($resultsDir . "/pub$j" . '.exists');
 
-  $command = "'perl " . $path . 'start_pub.pl' .
+  $command = "'sudo perl " . $path . 'start_pub.pl' .
              " -r $DBE_ROOT/results/$testid/pub$j" .
              ' -n ' . $settings{'net'}  . ' -minSize ' . $settings{'minsize'} .
              ' -maxSize ' . $settings{'maxsize'} . ' -type ' .

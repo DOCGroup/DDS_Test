@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source /export/home/tczar/.ssh/environment
-source $OSPL_HOME/release.com
-/export/home/tczar/DDS/performance/latency/OpenSplice/exec/splice_sub $1 $2
+source $DBE_ROOT/settings/ospl_environment.sh
+
+/export/home/tczar/DDS/performance/latency/OpenSplice/exec/subscriber $1 $2
 

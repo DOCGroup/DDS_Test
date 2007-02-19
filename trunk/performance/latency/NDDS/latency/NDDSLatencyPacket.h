@@ -2,10 +2,10 @@
 /*
   WARNING: THIS FILE IS AUTO-GENERATED. DO NOT MODIFY.
 
-  This file was generated from NDDSLatencyPacket.idl using "nddsgen".
-  The nddsgen tool is part of the NDDS distribution.
-  For more information, type 'nddsgen -help' at a command shell
-  or consult the NDDS manual.
+  This file was generated from NDDSLatencyPacket.idl using "rtiddsgen".
+  The rtiddsgen tool is part of the RTI Data Distribution Service distribution.
+  For more information, type 'rtiddsgen -help' at a command shell
+  or consult the RTI Data Distribution Service manual.
 */
 
 #ifndef NDDSLatencyPacket_h
@@ -25,9 +25,8 @@
     #include "ndds_standalone_type.h"
 #endif
 
-                
-#define MAX_MSG_LENGTH (16384)                
-        
+             
+static const DDS_Short MAX_MSG_LENGTH = 16384;
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -48,7 +47,7 @@ typedef struct PubMessage
 } PubMessage;
     
                             
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, start exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -82,7 +81,7 @@ RTIBool PubMessage_copy(
         PubMessage* dst,
         const PubMessage* src);
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, stop exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -110,7 +109,7 @@ typedef struct Nested
 } Nested;
     
                             
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, start exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -144,7 +143,7 @@ RTIBool Nested_copy(
         Nested* dst,
         const Nested* src);
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, stop exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -172,7 +171,7 @@ typedef struct Outer
 } Outer;
     
                             
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, start exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -206,7 +205,7 @@ RTIBool Outer_copy(
         Outer* dst,
         const Outer* src);
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, stop exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -234,7 +233,7 @@ typedef struct PubMessage_Nest
 } PubMessage_Nest;
     
                             
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, start exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -268,7 +267,7 @@ RTIBool PubMessage_Nest_copy(
         PubMessage_Nest* dst,
         const PubMessage_Nest* src);
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, stop exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -295,7 +294,7 @@ typedef struct AckMessage
 } AckMessage;
     
                             
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, start exporting symbols.
    */
   #undef NDDSUSERDllExport
@@ -329,7 +328,7 @@ RTIBool AckMessage_copy(
         AckMessage* dst,
         const AckMessage* src);
 
-#if defined(RTI_WIN32) && defined(NDDS_USER_DLL_EXPORT)
+#if (defined(RTI_WIN32) || defined (RTI_WINCE)) && defined(NDDS_USER_DLL_EXPORT)
   /* If the code is building on Windows, stop exporting symbols.
    */
   #undef NDDSUSERDllExport

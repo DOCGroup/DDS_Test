@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo /export/home/tczar/DDS/scripts/ospl_runtime_stop.sh
+sudo $DBE_SCRIPTS/ospl_runtime_stop.pl
 

@@ -7,7 +7,7 @@ module DDSPerfTest {
     OctetSequence data;
   };
 
-#pragma keylist PubMessage seqnum
+#pragma keylist PubMessage
 
 
   struct Nested
@@ -30,12 +30,12 @@ module DDSPerfTest {
     sequence<Outer> data;
   };
 
-#pragma keylist PubMessage_Nest seqnum
+#pragma keylist PubMessage_Nest
 
   struct AckMessage {
     long seqnum;
   };
 
-#pragma keylist AckMessage seqnum
+#pragma keylist AckMessage
 
 };
