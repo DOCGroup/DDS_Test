@@ -2,14 +2,18 @@
 // $Id$
 
 project : acelib, splice_ts_defaults {
-  libs        += ddsdatabase dcpssac
+  lit_libs    += ddsdatabase dcpssacpp
   libpaths    += $(OSPL_HOME)/lib
-
+  
   includes    += $(OSPL_HOME)/include \
                  $(OSPL_HOME)/include/sys \
-                 $(OSPL_HOME)/include/dcps/C/SAC
+                 $(OSPL_HOME)/include/dcps/C++/SACPP
                  
   specific(nmake, vc71, vc8) {
     compile_flags += /wd4101
+    
+    // This short-circuits a typedef in OpenSplice on Windows
+    // that clashes with ACE typedefs.
+    macros        += HAVE_STRUCT_TIMESPEC
   }
 }
