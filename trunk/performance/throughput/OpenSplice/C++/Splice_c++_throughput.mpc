@@ -1,0 +1,67 @@
+project(*Lib) : splice {
+  sharedname = OSPL_TP_Test
+  splice_ts_flags += -P OSPL_TP_Export
+  dynamicflags += EORB_BUILD_OSPL_TP_Export
+  
+  Source_Files {
+    TPTDef.cpp
+    TPTDefDcps.cpp
+    TPTDefDcps_impl.cpp
+    TPTDefSplDcps.cpp
+  }
+
+  Header_Files {
+    ccpp_TPTDef.h
+    TPTDef.h
+    TPTDefDcps.h
+    TPTDefDcps_impl.h
+    TPTDefSplDcps.h
+  }
+  
+  SpliceTypeSupport_Files {
+    TPTDef.idl
+  }
+                 
+  specific(nmake, vc71, vc8) {
+    macros        += DDS_API=OSPL_TP_Export
+  }
+}
+
+project(*Pub) : spliceexe {
+  exename   = publisher
+  libs     += Stats OSPL_TP_Test
+  after    += Stats *Lib
+  includes += $(STATS_ROOT)
+  
+  Source_Files {
+    publisher.cpp
+  }
+
+  Header_Files {
+    common_config.h
+  }
+                 
+  specific(nmake, vc71, vc8) {
+    macros        += DDS_API=OSPL_TP_Export
+  }
+}
+
+project(*Sub) : spliceexe {
+  exename   = subscriber
+  libs     += Stats OSPL_TP_Test
+  after    += Stats *Lib
+  includes += $(STATS_ROOT)
+
+  Source_Files {
+    subscriber.cpp
+  }
+  
+  Header_Files {
+    common_config.h
+  }
+                 
+  specific(nmake, vc71, vc8) {
+    macros        += DDS_API=OSPL_TP_Export
+  }
+}
+

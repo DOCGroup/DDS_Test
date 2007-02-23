@@ -1,3 +1,41 @@
+Fri Feb 23 21:50:21 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/throughput/OpenSplice/C++/Stats.cpp:
+        * performance/throughput/OpenSplice/C++/Stats.h:
+        * performance/throughput/OpenSplice/C++/types_registration.h:
+        * performance/throughput/OpenSplice/C++/stats_export.h:
+        * performance/throughput/OpenSplice/C++/getopt.h:
+        
+          Removed these files. The stats-related files were duplicates
+          of those in the Stats library, the contents of the other
+          files were refactored into existing files.
+
+        * performance/throughput/OpenSplice/C++/Splice_c++_throughput.mpc:
+        
+          New file, which generates 3 builds: the common generated code
+          in a library, and the publisher and subscriber as executables
+          that share the generated code.
+
+        * performance/throughput/OpenSplice/C++/common_config.h:
+        
+          Factored out write-specific and read-specific methods
+          into their corresponding publisher and subscriber source
+          files. Also added necessary includes for the generated
+          code. Also added workarounds for clashes in macro and
+          type definitions between ACE and OpenSplice.
+          
+        * performance/throughput/OpenSplice/C++/subscriber.cpp:
+        * performance/throughput/OpenSplice/C++/publisher.cpp:
+        
+          Rearranged include files, plus cosmetic changes. Changed
+          all output messages to use ACE_DEBUG or ACE_ERROR.
+          
+        * performance/throughput/OpenSplice/C++/TPTDef.idl:
+        
+          Replace all bounded sequence declarations for a given
+          data type with a single unbounded sequence for that type.
+          Also added empty keylist pragma directives.
+
 Mon Feb 19 23:13:33 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 
         * scripts/benchmark.pl
