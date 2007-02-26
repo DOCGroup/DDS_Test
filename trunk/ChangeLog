@@ -1,3 +1,19 @@
+Mon Feb 26 23:12:44 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performace/latency/NDDS/latency/NDDS_latency.mpc:
+        
+          Modified this file to reflect a change in the IDL 
+          filename.
+          
+        * performace/latency/NDDS/latency/latencyPlugin.cxx:
+        * performace/latency/NDDS/latency/latencySupport.h:
+        * performace/latency/NDDS/latency/latency.h:
+        * performace/latency/NDDS/latency/latencySupport.cxx:
+        * performace/latency/NDDS/latency/latency.cxx:
+        * performace/latency/NDDS/latency/latencyPlugin.h:
+        
+          Removed these generated files from the repository.
+
 Mon Feb 26 22:56:24 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/latency/OpenSplice/Splice_latency.mpc:

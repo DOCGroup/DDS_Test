@@ -5,22 +5,21 @@ project(NDDS_Latency_Pub): nddsexe {
   includes += $(STATS_ROOT)
   
   NDDSTypeSupport_Files {
-    NDDSLatencyPacket.idl
+    latency.idl
   }
 
   Source_Files {
-    NDDSLatencyPacket_publisher.cxx
-    NDDSLatencyPacket.cxx
-    NDDSLatencyPacketPlugin.cxx
-    NDDSLatencyPacketSupport.cxx
+    publisher.cxx
+    latency.cxx
+    latencyPlugin.cxx
+    latencySupport.cxx
   }
 
   Header_Files {
     GlobalSettings.h
-    NDDSLatencyGlobalSettings.h 
-    NDDSLatencyPacket.h
-    NDDSLatencyPacketPlugin.h
-    NDDSLatencyPacketSupport.h
+    latency.h
+    latencyPlugin.h
+    latencySupport.h
   }
 }
 
@@ -31,22 +30,21 @@ project(NDDS_Latency_Sub): nddsexe {
   includes += $(STATS_ROOT)
 
   NDDSTypeSupport_Files {
-    NDDSLatencyPacket.idl
+    latency.idl
   }
 
   Source_Files {
-    NDDSLatencyPacket_subscriber.cxx
-    NDDSLatencyPacket.cxx
-    NDDSLatencyPacketPlugin.cxx
-    NDDSLatencyPacketSupport.cxx
+    subscriber.cxx
+    latency.cxx
+    latencyPlugin.cxx
+    latencySupport.cxx
   }
   
   Header_Files {
     GlobalSettings.h
-    NDDSLatencyGlobalSettings.h 
-    NDDSLatencyPacket.h
-    NDDSLatencyPacketPlugin.h
-    NDDSLatencyPacketSupport.h
+    latency.h
+    latencyPlugin.h
+    latencySupport.h
   }
 }
 
