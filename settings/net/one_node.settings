@@ -22,7 +22,7 @@ node1=blade31.isislab.vanderbilt.edu
 #node11=blade45.isislab.vanderbilt.edu
 #node12=blade29.isislab.vanderbilt.edu
 #node0=blade32.isislab.vanderbilt.edu
-node0=blade33.isislab.vanderbilt.edu
+node0=blade30.isislab.vanderbilt.edu
 
 #sub0.qos=/export/home/tczar/DDS/settings/qos/subqos.settings
 #sub1.qos=/export/home/tczar/DDS/settings/qos/subqos.settings

@@ -93,7 +93,7 @@ int dw_write (int size,
 
   // @@ this step can be ommited if the length set by the
   //    loan_contiguous is what we want it to be
-  instance.data.length (size); // - sizeof (DDS_UnsignedLong));
+  instance.data.length (size);
   instance.timestamp = 0;
 
   for (i = 0; i < num_messages; ++i)
@@ -119,6 +119,7 @@ int dw_write (int size,
       stats.file_dump_throughput ();
     }
 
+  // oversend the messages
   for (i = 0; i < 30 * num_messages; ++i)
     {
 
@@ -167,10 +168,10 @@ public:
 
   virtual void on_publication_matched (
     DDSDataWriter *,
-    const DDS_PublicationMatchedStatus &)
+    const DDS_PublicationMatchedStatus &status)
   {
-    ++this->num_of_subs_;
-    cout << "Discovered subscription: No. " << this->num_of_subs_ << endl;
+    cout << "Current matched subscription count: "
+         << status.current_count << endl;
   }
 };
 
@@ -306,10 +307,11 @@ int main (int argc, char **argv)
   int packetsize = 0, retval = 0;
   DDS_Octet *dataBuffer = 0;
 
-  DDS_DomainParticipantFactoryQos factoryQos;         
 
   /* DomainParticipantFactory declarations */
   DDSDomainParticipantFactory* factory = 0;
+  DDS_DomainParticipantFactoryQos factoryQos;         
+
 
   /*  DomainParticipant declarations */
   DDS_DomainId_t domain_id = nddsDomain;
@@ -341,6 +343,10 @@ int main (int argc, char **argv)
 
   /* Data declarations */
   DDS_InstanceHandle_t instance_handle = DDS_HANDLE_NIL;
+
+
+
+  DDS_PublicationMatchedStatus throughput_writer_status;
 
   NDDS_Transport_UDPv4_Property_t udpv4Property =
     NDDS_TRANSPORT_UDPV4_PROPERTY_DEFAULT;
@@ -675,12 +681,21 @@ Create one data writer: (data_)writer
       just sleep a while, assuming that the readers will be discovered within
       this time.
   */
+
   cout << "Waiting for subscribers to be discovered.." << endl;
-  
-  for (int i = 0; i < 20; ++i)
+
+
+  for (int i = 0; i < 10; i++)
     {
-	    NDDSUtility::sleep (sleepTime);
+      NDDSUtility::sleep (sleepTime);
     }
+
+  retcode = 
+    writer->get_publication_matched_status(
+                                           throughput_writer_status);
+  cout << "The current number of subscribers is "
+       << throughput_writer_status.current_count << endl;
+  
 
   /*------------------------ start the latency test ----------------------*/
 

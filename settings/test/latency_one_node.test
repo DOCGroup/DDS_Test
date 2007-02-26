@@ -12,6 +12,8 @@ impl=Splice
 
 type=latency
 
+transport=multicast|broadcast
+
 minSize=4
 maxSize=16384
 primer=100

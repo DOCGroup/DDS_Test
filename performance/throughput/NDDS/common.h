@@ -10,7 +10,7 @@
 #define COMMON_H
 
 /* Type header files */
-#include "TP_PacketSupport.h"
+#include "ThroughputSupport.h"
 
 #define RTI_SHARED_MEMORY /*undefine if you don't have shared memory plugin */
 
