@@ -7,12 +7,18 @@
 
 #include "publisher_aux.h"
 
+#include "Splice_Test_Pub_T.h"
+
 int
 main (
     int argc,
     char *argv[]
     )
 {
+
+  SPLICE_PUB_SETUP(TP_Test_Bytes4);
+  
+#if 0
   // Try to set real-time scheduling class. Requires login as
   // superuser or administrator.
   set_rt ();
@@ -193,6 +199,6 @@ main (
       printf ("Sub: DATA_SIZE not supported!\n");
       break;
   }
-   
+#endif   
   return 0;
 }

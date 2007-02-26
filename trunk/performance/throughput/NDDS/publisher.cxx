@@ -177,13 +177,10 @@ public:
 
 int main (int argc, char **argv)
 {
-
-
-  //  ThroughputPublisherArgs args (argc, argv);
-
   int nddsDomain = 89;
   int role = 0;
-  int thePacketSize = 4;
+  unsigned long MAX_MSG_LENGTH = 16384UL;
+  unsigned long thePacketSize = 4UL;
   int prime_num = 0;
   int stats_num = 0;
   bool useMulticast = false;
@@ -587,8 +584,8 @@ Register data types, and create topics: echo_topic and data_topic
   cout << "Registering participant with data type \""
        << TEST_TOPIC_TYPE_NAME << "\"......";
 
-  BytesDataTypeSupport::register_type (participant,
-                                       TEST_TOPIC_TYPE_NAME);
+  TP_Test_BytesDataTypeSupport::register_type (participant,
+                                                TEST_TOPIC_TYPE_NAME);
 
   cout << "[Done]" << endl;
 					    
@@ -710,7 +707,7 @@ The core latency test is in the following for() loop.
   NDDSUtility::sleep (sleepTime);
 
 
-  retval = dw_write <BytesData, BytesDataDataWriter>
+  retval = dw_write <TP_Test_BytesData, TP_Test_BytesDataDataWriter>
     (packetsize,
      prime_num + stats_num,
      writer,

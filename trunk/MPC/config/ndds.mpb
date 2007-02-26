@@ -3,10 +3,9 @@
 
 project : acelib, ndds_ts_defaults {
   libs        += nddscpp nddsc nddscore
-
   includes    += $(NDDSHOME)/include $(NDDSHOME)/include/ndds
 
-  specific(vc71, vc8) {
+  specific(nmake, vc71, vc8) {
     libpaths    += $(NDDSHOME)/lib/i86Win32VS2003
     macros      += RTI_WIN32 NDDS_DLL_VARIABLE
   }

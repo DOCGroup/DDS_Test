@@ -33,7 +33,7 @@ TestBase::~TestBase (void)
 }
 
 int
-TestBase::ParseArgsBase (ACE_Arg_Shifter &arg_shifter)
+TestBase::ParseArgs (ACE_Arg_Shifter &arg_shifter)
 {
   const char *currentArg = 0;
   
@@ -125,7 +125,7 @@ TestBase::ParseArgsBase (ACE_Arg_Shifter &arg_shifter)
 }
 
 void
-TestBase::UsageBase (void) const
+TestBase::Usage (void) const
 {
   cout << "General Usage:" << endl
        << "\t[-domain #]       - domain id" << endl

@@ -4,19 +4,8 @@
 
 #include "Writer.h"
 
-#include "../TypeNoKeyBounded/Bytes4TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes8TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes16TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes32TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes64TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes128TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes256TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes512TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes1024TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes2048TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes4096TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes8192TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes16384TypeSupportImpl.h"
+#include "BytesTypeSupportImpl.h"
+#include "ComplexTypeSupportImpl.h"
 
 #include "dds/DCPS/Service_Participant.h"
 #include "ace/OS_NS_unistd.h"
@@ -120,7 +109,7 @@ int
 Writer::svc (void)
 {
   ACE_TRY_NEW_ENV
-  {cout << "wait fully associated\n";
+  {
     int num_connected_subs = 0;
     ::DDS::InstanceHandleSeq handles;
 
@@ -130,147 +119,16 @@ Writer::svc (void)
          writer_->get_matched_subscriptions (handles);
          num_connected_subs = handles.length ();
        }
-   cout << " fully associated\n";
+       
     //ACE_OS::sleep (2);
 
-    switch (data_size_)
-    {
-    case 4:
-      write< ::TP_Test::Bytes4,
-             ::Mine::Bytes4DataWriter,
-             ::Mine::Bytes4DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 8:
-      write< ::TP_Test::Bytes8,
-             ::Mine::Bytes8DataWriter,
-             ::Mine::Bytes8DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 16:
-      write< ::TP_Test::Bytes16,
-             ::Mine::Bytes16DataWriter,
-             ::Mine::Bytes16DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 32:
-      write< ::TP_Test::Bytes32,
-             ::Mine::Bytes32DataWriter,
-             ::Mine::Bytes32DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 64:
-      write< ::TP_Test::Bytes64,
-             ::Mine::Bytes64DataWriter,
-             ::Mine::Bytes64DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 128:
-      write< ::TP_Test::Bytes128,
-             ::Mine::Bytes128DataWriter,
-             ::Mine::Bytes128DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 256:
-      write< ::TP_Test::Bytes256,
-             ::Mine::Bytes256DataWriter,
-             ::Mine::Bytes256DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 512:
-      write< ::TP_Test::Bytes512,
-             ::Mine::Bytes512DataWriter,
-             ::Mine::Bytes512DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 1024:
-      write< ::TP_Test::Bytes1024,
-             ::Mine::Bytes1024DataWriter,
-             ::Mine::Bytes1024DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 2048:
-      write< ::TP_Test::Bytes2048,
-             ::Mine::Bytes2048DataWriter,
-             ::Mine::Bytes2048DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 4096:
-      write< ::TP_Test::Bytes4096,
-             ::Mine::Bytes4096DataWriter,
-             ::Mine::Bytes4096DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 8192:
-      write< ::TP_Test::Bytes8192,
-             ::Mine::Bytes8192DataWriter,
-             ::Mine::Bytes8192DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    case 16384:
-      write< ::TP_Test::Bytes16384,
-             ::Mine::Bytes16384DataWriter,
-             ::Mine::Bytes16384DataWriterImpl >
-        (writer_id_,
-         data_size_,
-         num_messages_,
-         writer_.in (),
-         this->stats_);
-      break;
-    default:
-      ACE_ERROR ((LM_ERROR,
-                  "ERROR: bad data size %d\n",
-                  data_size_));
-      return 1;
-    };
+    write< ::TP_Test::Bytes,
+            BytesDataWriter,
+            BytesDataWriterImpl > (writer_id_,
+                                   data_size_,
+                                   num_messages_,
+                                   writer_.in (),
+                                   this->stats_);
   }
   ACE_CATCHANY
   {
@@ -281,8 +139,11 @@ Writer::svc (void)
 
   
   ::DDS::InstanceHandleSeq handles;
-cout <<  "Writer wait for 0 matched subscription\n";
- ACE_DEBUG ((LM_DEBUG, "Writer wait for %d reader remove_associations\n", num_datareaders_));
+
+  ACE_DEBUG ((LM_DEBUG,
+              "Writer wait for %d reader remove_associations\n",
+              num_datareaders_));
+              
   while (!finished_sending_)
     {
       ACE_OS::sleep (1);
@@ -294,7 +155,6 @@ cout <<  "Writer wait for 0 matched subscription\n";
           done_condition_.signal ();
         }
     }
- cout << "Writer thread exit\n";
 
  ACE_DEBUG ((LM_DEBUG, "Writer thread exit\n")); 
 

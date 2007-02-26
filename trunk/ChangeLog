@@ -1,3 +1,155 @@
+Mon Feb 26 22:56:24 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * performance/latency/OpenSplice/Splice_latency.mpc:
+        * performance/latency/NDDS/latency/NDDS_latency.mpc:
+
+          New MPC files, to generate builds for the Splice and NDDS
+          latency tests.
+
+        * performance/throughput/TAO_DDS/TCP/TPTDef.idl:
+
+          Moved from removed directory
+          performance/throughput/TAO_DDS/TypeNoKeyBounded.
+
+        * performance/latency/TAO_DDS/Latency/PubComplexMessageTypeSupportImpl.h:
+        * performance/latency/TAO_DDS/Latency/PubMessageTypeSupportImpl.h:
+        * performance/latency/NDDS/latency/results:
+        * performance/latency/NDDS/latency/results_ndds_nest:
+        * performance/latency/NDDS/latency/results_ndds:
+        * performance/latency/NDDS/latency/results_ndds_nest_without_16384:
+        * performance/latency/NDDS/latency/NDDSLatencyGlobalSettings.h:
+        * performance/latency/NDDS/template/HelloWorldPlugin.h:
+        * performance/latency/NDDS/template/HelloWorld.h:
+        * performance/latency/NDDS/template/HelloWorldSupport.cxx:
+        * performance/latency/NDDS/template/HelloWorldPlugin.cxx:
+        * performance/latency/NDDS/template/HelloWorld.cxx:
+        * performance/latency/NDDS/template/HelloWorldSupport.h:
+        * performance/throughput/TAO_DDS/TypeNoKeyBounded:
+        * performance/throughput/TAO_DDS/TypeNoKeyBounded/TypeNoKeyBounded.mpc:
+        * performance/throughput/TAO_DDS/TypeNoKeyBounded/TPTTypeLib_Export.h:
+        * performance/throughput/TAO_DDS/TypeNoKeyBounded/TPTDef.idl:
+        * performance/latency/TAO_DDS/Latency/DDSPerfTestC.h:
+        * performance/latency/TAO_DDS/Latency/PubMessageTypeSupportC.h:
+        * performance/latency/TAO_DDS/Latency/AckMessageTypeSupportC.cpp:
+        * performance/latency/TAO_DDS/Latency/AckMessageTypeSupportC.inl:
+        * performance/latency/TAO_DDS/Latency/PubComplexMessageTypeSupportS.h:
+        * performance/latency/TAO_DDS/Latency/DDSPerfTestS.h:
+        * performance/latency/TAO_DDS/Latency/PubMessageTypeSupportS.h:
+        * performance/latency/TAO_DDS/Latency/AckMessageTypeSupportImpl.cpp:
+        * performance/latency/TAO_DDS/Latency/PubComplexMessageTypeSupportC.inl:
+        * performance/latency/TAO_DDS/Latency/PubComplexMessageTypeSupportC.cpp:
+        * performance/latency/TAO_DDS/Latency/AckMessageTypeSupportS.cpp:
+        * performance/latency/TAO_DDS/Latency/AckMessageTypeSupportS.inl:
+        * performance/latency/TAO_DDS/Latency/AckMessageTypeSupport.idl:
+        * performance/latency/TAO_DDS/Latency/DDSPerfTestC.cpp:
+        * performance/latency/TAO_DDS/Latency/DDSPerfTestC.inl:
+        * performance/latency/TAO_DDS/Latency/PubMessageTypeSupportC.cpp:
+        * performance/latency/TAO_DDS/Latency/PubMessageTypeSupportC.inl:
+        * performance/latency/TAO_DDS/Latency/PubComplexMessageTypeSupportImpl.cpp:
+        * performance/latency/TAO_DDS/Latency/PubComplexMessageTypeSupportS.inl:
+        * performance/latency/TAO_DDS/Latency/PubComplexMessageTypeSupportS.cpp:
+        * performance/latency/TAO_DDS/Latency/PubComplexMessageTypeSupport.idl:
+        * performance/latency/TAO_DDS/Latency/DDSPerfTestS.inl:
+        * performance/latency/TAO_DDS/Latency/AckMessageTypeSupportC.h:
+        * performance/latency/TAO_DDS/Latency/DDSPerfTestS.cpp:
+        * performance/latency/TAO_DDS/Latency/PubMessageTypeSupportImpl.cpp:
+        * performance/latency/TAO_DDS/Latency/PubMessageTypeSupportS.cpp:
+        * performance/latency/TAO_DDS/Latency/PubMessageTypeSupportS.inl:
+        * performance/latency/TAO_DDS/Latency/PubMessageTypeSupport.idl:
+        * performance/latency/TAO_DDS/Latency/AckMessageTypeSupportImpl.h:
+        * performance/latency/TAO_DDS/Latency/PubComplexMessageTypeSupportC.h:
+        * performance/latency/TAO_DDS/Latency/AckMessageTypeSupportS.h:
+        * performance/latency/TAO_DDS/Conversion/DDSPerfTestC.h:
+        * performance/latency/TAO_DDS/Conversion/PubMessageTypeSupportC.h:
+        * performance/latency/TAO_DDS/Conversion/AckMessageTypeSupportC.cpp:
+        * performance/latency/TAO_DDS/Conversion/AckMessageTypeSupportC.inl:
+        * performance/latency/TAO_DDS/Conversion/PubComplexMessageTypeSupportS.h:
+        * performance/latency/TAO_DDS/Conversion/DDSPerfTestS.h:
+        * performance/latency/TAO_DDS/Conversion/PubMessageTypeSupportS.h:
+        * performance/latency/TAO_DDS/Conversion/PubComplexMessageTypeSupportC.inl:
+        * performance/latency/TAO_DDS/Conversion/PubComplexMessageTypeSupportC.cpp:
+        * performance/latency/TAO_DDS/Conversion/AckMessageTypeSupportS.cpp:
+        * performance/latency/TAO_DDS/Conversion/AckMessageTypeSupportS.inl:
+        * performance/latency/TAO_DDS/Conversion/AckMessageTypeSupport.idl:
+        * performance/latency/TAO_DDS/Conversion/DDSPerfTestC.cpp:
+        * performance/latency/TAO_DDS/Conversion/DDSPerfTestC.inl:
+        * performance/latency/TAO_DDS/Conversion/PubMessageTypeSupportC.cpp:
+        * performance/latency/TAO_DDS/Conversion/PubMessageTypeSupportC.inl:
+        * performance/latency/TAO_DDS/Conversion/sub_simple_results
+        * performance/latency/TAO_DDS/Conversion/PubComplexMessageTypeSupportS.inl:
+        * performance/latency/TAO_DDS/Conversion/PubComplexMessageTypeSupportS.cpp:
+        * performance/latency/TAO_DDS/Conversion/PubComplexMessageTypeSupport.idl:
+        * performance/latency/TAO_DDS/Conversion/DDSPerfTestS.inl:
+        * performance/latency/TAO_DDS/Conversion/DDSPerfTestS.cpp:
+        * performance/latency/TAO_DDS/Conversion/AckMessageTypeSupportC.h:
+        * performance/latency/TAO_DDS/Conversion/PubMessageTypeSupportS.cpp:
+        * performance/latency/TAO_DDS/Conversion/PubMessageTypeSupportS.inl:
+        * performance/latency/TAO_DDS/Conversion/PubMessageTypeSupport.idl:
+        * performance/latency/TAO_DDS/Conversion/sub_complex_results:
+        * performance/latency/TAO_DDS/Conversion/.depend.Conversion_Pub:
+        * performance/latency/TAO_DDS/Conversion/.depend.Conversion_Sub:
+        * performance/latency/TAO_DDS/Conversion/sub_results:
+        * performance/latency/TAO_DDS/Conversion/PubComplexMessageTypeSupportC.h:
+        * performance/latency/TAO_DDS/Conversion/AckMessageTypeSupportS.h:
+        * performance/throughput/OpenSplice/C/waitset/Splice_c_waitset_tp.mpc:
+        * performance/throughput/OpenSplice/C/listener/Splice_c_listener_tp.mpc:
+        * performance/throughput/NDDS/Stats.h:
+        * performance/throughput/NDDS/Stats.cxx:
+
+          Removed files, including generated files that shouldn't be in the
+          repository, Stats files that are now replace by inclusions from
+          the Stats library, and test results files.
+
+        * performance/throughput/NDDS/subscriber.cxx:
+        * performance/throughput/TAO_DDS/TCP/dds_config_file.cpp:
+        * performance/throughput/TAO_DDS/TCP/DataReaderListener.cpp:
+        * performance/throughput/TAO_DDS/TCP/subscriber.cpp:
+        * performance/throughput/TAO_DDS/TCP/Writer.cpp:
+        * performance/throughput/TAO_DDS/TCP/TCP.mpc:
+        * performance/throughput/TAO_DDS/TCP/publisher.cpp:
+        * Test_Framework/DataWriterListener_T.cpp:
+        * Test_Framework/TAO_DDS_Test_T.cpp:
+        * Test_Framework/Splice_Test_T.cpp:
+        * Test_Framework/TAO_DDS_Test_Pub_T.cpp:
+        * Test_Framework/Splice_Test_Pub_T.cpp:
+        * Test_Framework/TAO_DDS_Test_Sub_T.cpp:
+        * Test_Framework/Splice_Test_Sub_T.cpp:
+        * Test_Framework/TestBase.cpp:
+        * Test_Framework/NDDS_Test_T.h:
+        * Test_Framework/NDDS_Test_Pub_T.h:
+        * Test_Framework/NDDS_Test_Sub_T.h:
+        * Test_Framework/Test_Framework.mpc:
+        * Test_Framework/TAO_DDS_Test_T.h:
+        * Test_Framework/Splice_Test_T.h:
+        * Test_Framework/TAO_DDS_Test_Pub_T.h:
+        * Test_Framework/NDDS_Test_T.cpp:
+        * Test_Framework/Splice_Test_Pub_T.h:
+        * Test_Framework/TAO_DDS_Test_Sub_T.h:
+        * Test_Framework/TestBase.h:
+        * Test_Framework/Splice_Test_Sub_T.h:
+        * Test_Framework/NDDS_Test_Pub_T.cpp:
+        * Test_Framework/NDDS_Test_Sub_T.cpp:
+        * MPC/config/ndds_ts_defaults.mpb:
+        * MPC/config/ndds.mpb:
+        * performance/latency/TAO_RTNS/Notify_Lanes.mpc:
+        * performance/latency/TAO_DDS/Latency/DDSPerfTest.idl:
+        * performance/latency/TAO_DDS/Latency/Latency.mpc:
+        * performance/throughput/OpenSplice/C/listener/subscriber.cpp:
+        * performance/throughput/OpenSplice/C/listener/publisher_aux.h:
+        * performance/throughput/OpenSplice/C/listener/publisher.cpp:
+        * performance/throughput/OpenSplice/C++/TPTDef.idl:
+        * performance/throughput/OpenSplice/C++/Splice_c++_throughput.mpc:
+        * performance/throughput/NDDS/TP_Packet.idl:
+        * performance/throughput/NDDS/publisher.cxx:
+        * performance/throughput/NDDS/NDDS_throughput.mpc:
+
+          Modified files, including changes to IDL files to bring the various
+          test IDLs into more consistency, with corresponding changes
+          to hand-written test code, changes to .mpb base class MPC
+          projects to get all generated files removed upon a 'make clean'
+          or equivalent, some recent changes to the test framework still
+          in development, and cosmetic changes to source code.
+
 Mon Feb 26 21:58:36 UTC 2007  James Edmondson <jedmondson@gmail.com>
 
         * performance/latency/NDDS/latency/*

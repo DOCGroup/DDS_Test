@@ -6,28 +6,42 @@
  This code contains trade secrets of Real-Time Innovations, Inc.
 */
 
-// (JP) If we change the name of this IDL file, we can remove
-// the copyright block above. The hope is to use the same IDL
-// file for all implementations, but that may not yet be
-// possible (see below).
+// (JP) These guards are a problem for nddsgen 4.0i, it outputs
+// an error message and generates no code.
+//#ifndef NDDS_THROUGHPUTTEST_IDL
+//#define NDDS_THROUGHPUTTEST_IDL
 
-// (JP) It's preferred practice in IDL to typedef a sequence or
-// an array outside the scope where it's to be used as a
-// member. Using it directly isn't forbidden (yet) but
-// deprecated. NDDS handles this ok, but I think one of the
-// others may have a problem with it. We'll soon discover
-// if it's true, then we can report it to the vendor, and
-// change the IDL if we have to. In any case, we'll have to
-// declare an empty keylist for OpenSplice.
-
-const short MAX_MSG_LENGTH = 16384;//131072;
-
-
-typedef sequence<octet, MAX_MSG_LENGTH> OctetSeq;
-
-struct BytesData
+module TP_Test
 {
-  unsigned long timestamp;
-  OctetSeq data;
+  typedef sequence<octet> OctetSeq;
+
+  struct BytesData
+  {
+    unsigned long timestamp;
+    OctetSeq data;
+  };
+    
+  struct Nested
+  {
+    string info;
+    long index;
+  };
+
+  typedef sequence<Nested> NestedSequence;
+
+  struct Outer
+  {
+    long length;
+    NestedSequence nested_member;
+  };
+
+  typedef sequence<Outer> ComplexSequence;
+
+  struct Complex
+  {
+    unsigned long timestamp;
+    ComplexSequence data;
+  };
 };
-  
+
+//#endif /* NDDS_THROUGHPUTTEST_IDL */

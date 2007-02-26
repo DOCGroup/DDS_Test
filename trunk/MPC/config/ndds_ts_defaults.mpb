@@ -6,9 +6,12 @@ project {
     automatic             = 1
     command               = $(NDDSHOME)/scripts/nddsgen
     dependent             = $(NDDSHOME)/scripts/nddsgen
+    source_pre_extension  = , , Support, Plugin
     source_outputext      = .cxx
+    header_pre_extension  = , , Support, Plugin
+    header_outputext      = .h
     keyword ndds_ts_flags = commandflags
   }
 
-  ndds_ts_flags += -language C++ -d . -optimization 2 -replace
+  ndds_ts_flags += -language C++ -replace
 }

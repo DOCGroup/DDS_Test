@@ -4,6 +4,9 @@
 #define TAO_DDS_TEST_SUB_T_CPP
 
 #include "TAO_DDS_Test_Sub_T.h"
+
+#ifdef TAO_DDS_CONFIG
+
 #include "TAO_DDS_Listeners.h"
 
 #include "dds/DCPS/PublisherImpl.h"
@@ -18,7 +21,6 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
                    DATA_READER_IMPL>::TAO_DDS_Test_Sub_T (void)
   : data_reader_servant_ (0),
-    reader_address_str_ ("default"),
     data_verifier_ (0)
 {
 }
@@ -48,9 +50,7 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
     {
       // Call base class Init() first.
       int status =
-        this->TAO_DDS_Test_T<
-          DATA_TYPE,
-          TYPE_SUPPORT_IMPL>::Init (argc, argv);
+        this->TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>::Init (argc, argv);
        
       if (status != 0)
         {
@@ -208,62 +208,6 @@ int
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::ParseArgs (void)
-{
-  ACE_Arg_Shifter arg_shifter (this->argc_, this->argv_);
-  bool good = true;
-  const char *currentArg = 0;
-  
-  // Ignore the command - argv[0].
-  arg_shifter.ignore_arg ();
-  
-  while (arg_shifter.is_anything_left ()) 
-    {
-      if ((currentArg = arg_shifter.get_the_parameter ("-raddress")) != 0) 
-        {
-          this->reader_address_str_ = currentArg;
-          arg_shifter.consume_arg ();
-        }
-      else if (this->ParseArgsBase (arg_shifter) != 0)
-        {
-          arg_shifter.ignore_arg ();
-          good = false;
-        }
-    }
-    
-  if (!good)
-    {
-      this->Usage ();
-      return -1;
-    }
-    
-  return 0;
-}
-
-template<typename DATA_TYPE,
-         typename DATA_TYPE_SEQ,
-         typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
-void
-TAO_DDS_Test_Sub_T<DATA_TYPE,
-                   DATA_TYPE_SEQ,
-                   TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::Usage (void) const
-{
-  cout << "TAO DDS Subscriber Usage:" << endl
-       << "\t[-raddress \"\"]   - reader address" << endl;
-       
-  this->UsageBase ();
-}
-
-template<typename DATA_TYPE,
-         typename DATA_TYPE_SEQ,
-         typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
-int
-TAO_DDS_Test_Sub_T<DATA_TYPE,
-                   DATA_TYPE_SEQ,
-                   TYPE_SUPPORT_IMPL,
                    DATA_READER_IMPL>::CreateSubscriber (void)
 {
   this->topic_description_ =
@@ -320,41 +264,6 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
       return -1;
     }
     
-  return 0;
-}
-
-template<typename DATA_TYPE,
-         typename DATA_TYPE_SEQ,
-         typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
-int
-TAO_DDS_Test_Sub_T<DATA_TYPE,
-                   DATA_TYPE_SEQ,
-                   TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::InitReaderTransport (void)
-{
-  this->reader_transport_impl_ =
-    TheTransportFactory->create_transport_impl (SUB_TRAFFIC,
-                                                TAO::DCPS::DONT_AUTO_CONFIG);
-
-  TAO::DCPS::TransportConfiguration_rch reader_config =
-    TheTransportFactory->get_configuration (SUB_TRAFFIC);
-
-  TAO::DCPS::SimpleTcpConfiguration* reader_tcp_config =
-    static_cast <TAO::DCPS::SimpleTcpConfiguration*> (reader_config.in ());
-      
-  if (0 != ACE_OS::strcmp ("default", this->reader_address_str_.c_str ()))
-    {
-      ACE_INET_Addr reader_address (this->reader_address_str_.c_str ());
-      reader_tcp_config->local_address_ = reader_address;
-    }
-
-  if (this->reader_transport_impl_->configure (reader_config.in ()) != 0)
-    {
-      this->NullReturnErrorMsg ("InitReaderTransport", "configure");
-      return -1;
-    }
-
   return 0;
 }
 
@@ -512,19 +421,6 @@ template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
          typename DATA_READER_IMPL>
-const char *
-TAO_DDS_Test_Sub_T<DATA_TYPE,
-                   DATA_TYPE_SEQ,
-                   TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::ClassName (void) const
-{
-  return "TAO_DDS_Test_Sub_T";
-}
-
-template<typename DATA_TYPE,
-         typename DATA_TYPE_SEQ,
-         typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
 bool
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
@@ -545,8 +441,10 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
       return true;
     }
 
-  return (handles.length () == 0 ? true : false);
+  return handles.length () == 0;
 }
+
+#endif /* TAO_DDS_CONFIG */
 
 #endif /* TAO_DDS_TEST_SUB_T_CPP */
 

@@ -7,7 +7,10 @@ project (Test_Framework) : portableserver, ndds, splice, dcps {
   
   Source_Files {
     Stats.cpp
+    TAO_DDS_Common.cpp
     TAO_DDS_Listeners.cpp
+    TAO_DDS_Pub.cpp
+    TAO_DDS_Sub.cpp
     TestBase.cpp
   }
   
@@ -22,6 +25,9 @@ project (Test_Framework) : portableserver, ndds, splice, dcps {
     Splice_Test_Pub_T.h
     Splice_Test_Sub_T.h
     Stats.h
+    TAO_DDS_Common.h
+    TAO_DDS_Pub.h
+    TAO_DDS_Sub.h
     TAO_DDS_Listeners.h
     TAO_DDS_Test_T.h
     TAO_DDS_Test_Pub_T.h

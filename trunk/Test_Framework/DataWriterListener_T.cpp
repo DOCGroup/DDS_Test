@@ -44,7 +44,7 @@ DataWriterListener_T<BASE, DATA_WRITER>::on_publication_match (
   const DDS::PublicationMatchStatus &)
 {
   ++this->num_of_subs_;
-  cout << "Discovered subscription: No. " << this->num_of_subs_ << endl;
+//  cout << "Discovered subscription: No. " << this->num_of_subs_ << endl;
 }
 
 template<typename BASE, typename DATA_WRITER>
@@ -54,7 +54,7 @@ DataWriterListener_T<BASE, DATA_WRITER>::on_publication_matched (
   const DDS::PublicationMatchedStatus &)
 {
   ++this->num_of_subs_;
-  cout << "Discovered subscription: No. " << this->num_of_subs_ << endl;
+//  cout << "Discovered subscription: No. " << this->num_of_subs_ << endl;
 }
 
 // TAO DDS specific.

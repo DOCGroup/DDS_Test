@@ -109,9 +109,9 @@ dr_read (DDSDataReader *datareader)
 class BytesDataListener : public DDSDataReaderListener
 {
   private:
-    BytesData _instance;
+    TP_Test_BytesData _instance;
     DDS_InstanceHandle_t _instanceHandle;
-    BytesDataDataWriter* _writer;
+    TP_Test_BytesDataDataWriter* _writer;
     int _sequenceNumber;
     int packetsize_;
     int prime_num_;
@@ -166,7 +166,7 @@ class BytesDataListener : public DDSDataReaderListener
 
     virtual void on_data_available (DDSDataReader* /*reader*/);
 
-    void set_writer (BytesDataDataWriter* writer)
+    void set_writer (TP_Test_BytesDataDataWriter* writer)
     { 
       _writer = writer;
     }
@@ -197,9 +197,9 @@ void BytesDataListener::on_data_available (
 {
   ACE_CDR::ULong ts = 0;
 
-  dr_read <BytesData,
-    BytesDataSeq,
-    BytesDataDataReader> (datareader);
+  dr_read <TP_Test_BytesData,
+    TP_Test_BytesDataSeq,
+    TP_Test_BytesDataDataReader> (datareader);
 
   this->stats_.sample_for_throughput (ts, false);
 
@@ -215,7 +215,8 @@ int main (int argc, char *argv[])
 {
   int nddsDomain = 89;
   int role = 1; //translates to participant index
-  int thePacketSize = 4;
+  unsigned long MAX_MSG_LENGTH = 16384UL;
+  unsigned long thePacketSize = 4UL;
   bool useMulticast = false;
   bool isReliable = false;
   bool useWaitSet = false;
@@ -233,7 +234,7 @@ int main (int argc, char *argv[])
 
   for (int i = 1; i < argc; ++i)
     {
-      if(strcmp(argv[i], "-d") == 0)
+      if (strcmp(argv[i], "-d") == 0)
       {
         nddsDomain = strtol (argv[++i], 0, 10);
       }
@@ -590,8 +591,8 @@ Register data types, and create topics: data_topic and echo_topic.
   cout << "Registering participant with data type \""
        << TEST_TOPIC_TYPE_NAME << "\"......";
 
-  BytesDataTypeSupport::register_type (participant,
-                                       TEST_TOPIC_TYPE_NAME);
+  TP_Test_BytesDataTypeSupport::register_type (participant,
+                                               TEST_TOPIC_TYPE_NAME);
   cout << "[Done]" << endl;
 					    
   /* initialize topic_qos with default values */
@@ -743,9 +744,9 @@ Stay in a the while loop unitl receiving a termination message.
                     {
 
 
-                      dr_read <BytesData,
-                        BytesDataSeq,
-                        BytesDataDataReader> (reader);
+                      dr_read <TP_Test_BytesData,
+                        TP_Test_BytesDataSeq,
+                        TP_Test_BytesDataDataReader> (reader);
 
                       stats_.sample_for_throughput (ts, true);
 

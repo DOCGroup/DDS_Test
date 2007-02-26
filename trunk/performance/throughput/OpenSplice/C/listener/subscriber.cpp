@@ -11,6 +11,7 @@
 
 #include "subscriber_aux.h"
 
+#include "../../../../../Test_Framework/Splice_Test_Sub_T.h"
 
 // DataReader's callback function for DataReaderListener's on_data_available
 template <typename Stats,
@@ -121,13 +122,14 @@ on_data_available_takewstats (Stats *stats, FooDataReader datareader)
   }  
 }
 
-
 int
 main (
     int argc,
     char *argv[]
     )
 {
+  SPLICE_SUB_SETUP(TP_Test_Bytes4);
+  #if 0
   // Try to set real-time scheduling class. Requires login as
   // superuser or administrator.
   set_rt ();
@@ -148,6 +150,8 @@ main (
 
 
   BenchmarkMainSub (argc, argv);  
+
+  #endif
 
   return 0;
 }
