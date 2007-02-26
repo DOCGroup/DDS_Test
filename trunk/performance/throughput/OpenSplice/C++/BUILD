@@ -21,8 +21,6 @@
 # This example build is valid for OpenFusion TAO only
 #
 
-#source ./env.com
-
 TAO_COMP=`which tao_idl 2> /dev/null`
 if [ -z "$TAO_COMP" -o -z "$TAO_ROOT" ]
 then
@@ -44,53 +42,51 @@ then
     exit
 fi
 
-#mkdir -p bld
+mkdir -p bld
+mkdir -p exec
 cd bld
 
-#echo "Compiling IDL with TAO IDL compiler"
-#tao_idl -I../ -I$OSPL_HOME/include/dcps/C++/CCPP -Sc -Sp -Sd -Sv ../TPTDef.idl
+echo "Compiling IDL with TAO IDL compiler"
+tao_idl -I../ -I$OSPL_HOME/include/dcps/C++/CCPP -Sc -Sp -Sd -Sv ../TPTDef.idl
 
-#echo "Compiling IDL with SPLICE IDL compiler"
-#idlpp -l cpp ../TPTDef.idl
+echo "Compiling IDL with SPLICE IDL compiler"
+idlpp -l cpp ../TPTDef.idl
 
-#echo "Compiling IDL Typed Interfaces with TAO IDL compiler"
-#tao_idl -I../ -I$OSPL_HOME/include/dcps/C++/CCPP -Sc -Sp -Sd -Sv TPTDefDcps.idl
+echo "Compiling IDL Typed Interfaces with TAO IDL compiler"
+tao_idl -I../ -I$OSPL_HOME/include/dcps/C++/CCPP -Sc -Sp -Sd -Sv TPTDefDcps.idl
 
-#echo "Compiling TAO User Types support code"
-#g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -I./ -I$TAO_ROOT/include -c TPTDefC.cpp
+echo "Compiling TAO User Types support code"
+g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -I./ -I$TAO_ROOT/include -c TPTDefC.cpp
 
-#echo "Compiling SPLICE User Types support code"
-#g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefSplDcps.cpp \
-#	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
-#	-I$OSPL_HOME/include/dcps/C++/CCPP
+echo "Compiling SPLICE User Types support code"
+g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefSplDcps.cpp \
+	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
+	-I$OSPL_HOME/include/dcps/C++/CCPP
 
-#echo "Compiling TAO Typed Interfaces support code"
-#g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefDcpsC.cpp \
-#	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
-#	-I$OSPL_HOME/include/dcps/C++/CCPP
+echo "Compiling TAO Typed Interfaces support code"
+g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefDcpsC.cpp \
+	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
+	-I$OSPL_HOME/include/dcps/C++/CCPP
 
-#echo "Compiling Application Foo Types support code"
-#g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefDcps_impl.cpp \
-#	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
-#	-I$OSPL_HOME/include/dcps/C++/CCPP
+echo "Compiling Application Foo Types support code"
+g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefDcps_impl.cpp \
+	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
+	-I$OSPL_HOME/include/dcps/C++/CCPP
 
 echo "Compiling publisher"
 g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c ../publisher.cpp \
-	-I./ -I$ACE_ROOT -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
+	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
 	-I$OSPL_HOME/include/dcps/C++/CCPP
 
 echo "Compiling subscriber"
 g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c ../subscriber.cpp \
-	-I./ -I$ACE_ROOT -I$TAO_ROOT/include -I$STATS_ROOT -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
+	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
 	-I$OSPL_HOME/include/dcps/C++/CCPP
 
-#echo "Compiling Stats"
-#g++3.2.3 -g ../Stats.h ../Stats.cpp -I$ACE_ROOT/include
-
 echo "Linking publisher"
-g++3.2.3 -o ../publisher -L$OSPL_HOME/lib publisher.o TPTDefC.o TPTDefDcpsC.o TPTDefDcps_impl.o TPTDefSplDcps.o -L$TAO_ROOT/lib -lACE -lTAO -lTAO_PortableServer -lddsdatabase -ldcpsccpp -lstdc++
+g++3.2.3 -o ../exec/publisher -L$OSPL_HOME/lib publisher.o TPTDefC.o TPTDefDcpsC.o TPTDefDcps_impl.o TPTDefSplDcps.o -L$TAO_ROOT/lib -lTAO -lddsdatabase -ldcpsccpp -lstdc++
 
 echo "Linking subscriber"
-g++3.2.3 -o ../subscriber -L$OSPL_HOME/lib subscriber.o TPTDefC.o TPTDefDcpsC.o TPTDefDcps_impl.o TPTDefSplDcps.o -L$TAO_ROOT/lib -lACE -lTAO -lTAO_PortableServer -lddsdatabase -ldcpsccpp -lstdc++
+g++3.2.3 -o ../exec/subscriber -L$OSPL_HOME/lib subscriber.o TPTDefC.o TPTDefDcpsC.o TPTDefDcps_impl.o TPTDefSplDcps.o -L$TAO_ROOT/lib -lTAO -lddsdatabase -ldcpsccpp -lstdc++
 
 cd ..

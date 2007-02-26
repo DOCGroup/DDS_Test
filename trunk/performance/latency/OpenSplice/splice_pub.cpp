@@ -12,12 +12,60 @@
 #include <getopt.h>
 #include <sys/types.h>
 
+
+#include "ace/Sched_params.h"
+
 #define RESULT_FILE_NAME_MAX 1024
 
 using namespace std;
 using namespace DDS;
 using namespace CORBA;
 using namespace DDSPerfTest;
+
+// This can be changed to the desired value.
+const int PRIORITY =
+  (ACE_Sched_Params::priority_min (ACE_SCHED_FIFO)
+   + ACE_Sched_Params::priority_max (ACE_SCHED_FIFO)) / 2;
+
+// Attempt to set the real time priority and lock memory.
+void
+set_rt (void) 
+{
+  int rt_status =
+    ACE_OS::sched_params (ACE_Sched_Params (ACE_SCHED_FIFO,
+                                            PRIORITY,
+                                            ACE_SCOPE_PROCESS));
+  
+  if (rt_status != 0)
+    {
+      switch (ACE_OS::last_error ())
+        {
+          case EPERM:
+            cout << "publisher: user is not superuser, "
+                 << "test runs in time-shared class" << endl;
+            break;
+          case EINVAL:
+            cout << "publisher: priority " << PRIORITY << " is invalid"
+                 << "on this platform, test runs in time-shared class"
+                 << endl;
+            break;
+          case ESRCH:
+            cout << "publisher: process id " << ACE_SCOPE_PROCESS
+                 << " not found, test runs in time-shared class"
+                 << endl;
+            break;
+          default:
+            // No other reasons why sched_params() can fail.
+            break;
+        }
+    }
+  else
+    {
+      cout << "publisher: real time priority successfully set!" << endl;
+    }
+}
+
+
 
 // comment
 
@@ -144,23 +192,6 @@ static char topic_id = 's';
 
 #define SPLICE2_TEST_DEBUG    1
 #define DPRINTF(x) if(SPLICE2_TEST_DEBUG) { fprintf(stderr, "%s", x); }
-
-
-/* void set_rt() */
-/*      Attempt to set the real time priority and lock memory */
-void set_rt() 
-{
-        struct sched_param p;
-
-        p.sched_priority = 20;
-        if (-1 == sched_setscheduler(0, SCHED_FIFO, &p)) {
-                perror("sched_setscheduler");
-        }
-        if (mlockall(MCL_CURRENT || MCL_FUTURE)) {
-                fprintf(stderr, 
-                        "== Could not lock memory - Run with root access.\n");
-        }
-}
 
 
 /* Defines and constants for getopts */

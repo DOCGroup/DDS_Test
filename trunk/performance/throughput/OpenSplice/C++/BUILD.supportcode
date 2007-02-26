@@ -56,37 +56,37 @@ echo "Compiling IDL Typed Interfaces with TAO IDL compiler"
 tao_idl -I../ -I$OSPL_HOME/include/dcps/C++/CCPP -Sc -Sp -Sd -Sv TPTDefDcps.idl
 
 echo "Compiling TAO User Types support code"
-gcc3.2.3 -g -DDDS_OpenFusion_1_4_1 -I./ -I$TAO_ROOT/include -c TPTDefC.cpp
+g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -I./ -I$TAO_ROOT/include -c TPTDefC.cpp
 
 echo "Compiling SPLICE User Types support code"
-gcc3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefSplDcps.cpp \
+g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefSplDcps.cpp \
 	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
 	-I$OSPL_HOME/include/dcps/C++/CCPP
 
 echo "Compiling TAO Typed Interfaces support code"
-gcc3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefDcpsC.cpp \
+g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefDcpsC.cpp \
 	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
 	-I$OSPL_HOME/include/dcps/C++/CCPP
 
 echo "Compiling Application Foo Types support code"
-gcc3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefDcps_impl.cpp \
+g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c TPTDefDcps_impl.cpp \
 	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
 	-I$OSPL_HOME/include/dcps/C++/CCPP
 
 echo "Compiling publisher"
-g++ -g -DDDS_OpenFusion_1_4_1 -c ../publisher.cpp \
+g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c ../publisher.cpp \
 	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
 	-I$OSPL_HOME/include/dcps/C++/CCPP
 
 echo "Compiling subscriber"
-g++ -g -DDDS_OpenFusion_1_4_1 -c ../subscriber.cpp \
+g++3.2.3 -g -DDDS_OpenFusion_1_4_1 -c ../subscriber.cpp \
 	-I./ -I$TAO_ROOT/include -I$OSPL_HOME/include/dcps/C++/CCPP/OpenFusion \
 	-I$OSPL_HOME/include/dcps/C++/CCPP
 
-#echo "Linking PING"
-#g++ -o ../exec/ping -L$OSPL_HOME/lib ping.o pingpongC.o pingpongDcpsC.o pingpongDcps_impl.o pingpongSplDcps.o -L$TAO_ROOT/lib -lTAO -ldatabase -ldcpsccpp -lstdc++
+echo "Linking publisher"
+g++3.2.3 -o ../exec/publisher -L$OSPL_HOME/lib publisher.o TPTDefC.o TPTDefDcpsC.o TPTDefDcps_impl.o TPTDefSplDcps.o -L$TAO_ROOT/lib -lTAO -lddsdatabase -ldcpsccpp -lstdc++
 
-#echo "Linking PONG"
-#g++ -o ../exec/pong -L$OSPL_HOME/lib pong.o pingpongC.o pingpongDcpsC.o pingpongDcps_impl.o pingpongSplDcps.o -L$TAO_ROOT/lib -lTAO -ldatabase -ldcpsccpp -lstdc++
+echo "Linking subscriber"
+g++3.2.3 -o ../exec/subscriber -L$OSPL_HOME/lib subscriber.o TPTDefC.o TPTDefDcpsC.o TPTDefDcps_impl.o TPTDefSplDcps.o -L$TAO_ROOT/lib -lTAO -lddsdatabase -ldcpsccpp -lstdc++
 
 cd ..

@@ -32,6 +32,10 @@
 #             confusing.
 #############################################################
 
+
+use Env (DBE_ROOT);
+
+
 sub readSettingsFromArgs
 {
   while( @ARGV > 0 )
@@ -355,7 +359,7 @@ sub updateTestsListingFile
   }
   else
   {
-    $testlistfile = "/export/home/tczar/DDS/results/tests.list";
+    $testlistfile = "$DBE_ROOT/results/tests.list";
   }
 
   if( $settings{'testliststring'} ne "" )
@@ -705,7 +709,7 @@ sub getTestListing
   }
   else
   {
-    $testlistfile = "/export/home/tczar/DDS/results/tests.list";
+    $testlistfile = "$DBE_ROOT/results/tests.list";
   }
 
   open(FILE, "<$testlistfile");

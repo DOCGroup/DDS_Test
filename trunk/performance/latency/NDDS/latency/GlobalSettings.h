@@ -30,8 +30,8 @@ latency. The basic algorithm is as follow:
 #include "ndds/ndds_cpp.h"
 
 /* Type header files */
-#include "NDDSLatencyPacketSupport.h"
-#include "NDDSLatencyPacket.h"
+#include "latencySupport.h"
+#include "latency.h"
 
 /* Type name */
 #define LATENCY_TYPE_NAME "PacketDataType"

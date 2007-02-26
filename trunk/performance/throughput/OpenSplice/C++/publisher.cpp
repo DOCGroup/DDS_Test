@@ -163,10 +163,10 @@ main (int argc, char *argv[])
   int parsing_status = parse_pub_args (argc, argv);
 
   // Initialize stats object
-  PubSub_Stats *pubstats = new PubSub_Stats (pub_output_file,
-                                             PRIMER_SAMPLES,
-                                             STATS_SAMPLES,
-                                             DATA_SIZE);
+//  PubSub_Stats *pubstats = new PubSub_Stats (pub_output_file,
+//                                             PRIMER_SAMPLES,
+//                                             STATS_SAMPLES,
+//                                             DATA_SIZE);
                                                
   //
   // Create participant

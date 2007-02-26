@@ -77,7 +77,7 @@ print "Settings have been read..\n";
 
 # setup base path for all executables
 
-$path = "$DBE_ROOT/performance/";
+$path = "$DBE_LOCAL_ROOT/performance/";
 
 $type = lc($settings{'type'});
 
@@ -253,6 +253,14 @@ else
     @files = ( 'exec/subscriber', 'exec/publisher',
                'start_sub.pl', 'start_pub.pl' );
     $destPath = '$DBE_LOCAL_ROOT/performance/latency/OpenSplice';
+  }
+  elsif( $impl eq 'ndds' )
+  {
+    $sourcePath = '$DBE_ROOT/performance/latency/NDDS/latency';
+    @files = ( 'objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_subscriber', 
+               'objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_publisher',
+               'start_sub.pl', 'start_pub.pl' );
+    $destPath = '$DBE_LOCAL_ROOT/performance/latency/NDDS';
   }
 }
 

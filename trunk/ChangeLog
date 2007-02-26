@@ -1,3 +1,12 @@
+Mon Feb 26 21:58:36 UTC 2007  James Edmondson <jedmondson@gmail.com>
+
+        * performance/latency/NDDS/latency/*
+        * settings/*
+        
+          Added Ming's file name changes in the NDDS latency directory.
+          The changes to the settings files are minor and only specify
+          diff blades that are currently being used (blade33-34).
+
 Fri Feb 23 22:52:11 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC/config/splice_ts_defaults.mpb:
