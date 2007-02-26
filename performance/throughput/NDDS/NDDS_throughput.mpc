@@ -1,8 +1,7 @@
-project(*Pub): nddsexe {
+project(NDDS_Throughput_Pub): nddsexe {
   exename   = publisher
-  libpaths += 
   libs     += Stats
-  after    +=
+  after    += Stats
   includes += $(STATS_ROOT)
   
   NDDSTypeSupport_Files {
@@ -26,11 +25,10 @@ project(*Pub): nddsexe {
   }
 }
 
-project(*Sub): nddsexe {
+project(NDDS_Throughput_Sub): nddsexe {
   exename   = subscriber
-  libpaths += 
   libs     += Stats
-  after    += 
+  after    += Stats
   includes += $(STATS_ROOT)
 
   NDDSTypeSupport_Files {

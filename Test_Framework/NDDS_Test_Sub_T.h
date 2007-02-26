@@ -15,8 +15,11 @@
 #ifndef NDDS_TEST_SUB_T_H
 #define NDDS_TEST_SUB_T_H
 
+#include "NDDS_Sub.h"
+
+#if defined (NDDS_CONFIG)
+
 #include "NDDS_Test_T.h"
-#include "DataReaderListener_T.h"
 
 /*
  * @class NDDS_Test_Sub_T
@@ -28,7 +31,8 @@ template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT,
          typename DATA_READER>
-class NDDS_Test_Sub_T : public NDDS_Test_T<DATA_TYPE, TYPE_SUPPORT>
+class NDDS_Test_Sub_T : public virtual NDDS_Test_T<TYPE_SUPPORT>,
+                        public virtual NDDS_Sub
 {
 public:
   typedef bool (*DATA_VERIFIER)(const DATA_TYPE &);
@@ -37,36 +41,22 @@ public:
   virtual ~NDDS_Test_Sub_T (void);
   
   int Init (int argc, char *argv[]);
-  int SetReaderListener (DDS::DataReaderListener *listener,
-                         DDS::StatusMask mask = 0);
   void SetDataVerifier (DATA_VERIFIER);
   int Run (void);
-  int CreateSubscriber (void);
   int CreateDataReader (void);
   void Read (void);
   int Fini (void);
   
 private:
-  virtual const char *ClassName (void) const;
-  virtual bool IsFinished (void);
-  
-private:
-  DDS::Subscriber *subscriber_;
-  DDS::SubscriberQos subscriber_qos_;
-  DDS::SubscriberListener *subscriber_listener_;
-      
-  DDS::DataReader *data_reader_;
   DATA_READER *typed_data_reader_;
-  DDS::DataReaderQos data_reader_qos_;
-  DataReaderListener_T<DDS::DataReaderListener,
-                       DDS::DataReader> data_reader_listener_;
-                       
-  DDS::WaitSet *waitset_;
-  DDS::StatusCondition *condition_;
-  DDS::ConditionSeq condition_list_;
-  
   DATA_VERIFIER data_verifier_;
 };
+
+#define NDDS_SUB_SETUP(DATATYPE) \
+  NDDS_Test_Sub_T<DATATYPE, \
+                  DATATYPE ## Seq, \
+                  DATATYPE ## TypeSupport, \
+                  DATATYPE ## DataReader> ndds_sub
 
 #if defined (ACE_TEMPLATES_REQUIRE_SOURCE)
 #include "NDDS_Test_Sub_T.cpp"

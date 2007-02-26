@@ -16,6 +16,9 @@
 #define SPLICE_TEST_SUB_T_H
 
 #include "Splice_Test_T.h"
+
+#if defined (SPLICE_CONFIG)
+
 #include "DataReaderListener_T.h"
 
 // For better compliance with OMG IDL PSM C++ mapping.
@@ -78,7 +81,7 @@ public:
   
 private:
   virtual const char *ClassName (void) const;
-  int ParseArgs (void);
+  int ParseArgs (ACE_Arg_Shifter &arg_shifter);
   void Usage (void) const;
   
 private:
@@ -98,36 +101,36 @@ private:
   bool take_;
 };
   
-// DT = datatype type name
-// DT_SEQ = datatype sequence type name
-// TS = TypeSupport type name
-// DR = data reader type name  
-#define SPLICE_SUB_SETUP(DT,DT_SEQ,TS,DR) \
-  typedef TS (*TS_ALLOC_PTR) (void); \
-  TS_ALLOC_PTR ts_alloc_fn = &TS ## __alloc; \
-  typedef DDS_ReturnCode_t (*REG_DT_PTR) (TS, \
+#define SPLICE_SUB_SETUP(DATATYPE) \
+  typedef DATATYPE ## TypeSupport (*TS_ALLOC_PTR) (void); \
+  TS_ALLOC_PTR ts_alloc_fn = &DATATYPE ## TypeSupport__alloc; \
+  typedef DDS_ReturnCode_t (*REG_DT_PTR) (DATATYPE ## TypeSupport, \
                                           const DDS_DomainParticipant, \
                                           const DDS_string); \
-  REG_DT_PTR register_dt_fn = &TS ## _register_type; \
-  typedef DDS_string (*GET_DT_NAME_PTR) (TS); \
-  GET_DT_NAME_PTR get_dt_name_fn = &TS ## _get_type_name; \
-  typedef DT * (*DT_ALLOC_PTR) (void); \
-  DT_ALLOC_PTR dt_alloc_fn = &DT ## __alloc; \
-  typedef DDS_ReturnCode_t (*DT_RECV_PTR) (DR, \
-                                           DT_SEQ *, \
+  REG_DT_PTR register_dt_fn = &DATATYPE ## TypeSupport_register_type; \
+  typedef DDS_string (*GET_DT_NAME_PTR) (DATATYPE ## TypeSupport); \
+  GET_DT_NAME_PTR get_dt_name_fn = \
+    &DATATYPE ## TypeSupport_get_type_name; \
+  typedef DATATYPE * (*DT_ALLOC_PTR) (void); \
+  DT_ALLOC_PTR dt_alloc_fn = &DATATYPE ## __alloc; \
+  typedef DDS_ReturnCode_t (*DT_RECV_PTR) (DATATYPE ## DataReader, \
+                                           DDS_sequence_ ## DATATYPE *, \
                                            DDS_SampleInfoSeq *, \
                                            const DDS_long, \
                                            const DDS::SampleStateMask, \
                                            const DDS::ViewStateMask, \
                                            const DDS::InstanceStateMask); \
-  DT_RECV_PTR dt_read_fn = &DR ## _read; \
-  DT_RECV_PTR dt_take_fn = &DR ## _take; \
-  Splice_Test_Sub_T<DT,DT_SEQ,TS,DR> test_class (ts_alloc_fn, \
-                                                 register_dt_fn, \
-                                                 get_dt_name_fn, \
-                                                 dt_alloc_fn, \
-                                                 dt_read_fn, \
-                                                 dt_take_fn);
+  DT_RECV_PTR dt_read_fn = &DATATYPE ## DataReader_read; \
+  DT_RECV_PTR dt_take_fn = &DATATYPE ## DataReader_take; \
+  Splice_Test_Sub_T<DATATYPE, \
+                    DDS_sequence_ ## DATATYPE, \
+                    DATATYPE ## TypeSupport, \
+                    DATATYPE ## DataReader> splice_sub (ts_alloc_fn, \
+                                                        register_dt_fn, \
+                                                        get_dt_name_fn, \
+                                                        dt_alloc_fn, \
+                                                        dt_read_fn, \
+                                                        dt_take_fn)
 
 #if defined (ACE_TEMPLATES_REQUIRE_SOURCE)
 #include "Splice_Test_Sub_T.cpp"
@@ -136,6 +139,8 @@ private:
 #if defined (ACE_TEMPLATES_REQUIRE_PRAGMA)
 #pragma implementation ("Splice_Test_Sub_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
+
+#endif /* SPLICE_CONFIG */
 
 #endif /* SPLICE_TEST_SUB_T_H */
 

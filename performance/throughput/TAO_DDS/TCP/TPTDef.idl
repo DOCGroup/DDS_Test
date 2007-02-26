@@ -1,0 +1,42 @@
+#ifndef TAODDS_THROUGHPUTTEST_IDL
+#define TAODDS_THROUGHPUTTEST_IDL
+
+module TP_Test
+{
+  typedef sequence<octet> BytesSeq;
+  
+  struct Bytes
+  {
+    unsigned long timestamp;
+    BytesSeq data;
+  };
+  
+#  pragma DCPS_DATA_TYPE "TP_Test::Bytes"
+  
+  struct Nested
+  {
+    string info;
+    long index;
+  };
+  
+  typedef sequence<Nested> NestedSeq;
+  
+  struct Outer
+  {
+    long length;
+    NestedSeq nested_member;
+  };
+  
+  typedef sequence<Outer> ComplexSeq;
+  
+  struct Complex
+  {
+    unsigned long timestamp;
+    ComplexSeq data;
+  };
+    
+#  pragma DCPS_DATA_TYPE "TP_Test::Complex"
+};
+
+#endif /* TAODDS_THROUGHPUTTEST_IDL */
+

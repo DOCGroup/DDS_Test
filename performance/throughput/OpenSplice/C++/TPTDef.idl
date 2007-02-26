@@ -1,5 +1,5 @@
-#ifndef THROUGHPUTTEST_IDL
-#define THROUGHPUTTEST_IDL
+#ifndef OSPL_THROUGHPUTTEST_IDL
+#define OSPL_THROUGHPUTTEST_IDL
 
 module TP_Test
 {
@@ -31,11 +31,12 @@ module TP_Test
   
   struct Complex
   {
+    unsigned long timestamp;
     ComplexSequence data;
   };
   
 #  pragma keylist Complex
 };
 
-#endif /* THROUGHPUTTEST_IDL */
+#endif /* OSPL_THROUGHPUTTEST_IDL */
 

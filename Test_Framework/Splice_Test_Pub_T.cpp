@@ -5,6 +5,8 @@
 
 #include "Splice_Test_Pub_T.h"
 
+#if defined (SPLICE_CONFIG)
+
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT,
          typename DATA_WRITER>
@@ -233,6 +235,8 @@ Splice_Test_Pub_T<DATA_TYPE,
 {
   return "Splice_Test_Pub";
 }
+
+#endif /* SPLICE_CONFIG */
 
 #endif /* SPLICE_TEST_PUB_T_CPP */
 

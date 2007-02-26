@@ -8,12 +8,16 @@
  *  @author Jeff Parsons <j.parsons@vanderbilt.edu>
  *
  *  This file declares a template class to be used with TAO DDS
- *  publisher test code.
+ *  publisher applications.
  */
 //================================================================
 
 #ifndef TAO_DDS_TEST_PUB_T_H
 #define TAO_DDS_TEST_PUB_T_H
+
+#include "TAO_DDS_Pub.h"
+
+#ifdef TAO_DDS_CONFIG
 
 #include "TAO_DDS_Test_T.h"
 #include "DataWriterListener_T.h"
@@ -29,7 +33,8 @@ template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
          typename DATA_WRITER_IMPL>
 class TAO_DDS_Test_Pub_T
-  : public TAO_DDS_Test_T<DATA_TYPE, TYPE_SUPPORT_IMPL>
+  : public virtual TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>,
+    public virtual TAO_DDS_Pub
 {
 public:
   // Pointer to (user-defined) function that initializes data.
@@ -40,20 +45,15 @@ public:
   
   virtual int Init (int argc, char *argv[]);
   virtual int SetWriterListener (DDS::DataWriterListener *listener,
-                                 DDS::StatusMask mask = 0);
+                                 DDS::StatusMask mask = 0UL);
   void SetDataInitializer (DATA_INITIALIZER);
   virtual int Run (void);
-  
-private:
-  virtual int ParseArgs (void);
-  void Usage (void) const;
-  int CreatePublisher (void);
-  int InitWriterTransport (void);
-  int CreateDataWriter (void);
   int Write (void);
   int Fini (void);
-  virtual const char *ClassName (void) const;
-  virtual bool IsFinished (void);
+  
+private:
+  int CreatePublisher (void);
+  int CreateDataWriter (void);
 
 private:
   DDS::Publisher_var publisher_;
@@ -68,14 +68,13 @@ private:
   DDS::DataWriterListener_var data_writer_listener_;
   PortableServer::ServantBase_var safe_dw_listener_;
   
-  // Smart pointer type ('r'eference 'c'ounted 'h'andle)
-  TAO::DCPS::TransportImpl_rch writer_transport_impl_;
-
-  // Specific to TAO DDS, can be on the command line.
-  std::string writer_address_str_;
-
   DATA_INITIALIZER data_initializer_;
 };
+
+#define TAO_DDS_PUB_SETUP(DATATYPE) \
+  TAO_DDS_Test_Pub_T<DATATYPE, \
+                     DATATYPE ## TypeSupportImpl, \
+                     DATATYPE ## DataWriterImpl> tao_dds_pub
 
 #if defined (ACE_TEMPLATES_REQUIRE_SOURCE)
 #include "TAO_DDS_Test_Pub_T.cpp"

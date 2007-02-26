@@ -1,36 +1,126 @@
-project(*Pub): dcpsexe, portableserver {
+project(TAO_DDS_Throughput_Pub): dcpsexe, portableserver {
   exename   = publisher
-  libpaths += ../TypeNoKeyBounded
-  libs     += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
-  after    += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
+  libs     += Stats
+  after    += Stats
   includes += $(STATS_ROOT)
-
-  Header_Files {
-    common.h
-    dds_config_file.h
+  idlflags += -St
+  
+  TypeSupport_Files {
+    TPTDef.idl >> BytesTypeSupport.idl \
+                  BytesTypeSupportImpl.h \
+                  BytesTypeSupportImpl.cpp \
+                  ComplexTypeSupport.idl \
+                  ComplexTypeSupportImpl.h \
+                  ComplexTypeSupportImpl.cpp
+  }
+  
+  IDL_Files {
+    BytesTypeSupport.idl
+    ComplexTypeSupport.idl
+    TPTDef.idl
   }
 
   Source_Files {
+    BytesTypeSupportC.cpp
+    BytesTypeSupportImpl.cpp
+    BytesTypeSupportS.cpp
+    ComplexTypeSupportC.cpp
+    ComplexTypeSupportImpl.cpp
+    ComplexTypeSupportS.cpp
     dds_config_file.cpp
     publisher.cpp
+    TPTDefC.cpp
+    TPTDefS.cpp
     Writer.cpp
+  }
+
+  Header_Files {
+    BytesTypeSupportC.h
+    BytesTypeSupportImpl.h
+    BytesTypeSupportS.h
+    common.h
+    ComplexTypeSupportC.h
+    ComplexTypeSupportImpl.h
+    ComplexTypeSupportS.h
+    dds_config_file.h
+    TPTDefC.h
+    TPTDefS.h
+    Writer.h
+  }
+  
+  Inline_Files {
+    BytesTypeSupportC.inl
+    BytesTypeSupportS.inl
+    ComplexTypeSupportC.inl
+    ComplexTypeSupportS.inl
+    TPTDefC.inl
+    TPTDefS.inl
+  }
+  
+  Template_Files {
   }
 }
 
-project(*Sub): dcpsexe, portableserver {
+project(TAO_DDS_Throughput_Sub): dcpsexe, portableserver {
   exename   = subscriber
-  libpaths += ../TypeNoKeyBounded
-  libs     += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
-  after    += DCPS_Perf_Throughput_TypeNoKeyBounded Stats
+  libs     += Stats
+  after    += Stats
   includes += $(STATS_ROOT)
-
-  Header_Files {
-    common.h
+  idlflags += -St
+  
+  TypeSupport_Files {
+    TPTDef.idl >> BytesTypeSupport.idl \
+                  BytesTypeSupportImpl.h \
+                  BytesTypeSupportImpl.cpp \
+                  ComplexTypeSupport.idl \
+                  ComplexTypeSupportImpl.h \
+                  ComplexTypeSupportImpl.cpp
+  }
+  
+  IDL_Files {
+    BytesTypeSupport.idl
+    ComplexTypeSupport.idl
+    TPTDef.idl
   }
 
   Source_Files {
-    subscriber.cpp
+    BytesTypeSupportC.cpp
+    BytesTypeSupportImpl.cpp
+    BytesTypeSupportS.cpp
+    ComplexTypeSupportC.cpp
+    ComplexTypeSupportImpl.cpp
+    ComplexTypeSupportS.cpp
     DataReaderListener.cpp
+    dds_config_file.cpp
+    subscriber.cpp
+    TPTDefC.cpp
+    TPTDefS.cpp
+  }
+  
+  Header_Files {
+    BytesTypeSupportC.h
+    BytesTypeSupportImpl.h
+    BytesTypeSupportS.h
+    common.h
+    ComplexTypeSupportC.h
+    ComplexTypeSupportImpl.h
+    ComplexTypeSupportS.h
+    DataReaderListener.h
+    dds_config_file.h
+    TPTDefC.h
+    TPTDefS.h
+  }
+
+  Inline_Files {
+    BytesTypeSupportC.inl
+    BytesTypeSupportS.inl
+    ComplexTypeSupportC.inl
+    ComplexTypeSupportS.inl
+    TPTDefC.inl
+    TPTDefS.inl
+  }
+  
+  Template_Files {
   }
 }
 

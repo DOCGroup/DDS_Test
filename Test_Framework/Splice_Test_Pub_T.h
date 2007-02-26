@@ -16,6 +16,9 @@
 #define SPLICE_TEST_PUB_T_H
 
 #include "Splice_Test_T.h"
+
+#if defined (SPLICE_CONFIG)
+
 #include "DataWriterListener_T.h"
 
 // For better compliance with OMG IDL PSM C++ mapping.
@@ -71,29 +74,29 @@ private:
   DT_WRITE_FN_PTR dt_write_fn_;
 };
 
-// DT = datatype type name
-// TS = TypeSupport type name
-// DW = data writer type name 
-#define SPLICE_PUB_SETUP(DT,TS,DW) \
-  typedef TS (*TS_ALLOC_PTR) (void); \
-  TS_ALLOC_PTR ts_alloc_fn = &TS ## __alloc; \
-  typedef DDS_ReturnCode_t (*REG_DT_PTR) (TS, \
+#define SPLICE_PUB_SETUP(DATATYPE) \
+  typedef DATATYPE ## TypeSupport (*TS_ALLOC_PTR) (void); \
+  TS_ALLOC_PTR ts_alloc_fn = &DATATYPE ## TypeSupport__alloc; \
+  typedef DDS_ReturnCode_t (*REG_DT_PTR) (DATATYPE ## TypeSupport, \
                                           const DDS_DomainParticipant, \
                                           const DDS_string); \
-  REG_DT_PTR register_dt_fn = &TS ## _register_type; \
-  typedef DDS_string (*GET_DT_NAME_PTR) (TS); \
-  GET_DT_NAME_PTR get_dt_name_fn = &TS ## _get_type_name; \
-  typedef DT * (*DT_ALLOC_PTR) (void); \
-  DT_ALLOC_PTR dt_alloc_fn = &DT ## __alloc; \
-  typedef DDS_ReturnCode_t (*DT_WRITE_PTR) (DW, \
-                                            const DT *, \
+  REG_DT_PTR register_dt_fn = &DATATYPE ## TypeSupport_register_type; \
+  typedef DDS_string (*GET_DT_NAME_PTR) (DATATYPE ## TypeSupport); \
+  GET_DT_NAME_PTR get_dt_name_fn = \
+    &DATATYPE ## TypeSupport_get_type_name; \
+  typedef DATATYPE * (*DT_ALLOC_PTR) (void); \
+  DT_ALLOC_PTR dt_alloc_fn = &DATATYPE ## __alloc; \
+  typedef DDS_ReturnCode_t (*DT_WRITE_PTR) (DATATYPE ## DataWriter, \
+                                            const DATATYPE *, \
                                             const DDS_InstanceHandle_t); \
-  DT_WRITE_PTR dt_write_fn = &DW ## _write; \
-  Splice_Test_Pub_T<DT,TS,DW> test_class (ts_alloc_fn, \
-                                          register_dt_fn, \
-                                          get_dt_name_fn, \
-                                          dt_alloc_fn, \
-                                          dt_write_fn)
+  DT_WRITE_PTR dt_write_fn = &DATATYPE ## DataWriter_write; \
+  Splice_Test_Pub_T<DATATYPE, \
+                    DATATYPE ## TypeSupport, \
+                    DATATYPE ## DataWriter> splice_pub (ts_alloc_fn, \
+                                                        register_dt_fn, \
+                                                        get_dt_name_fn, \
+                                                        dt_alloc_fn, \
+                                                        dt_write_fn)
 
 #if defined (ACE_TEMPLATES_REQUIRE_SOURCE)
 #include "Splice_Test_Pub_T.cpp"
@@ -102,6 +105,8 @@ private:
 #if defined (ACE_TEMPLATES_REQUIRE_PRAGMA)
 #pragma implementation ("Splice_Test_Pub_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
+
+#endif /* SPLICE_CONFIG */
 
 #endif /* SPLICE_TEST_PUB_T_H */
 

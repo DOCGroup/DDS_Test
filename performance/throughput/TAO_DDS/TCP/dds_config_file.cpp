@@ -103,27 +103,3 @@ DDS_Config_File::get( std::string name ) const {
 
   return (iter->second).c_str ();
 }
-
-#ifdef TEST_FILE
-
-#include <fstream>
-
-int main() {
-	
-  std::ifstream in( "test.ini" );
-  if ( in ) {
-    DDS_Config_File file(in);
-
-    std::cout << "nodes = \'" << file.get( "nodes" ) << '\'' << std::endl;
-    std::cout << "publishers = \'" << file.get( "publishers" ) << '\'' << std::endl;
-    std::cout << "subscribers = \'" << file.get( "subscribers" ) << '\'' << std::endl;
-
-  } else {
-    std::cerr << "Error opening file\n";
-    return 1;
-  }
-  return 0;
-}
-
-#endif /* TEST_FILE */
-

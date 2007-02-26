@@ -19,7 +19,6 @@
 static char * read_partition = "Pong";
 static char * write_partition = "Pong";
 
-
 template <typename FooDataType,
           typename FooDataSequence, 
 	  typename FooDataReader,
@@ -32,27 +31,21 @@ void TypeSpecificMain (int argc, char *argv[],
 {
     DDS_char *test_type_name = "";
 
-
     DDS_DomainId_t                             myDomain           = DDS_OBJECT_NIL;
     DDS_DomainParticipantFactory               dpf                = DDS_OBJECT_NIL;
     DDS_DomainParticipant                      dp                 = DDS_OBJECT_NIL;
     DDS_Publisher                              p                  = DDS_OBJECT_NIL;
 
-
     FooDataWriter                              data_writer         = DDS_OBJECT_NIL;
     
     DDS_Topic                                  test_topic         = DDS_OBJECT_NIL;
     
-
     DDS_DomainParticipantQos                  *dpQos;
     DDS_TopicQos                              *tQos;    
     DDS_PublisherQos                          *pQos;
     DDS_DataWriterQos                         *dwQos;
 
-
     DDS_ReturnCode_t                           retcode;
-
-
 
     printf ("Listener-based...\n");
 
@@ -64,7 +57,6 @@ void TypeSpecificMain (int argc, char *argv[],
 
     // store Qos settings from file into a hash table
     TweakQos myqos (qos_config_file);
-
 
     /*
      * Initialize Qos variables
@@ -86,18 +78,16 @@ void TypeSpecificMain (int argc, char *argv[],
 
     dp = DDS_DomainParticipantFactory_create_participant (dpf, 
                                                           myDomain, 
-							  dpQos, 
-							  NULL);
+							                                            dpQos, 
+							                                            NULL);
     if (dp == DDS_OBJECT_NIL) {
         printf ("%s Pub: ERROR - Splice Daemon not running\n", argv[0]);
         exit(1);
     }
 
-
     // register our test's types to the domain
     printf ("Data size: %d.\n", DATA_SIZE);
     int register_status = TP_Test_register_type (dp, DATA_SIZE, &test_type_name);
-
 
     /* 
      * Create a publisher
@@ -114,7 +104,6 @@ void TypeSpecificMain (int argc, char *argv[],
 
     p = DDS_DomainParticipant_create_publisher (dp, pQos, NULL);
     
-
     /* Create a topic associated with the registered type*/    
     DDS_DomainParticipant_get_default_topic_qos (dp, tQos);
 
@@ -129,14 +118,6 @@ void TypeSpecificMain (int argc, char *argv[],
     
     /* Create datawriter for the registered topic*/
     DDS_Publisher_get_default_datawriter_qos (p, dwQos);
-
-
-
-
-
-
-
-
 
     // mydebug
     //DDS_Duration_t timeval;
@@ -177,15 +158,6 @@ void TypeSpecificMain (int argc, char *argv[],
     //DDS_free(tempwQos2);
     // end of mydebug
 
-
-
-
-
-
-
-
-
-
     // load Qos from hash table
     myqos.setDataWriterQos (*dwQos);    
 
@@ -193,11 +165,6 @@ void TypeSpecificMain (int argc, char *argv[],
                                                    test_topic, 
 						   dwQos, 
 						   NULL);
-
-
-
-
-
 
     // mydebug
     //DDS_DataWriterQos *tempwQos;    
@@ -236,14 +203,6 @@ void TypeSpecificMain (int argc, char *argv[],
     //DDS_free(tempwQos);
     // end of mydebug
 
-
-
-
-
-
-
-
-
     /*------------------------------------------------------------------------*
      *                              Send data                                 *
      *------------------------------------------------------------------------*/
@@ -255,9 +214,6 @@ void TypeSpecificMain (int argc, char *argv[],
 		  data_writer,
 		  pubstats);
 
- 
-
-
     // clean up all entities
     retcode = DDS_Publisher_delete_datawriter (p, data_writer);    
     retcode = DDS_DomainParticipant_delete_publisher (dp, p);
@@ -268,7 +224,6 @@ void TypeSpecificMain (int argc, char *argv[],
     DDS_free (tQos);    
     DDS_free (dwQos);
     delete pubstats;
-
 
     printf ("Pub: Shut down...\n");
 }

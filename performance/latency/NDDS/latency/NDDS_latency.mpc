@@ -1,0 +1,52 @@
+project(NDDS_Latency_Pub): nddsexe {
+  exename   = publisher
+  libs     += Stats
+  after    += Stats
+  includes += $(STATS_ROOT)
+  
+  NDDSTypeSupport_Files {
+    NDDSLatencyPacket.idl
+  }
+
+  Source_Files {
+    NDDSLatencyPacket_publisher.cxx
+    NDDSLatencyPacket.cxx
+    NDDSLatencyPacketPlugin.cxx
+    NDDSLatencyPacketSupport.cxx
+  }
+
+  Header_Files {
+    GlobalSettings.h
+    NDDSLatencyGlobalSettings.h 
+    NDDSLatencyPacket.h
+    NDDSLatencyPacketPlugin.h
+    NDDSLatencyPacketSupport.h
+  }
+}
+
+project(NDDS_Latency_Sub): nddsexe {
+  exename   = subscriber
+  libs     += Stats
+  after    += Stats
+  includes += $(STATS_ROOT)
+
+  NDDSTypeSupport_Files {
+    NDDSLatencyPacket.idl
+  }
+
+  Source_Files {
+    NDDSLatencyPacket_subscriber.cxx
+    NDDSLatencyPacket.cxx
+    NDDSLatencyPacketPlugin.cxx
+    NDDSLatencyPacketSupport.cxx
+  }
+  
+  Header_Files {
+    GlobalSettings.h
+    NDDSLatencyGlobalSettings.h 
+    NDDSLatencyPacket.h
+    NDDSLatencyPacketPlugin.h
+    NDDSLatencyPacketSupport.h
+  }
+}
+

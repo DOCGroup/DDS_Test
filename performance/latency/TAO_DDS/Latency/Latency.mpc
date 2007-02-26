@@ -1,7 +1,6 @@
-project(*Pub): taoexe, portableserver, dcps {
-  requires += exceptions
+project(TAO_DDS_Latency_Pub): dcpsexe {
   exename = tao_pub
-  idlflags += -Sc -St
+  idlflags += -St
   libs += Stats
   includes += $(STATS_ROOT)
 
@@ -9,6 +8,9 @@ project(*Pub): taoexe, portableserver, dcps {
     DDSPerfTest.idl >> PubMessageTypeSupport.idl \
                        PubMessageTypeSupportImpl.h \
                        PubMessageTypeSupportImpl.cpp \
+                       PubComplexMessageTypeSupport.idl \
+                       PubComplexMessageTypeSupportImpl.h \
+                       PubComplexMessageTypeSupportImpl.cpp \
                        AckMessageTypeSupport.idl \
                        AckMessageTypeSupportImpl.h \
                        AckMessageTypeSupportImpl.cpp 
@@ -65,22 +67,23 @@ project(*Pub): taoexe, portableserver, dcps {
   }
 }
 
-project(*Sub): taoexe, portableserver, dcps {
-  requires += exceptions
+project(TAO_DDS_Latency_Sub): dcpsexe {
   exename = tao_sub
-  idlflags += -Sc -St
+  idlflags += -St
 
   TypeSupport_Files {
     DDSPerfTest.idl >> PubMessageTypeSupport.idl \
                        PubMessageTypeSupportImpl.h \
                        PubMessageTypeSupportImpl.cpp \
+                       PubComplexMessageTypeSupport.idl \
+                       PubComplexMessageTypeSupportImpl.h \
+                       PubComplexMessageTypeSupportImpl.cpp \
                        AckMessageTypeSupport.idl \
                        AckMessageTypeSupportImpl.h \
                        AckMessageTypeSupportImpl.cpp 
 
   }
 
-  
   IDL_Files {
     DDSPerfTest.idl
     PubComplexMessageTypeSupport.idl

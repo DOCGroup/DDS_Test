@@ -1,39 +1,40 @@
-project(Splice_Throughput_Pub) : spliceexe {
+project(Splice_Latency_Pub) : spliceexe {
   exename   = publisher
   libs     += Stats
   after    += Stats
   includes += $(STATS_ROOT)
   
   SpliceTypeSupport_Files {
-    TPTDef.idl
+    splice_test.idl
   }
   
   Source_Files {
-    publisher.cpp
-    TPTDef.cpp
-    TPTDefDcps.cpp
-    TPTDefDcps_impl.cpp
-    TPTDefSplDcps.cpp
+    splice_pub.cpp
+    splice_test.cpp
+    splice_testDcps.cpp
+    splice_testDcps_impl.cpp
+    splice_testSplDcps.cpp
+    tester.cpp
   }
 
   Header_Files {
-    common_config.h
-    ccpp_TPTDef.h
-    TPTDef.h
-    TPTDefDcps.h
-    TPTDefDcps_impl.h
-    TPTDefSplDcps.h
+    ccpp_splice_test.h
+    splice_test.h
+    splice_testDcps.h
+    splice_testDcps_impl.h
+    splice_testSplDcps.h
+    tester.h
   }
 }
 
-project(Splice_Throughput_Sub) : spliceexe {
+project(Splice_Latency_Sub) : spliceexe {
   exename   = subscriber
   libs     += Stats
   after    += Stats
   includes += $(STATS_ROOT)
 
   SpliceTypeSupport_Files {
-    TPTDef.idl
+    splice_test.idl
   }
   
   Source_Files {

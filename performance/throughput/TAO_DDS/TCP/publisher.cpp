@@ -19,27 +19,14 @@
 #include "dds/DCPS/PublisherImpl.h"
 #include "dds/DCPS/transport/framework/EntryExit.h"
 
-#include "../TypeNoKeyBounded/Bytes4TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes8TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes16TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes32TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes64TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes128TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes256TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes512TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes1024TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes2048TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes4096TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes8192TypeSupportImpl.h"
-#include "../TypeNoKeyBounded/Bytes16384TypeSupportImpl.h"
+#include "BytesTypeSupportImpl.h"
+#include "ComplexTypeSupportImpl.h"
 
 #include "ace/Arg_Shifter.h"
 #include "ace/Sched_Params.h"
 
 ACE_Recursive_Thread_Mutex done_lock_;
 ACE_Condition<ACE_Recursive_Thread_Mutex> done_condition_(done_lock_);
-
-
 
 /* QoS settings */
 bool isReliable = false;
@@ -247,16 +234,10 @@ main (int argc, char *argv[])
   
   int status = 0;
 
-  ACE_TRY_NEW_ENV
+  try
     {
-      ACE_DEBUG ((LM_DEBUG, "(%P|%t) publisher main\n"));
-
       ::DDS::DomainParticipantFactory_var dpf =
         TheParticipantFactoryWithArgs (argc, argv);
-      ACE_TRY_CHECK;
-
-
-      printf ("here\n");
 
       // let the Service_Participant (in above line) strip out
       // -DCPSxxx parameters and then get application specific parameters.
@@ -270,12 +251,8 @@ main (int argc, char *argv[])
       ::DDS::DomainParticipant_var dp = 
         dpf->create_participant (TEST_DOMAIN, 
                                  PARTICIPANT_QOS_DEFAULT, 
-                                 ::DDS::DomainParticipantListener::_nil ()
-                                 ACE_ENV_ARG_PARAMETER);
+                                 ::DDS::DomainParticipantListener::_nil ());
 
-      printf ("here1\n");
-      ACE_TRY_CHECK;
-      
       if (CORBA::is_nil (dp.in ()))
         {
           ACE_ERROR_RETURN ((LM_ERROR,
@@ -286,223 +263,17 @@ main (int argc, char *argv[])
 
       DDS::ReturnCode_t ret_code = ::DDS::RETCODE_OK;
 
-      // Register the type supports
-      switch (DATA_SIZE)
-      {
-      case 4:
-        {
-          ::Mine::Bytes4TypeSupportImpl* bytes4ts_servant =
-            new ::Mine::Bytes4TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes4ts_servant;
+      BytesTypeSupportImpl* bytes_ts_servant =
+        new BytesTypeSupportImpl ();
+        
+      PortableServer::ServantBase_var safe_servant =
+        bytes_ts_servant;
 
-          ::Mine::Bytes4TypeSupport_var bytes4ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes4TypeSupport
-              > (bytes4ts_servant);
-          
-          ret_code = bytes4ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 8:
-        {
-          ::Mine::Bytes8TypeSupportImpl* bytes8ts_servant =
-            new ::Mine::Bytes8TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes8ts_servant;
-
-          ::Mine::Bytes8TypeSupport_var bytes8ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes8TypeSupport
-              > (bytes8ts_servant);
-          
-          ret_code = bytes8ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 16:
-        {
-          ::Mine::Bytes16TypeSupportImpl* bytes16ts_servant =
-            new ::Mine::Bytes16TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes16ts_servant;
-
-          ::Mine::Bytes16TypeSupport_var bytes16ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes16TypeSupport
-              > (bytes16ts_servant);
-          
-          ret_code = bytes16ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 32:
-        {
-          ::Mine::Bytes32TypeSupportImpl* bytes32ts_servant =
-            new ::Mine::Bytes32TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes32ts_servant;
-
-          ::Mine::Bytes32TypeSupport_var bytes32ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes32TypeSupport
-              > (bytes32ts_servant);
-          
-          ret_code = bytes32ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 64:
-        {
-          ::Mine::Bytes64TypeSupportImpl* bytes64ts_servant =
-            new ::Mine::Bytes64TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes64ts_servant;
-
-          ::Mine::Bytes64TypeSupport_var bytes64ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes64TypeSupport
-              > (bytes64ts_servant);
-          
-          ret_code = bytes64ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 128:
-        {
-          ::Mine::Bytes128TypeSupportImpl* bytes128ts_servant =
-            new ::Mine::Bytes128TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes128ts_servant;
-
-          ::Mine::Bytes128TypeSupport_var bytes128ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes128TypeSupport
-              > (bytes128ts_servant);
-          
-          ret_code = bytes128ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 256:
-        {
-          ::Mine::Bytes256TypeSupportImpl* bytes256ts_servant =
-            new ::Mine::Bytes256TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes256ts_servant;
-
-          ::Mine::Bytes256TypeSupport_var bytes256ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes256TypeSupport
-              > (bytes256ts_servant);
-          
-          ret_code = bytes256ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 512:
-        {
-          ::Mine::Bytes512TypeSupportImpl* bytes512ts_servant =
-            new ::Mine::Bytes512TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes512ts_servant;
-
-          ::Mine::Bytes512TypeSupport_var bytes512ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes512TypeSupport
-              > (bytes512ts_servant);
-          
-          ret_code = bytes512ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 1024:
-        {
-          ::Mine::Bytes1024TypeSupportImpl* bytes1024ts_servant =
-            new ::Mine::Bytes1024TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes1024ts_servant;
-
-          ::Mine::Bytes1024TypeSupport_var bytes1024ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes1024TypeSupport
-              > (bytes1024ts_servant);
-          
-          ret_code = bytes1024ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 2048:
-        {
-          ::Mine::Bytes2048TypeSupportImpl* bytes2048ts_servant =
-            new ::Mine::Bytes2048TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes2048ts_servant;
-
-          ::Mine::Bytes2048TypeSupport_var bytes2048ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes2048TypeSupport
-              > (bytes2048ts_servant);
-          
-          ret_code = bytes2048ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 4096:
-        {
-          ::Mine::Bytes4096TypeSupportImpl* bytes4096ts_servant =
-            new ::Mine::Bytes4096TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes4096ts_servant;
-
-          ::Mine::Bytes4096TypeSupport_var bytes4096ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes4096TypeSupport
-              > (bytes4096ts_servant);
-          
-          ret_code = bytes4096ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 8192:
-        {
-          ::Mine::Bytes8192TypeSupportImpl* bytes8192ts_servant =
-            new ::Mine::Bytes8192TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes8192ts_servant;
-
-          ::Mine::Bytes8192TypeSupport_var bytes8192ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes8192TypeSupport
-              > (bytes8192ts_servant);
-          
-          ret_code = bytes8192ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      case 16384:
-        {
-          ::Mine::Bytes16384TypeSupportImpl* bytes16384ts_servant =
-            new ::Mine::Bytes16384TypeSupportImpl ();
-            
-          PortableServer::ServantBase_var safe_servant =
-            bytes16384ts_servant;
-
-          ::Mine::Bytes16384TypeSupport_var bytes16384ts = 
-            TAO::DCPS::servant_to_reference_2<
-                ::Mine::Bytes16384TypeSupport
-              > (bytes16384ts_servant);
-          
-          ret_code = bytes16384ts->register_type (dp.in (), TEST_TYPE);
-        }
-        break;
-      default:
-        ACE_ERROR_RETURN ((LM_ERROR,
-                           ACE_TEXT("%P|%t ERROR: ")
-                           ACE_TEXT ("bad data size.\n")),
-                          1); 
-      };
+      BytesTypeSupport_var bytes_ts = 
+        TAO::DCPS::servant_to_reference_2<BytesTypeSupport> (
+          bytes_ts_servant);
+      
+      ret_code = bytes_ts->register_type (dp.in (), TEST_TYPE);
 
       if (::DDS::RETCODE_OK != ret_code)
         {
@@ -523,7 +294,6 @@ main (int argc, char *argv[])
       topic_qos.resource_limits.max_instances = MAX_INSTANCES;
       topic_qos.resource_limits.max_samples = MAX_SAMPLES;
 
-
       if (isReliable)
         {
       
@@ -535,29 +305,23 @@ main (int argc, char *argv[])
         }
       else
         {
-          topic_qos.reliability.kind = ::DDS::BEST_EFFORT_RELIABILITY_QOS;
-          
+          topic_qos.reliability.kind = ::DDS::BEST_EFFORT_RELIABILITY_QOS;          
         }
 
-      if (QoS_KEEP_ALL) {
-        topic_qos.history.kind = ::DDS::KEEP_ALL_HISTORY_QOS;
-      }
-
-      
+      if (QoS_KEEP_ALL)
+        {
+          topic_qos.history.kind = ::DDS::KEEP_ALL_HISTORY_QOS;
+        }
 
       ::DDS::Topic_var topic = 
       dp->create_topic (test_topic_name.c_str (), 
-                          TEST_TYPE, 
-                          topic_qos, 
-                          ::DDS::TopicListener::_nil ()
-                          ACE_ENV_ARG_PARAMETER);
-      ACE_TRY_CHECK;
+                            TEST_TYPE, 
+                            topic_qos, 
+                            ::DDS::TopicListener::_nil ());
 
-      ACE_DEBUG((LM_DEBUG, "(%P|%t)The current topic is %s\n",
+      ACE_DEBUG ((LM_DEBUG, "(%P|%t)The current topic is %s\n",
          test_topic_name.c_str()));
-      //cout << "The current topic is " << test_topic_name << endl;
-
-      
+     
       if (CORBA::is_nil (topic.in ()))
         {
           ACE_ERROR_RETURN ((LM_ERROR,
@@ -569,9 +333,7 @@ main (int argc, char *argv[])
       // Create the publisher
       ::DDS::Publisher_var pub =
         dp->create_publisher (PUBLISHER_QOS_DEFAULT,
-                              ::DDS::PublisherListener::_nil ()
-                              ACE_ENV_ARG_PARAMETER);
-      ACE_TRY_CHECK;
+                              ::DDS::PublisherListener::_nil ());
       
       if (CORBA::is_nil (pub.in ()))
         {
@@ -592,11 +354,9 @@ main (int argc, char *argv[])
 
       // Attach the publisher to the transport.
       ::TAO::DCPS::PublisherImpl* pub_impl =
-            ::TAO::DCPS::reference_to_servant<
-            ::TAO::DCPS::PublisherImpl,
-            ::DDS::Publisher_ptr
-          > (pub.in () ACE_ENV_SINGLE_ARG_PARAMETER);
-      ACE_TRY_CHECK;
+        ::TAO::DCPS::reference_to_servant< ::TAO::DCPS::PublisherImpl,
+                                           ::DDS::Publisher_ptr> (
+          pub.in ());
 
       if (0 == pub_impl)
         {
@@ -644,30 +404,25 @@ main (int argc, char *argv[])
       pub->get_default_datawriter_qos (dw_qos);
       pub->copy_from_topic_qos (dw_qos, topic_qos);
 
-
-
       ::DDS::DataWriter_var * dws =
         new ::DDS::DataWriter_var[num_datawriters];
 
       // Create one or multiple datawriters belonging to the same 
       // publisher.
       for (int k = 0; k < num_datawriters; ++k)
-      {
-        dws[k] = pub->create_datawriter (topic.in () ,
-                                         dw_qos,
-                                         ::DDS::DataWriterListener::_nil ()
-                                         ACE_ENV_ARG_PARAMETER);
-        ACE_TRY_CHECK;
-
-        if (CORBA::is_nil (dws[k].in ()))
         {
-          ACE_ERROR_RETURN ((LM_ERROR,
-                             ACE_TEXT ("%P|%t ERROR: ")
-                             ACE_TEXT ("create_datawriter failed.\n")),
-                            1);
-        }
+          dws[k] = pub->create_datawriter (topic.in () ,
+                                          dw_qos,
+                                          ::DDS::DataWriterListener::_nil ());
 
-      }
+          if (CORBA::is_nil (dws[k].in ()))
+            {
+              ACE_ERROR_RETURN ((LM_ERROR,
+                                ACE_TEXT ("%P|%t ERROR: ")
+                                ACE_TEXT ("create_datawriter failed.\n")),
+                                1);
+            }
+        }
 
       Writer** writers = new Writer* [num_datawriters] ;
 
@@ -689,9 +444,6 @@ main (int argc, char *argv[])
                                    num_datareaders,
                                    id + p); 
           writers[p]->start ();
-
-          cout << "Data Writer No: " << p << endl;
-
         }
 
 
@@ -727,14 +479,9 @@ main (int argc, char *argv[])
 
       delete [] writers;
 
-      dp->delete_publisher (pub.in () ACE_ENV_ARG_PARAMETER);
-      ACE_TRY_CHECK;
-      
-      dp->delete_topic (topic.in () ACE_ENV_ARG_PARAMETER);
-      ACE_TRY_CHECK;
-      
-      dpf->delete_participant (dp.in () ACE_ENV_ARG_PARAMETER);
-      ACE_TRY_CHECK;
+      dp->delete_publisher (pub.in ());     
+      dp->delete_topic (topic.in ());      
+      dpf->delete_participant (dp.in ());
 
       ACE_OS::sleep (2);
       TheTransportFactory->release ();
@@ -743,13 +490,12 @@ main (int argc, char *argv[])
 
       writer_transport_impl = 0;
     }
-  ACE_CATCHANY
+  catch (CORBA::Exception &ex)
     {
       ACE_PRINT_EXCEPTION (ACE_ANY_EXCEPTION,
                            "Exception caught in main.cpp:");
       return 1;
     }
-  ACE_ENDTRY;
 
   return status;
 }

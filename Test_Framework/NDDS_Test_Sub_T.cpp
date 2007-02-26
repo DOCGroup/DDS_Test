@@ -5,6 +5,8 @@
 
 #include "NDDS_Test_Sub_T.h"
 
+#if defined (NDDS_CONFIG)
+
 #include "ace/OS_NS_unistd.h"
 
 template<typename DATA_TYPE,
@@ -15,13 +17,11 @@ NDDS_Test_Sub_T<DATA_TYPE,
                 DATA_TYPE_SEQ,
                 TYPE_SUPPORT,
                 DATA_READER>::NDDS_Test_Sub_T (void)
-  : subscriber_ (0),
-    subscriber_listener_ (0),
-    data_reader_ (0),
+  : TestBase (),
+    NDDS_Common (),
+    NDDS_Test_T<TYPE_SUPPORT> (),
+    NDDS_Sub (),
     typed_data_reader_ (0),
-    data_reader_listener_ (this),
-    waitset_ (0),
-    condition_ (0),
     data_verifier_ (0)
 {
 }
@@ -92,40 +92,6 @@ template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT,
          typename DATA_READER>
-int
-NDDS_Test_Sub_T<DATA_TYPE,
-                DATA_TYPE_SEQ,
-                TYPE_SUPPORT,
-                DATA_READER>::SetReaderListener (
-  DDS::DataReaderListener *listener,
-  DDS::StatusMask mask)
-{
-  try
-    {
-      DDS::ReturnCode_t retcode =
-        this->data_reader_->set_listener (listener, mask);
-                                  
-      if (retcode != DDS_RETCODE_OK)
-        {
-          this->RetcodeErrorMsg ("SetReaderListener",
-                                 "set_listener",
-                                 retcode);
-          return -1;
-        }
-    }
-  catch (...)
-    {
-      this->ExceptionErrorMsg ("SetReaderListener");
-      return -1;
-    }
-  
-  return 0;
-}
-
-template<typename DATA_TYPE,
-         typename DATA_TYPE_SEQ,
-         typename TYPE_SUPPORT,
-         typename DATA_READER>
 void
 NDDS_Test_Sub_T<DATA_TYPE,
                 DATA_TYPE_SEQ,
@@ -185,43 +151,6 @@ NDDS_Test_Sub_T<DATA_TYPE,
       return -1;
     }
   
-  return 0;
-}
-
-template<typename DATA_TYPE,
-         typename DATA_TYPE_SEQ,
-         typename TYPE_SUPPORT,
-         typename DATA_READER>
-int
-NDDS_Test_Sub_T<DATA_TYPE,
-                DATA_TYPE_SEQ,
-                TYPE_SUPPORT,
-                DATA_READER>::CreateSubscriber (void)
-{
-  // TODO - integrate with TweakQoS.
-  DDS::ReturnCode_t retcode =
-    this->participant_->get_default_subscriber_qos (
-      this->subscriber_qos_);
-      
-  if (retcode != DDS_RETCODE_OK)
-    {
-      this->RetcodeErrorMsg ("CreateSubscriber",
-                              "get_default_subscriber_qos",
-                              retcode);
-      return -1;
-    }
-    
-  this->subscriber_ =
-    this->participant_->create_subscriber (this->subscriber_qos_,
-                                           0,
-                                           DDS_STATUS_MASK_NONE);
-					                      
-  if (this->subscriber_ == 0)
-    {
-      this->NullReturnErrorMsg ("CreateSubscriber", "create_subscriber");
-      return -1;
-    }
-    
   return 0;
 }
 
@@ -421,46 +350,6 @@ NDDS_Test_Sub_T<DATA_TYPE,
     }        
   
   return 0;
-}
-
-template<typename DATA_TYPE,
-         typename DATA_TYPE_SEQ,
-         typename TYPE_SUPPORT,
-         typename DATA_READER>
-const char *
-NDDS_Test_Sub_T<DATA_TYPE,
-                DATA_TYPE_SEQ,
-                TYPE_SUPPORT,
-                DATA_READER>::ClassName (void) const
-{
-  return "NDDS_Test_Sub";
-}
-
-template<typename DATA_TYPE,
-         typename DATA_TYPE_SEQ,
-         typename TYPE_SUPPORT,
-         typename DATA_READER>
-bool
-NDDS_Test_Sub_T<DATA_TYPE,
-                DATA_TYPE_SEQ,
-                TYPE_SUPPORT,
-                DATA_READER>::IsFinished (void)
-{
-  DDS::InstanceHandleSeq handles;
-  DDS::ReturnCode_t retcode =
-    this->data_reader_->get_matched_publications (handles);
-
-  if (retcode != DDS_RETCODE_OK)
-    {
-      this->RetcodeErrorMsg ("IsFinished",
-                             "get_matched_publications",
-                             retcode);
-                             
-      // If we return 'false' here, we'll just get called again.
-      return true;
-    }
-
-  return (handles.length () == 0 ? true : false);
 }
 
 #endif /* NDDS_TEST_SUB_T_CPP */

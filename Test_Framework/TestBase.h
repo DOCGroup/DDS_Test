@@ -25,7 +25,7 @@
 /*
  * @class TestBase
  *
- * @brief Base class for all test-related classes in this library.
+ * @brief Base class for all DDS-related classes in this library.
  *
  *
  */
@@ -35,10 +35,6 @@ public:
   TestBase (void);
   virtual ~TestBase (void);
   
-  // To be overridden by every derived class.
-  virtual int Init (int argc, char *argv[]) = 0;
-  virtual int Run (void) = 0;
-  
   // Included here so the DataReaderListener can call it without
   // knowledge of all the template parameters. Not pure virtual
   // so the publisher classes don't have to override it.
@@ -46,14 +42,13 @@ public:
   
 protected:
   // Called by ParseArgs() in derived classes if the arg isn't found.
-  int ParseArgsBase (ACE_Arg_Shifter &arg_shifter);
-  void UsageBase (void) const;
+  virtual int ParseArgs (ACE_Arg_Shifter &arg_shifter);
+  virtual void Usage (void) const;
   
   // Attempt to set the real time priority and lock memory.
   void SetSchedParams (void);
   
   // Utility error message output.
-  virtual const char *ClassName (void) const = 0;
   void NullReturnErrorMsg (const char *where, const char *what) const;
   void RetcodeErrorMsg (const char *where,
                         const char *what,
@@ -61,12 +56,10 @@ protected:
   void ExceptionErrorMsg (const char *where) const;
   void NotExistErrorMsg (const char *where, const char *what) const;
   
-  // Overridden by all classes to synchronize cleanup and exit.
-  virtual bool IsFinished (void) = 0;
+  // Overridden in all concrete derived classes.
+  virtual const char *ClassName (void) const = 0;
   
 protected:
-  int argc_;
-  char **argv_;
   long domain_id_;
   std::string test_description_;
   long entity_id_;

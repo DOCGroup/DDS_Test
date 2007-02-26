@@ -5,6 +5,8 @@
 
 #include "Splice_Test_Sub_T.h"
 
+#if defined (SPLICE_CONFIG)
+
 // Ugly, but the only way to set the on_data_available()
 // function pointer in the listener without requiring
 // that the SPLICE_SUB_SETUP macro be executed outside
@@ -369,26 +371,12 @@ template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT,
          typename DATA_READER>
-const char *
-Splice_Test_Sub_T<DATA_TYPE,
-                  DATA_TYPE_SEQ,
-                  TYPE_SUPPORT,
-                  DATA_READER>::ClassName (void) const
-{
-  return "Splice_Test_Sub";
-}
-
-template<typename DATA_TYPE,
-         typename DATA_TYPE_SEQ,
-         typename TYPE_SUPPORT,
-         typename DATA_READER>
 int
 Splice_Test_Sub_T<DATA_TYPE,
                   DATA_TYPE_SEQ,
                   TYPE_SUPPORT,
-                  DATA_READER>::ParseArgs (void)
+                  DATA_READER>::ParseArgs (ACE_Arg_Shifter &arg_shifter)
 {
-  ACE_Arg_Shifter arg_shifter (this->argc_, this->argv_);
   bool good = true;
   
   // Ignore the command - argv[0].
@@ -401,7 +389,7 @@ Splice_Test_Sub_T<DATA_TYPE,
           this->take_ = true;
           arg_shifter.consume_arg ();
         }
-      else if (this->ParseArgsBase (arg_shifter) != 0)
+      else if (this->Splice_Test_T<TYPE_SUPPORT>::ParseArgs (arg_shifter) != 0)
         {
           arg_shifter.ignore_arg ();
           good = false;
@@ -430,8 +418,23 @@ Splice_Test_Sub_T<DATA_TYPE,
   cout << "Splice Sub Usage:" << endl
        << "\t[-take]          - remove from buffer after reading" << endl;
        
-  this->UsageBase ();
+  this->Splice_Test_T<TYPE_SUPPORT>::Usage ();
 }
+
+template<typename DATA_TYPE,
+         typename DATA_TYPE_SEQ,
+         typename TYPE_SUPPORT,
+         typename DATA_READER>
+const char *
+Splice_Test_Sub_T<DATA_TYPE,
+                  DATA_TYPE_SEQ,
+                  TYPE_SUPPORT,
+                  DATA_READER>::ClassName (void) const
+{
+  return "Splice_Test_Sub";
+}
+
+#endif /* SPLICE_CONFIG */
 
 #endif /* SPLICE_TEST_SUB_T_CPP */
 
