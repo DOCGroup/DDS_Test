@@ -20,9 +20,9 @@
 #include <dds/DCPS/transport/simpleTCP/SimpleTcpFactory.h>
 #include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration_rch.h>
 #include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration.h>
-#include <dds/DCPS/transport/simpleUDP/SimpleUdpFactory.h>
-#include <dds/DCPS/transport/simpleUDP/SimpleUdpConfiguration_rch.h>
-#include <dds/DCPS/transport/simpleUDP/SimpleUdpConfiguration.h>
+#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpFactory.h>
+#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpConfiguration_rch.h>
+#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpConfiguration.h>
 
 #include <ace/Log_Msg.h>
 #include <ace/Get_Opt.h>
