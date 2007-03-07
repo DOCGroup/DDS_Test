@@ -21,8 +21,8 @@
 #include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration_rch.h>
 #include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration.h>
 #include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpFactory.h>
-#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpConfiguration_rch.h>
-#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpConfiguration.h>
+#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUnreliableDgramConfiguration_rch.h>
+#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUnreliableDgramConfiguration.h>
 
 #include <ace/Log_Msg.h>
 #include <ace/Get_Opt.h>
