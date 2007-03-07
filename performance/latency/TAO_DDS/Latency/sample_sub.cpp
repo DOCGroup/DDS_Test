@@ -17,12 +17,18 @@
 #include <dds/DCPS/Marked_Default_Qos.h>
 #include <dds/DCPS/PublisherImpl.h>
 #include <dds/DCPS/transport/framework/TheTransportFactory.h>
+#include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration.h>
+#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpConfiguration.h>
+#include <ace/streams.h>
+
+/*
 #include <dds/DCPS/transport/simpleTCP/SimpleTcpFactory.h>
 #include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration_rch.h>
 #include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration.h>
 #include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpFactory.h>
 #include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUnreliableDgramConfiguration_rch.h>
 #include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpConfiguration.h>
+*/
 
 #include <ace/Log_Msg.h>
 #include <ace/Get_Opt.h>
