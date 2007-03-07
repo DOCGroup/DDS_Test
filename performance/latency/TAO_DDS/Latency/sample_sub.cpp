@@ -203,31 +203,28 @@ int main (int argc, char *argv[])
   // Initialize the transport for subscriber.
   TAO::DCPS::TransportImpl_rch sub_tcp_impl;
   
-  if (useTCP)
-    {
-      TAO::DCPS::SimpleTcpConfiguration *stc = 0;
-      ACE_NEW_RETURN (stc,
-                      TAO::DCPS::SimpleTcpConfiguration,
-                      -1);
-      TAO::DCPS::SimpleTcpConfiguration_rch reader_config = stc;
-                      
-      sub_tcp_impl =
-        TheTransportFactory->create (TCP_IMPL_ID + 1, TCP_TYPE_ID);
-      sub_tcp_impl->configure (reader_config.in ());
-    }
-  else
-    {
-      TAO::DCPS::SimpleUdpConfiguration *suc = 0;
-      ACE_NEW_RETURN (suc,
-                      TAO::DCPS::SimpleUdpConfiguration,
-                      -1);
-      TAO::DCPS::SimpleUdpConfiguration_rch reader_config = suc;
-      
-      sub_tcp_impl =  
-        TheTransportFactory->create (UDP_IMPL_ID+1, UDP_TYPE_ID);
-      reader_config->local_address_.set ("localhost:1235");
-      sub_tcp_impl->configure (reader_config.in ());
-    }
+  if (useTCP) {
+         sub_tcp_impl 
+           = TheTransportFactory->create_transport_impl (TCP_IMPL_ID+1, 
+                                                         "SimpleTcp", 
+                                                         ::TAO::DCPS::AUTO_CONFIG);
+       } else {
+         sub_tcp_impl 
+           = TheTransportFactory->create_transport_impl(UDP_IMPL_ID+1,
+                                                        "SimpleUdp", 
+                                                        TAO::DCPS::DONT_AUTO_CONFIG);
+         TAO::DCPS::TransportConfiguration_rch config 
+           = TheTransportFactory->create_configuration (UDP_IMPL_ID+1,
+           "SimpleUdp");
+
+         TAO::DCPS::SimpleUdpConfiguration* udp_config 
+           = static_cast <TAO::DCPS::SimpleUdpConfiguration*> (config.in ());
+
+         std::string addrStr(ACE_LOCALHOST);
+         addrStr += ":1235";
+         udp_config->local_address_.set(addrStr.c_str ());
+         sub_tcp_impl->configure(config.in());
+       }
 
   // Attach the transport protocol with the subscribing entity.
   TAO::DCPS::SubscriberImpl* sub_impl =
