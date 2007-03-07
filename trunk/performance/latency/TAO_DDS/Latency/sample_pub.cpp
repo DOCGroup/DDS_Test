@@ -218,17 +218,17 @@ main (int argc, char *argv[])
            = static_cast <TAO::DCPS::SimpleUdpConfiguration*> (config.in ());
 
          std::string addrStr(ACE_LOCALHOST);
-         addrStr += ":12345";
+         addrStr += ":1234";
          udp_config->local_address_.set(addrStr.c_str());
          pub_tcp_impl->configure (config.in ());
        }
 
   
-  // Attach the transport protocol with the publishing entity.
-  TAO::DCPS::PublisherImpl* p_impl =
-    reference_to_servant <TAO::DCPS::PublisherImpl,
-                          DDS::Publisher_ptr> (p.in ());
-  p_impl->attach_transport (pub_tcp_impl.in ());
+  /* Attach the transport protocol with the publishing entity */
+       TAO::DCPS::PublisherImpl* p_impl =
+         ::TAO::DCPS::reference_to_servant <TAO::DCPS::PublisherImpl, DDS::Publisher_ptr> (p);
+       p_impl->attach_transport (pub_tcp_impl.in ());
+
 
   PubMessageTypeSupportImpl *pubmessage_dt = 0;
   PubComplexMessageTypeSupportImpl *pubcomplexmessage_dt = 0;

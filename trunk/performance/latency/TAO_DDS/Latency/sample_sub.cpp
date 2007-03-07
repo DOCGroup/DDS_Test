@@ -170,36 +170,35 @@ int main (int argc, char *argv[])
 
 
   // Attach the transport protocol with the publishing entity.
-  TAO::DCPS::PublisherImpl* p_impl =
-    reference_to_servant <TAO::DCPS::PublisherImpl,
-                          DDS::Publisher_ptr> (p.in ());
-  p_impl->attach_transport (pub_tcp_impl.in ());
+  /* Attach the transport protocol with the publishing entity */
+       TAO::DCPS::PublisherImpl* p_impl =
+         ::TAO::DCPS::reference_to_servant <TAO::DCPS::PublisherImpl, DDS::Publisher_ptr> (p);
+       p_impl->attach_transport (pub_tcp_impl.in ());
 
-  // Create topic for datawriter.
-  AckMessageTypeSupportImpl* ackmessage_dt = 0;
-  ACE_NEW_RETURN (ackmessage_dt,
-                  AckMessageTypeSupportImpl,
-                  -1);
-  ackmessage_dt->register_type (dp.in (), 
-                                "DDSPerfTest::AckMessage");
-  DDS::Topic_var ackmessage_topic =
-    dp->create_topic ("ackmessage_topic", // topic name
-                      "DDSPerfTest::AckMessage", // topic type
-                      TOPIC_QOS_DEFAULT, 
-                      DDS::TopicListener::_nil ());
 
-  // Create AckMessage data writer.
-  DDS::DataWriter_var dw =
-    p->create_datawriter (ackmessage_topic.in (),
-                          DATAWRITER_QOS_DEFAULT,
-                          DDS::DataWriterListener::_nil ());
-  AckMessageDataWriter_var ackmessage_writer = 
-    AckMessageDataWriter::_narrow (dw.in ());
-  
-  // Create the subscriber.
-  DDS::Subscriber_var s =
-    dp->create_subscriber(SUBSCRIBER_QOS_DEFAULT,
-                          DDS::SubscriberListener::_nil());
+
+       /* Create topic for datawriter */
+       AckMessageTypeSupportImpl* ackmessage_dt = new AckMessageTypeSupportImpl;
+       ackmessage_dt->register_type (dp.in (), 
+                                    "DDSPerfTest::AckMessage");
+       DDS::Topic_var ackmessage_topic = dp->create_topic ("ackmessage_topic", // topic name
+                                                           "DDSPerfTest::AckMessage", // topic type
+                                                           TOPIC_QOS_DEFAULT, 
+                                                           DDS::TopicListener::_nil ());
+
+       /* Create PubMessage data writer */
+       DDS::DataWriter_var dw = p->create_datawriter (ackmessage_topic.in (),
+                                                      DATAWRITER_QOS_DEFAULT,
+                                                      DDS::DataWriterListener::_nil ());
+       AckMessageDataWriter_var ackmessage_writer = 
+         AckMessageDataWriter::_narrow (dw);
+       
+
+       /* Create the subscriber */ 
+       DDS::Subscriber_var s =
+         dp->create_subscriber(SUBSCRIBER_QOS_DEFAULT,
+                               DDS::SubscriberListener::_nil());
+
 
   // Initialize the transport for subscriber.
   TAO::DCPS::TransportImpl_rch sub_tcp_impl;
