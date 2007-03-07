@@ -203,44 +203,26 @@ main (int argc, char *argv[])
   // Initialize the transports for publisher.
   TAO::DCPS::TransportImpl_rch pub_tcp_impl;
   
-  if (useTCP)
-    {
-      TAO::DCPS::SimpleTcpFactory *stf = 0;
-      ACE_NEW_RETURN (stf,
-                      TAO::DCPS::SimpleTcpFactory,
-                      -1);
-      TheTransportFactory->register_type (TCP_TYPE_ID, stf);
-      
-      TAO::DCPS::SimpleTcpConfiguration *stc = 0;
-      ACE_NEW_RETURN (stc,
-                      TAO::DCPS::SimpleTcpConfiguration,
-                      -1);
-      TAO::DCPS::SimpleTcpConfiguration_rch writer_config = stc;
-                      
-      pub_tcp_impl =
-        TheTransportFactory->create (TCP_IMPL_ID, TCP_TYPE_ID);
-      pub_tcp_impl->configure (writer_config.in ());
-    }
-  else
-    {
-      TAO::DCPS::SimpleUdpFactory *suf = 0;
-      ACE_NEW_RETURN (suf,
-                      TAO::DCPS::SimpleUdpFactory,
-                      -1);
-      TheTransportFactory->register_type (UDP_TYPE_ID, suf);
-      
-      pub_tcp_impl =
-        TheTransportFactory->create (UDP_IMPL_ID, UDP_TYPE_ID);
-      
-      TAO::DCPS::SimpleUdpConfiguration *suc = 0;
-      ACE_NEW_RETURN (suc,
-                      TAO::DCPS::SimpleUdpConfiguration,
-                      -1);
-      TAO::DCPS::SimpleUdpConfiguration_rch writer_config = suc;
-      
-      writer_config->local_address_.set ("localhost:1234");
-      pub_tcp_impl->configure (writer_config.in ());
-    }
+  if (useTCP) {
+         TheTransportFactory->create_transport_impl (TCP_IMPL_ID, 
+                                                     "SimpleTcp", 
+                                                     ::TAO::DCPS::AUTO_CONFIG);
+        } else {
+         TheTransportFactory->create_transport_impl (UDP_IMPL_ID, 
+                                                     "SimpleUdp", 
+                                                     TAO::DCPS::DONT_AUTO_CONFIG);
+         TAO::DCPS::TransportConfiguration_rch config 
+           = TheTransportFactory->create_configuration (UDP_IMPL_ID, "SimpleUdp");
+
+         TAO::DCPS::SimpleUdpConfiguration* udp_config 
+           = static_cast <TAO::DCPS::SimpleUdpConfiguration*> (config.in ());
+
+         std::string addrStr(ACE_LOCALHOST);
+         addrStr += ":12345";
+         udp_config->local_address_.set(addrStr.c_str());
+         pub_tcp_impl->configure (config.in ());
+       }
+
   
   // Attach the transport protocol with the publishing entity.
   TAO::DCPS::PublisherImpl* p_impl =
