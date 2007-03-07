@@ -323,11 +323,11 @@ main (int argc, char *argv[])
          sub_tcp_impl->configure(config.in());
        }
 
-  // Attach the transport protocol with the subscribing entity.
-  TAO::DCPS::SubscriberImpl* sub_impl =
-    reference_to_servant<TAO::DCPS::SubscriberImpl,
-                         DDS::Subscriber_ptr> (s.in ());
-  sub_impl->attach_transport (sub_tcp_impl.in ());
+  /* Attach the transport protocol with the subscribing entity */
+       TAO::DCPS::SubscriberImpl* sub_impl =
+         ::TAO::DCPS::reference_to_servant< TAO::DCPS::SubscriberImpl,
+                                            DDS::Subscriber_ptr> (s.in ());
+       sub_impl->attach_transport(sub_tcp_impl.in());
 
   // Create topic for datareader.
   AckMessageTypeSupportImpl* ackmessage_dt = 0;
