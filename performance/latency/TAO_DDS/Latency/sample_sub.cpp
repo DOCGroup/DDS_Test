@@ -106,10 +106,10 @@ int parse_args (int argc, char *argv[])
 }
 
 // Global Variables.
-const TAO::DCPS::TransportFactory::IdType UDP_TYPE_ID = 10;
-const TAO::DCPS::TransportFactory::IdType UDP_IMPL_ID = 10;
-const TAO::DCPS::TransportFactory::IdType TCP_TYPE_ID = 20;
-const TAO::DCPS::TransportFactory::IdType TCP_IMPL_ID = 20;
+const TAO::DCPS::TransportIdType UDP_TYPE_ID = 10;
+const TAO::DCPS::TransportIdType UDP_IMPL_ID = 10;
+const TAO::DCPS::TransportIdType TCP_TYPE_ID = 20;
+const TAO::DCPS::TransportIdType TCP_IMPL_ID = 20;
 
 int main (int argc, char *argv[])
 {
