@@ -29,29 +29,20 @@ void PubDataReaderListenerImpl::init (DDS::DataReader_ptr dr,
 {
   this->writer_ = DDS::DataWriter::_duplicate (dw);
   this->reader_ = DDS::DataReader::_duplicate (dr);
-  this->test_type_ = test_type;
 
   AckMessageDataWriter_var ackmessage_dw =
     AckMessageDataWriter::_narrow (this->writer_.in ());
-  this->dw_servant_ =    
-    reference_to_servant<AckMessageDataWriterImpl, 
-                         AckMessageDataWriter_ptr> (ackmessage_dw.in ());
+  this->dw_servant_ = 
+    ::TAO::DCPS::reference_to_servant< AckMessageDataWriterImpl, 
+                                       AckMessageDataWriter_ptr>(ackmessage_dw.in());
   DDSPerfTest::AckMessage msg;
   this->handle_ = this->dw_servant_->_cxx_register (msg);
 
   PubMessageDataReader_var pubmessage_dr = 
-    PubMessageDataReader::_unchecked_narrow (this->reader_.in ());
+    PubMessageDataReader::_unchecked_narrow(this->reader_.in());
   this->dr_servant_ =
-    reference_to_servant<PubMessageDataReaderImpl,
-                         PubMessageDataReader_ptr> (pubmessage_dr.in ());
-                         
-  PubComplexMessageDataReader_var pubcomplexmessage_dr = 
-    PubComplexMessageDataReader::_unchecked_narrow (this->reader_.in ());
-  this->dr_servant_complex_ =
-    reference_to_servant<
-        PubComplexMessageDataReaderImpl,
-        PubComplexMessageDataReader_ptr
-      > (pubcomplexmessage_dr.in());
+    ::TAO::DCPS::reference_to_servant< PubMessageDataReaderImpl,
+                                       PubMessageDataReader_ptr>(pubmessage_dr.in());
 }
 
 // Implementation skeleton destructor
