@@ -34,10 +34,10 @@
 #include <ace/Get_Opt.h>
 #include <ace/Sched_Params.h>
 
-const TAO::DCPS::TransportFactory::IdType UDP_TYPE_ID = 10;
-const TAO::DCPS::TransportFactory::IdType UDP_IMPL_ID = 10;
-const TAO::DCPS::TransportFactory::IdType TCP_TYPE_ID = 20;
-const TAO::DCPS::TransportFactory::IdType TCP_IMPL_ID = 20;
+const TAO::DCPS::TransportIdType UDP_TYPE_ID = 10;
+const TAO::DCPS::TransportIdType UDP_IMPL_ID = 10;
+const TAO::DCPS::TransportIdType TCP_TYPE_ID = 20;
+const TAO::DCPS::TransportIdType TCP_IMPL_ID = 20;
 
 CORBA::ULong seq_len = 4UL;
 CORBA::ULong primer_samples = 5UL;
