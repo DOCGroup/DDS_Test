@@ -22,7 +22,7 @@
 #include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration.h>
 #include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpFactory.h>
 #include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUnreliableDgramConfiguration_rch.h>
-#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUnreliableDgramConfiguration.h>
+#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUDPConfiguration.h>
 
 #include <ace/Log_Msg.h>
 #include <ace/Get_Opt.h>
