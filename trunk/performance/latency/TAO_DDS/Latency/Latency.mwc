@@ -1,0 +1,8 @@
+// $ID: Latency.mwc
+
+workspace {
+  cmdline = -include $(DDS_ROOT)/MPC/config
+  Latency.mpc
+}
+
+
