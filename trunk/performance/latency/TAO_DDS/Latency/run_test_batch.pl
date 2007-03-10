@@ -19,23 +19,8 @@ $pub_opts = "$opts -DCPSConfigFile pub.ini";
 $sub_opts = "$opts -DCPSConfigFile sub.ini";
 $test_type = "byte_seq";
 
-if ($ARGV[0] eq '-tcp')
-{
-}
-elsif ($ARGV[0] eq '-udp') {
-    $opts =  "-ORBSvcConf udp.conf";
-    $pub_opts = "$opts -DCPSConfigFile pub_udp.ini";
-    $sub_opts = "$opts -DCPSConfigFile sub_udp.ini";
-}
-elsif ($ARGV[0] eq '-mcast') {
-    $opts =  "-ORBSvcConf mcast.conf";
-    $pub_opts = "$opts -DCPSConfigFile pub_mcast.ini";
-    $sub_opts = "$opts -DCPSConfigFile sub_mcast.ini";
-}
-
 
 # Parse the arguments
-
 for ($j = 0; $j <= $#ARGV; $j++) {
     if ($ARGV[$j] eq "-h" || $ARGV[$j] eq "-?") {
       print "Perl script for TAO DDS DCPS Latency Test\n\n";
@@ -45,9 +30,19 @@ for ($j = 0; $j <= $#ARGV; $j++) {
       print "-r <output file>      -- set name of results output file\n";
       print "-p num                -- number of primer iterations\n";
       print "-s num                -- number of stat-gathering iterations\n";
-      print "-u                    -- forces UDP connection (default is TCP)\n";
-      print "-m                    -- uses Multicast\n";
+      print "-udp                  -- forces UDP connection (default is TCP)\n";
+      print "-mcast                -- uses Multicast\n";
       exit 0;
+    }
+    elsif ($ARGV[$j] eq "-udp") {
+      $opts =  "-ORBSvcConf udp.conf";
+      $pub_opts = "$opts -DCPSConfigFile pub_udp.ini";
+      $sub_opts = "$opts -DCPSConfigFile sub_udp.ini";
+    }
+    elsif ($ARGV[$j] eq "-mcast") {
+      $opts =  "-ORBSvcConf mcast.conf";
+      $pub_opts = "$opts -DCPSConfigFile pub_mcast.ini";
+      $sub_opts = "$opts -DCPSConfigFile sub_mcast.ini";
     }
     elsif ($ARGV[$j] eq "-t") {
       $test_type = $ARGV[$j + 1];

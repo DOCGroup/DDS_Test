@@ -20,19 +20,6 @@ $pub_opts = "$opts -DCPSConfigFile pub.ini";
 $sub_opts = "$opts -DCPSConfigFile sub.ini";
 $test_type = "byte_seq";
 
-if ($ARGV[0] eq '-tcp')
-{
-}
-elsif ($ARGV[0] eq '-udp') {
-    $opts =  "-ORBSvcConf udp.conf";
-    $pub_opts = "$opts -DCPSConfigFile pub_udp.ini";
-    $sub_opts = "$opts -DCPSConfigFile sub_udp.ini";
-}
-elsif ($ARGV[0] eq '-mcast') {
-    $opts =  "-ORBSvcConf mcast.conf";
-    $pub_opts = "$opts -DCPSConfigFile pub_mcast.ini";
-    $sub_opts = "$opts -DCPSConfigFile sub_mcast.ini";
-}
 
 # Parse the arguments
 
@@ -47,6 +34,16 @@ for ($j = 0; $j <= $#ARGV; $j++) {
       print "-s num                -- number of stat-gathering iterations\n";
       print "-d data_size          -- message size \n";
       exit 0;
+    }
+    elsif ($ARGV[$j] eq "-udp") {
+      $opts =  "-ORBSvcConf udp.conf";
+      $pub_opts = "$opts -DCPSConfigFile pub_udp.ini";
+      $sub_opts = "$opts -DCPSConfigFile sub_udp.ini";
+    }
+    elsif ($ARGV[$j] eq "-mcast") {
+      $opts =  "-ORBSvcConf mcast.conf";
+      $pub_opts = "$opts -DCPSConfigFile pub_mcast.ini";
+      $sub_opts = "$opts -DCPSConfigFile sub_mcast.ini";
     }
     elsif ($ARGV[$j] eq "-t") {
       $test_type = $ARGV[$j + 1];
