@@ -1,8 +1,34 @@
-project(TAO_DDS_Latency_Pub): dcpsexe {
+
+project (TAO_DDS_Latency_IDL): dcps {
+  TypeSupport_Files {
+    DDSPerfTest.idl >> PubMessageTypeSupport.idl \
+                       PubMessageTypeSupportImpl.h \
+                       PubMessageTypeSupportImpl.cpp \
+                       PubComplexMessageTypeSupport.idl \
+                       PubComplexMessageTypeSupportImpl.h \
+                       PubComplexMessageTypeSupportImpl.cpp \
+                       AckMessageTypeSupport.idl \
+                       AckMessageTypeSupportImpl.h \
+                       AckMessageTypeSupportImpl.cpp 
+
+  }
+  
+  IDL_Files {
+    DDSPerfTest.idl
+    PubMessageTypeSupport.idl
+    PubComplexMessageTypeSupport.idl
+    AckMessageTypeSupport.idl
+  }
+  
+  custom_only = 1
+}
+
+project(TAO_DDS_Latency_Pub): taoexe, portableserver, dcps {
   exename = tao_pub
   idlflags += -St
   libs += Stats
   includes += $(STATS_ROOT)
+  after += TAO_DDS_Latency_IDL
 
   TypeSupport_Files {
     DDSPerfTest.idl >> PubMessageTypeSupport.idl \
@@ -67,9 +93,11 @@ project(TAO_DDS_Latency_Pub): dcpsexe {
   }
 }
 
-project(TAO_DDS_Latency_Sub): dcpsexe {
+project(TAO_DDS_Latency_Sub): taoexe, portableserver, dcps {
   exename = tao_sub
   idlflags += -St
+  includes += $(DDS_ROOT)/MPC/config
+  after += TAO_DDS_Latency_IDL
 
   TypeSupport_Files {
     DDSPerfTest.idl >> PubMessageTypeSupport.idl \

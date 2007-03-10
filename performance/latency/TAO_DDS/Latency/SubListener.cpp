@@ -29,6 +29,7 @@ void PubDataReaderListenerImpl::init (DDS::DataReader_ptr dr,
 {
   this->writer_ = DDS::DataWriter::_duplicate (dw);
   this->reader_ = DDS::DataReader::_duplicate (dr);
+  this->test_type_ = test_type;
 
   AckMessageDataWriter_var ackmessage_dw =
     AckMessageDataWriter::_narrow (this->writer_.in ());
@@ -38,11 +39,27 @@ void PubDataReaderListenerImpl::init (DDS::DataReader_ptr dr,
   DDSPerfTest::AckMessage msg;
   this->handle_ = this->dw_servant_->_cxx_register (msg);
 
-  PubMessageDataReader_var pubmessage_dr = 
-    PubMessageDataReader::_unchecked_narrow(this->reader_.in());
-  this->dr_servant_ =
-    ::TAO::DCPS::reference_to_servant< PubMessageDataReaderImpl,
-                                       PubMessageDataReader_ptr>(pubmessage_dr.in());
+  switch (test_type)
+    {
+    case BYTE_SEQ:
+      {
+        PubMessageDataReader_var pubmessage_dr = 
+          PubMessageDataReader::_unchecked_narrow(this->reader_.in());
+        this->dr_servant_ =
+        ::TAO::DCPS::reference_to_servant< PubMessageDataReaderImpl,
+                                           PubMessageDataReader_ptr>(pubmessage_dr.in());
+        break;
+      }
+    case COMPLEX:
+      {
+        PubComplexMessageDataReader_var pubcomplexmessage_dr = 
+          PubComplexMessageDataReader::_unchecked_narrow(this->reader_.in());
+        this->dr_servant_complex_ =
+        ::TAO::DCPS::reference_to_servant< PubComplexMessageDataReaderImpl,
+                                           PubComplexMessageDataReader_ptr>(pubcomplexmessage_dr.in());
+        break;
+      }
+    }
 }
 
 // Implementation skeleton destructor
@@ -56,17 +73,19 @@ void PubDataReaderListenerImpl::on_data_available (DDS::DataReader_ptr)
     DDSPerfTest::PubMessage message;
     DDSPerfTest::PubComplexMessage complex_message;
     DDS::SampleInfo si;
+    DDS::ReturnCode_t status;
     CORBA::Long seq_num = 0;
-    
+
+
     // Use the reader data member (instead of the argument) for efficiency.
     switch (this->test_type_)
       {
         case BYTE_SEQ:
-          this->dr_servant_->take_next_sample (message, si) ;
+          status = this->dr_servant_->take_next_sample (message, si) ;
           seq_num = message.seqnum;
           break;
         case COMPLEX:
-          this->dr_servant_complex_->take_next_sample (complex_message, si);
+          status = this->dr_servant_complex_->take_next_sample (complex_message, si);
           seq_num = complex_message.seqnum;
           break;
         default:
