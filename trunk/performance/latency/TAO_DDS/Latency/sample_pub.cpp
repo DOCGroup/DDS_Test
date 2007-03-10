@@ -17,27 +17,15 @@
 #include <dds/DCPS/Marked_Default_Qos.h>
 #include <dds/DCPS/PublisherImpl.h>
 #include <dds/DCPS/transport/framework/TheTransportFactory.h>
-#include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration.h>
-#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpConfiguration.h>
-#include <ace/streams.h>
 
-/*
-#include <dds/DCPS/transport/simpleTCP/SimpleTcpFactory.h>
-#include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration_rch.h>
-#include <dds/DCPS/transport/simpleTCP/SimpleTcpConfiguration.h>
-#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpFactory.h>
-#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUnreliableDgramConfiguration_rch.h>
-#include <dds/DCPS/transport/simpleUnreliableDgram/SimpleUdpConfiguration.h>
-*/
+#include <ace/streams.h>
 
 #include <ace/Log_Msg.h>
 #include <ace/Get_Opt.h>
 #include <ace/Sched_Params.h>
 
-const TAO::DCPS::TransportIdType UDP_TYPE_ID = 10;
-const TAO::DCPS::TransportIdType UDP_IMPL_ID = 10;
-const TAO::DCPS::TransportIdType TCP_TYPE_ID = 20;
-const TAO::DCPS::TransportIdType TCP_IMPL_ID = 20;
+const TAO::DCPS::TransportIdType TRANSPORT_IMPL_ID_1 = 1;
+const TAO::DCPS::TransportIdType TRANSPORT_IMPL_ID_2 = 2;
 
 CORBA::ULong seq_len = 4UL;
 CORBA::ULong primer_samples = 5UL;
@@ -75,7 +63,7 @@ void set_rt (void)
 
 int parse_args (int argc, char *argv[])
 {
-  ACE_Get_Opt getopt (argc, argv, ACE_TEXT ("t:o:i:p:s:u"));
+  ACE_Get_Opt getopt (argc, argv, ACE_TEXT ("t:r:s:p:d:u"));
   int c;
   ACE_CString opt_string;
 
@@ -88,10 +76,14 @@ int parse_args (int argc, char *argv[])
             
             if (opt_string == "byte_seq")
               {
+                ACE_DEBUG ((LM_INFO,
+                            ACE_TEXT ("publisher: test type is byte_seq.\n")));
                 TEST_TYPE = BYTE_SEQ;
               }
             else if (opt_string == "complex")
               {
+                ACE_DEBUG ((LM_INFO,
+                            ACE_TEXT ("publisher: test type is complex.\n")));
                 TEST_TYPE = COMPLEX;
               }
             else
@@ -103,10 +95,10 @@ int parse_args (int argc, char *argv[])
               }
               
             break;
-          case 'o':
+          case 'r':
             output_file = CORBA::string_dup (getopt.opt_arg ());
             break;        
-          case 'i':
+          case 's':
             stats_samples = atoi (getopt.opt_arg ());
 
             if (stats_samples < 1)
@@ -128,7 +120,7 @@ int parse_args (int argc, char *argv[])
               }
                 
             break;        
-          case 's':
+          case 'd':
             seq_len = atoi (getopt.opt_arg ());
         
             if (seq_len < 4)
@@ -157,28 +149,8 @@ main (int argc, char *argv[])
   // Try to set real-time scheduling class. Requires login as
   // superuser or administrator.
   // set_rt ();
-  
-  if (parse_args (argc, argv) == -1)
-    {
-      ACE_ERROR_RETURN ((LM_ERROR,
-                          "sample_pub: parse_args failed\n"),
-                        -1);
-    }
     
-  switch (TEST_TYPE)
-    {
-      case BYTE_SEQ:
-        ACE_DEBUG ((LM_DEBUG, "# Testing byte sequence,"));
-        break;
-      case COMPLEX:
-        ACE_DEBUG ((LM_DEBUG, "Testing complex sequence,"));
-        break;
-      default:
-        break;
-    }
-    
-  ACE_DEBUG ((LM_DEBUG, " length = %d\n", seq_len));
-              
+            
   // Create participant.
   DDS::DomainParticipantFactory_var dpf =
     TheParticipantFactoryWithArgs (argc, argv);
@@ -194,34 +166,36 @@ main (int argc, char *argv[])
                          "SAMPLE_PUB: Create participant failed\n"),
                         -1);
     }
-  
+
+  if (parse_args (argc, argv) == -1)
+    {
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "publisher: parsing arguments failed.\n"),
+                         -1);
+    }
+
+  switch (TEST_TYPE) {
+    case BYTE_SEQ:
+      ACE_DEBUG ((LM_DEBUG, "# Testing byte sequence,"));
+      break;
+    case COMPLEX:
+      ACE_DEBUG ((LM_DEBUG, "# Testing complex sequence,"));
+      break;
+    default:
+      break;
+  }
+
+  ACE_DEBUG ((LM_DEBUG, " length = %d\n", seq_len));
+
   // Create publisher.
   DDS::Publisher_var p =
     dp->create_publisher (PUBLISHER_QOS_DEFAULT,
                           DDS::PublisherListener::_nil ());
   
-  // Initialize the transports for publisher.
-  TAO::DCPS::TransportImpl_rch pub_tcp_impl;
-  
-  if (useTCP) {
-         TheTransportFactory->create_transport_impl (TCP_IMPL_ID, 
-                                                     "SimpleTcp", 
+  // Initialize the transport for publisher.
+  TAO::DCPS::TransportImpl_rch pub_tcp_impl =
+         TheTransportFactory->create_transport_impl (TRANSPORT_IMPL_ID_1,
                                                      ::TAO::DCPS::AUTO_CONFIG);
-        } else {
-         TheTransportFactory->create_transport_impl (UDP_IMPL_ID, 
-                                                     "SimpleUdp", 
-                                                     TAO::DCPS::DONT_AUTO_CONFIG);
-         TAO::DCPS::TransportConfiguration_rch config 
-           = TheTransportFactory->create_configuration (UDP_IMPL_ID, "SimpleUdp");
-
-         TAO::DCPS::SimpleUdpConfiguration* udp_config 
-           = static_cast <TAO::DCPS::SimpleUdpConfiguration*> (config.in ());
-
-         std::string addrStr(ACE_LOCALHOST);
-         addrStr += ":1234";
-         udp_config->local_address_.set(addrStr.c_str());
-         pub_tcp_impl->configure (config.in ());
-       }
 
   
   /* Attach the transport protocol with the publishing entity */
@@ -297,31 +271,10 @@ main (int argc, char *argv[])
     dp->create_subscriber (SUBSCRIBER_QOS_DEFAULT,
                            DDS::SubscriberListener::_nil ());
 
-  // Initialize the transport for subscriber.
-  TAO::DCPS::TransportImpl_rch sub_tcp_impl;
-  
-  if (useTCP) {
-         sub_tcp_impl 
-           = TheTransportFactory->create_transport_impl (TCP_IMPL_ID+1, 
-                                                         "SimpleTcp", 
-                                                         ::TAO::DCPS::AUTO_CONFIG);
-       } else {
-         sub_tcp_impl 
-           = TheTransportFactory->create_transport_impl(UDP_IMPL_ID+1, 
-                                                        "SimpleUdp", 
-                                                        TAO::DCPS::DONT_AUTO_CONFIG);
-         TAO::DCPS::TransportConfiguration_rch config 
-           = TheTransportFactory->create_configuration (UDP_IMPL_ID+1, "SimpleUdp");
+  TAO::DCPS::TransportImpl_rch sub_tcp_impl = 
+    TheTransportFactory->create_transport_impl (TRANSPORT_IMPL_ID_2,
+                                                ::TAO::DCPS::AUTO_CONFIG);
 
-         TAO::DCPS::SimpleUdpConfiguration* udp_config 
-           = static_cast <TAO::DCPS::SimpleUdpConfiguration*> (config.in ());
-
-         std::string addrStr(ACE_LOCALHOST);
-         addrStr += ":1235";
-
-         udp_config->local_address_.set(addrStr.c_str ());
-         sub_tcp_impl->configure(config.in());
-       }
 
   /* Attach the transport protocol with the subscribing entity */
        TAO::DCPS::SubscriberImpl* sub_impl =

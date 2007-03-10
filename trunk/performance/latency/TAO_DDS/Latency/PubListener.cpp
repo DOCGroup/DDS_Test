@@ -51,17 +51,6 @@ void AckDataReaderListenerImpl::init(DDS::DataReader_ptr dr,
     ::TAO::DCPS::reference_to_servant< AckMessageDataReaderImpl,
                                        AckMessageDataReader_ptr>(ackmessage_dr.in());
 
-  PubMessageDataWriter_var pubmessage_dw =
-    PubMessageDataWriter::_narrow (this->writer_.in ());
-  this->dw_servant_ =
-    ::TAO::DCPS::reference_to_servant< PubMessageDataWriterImpl,
-                                       PubMessageDataWriter_ptr>(pubmessage_dw.in());
-  DDSPerfTest::PubMessage msg;
-  this->handle_ = this->dw_servant_->_cxx_register (msg);
-
-
-
-
   switch (test_type)
     {
       case BYTE_SEQ:
