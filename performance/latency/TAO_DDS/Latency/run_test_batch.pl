@@ -32,10 +32,7 @@ elsif ($ARGV[0] eq '-mcast') {
     $pub_opts = "$opts -DCPSConfigFile pub_mcast.ini";
     $sub_opts = "$opts -DCPSConfigFile sub_mcast.ini";
 }
-elsif ($ARGV[0] ne '') {
-    print STDERR "ERROR: invalid test case\n";
-    exit 1;
-}
+
 
 # Parse the arguments
 
@@ -67,6 +64,10 @@ for ($j = 0; $j <= $#ARGV; $j++) {
     elsif ($ARGV[$j] eq "-s") {
       $num_invocations = $ARGV[$j + 1];
       $j++;
+    }
+    else {
+      print STDERR "invalid argument.\n";
+      exit 1;
     }
 }
 
