@@ -108,7 +108,7 @@ const TAO::DCPS::TransportIdType TRANSPORT_IMPL_ID_2 = 2;
 int main (int argc, char *argv[])
 {
   //Try to set realtime scheduling class.
-  //set_rt ();
+  set_rt ();
 
   // Create participant.
   DDS::DomainParticipantFactory_var dpf =
