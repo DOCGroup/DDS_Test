@@ -148,7 +148,7 @@ main (int argc, char *argv[])
 {
   // Try to set real-time scheduling class. Requires login as
   // superuser or administrator.
-  // set_rt ();
+   set_rt ();
     
             
   // Create participant.
