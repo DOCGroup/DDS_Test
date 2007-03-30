@@ -146,6 +146,11 @@ if( $settings{'nodelist'} eq "true" )
       sleep(1);
       system("ssh tczar\@$host 'sudo killall $signal -v publisher'");
 
+      if( $impl eq "tao" )
+      {
+        system("ssh tczar\@$host 'sudo killall $signal -v tao_pub'");
+      }
+
       if( $impl eq "splice" )
       {
         sleep(2);
@@ -183,6 +188,11 @@ if( $settings{'nodelist'} eq "true" )
       system("ssh tczar\@$host 'sudo killall $signal -v perl'");
       sleep(1);
       system("ssh tczar\@$host 'sudo killall $signal -v subscriber'");
+
+      if( $impl eq "tao" )
+      {
+        system("ssh tczar\@$host 'sudo killall $signal -v tao_sub'");
+      }
 
       if( $impl eq "splice" )
       {

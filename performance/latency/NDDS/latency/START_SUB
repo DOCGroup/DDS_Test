@@ -2,7 +2,7 @@
 
 
 echo "Launching subscriber..."
-objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_subscriber
+objs/i86Linux2.6gcc3.4.3/subscriber
 
 echo
 echo

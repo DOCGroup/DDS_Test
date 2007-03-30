@@ -472,8 +472,6 @@ int main(int argc, char *argv[])
              result = w.wait (conditionList.out (),
                               DURATION_INFINITY);
 
-             /* one way to measure roundtrip */
-             gettimeofday(&end,NULL);
 
              imax = conditionList->length ();
 
@@ -585,9 +583,6 @@ int main(int argc, char *argv[])
              /* wait for a publication of sub node on subject "ackmessage_topic" */
              result = w.wait (conditionList.out (),
                               DURATION_INFINITY);
-
-             /* one way to measure roundtrip */
-             gettimeofday(&end,NULL);
 
              imax = conditionList->length ();
 

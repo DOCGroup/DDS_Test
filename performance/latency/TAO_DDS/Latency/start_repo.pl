@@ -1,10 +1,6 @@
-#!/usr/bin/perl
-
-
 eval '(exit $?0)' && eval 'exec perl -S $0 ${1+"$@"}'
     & eval 'exec perl -S $0 $argv:q'
     if 0;
-
 
 
 # Author: Jeff Parsons
@@ -17,12 +13,12 @@ use lib "$ACE_ROOT/bin";
 use PerlACE::Run_Test;
 use Cwd;
 
-require "/export/home/tczar/scripts/scripts.lib";
+#require "/export/home/tczar/scripts/scripts.lib";
 
 
 # no terminal? no problem...
 
-chdir("/export/home/tczar/DDS/performance/throughput/TAO_DDS/TCP");
+chdir("/export/home/tczar/DDS/performance/latency/TAO_DDS/Latency");
 
 
 #print "REPO CWD: " . getcwd() . "\n";
@@ -30,16 +26,16 @@ chdir("/export/home/tczar/DDS/performance/throughput/TAO_DDS/TCP");
 
 $status = 0;
 
-$repo_port = 60001;
+$repo_port = 7001;
 
-&readSettingsFromArgs();
+#&readSettingsFromArgs();
 
 $domains_file = PerlACE::LocalFile ("domain_ids");
 $dcpsrepo_ior = PerlACE::LocalFile ("repo.ior");
 
 unlink $dcpsrepo_ior;
 
-$repo = "blade37.isislab.vanderbilt.edu";
+$repo = "blade36.isislab.vanderbilt.edu";
 
 if( $settings{'nodelist'} eq 'true' )
 {
@@ -53,11 +49,11 @@ $parameters =   "-NOBITS -o $dcpsrepo_ior "
                    . " -ORBEndpoint iiop://$repo:$repo_port"
                    . " -ORBSvcConf repo.conf -d $domains_file -DCPSConfigFile \"conf.ini\"";
 
-open( FILE, '>' . $settings{'results'} . '.params' );
-  print FILE $parameters . "\n";
-close(FILE);
+#open( FILE, '>' . $settings{'results'} . '.params' );
+#  print FILE $parameters . "\n";
+#close(FILE);
 
-&writeSettings($settings{'results'} . '.settings');
+#&writeSettings($settings{'results'} . '.settings');
 
 
 #die "Settings and Parameters have been written... Exiting";

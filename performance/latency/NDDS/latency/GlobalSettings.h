@@ -23,8 +23,8 @@ latency. The basic algorithm is as follow:
     Calculate delay, minus clock overhead, and divide by 2
 */
 
-#ifndef latency_global_settings_h
-#define latency_global_settings_h
+#ifndef global_settings_h
+#define global_settings_h
 
 /* NDDS header file */
 #include "ndds/ndds_cpp.h"
@@ -57,4 +57,10 @@ latency. The basic algorithm is as follow:
 #define RTI_SHARED_MEMORY/*undefine if you don't have shared memory plugin */
 #define NDDS_OVERHEAD 52 /* Issue overhead + potential INFO_TS */
 #define UNFRAGMENTED_UDP_PACKET_SIZE_MAX (1500 - 14 - 20 - 8)
+
+struct global_data
+{
+  static char results_file_name [100] = "results";
+};
+
 #endif /* #ifndef latency_global_settings_h */

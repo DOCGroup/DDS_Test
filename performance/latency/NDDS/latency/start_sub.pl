@@ -236,8 +236,8 @@ $id = &getIndividualId();
 #   (could be less than $num_messages but I am not sure of the limit).
 
 $test_num = 0;
-$start = 0;
-$stop = 0;
+$start = 2;
+$stop = 90;
 
 foreach $data_size (@dataSizes)
 {
@@ -265,13 +265,14 @@ foreach $data_size (@dataSizes)
   }
 
 
-  $exe = "./objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_subscriber";
+  $exe = "./objs/i86Linux2.6gcc3.4.3/subscriber";
+  $parameters = "";
 
 
   &touch($settings{'results'} . '.' . $data_size);
 
   $Subscriber = new PerlACE::Process (
-        $exe ,  $parameters . " -role " . ($id + 1)); 
+        $exe ,  $parameters); 
   print $Subscriber->CommandLine(), "\n";
 
 

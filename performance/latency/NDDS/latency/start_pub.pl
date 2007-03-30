@@ -106,7 +106,7 @@ $settings{'history.depth'} = $settings{'datawriter.history.depth'};
 # setup the parameter string to the executable.
 
 $parameters = "";
-$parameters .= " -s $stats_messages";
+#$parameters .= " -s $stats_messages";
 
 if( $settings{'samples.maxperinstance'} )
 {
@@ -143,7 +143,7 @@ while( $done == 0 && @transports > 0 )
 
   if( $transport eq "multicast" || $transport eq "multi-cast"  )
   {
-    $parameters .= " -multicast";
+ #   $parameters .= " -multicast";
     $done = 1;
   }
   elsif( $transport eq "unicast" || $transport eq "uni-cast" )
@@ -162,7 +162,7 @@ while( $done == 0 && @reliabilities > 0 )
   $reliability = shift(@reliabilities);
   if( $reliability eq "reliable" )
   {
-    $parameters .= " -e";
+#    $parameters .= " -e";
     $done = 1;
   }
   elsif( $reliability eq "best" || $reliability eq "best-effort" ||
@@ -239,7 +239,7 @@ $id = &getIndividualId();
 
 $test_num = 0;
 $start = 0;
-$stop = 0;
+$stop = 90;
 
 foreach $data_size (@dataSizes)
 {
@@ -252,7 +252,7 @@ foreach $data_size (@dataSizes)
   }
   else
   {
-    $start = $settings{'default.start'};
+    $start = 3;
   }
 
   # setup the test timer parameters (stop)
@@ -263,11 +263,11 @@ foreach $data_size (@dataSizes)
   }
   else
   {
-    $stop = $settings{'default.stop'};
+    $stop = 90;
   }
 
   $exe = "objs/i86Linux2.6gcc3.4.3" .
-         "/NDDSLatencyPacket_publisher";
+         "/publisher";
   $outfile = $testDirectory . "/pub0." . "strace.$data_size";
 
   &touch( $settings{'results'} . '.' . $data_size );
@@ -291,6 +291,8 @@ foreach $data_size (@dataSizes)
     print STDERR "Sleeping for $start\n";
     sleep($start);
   }
+
+  sleep(4);
 
   $Publisher->Spawn ();
 

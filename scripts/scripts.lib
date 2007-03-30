@@ -784,7 +784,7 @@ sub setEnvironment
   my @envSettings;
   my @envTemp;
 
-  open(ENVIRONMENT,$environmentFile);
+  open(ENVIRONMENT,$environmentFile) || die "Can't open $environmentFile\n";
     @envSettings = <ENVIRONMENT>;
   close(ENVIRONMENT);
 

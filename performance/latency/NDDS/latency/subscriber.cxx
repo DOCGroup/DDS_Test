@@ -18,7 +18,7 @@
 #include "ace/Sched_Params.h"
 
 
-#define SCALAR 1
+#define SCALAR 50
 
 using namespace std;
 
@@ -281,7 +281,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain, int role, RTIBool isEchoer,
     participant_qos.discovery.participant_index	= role;// > 0
 
 
-    participant_qos.receiver_pool.buffer_size = 50 * 16384;//MAX_MSG_LENGTH * SCALAR + NDDS_OVERHEAD;
+//    participant_qos.receiver_pool.buffer_size = MAX_MSG_LENGTH * SCALAR + NDDS_OVERHEAD;
+    participant_qos.receiver_pool.buffer_size = 50 * 16384;
 
     printf ("Buffer size %ld\n", participant_qos.receiver_pool.buffer_size);
 
@@ -290,15 +291,16 @@ static RTIBool NddsSubscriberMain(int nddsDomain, int role, RTIBool isEchoer,
     participant_qos.transport_builtin.mask |= DDS_TRANSPORTBUILTIN_SHMEM;
 #endif
 
-#if ((MAX_MSG_LENGTH * SCALAR + NDDS_OVERHEAD + (14+20+8)) > 64*1024)
+if ((MAX_MSG_LENGTH * SCALAR + NDDS_OVERHEAD + (14+20+8)) > 64*1024)
+  {
+    printf ("Not using UDPv4\n");
     participant_qos.transport_builtin.mask &= ~DDS_TRANSPORTBUILTIN_UDPv4;
-#endif
-
+  }
 
 
     //ming: eliminate shared memory for remote test
     //      comment this line when running on localhost
-    participant_qos.transport_builtin.mask &= ~DDS_TRANSPORTBUILTIN_SHMEM;
+    //participant_qos.transport_builtin.mask &= ~DDS_TRANSPORTBUILTIN_SHMEM;
 
     /* create and enable participant */
     participant = factory->create_participant(domain_id,
@@ -317,7 +319,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain, int role, RTIBool isEchoer,
 	goto finally;
     }
 
-    udpv4Property.parent.message_size_max = 50 * 16384; // 64 * 1024 - (14 + 20 + 8);//MAX_MSG_LENGTH * SCALAR + NDDS_OVERHEAD;
+    udpv4Property.parent.message_size_max = 50 * 16384;
+    //udpv4Property.parent.message_size_max = MAX_MSG_LENGTH * SCALAR + NDDS_OVERHEAD;
     udpv4Property.send_socket_buffer_size
 	= udpv4Property.parent.message_size_max;
     udpv4Property.recv_socket_buffer_size
@@ -342,7 +345,8 @@ static RTIBool NddsSubscriberMain(int nddsDomain, int role, RTIBool isEchoer,
 
     printf ("set shared memory size\n");
 
-    shmemProperty.parent.message_size_max = MAX_MSG_LENGTH * SCALAR + NDDS_OVERHEAD;
+    shmemProperty.parent.message_size_max = 50 * 16384;
+    //shmemProperty.parent.message_size_max = MAX_MSG_LENGTH * SCALAR + NDDS_OVERHEAD;
     shmemProperty.received_message_count_max = 8;
     shmemProperty.receive_buffer_size
 	= (shmemProperty.received_message_count_max
