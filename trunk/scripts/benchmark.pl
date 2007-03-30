@@ -104,13 +104,27 @@ $impl = lc($settings{'impl'});
 
 if( $impl eq "ndds" )
 {
-  $path .= "NDDS/";
+  if( $type eq "throughput" )
+  {
+    $path .= "NDDS/";
+  }
+  elsif( $type eq "latency" )
+  {
+    $path .= "NDDS/latency/";
+  }
 }
 elsif( $impl eq "tao" || $impl eq "tao-dds" || $impl eq "tao_dds"
      || $impl eq "taodds" )
 {
   $impl = 'tao';
-  $path .= "TAO_DDS/TCP/";
+  if( $type eq "throughput" )
+  {
+    $path .= "TAO_DDS/TCP/";
+  }
+  else
+  {
+    $path .= "TAO_DDS/Latency/";
+  }
 }
 elsif( $impl eq "splice" || $impl eq "opensplice" || $impl eq "open-splice"
      || $impl eq "open_splice" )
@@ -257,10 +271,20 @@ else
   elsif( $impl eq 'ndds' )
   {
     $sourcePath = '$DBE_ROOT/performance/latency/NDDS/latency';
-    @files = ( 'objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_subscriber', 
-               'objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_publisher',
+    @files = ( 'objs/i86Linux2.6gcc3.4.3/subscriber', 
+               'objs/i86Linux2.6gcc3.4.3/publisher',
                'start_sub.pl', 'start_pub.pl' );
-    $destPath = '$DBE_LOCAL_ROOT/performance/latency/NDDS';
+    $destPath = '$DBE_LOCAL_ROOT/performance/latency/NDDS/latency';
+  }
+  elsif( $impl eq 'tao' )
+  {
+    $sourcePath = '$DBE_ROOT/performance/latency/TAO_DDS/Latency';
+    @files = ( 'domain_ids', 'tcp.conf', 'udp.conf', 'mcast.conf', 
+               'pub.ini', 'sub.ini', 'pub_udp.ini', 'sub_udp.ini',
+               'pub_mcast.ini', 'sub_mcast.ini',
+               'tao_sub', 'tao_pub',
+               'start_sub.pl', 'start_pub.pl', 'start_repo.pl' );
+    $destPath = '$DBE_LOCAL_ROOT/performance/latency/TAO_DDS/Latency';
   }
 }
 

@@ -1,3 +1,29 @@
+Fri Mar 30 19:30:00 UTC 2007  James Edmondson <jedmondson@gmail.com>
+
+        * DDS/scripts/*:
+          
+          benchmark and terminate should now work with latency exes
+          from OpenSplice, RTI DDS, and TAO DDS.
+
+        * DDS/performance/latency/NDDS/*
+
+          Ming's changes for NDDS latency. Should be similar to OpenSplice
+          now.
+
+        * DDS/performance/latency/TAO_DDS/*
+
+          Hieu's changes for TAO DDS latency. Separate code base from others:
+          more object oriented.
+
+        * DDS/performance/latency/OpenSplice
+
+          Modified some code that was different between NDDS and OpenSplice.
+
+        * DDS/settings/test/*
+
+          Changes were made to some of the latency test file settings. Nothing
+          major.
+
 Fri Mar 30 19:25:53 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/*:

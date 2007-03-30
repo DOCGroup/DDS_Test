@@ -11,9 +11,7 @@ fi
 sleep 3
 
 echo "Launching publisher..."
-objs/i86Linux2.6gcc3.4.3/NDDSLatencyPacket_publisher -s $1 -t c
-
-cat ./results >> $RESULT_FILE
+objs/i86Linux2.6gcc3.4.3/publisher -d $1 -r $RESULT_FILE
 
 sleep 2
 

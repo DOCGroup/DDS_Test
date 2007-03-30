@@ -17,7 +17,7 @@ transport=multicast|broadcast
 minSize=4
 maxSize=16384
 primer=100
-statsMessages=500
+statsMessages=10000
 
 #QoS settings file
 qos=/export/home/tczar/DDS/settings/qos/defaults.txt
