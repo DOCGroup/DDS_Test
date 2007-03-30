@@ -1,3 +1,14 @@
+Fri Mar 30 19:25:53 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DEEP/*:
+        
+          New directory and files, containing the framework supplied by
+          the OpenSplice folks, along with a few minor mods for
+          portability. The example IDL file deepTypes.idl was moved
+          from the readerWriter directory to the top-level directory,
+          and MPC files were added that will build the whole thing
+          as-is, linking to the OpenSplice middleware lib for now.
+
 Mon Feb 26 23:12:44 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performace/latency/NDDS/latency/NDDS_latency.mpc:
