@@ -268,7 +268,7 @@ SettingsParserDefault_impl::getValue(const SettingIdentifierType path, bool &val
 
 void
 SettingsParserDefault_impl::getValue(const SettingIdentifierType path, char *&value) throw (SettingsParserException) {
-    const char *result;
+//    const char *result;
     unsigned int i;
     bool found;
     const char *currentName;

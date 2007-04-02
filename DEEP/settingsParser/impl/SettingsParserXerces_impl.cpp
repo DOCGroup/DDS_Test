@@ -52,7 +52,7 @@ SettingsParserXerces_impl::SettingsParserXerces_impl(const char *xmlFile){
     try {
       XMLPlatformUtils::Initialize();
     }
-    catch (const XMLException& toCatch) {
+    catch (const XMLException&) {
       // Do your failure processing here
     }
     // Instantiate the DOM parser.
@@ -67,9 +67,9 @@ SettingsParserXerces_impl::SettingsParserXerces_impl(const char *xmlFile){
     /* Now walk over all childnodes and create the tree */
     DOMElement *documentElement;
     DOMNode *child;
-    SettingsParserXerces_impl_ptr settingsChild;
+//    SettingsParserXerces_impl_ptr settingsChild;
     SettingsParserXercesNode_impl_ptr topLevelNodeImpl;
-    char *nameTag;
+//    char *nameTag;
     char *settingsName;
     char *settingsType;
     

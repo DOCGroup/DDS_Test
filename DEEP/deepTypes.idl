@@ -5,8 +5,8 @@ module deepTypes {
         long payload;
     };
 
-#pragma keylist simpleType id
-
+#pragma keylist simpleType
+#pragma DCPS_DATA_TYPE "deepTypes::simpleType"
 
     struct innerStruct {
         long value;
@@ -16,21 +16,22 @@ module deepTypes {
         innerStruct payload;
     };
 
-#pragma keylist nestedType id
-
+#pragma keylist nestedType
+#pragma DCPS_DATA_TYPE "deepTypes::nestedType"
 
     struct arrayType {
         long id;
         long payload[10];
     };
 
-#pragma keylist arrayType id
-
+#pragma keylist arrayType
+#pragma DCPS_DATA_TYPE "deepTypes::arrayType"
 
     struct stringType {
         long id;
         string payload;
     };
 
-#pragma keylist stringType id
+#pragma keylist stringType
+#pragma DCPS_DATA_TYPE "deepTypes::stringType"
 };

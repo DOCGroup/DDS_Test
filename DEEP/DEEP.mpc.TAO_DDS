@@ -1,0 +1,81 @@
+//  -*- MPC -*- now wouldn't this be cool...
+// $Id: DEEP.mpc 174 2007-03-30 19:29:23Z parsons $
+
+project (DEEP_Framework) : dcpsexe_with_reliable_multicast, portableserver, xerces {
+//  dynamicflags += DEEP_FRAMEWORK_BUILD_DLL
+  exename = deepexe
+  idlflags += -o readerWriter/generated
+  dcps_ts_flags += -M deepTypes
+  includes += . \
+			        actors \
+			        readerWriter \
+			        readerWriter/generated \
+			        scenario \
+			        settingsParser \
+			        vendorAbstraction/TAO_DDS
+  
+  Modify_Custom(TypeSupport) {
+    postcommand = <%mv%> simpleTypeTypeSupport.idl readerWriter/generated <%and%> \
+                  <%mv%> simpleTypeTypeSupportImpl.h readerWriter/generated <%and%> \
+                  <%mv%> simpleTypeTypeSupportImpl.cpp readerWriter/generated <%and%> \
+                  <%mv%> nestedTypeTypeSupport.idl readerWriter/generated <%and%> \
+                  <%mv%> nestedTypeTypeSupportImpl.h readerWriter/generated <%and%> \
+                  <%mv%> nestedTypeTypeSupportImpl.cpp readerWriter/generated <%and%> \
+                  <%mv%> arrayTypeTypeSupport.idl readerWriter/generated <%and%> \
+                  <%mv%> arrayTypeTypeSupportImpl.h readerWriter/generated <%and%> \
+                  <%mv%> arrayTypeTypeSupportImpl.cpp readerWriter/generated <%and%> \
+                  <%mv%> stringTypeTypeSupport.idl readerWriter/generated <%and%> \
+                  <%mv%> stringTypeTypeSupportImpl.h readerWriter/generated <%and%> \
+                  <%mv%> stringTypeTypeSupportImpl.cpp readerWriter/generated
+  }
+  
+  TypeSupport_Files {
+	  deepTypes.idl >> simpleTypeTypeSupport.idl \
+	                   simpleTypeTypeSupportImpl.h \
+	                   simpleTypeTypeSupportImpl.cpp \
+	                   nestedTypeTypeSupport.idl \
+	                   nestedTypeTypeSupportImpl.h \
+	                   nestedTypeTypeSupportImpl.cpp \
+	                   arrayTypeTypeSupport.idl \
+	                   arrayTypeTypeSupportImpl.h \
+	                   arrayTypeTypeSupportImpl.cpp \
+	                   stringTypeTypeSupport.idl \
+	                   stringTypeTypeSupportImpl.h \
+	                   stringTypeTypeSupportImpl.cpp
+  }
+  
+  IDL_Files {
+    deepTypes.idl
+    readerWriter/generated/simpleTypeTypeSupport.idl
+    readerWriter/generated/nestedTypeTypeSupport.idl
+    readerWriter/generated/arrayTypeTypeSupport.idl
+    readerWriter/generated/stringTypeTypeSupport.idl
+  }
+  
+  Source_Files {
+    actors/impl/*.cpp
+    main/deepParticipant.cpp
+    readerWriter/TAO_DDS_impl/*.cpp
+    readerWriter/generated/*.cpp
+    scenario/impl/*.cpp
+    settingsparser/impl/*.cpp
+  }
+  
+  Header_Files {
+    DEEP_framework_export.h
+    actors/*.h
+    actors/impl/*.h
+    readerWriter/*.h
+    readerWriter/TAO_DDS_impl/*.h
+    readerWriter/generated/*.h
+    scenario/*.h
+    scenario/impl/*.h
+    settingsParser/SettingsParserNode.h
+    settingsparser/impl/*.h
+    vendorAbstraction/TAO_DDS/*.h
+  }
+
+  specific(vc8) {
+    DisableSpecificWarnings += 4290 4250
+  }
+}

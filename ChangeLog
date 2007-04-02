@@ -1,3 +1,40 @@
+Mon Apr  2 21:05:09 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DEEP/readerWriter/TAO_DDS_impl/TypedFunctions.cpp:
+        * DEEP/readerWriter/TAO_DDS_impl/GenericWriter_impl.h:
+        * DEEP/readerWriter/TAO_DDS_impl/TypedFunctions.h:
+        * DEEP/readerWriter/TAO_DDS_impl/GenericReader_impl.h:
+        * DEEP/readerWriter/TAO_DDS_impl/ReaderWriterFactory_impl.cpp:
+        * DEEP/readerWriter/TAO_DDS_impl/ReaderWriterFactory_impl.h:
+        
+          New files, a temporary design so the DEEP framework will
+          compile and link with TAO DDS until the final design is
+          decided upon.
+          
+        * DEEP/vendorAbstraction/TAO_DDS/inclAbstraction.h:
+        * DEEP/vendorAbstraction/RTI/inclAbstraction.h:
+        
+          Changes to the vendor-specific include files.
+          
+        * DEEP/DEEP.mpc.RTI:
+        * DEEP/DEEP.mpc.TAO_DDS:
+        * DEEP/DEEP.mpc.OSPL:
+        
+          Vendor-specific MPC files, necessary since each must have
+          its own vendor-specific include paths and libs to link to.
+          At present, just remove the extension after the .mpc from
+          the desired MPC file and generate.
+          
+        * DEEP/deepTypes.idl:
+        
+          Added necessary #pragmas for TAO DDS.
+          
+        * DEEP/settingsParser/impl/SettingsParserDefault_impl.cpp:
+        * DEEP/settingsParser/impl/SettingsParserXerces_impl.cpp:
+        
+          
+          Commented out some unused variables.
+
 Fri Mar 30 19:30:00 UTC 2007  James Edmondson <jedmondson@gmail.com>
 
         * DDS/scripts/*:
