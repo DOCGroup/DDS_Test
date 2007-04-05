@@ -2,10 +2,9 @@
 // $Id: DEEP.mpc 174 2007-03-30 19:29:23Z parsons $
 
 project (DEEP_Framework) : spliceexe, xerces {
-  dynamicflags += DEEP_FRAMEWORK_BUILD_DLL
+//  dynamicflags += DEEP_FRAMEWORK_BUILD_DLL
   exename = deepexe
-  includes += . \
-			        actors \
+  includes += actors \
 			        readerWriter \
 			        readerWriter/generated \
 			        scenario \

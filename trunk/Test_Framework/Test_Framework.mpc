@@ -18,9 +18,11 @@ project (Test_Framework) : portableserver, ndds, splice, dcps {
     DataReaderListener_T.h
     DataWriterListener_T.h
     dds_config.h
+    NDDS_Common.h
     NDDS_Test_T.h
     NDDS_Test_Pub_T.h
     NDDS_Test_Sub_T.h
+    Splice_Common.h
     Splice_Test_T.h
     Splice_Test_Pub_T.h
     Splice_Test_Sub_T.h

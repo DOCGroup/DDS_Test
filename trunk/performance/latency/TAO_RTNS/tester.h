@@ -5,7 +5,7 @@
 
 #include <time.h>
 
-#ifdef _WIN32           // if WINDOWS
+#ifdef WIN32           // if WINDOWS
   #include <windows.h>   
 #else                   // else LINUX
   #include <sys/time.h>

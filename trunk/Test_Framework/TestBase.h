@@ -15,8 +15,6 @@
 #ifndef TESTBASE_H
 #define TESTBASE_H
 
-#include "dds_config.h"
-
 #include "test_framework_export.h"
 #include "ace/Arg_Shifter.h"
 

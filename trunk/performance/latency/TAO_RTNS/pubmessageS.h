@@ -26,7 +26,7 @@
 //     http://www.cs.wustl.edu/~schmidt/TAO.html
 
 // TAO_IDL - Generated from
-// be/be_codegen.cpp:396
+// .\be\be_codegen.cpp:417
 
 #ifndef _TAO_IDL_PUBMESSAGES_H_
 #define _TAO_IDL_PUBMESSAGES_H_
@@ -40,30 +40,21 @@
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
 
-TAO_BEGIN_VERSIONED_NAMESPACE_DECL
-
-
-
 // TAO_IDL - Generated from
-// be/be_visitor_module/module_sh.cpp:49
+// w:\tao\tao_idl\be\be_visitor_module/module_sh.cpp:49
 
 namespace POA_pubdata
 {
   
 
 // TAO_IDL - Generated from
-// be/be_visitor_module/module_sh.cpp:80
+// w:\tao\tao_idl\be\be_visitor_module/module_sh.cpp:80
 
 } // module pubdata
 
 // TAO_IDL - Generated from 
-// be/be_codegen.cpp:1157
+// .\be\be_codegen.cpp:1193
 
-
-
-TAO_END_VERSIONED_NAMESPACE_DECL
-
-#include "pubmessageS_T.h"
 
 #if defined (__ACE_INLINE__)
 #include "pubmessageS.inl"

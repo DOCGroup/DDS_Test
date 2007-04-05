@@ -26,7 +26,7 @@
 //     http://www.cs.wustl.edu/~schmidt/TAO.html
 
 // TAO_IDL - Generated from
-// be/be_codegen.cpp:292
+// .\be\be_codegen.cpp:311
 
 
 #include "pubmessageC.h"
@@ -38,73 +38,88 @@
 #include "tao/AnyTypeCode/TypeCode_Struct_Field.h"
 #include "tao/CDR.h"
 #include "tao/ORB_Core.h"
+#include "tao/CDR.h"
 #include "tao/AnyTypeCode/Any_Dual_Impl_T.h"
 
 #if !defined (__ACE_INLINE__)
 #include "pubmessageC.inl"
 #endif /* !defined INLINE */
 
+// TAO_IDL - Generated from
+// .\be\be_visitor_arg_traits.cpp:72
+
 TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
-
-
-// TAO_IDL - Generated from
-// be/be_visitor_arg_traits.cpp:70
 
 // Arg traits specializations.
 namespace TAO
 {
 }
 
-
-// TAO_IDL - Generated from
-// be/be_visitor_typecode/struct_typecode.cpp:89
+TAO_END_VERSIONED_NAMESPACE_DECL
 
 
 
 // TAO_IDL - Generated from
-// be/be_visitor_typecode/typecode_defn.cpp:937
+// w:\tao\tao_idl\be\be_visitor_typecode/struct_typecode.cpp:89
+
+
+
+// TAO_IDL - Generated from
+// w:\tao\tao_idl\be\be_visitor_typecode/typecode_defn.cpp:516
 
 
 #ifndef _TAO_TYPECODE_pubdata_pubmessage__tao_seq_CORBA_Octet__GUARD
 #define _TAO_TYPECODE_pubdata_pubmessage__tao_seq_CORBA_Octet__GUARD
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
 namespace TAO
 {
   namespace TypeCode
   {
-    TAO::TypeCode::Sequence< ::CORBA::TypeCode_ptr const *,
-                            TAO::Null_RefCount_Policy>
-      pubdata_pubmessage__tao_seq_CORBA_Octet__0 (
-        ::CORBA::tk_sequence,
-        &CORBA::_tc_octet,
-        0U);
-      
-    ::CORBA::TypeCode_ptr const tc_pubdata_pubmessage__tao_seq_CORBA_Octet__0 =
-      &pubdata_pubmessage__tao_seq_CORBA_Octet__0;
-    
+    namespace
+    {
+      TAO::TypeCode::Sequence< ::CORBA::TypeCode_ptr const *,
+                              TAO::Null_RefCount_Policy>
+        pubdata_pubmessage__tao_seq_CORBA_Octet__0 (
+          ::CORBA::tk_sequence,
+          &CORBA::_tc_octet,
+          0U);
+        
+      ::CORBA::TypeCode_ptr const tc_pubdata_pubmessage__tao_seq_CORBA_Octet__0 =
+        &pubdata_pubmessage__tao_seq_CORBA_Octet__0;
+    }
   }
 }
 
+TAO_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* _TAO_TYPECODE_pubdata_pubmessage__tao_seq_CORBA_Octet__GUARD */
 
-static TAO::TypeCode::Struct_Field<char const *, ::CORBA::TypeCode_ptr const *> const _tao_fields_pubdata_pubmessage[] =
-  {
-    { "seqnum", &CORBA::_tc_long },
-    { "data", &TAO::TypeCode::tc_pubdata_pubmessage__tao_seq_CORBA_Octet__0 }
-    
-  };
-static TAO::TypeCode::Struct<char const *,
-                      ::CORBA::TypeCode_ptr const *,
-                      TAO::TypeCode::Struct_Field<char const *, ::CORBA::TypeCode_ptr const *> const *,
-                      TAO::Null_RefCount_Policy>
-  _tao_tc_pubdata_pubmessage (
-    ::CORBA::tk_struct,
-    "IDL:pubdata/pubmessage:1.0",
-    "pubmessage",
-    _tao_fields_pubdata_pubmessage,
-    2);
+static TAO::TypeCode::Struct_Field<
+  char const *,
+  ::CORBA::TypeCode_ptr const *> const 
+    _tao_fields_pubdata_pubmessage[] =
+      {
+        { "seqnum", &CORBA::_tc_long },
+        { "data", &TAO::TypeCode::tc_pubdata_pubmessage__tao_seq_CORBA_Octet__0 }
+      };
   
+static TAO::TypeCode::Struct<
+  char const *,
+  ::CORBA::TypeCode_ptr const *,
+  TAO::TypeCode::Struct_Field<
+    char const *,
+    ::CORBA::TypeCode_ptr const *> const *,
+  TAO::Null_RefCount_Policy>
+_tao_tc_pubdata_pubmessage (
+  ::CORBA::tk_struct,
+  "IDL:pubdata/pubmessage:1.0",
+  "pubmessage",
+  _tao_fields_pubdata_pubmessage,
+  2);
+
 namespace pubdata
 {
   ::CORBA::TypeCode_ptr const _tc_pubmessage =
@@ -114,7 +129,7 @@ namespace pubdata
 
 
 // TAO_IDL - Generated from 
-// be/be_visitor_structure/structure_cs.cpp:66
+// w:\tao\tao_idl\be\be_visitor_structure/structure_cs.cpp:66
 
 void 
 pubdata::pubmessage::_tao_any_destructor (
@@ -127,7 +142,7 @@ pubdata::pubmessage::_tao_any_destructor (
 }
 
 // TAO_IDL - Generated from 
-// be/be_visitor_sequence/sequence_cs.cpp:65
+// w:\tao\tao_idl\be\be_visitor_sequence/sequence_cs.cpp:65
 
 #if !defined (_PUBDATA_PUBMESSAGE__TAO_SEQ_CORBA_OCTET__CS_)
 #define _PUBDATA_PUBMESSAGE__TAO_SEQ_CORBA_OCTET__CS_
@@ -138,8 +153,8 @@ pubdata::pubmessage::_tao_seq_CORBA_Octet_::_tao_seq_CORBA_Octet_ (void)
 pubdata::pubmessage::_tao_seq_CORBA_Octet_::_tao_seq_CORBA_Octet_ (
     ::CORBA::ULong max
   )
-  : TAO_Unbounded_Sequence<
-        CORBA::Octet
+  : TAO::unbounded_value_sequence<
+        ::CORBA::Octet
       >
     (max)
 {}
@@ -150,8 +165,8 @@ pubdata::pubmessage::_tao_seq_CORBA_Octet_::_tao_seq_CORBA_Octet_ (
     ::CORBA::Octet * buffer,
     ::CORBA::Boolean release
   )
-  : TAO_Unbounded_Sequence<
-        CORBA::Octet
+  : TAO::unbounded_value_sequence<
+        ::CORBA::Octet
       >
     (max, length, buffer, release)
 {}
@@ -159,8 +174,8 @@ pubdata::pubmessage::_tao_seq_CORBA_Octet_::_tao_seq_CORBA_Octet_ (
 pubdata::pubmessage::_tao_seq_CORBA_Octet_::_tao_seq_CORBA_Octet_ (
     const _tao_seq_CORBA_Octet_ &seq
   )
-  : TAO_Unbounded_Sequence<
-        CORBA::Octet
+  : TAO::unbounded_value_sequence<
+        ::CORBA::Octet
       >
     (seq)
 {}
@@ -171,7 +186,10 @@ pubdata::pubmessage::_tao_seq_CORBA_Octet_::~_tao_seq_CORBA_Octet_ (void)
 #endif /* end #if !defined */
 
 // TAO_IDL - Generated from 
-// be/be_visitor_structure/any_op_cs.cpp:54
+// w:\tao\tao_idl\be\be_visitor_structure/any_op_cs.cpp:54
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
 // Copying insertion.
 void operator<<= (
@@ -230,41 +248,23 @@ void operator<<= (
         _tao_elem
       );
 }
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
 
 // TAO_IDL - Generated from
-// be/be_visitor_sequence/cdr_op_cs.cpp:96
-
+// w:\tao\tao_idl\be\be_visitor_sequence/cdr_op_cs.cpp:96
 #if !defined _TAO_CDR_OP_pubdata_pubmessage__tao_seq_CORBA_Octet__CPP_
 #define _TAO_CDR_OP_pubdata_pubmessage__tao_seq_CORBA_Octet__CPP_
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
 ::CORBA::Boolean operator<< (
     TAO_OutputCDR &strm,
     const pubdata::pubmessage::_tao_seq_CORBA_Octet_ &_tao_sequence
   )
 {
-  const ::CORBA::ULong _tao_seq_len = _tao_sequence.length ();
-  
-  if (strm << _tao_seq_len)
-    {
-      // Encode all elements.
-      
-#if (TAO_NO_COPY_OCTET_SEQUENCES == 1)
-      {
-        TAO_Unbounded_Sequence< ::CORBA::Octet> *_tao_octet_seq = 
-          static_cast<TAO_Unbounded_Sequence< ::CORBA::Octet> *> (const_cast<pubdata::pubmessage::_tao_seq_CORBA_Octet_ *> (&_tao_sequence));
-        if (_tao_octet_seq->mb ())
-          return strm.write_octet_array_mb (_tao_octet_seq->mb ());
-        else
-          return strm.write_octet_array (_tao_sequence.get_buffer (), _tao_sequence.length ());
-      }
-      
-#else /* TAO_NO_COPY_OCTET_SEQUENCES == 0 */
-      return strm.write_octet_array (_tao_sequence.get_buffer (), _tao_sequence.length ());
-    
-#endif /* TAO_NO_COPY_OCTET_SEQUENCES == 0 */
-    }
-  
-  return false;
+  return TAO::marshal_sequence(strm, _tao_sequence);
 }
 
 ::CORBA::Boolean operator>> (
@@ -272,61 +272,18 @@ void operator<<= (
     pubdata::pubmessage::_tao_seq_CORBA_Octet_ &_tao_sequence
   )
 {
-  ::CORBA::ULong _tao_seq_len;
-  
-  if (strm >> _tao_seq_len)
-    {
-      // Add a check to the length of the sequence
-      // to make sure it does not exceed the length
-      // of the stream. (See bug 58.)
-      if (_tao_seq_len > strm.length ())
-        {
-          return false;
-        }
-      
-      // Set the length of the sequence.
-      _tao_sequence.length (_tao_seq_len);
-      
-      // If length is 0 we return true.
-      if (0 >= _tao_seq_len) 
-        {
-          return true;
-        }
-      
-      // Retrieve all the elements.
-      
-#if (TAO_NO_COPY_OCTET_SEQUENCES == 1)
-      if (ACE_BIT_DISABLED (strm.start ()->flags (),
-      ACE_Message_Block::DONT_DELETE))
-      {
-        TAO_ORB_Core* orb_core = strm.orb_core ();
-        if (orb_core != 0 &&
-        strm.orb_core ()->resource_factory ()->
-        input_cdr_allocator_type_locked () == 1)
-        {
-          TAO_Unbounded_Sequence< ::CORBA::Octet> *oseq = 
-            static_cast<TAO_Unbounded_Sequence< ::CORBA::Octet> *> (&_tao_sequence);
-          oseq->replace (_tao_seq_len, strm.start ());
-          oseq->mb ()->wr_ptr (oseq->mb()->rd_ptr () + _tao_seq_len);
-          strm.skip_bytes (_tao_seq_len);
-          return 1;
-        }
-      }
-      return strm.read_octet_array (_tao_sequence.get_buffer (), _tao_seq_len);
-#else /* TAO_NO_COPY_OCTET_SEQUENCES == 0 */
-      return strm.read_octet_array (_tao_sequence.get_buffer (), _tao_sequence.length ());
-    
-#endif /* TAO_NO_COPY_OCTET_SEQUENCES == 0 */
-    
-    }
-  
-  return false;
+  return TAO::demarshal_sequence(strm, _tao_sequence);
 }
+
+TAO_END_VERSIONED_NAMESPACE_DECL
 
 #endif /* _TAO_CDR_OP_pubdata_pubmessage__tao_seq_CORBA_Octet__CPP_ */
 
 // TAO_IDL - Generated from
-// be/be_visitor_structure/cdr_op_cs.cpp:61
+// w:\tao\tao_idl\be\be_visitor_structure/cdr_op_cs.cpp:61
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
 ::CORBA::Boolean operator<< (
     TAO_OutputCDR &strm,
@@ -347,8 +304,7 @@ void operator<<= (
     (strm >> _tao_aggregate.seqnum) &&
     (strm >> _tao_aggregate.data);
 }
-
-
 TAO_END_VERSIONED_NAMESPACE_DECL
+
 
 

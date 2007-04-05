@@ -15,16 +15,16 @@ template <class TypedReader_ptr> class GenericReader_impl : public GenericReader
 
     /* Members */
     TypedReader_ptr dataReader;
-//    DDS::WaitSet_ptr waitSet;
+    DDS::WaitSet_ptr waitSet;
 
     /* Constructor/destructor (used by factory only) */
     GenericReader_impl(TypedReader_ptr _dataReader) {
-//        DDS::StatusCondition_ptr dataAvailableCondition;
+        DDS::StatusCondition_ptr dataAvailableCondition;
         dataReader = _dataReader;
-//        dataAvailableCondition = dataReader->get_statuscondition();
-//        dataAvailableCondition->set_enabled_statuses(DDS::DATA_AVAILABLE_STATUS);
-//        waitSet = new DDS::WaitSet();
-//        waitSet->attach_condition(dataAvailableCondition);
+        dataAvailableCondition = dataReader->get_statuscondition();
+        dataAvailableCondition->set_enabled_statuses(DDS::DATA_AVAILABLE_STATUS);
+        waitSet = new DDS::WaitSet();
+        waitSet->attach_condition(dataAvailableCondition);
     }
     virtual ~GenericReader_impl() {}
     friend class ReaderWriterFactory_impl;
@@ -53,13 +53,13 @@ public:
     }
     
     bool waitForData(unsigned int timeOutMsecs) {
-        bool result = false;
-//        DDS::ConditionSeq_var conditions;
+        bool result;
+        DDS::ConditionSeq conditions;
         DDS::Duration_t timeOut;
         timeOut.sec = timeOutMsecs/1000;
         timeOut.nanosec = 1000*(timeOutMsecs % 1000);
-//        waitSet->wait(conditions, timeOut);
-//        result = (conditions->length() > 0);
+        waitSet->wait(conditions, timeOut);
+        result = (conditions.length() > 0);
         return result;
     }
 

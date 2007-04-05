@@ -16,7 +16,7 @@ ACE_RCSID (Notify, TAO_Notify_Lanes_Supplier, "$Id: Supplier.cpp,v 1.4 2003/09/0
 
 #include "tao/ORB_Core.h"
 
-
+#include <math.h>
 
 /* type definition */
 typedef struct
@@ -74,6 +74,8 @@ std_dev (stats_type& stats)
     return sqrt ((static_cast<double>(stats.count) * stats.sum2 - stats.sum * stats.sum) / 
                 (static_cast<double>(stats.count) * static_cast<double>(stats.count - 1)));
   }
+  
+  return 0.0;
 }
 
 TAO_Notify_Lanes_Supplier::TAO_Notify_Lanes_Supplier  (TAO_Notify_ORB_Objects& orb_objects)

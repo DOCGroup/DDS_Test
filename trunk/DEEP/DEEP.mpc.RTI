@@ -2,11 +2,10 @@
 // $Id: DEEP.mpc 174 2007-03-30 19:29:23Z parsons $
 
 project (DEEP_Framework) : nddsexe, xerces {
-  dynamicflags += DEEP_FRAMEWORK_BUILD_DLL
+//  dynamicflags += DEEP_FRAMEWORK_BUILD_DLL
   ndds_ts_flags += -d readerWriter/generated
   exename = deepexe
-  includes += . \
-			        actors \
+  includes += actors \
 			        readerWriter \
 			        readerWriter/generated \
 			        scenario \
@@ -25,7 +24,7 @@ project (DEEP_Framework) : nddsexe, xerces {
   Source_Files {
     actors/impl/*.cpp
     main/deepParticipant.cpp
-    readerWriter/impl/*.cpp
+    readerWriter/RTI_DDS_impl/*.cpp
     readerWriter/generated/*.cxx
     scenario/impl/*.cpp
     settingsparser/impl/*.cpp
@@ -36,7 +35,7 @@ project (DEEP_Framework) : nddsexe, xerces {
     actors/*.h
     actors/impl/*.h
     readerWriter/*.h
-    readerWriter/impl/*.h
+    readerWriter/RTI_DDS_impl/*.h
     readerWriter/generated/*.h
     scenario/*.h
     scenario/impl/*.h

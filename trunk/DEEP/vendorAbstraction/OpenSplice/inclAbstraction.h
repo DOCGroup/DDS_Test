@@ -9,15 +9,21 @@
 
 #define DEEP_INSTANCE_HANDLE_NIL DDS::HANDLE_NIL
 
-inline DDS::DomainParticipant_ptr DEEP_create_participant(const char *domainId) {
-    const char *domainIdParm;
-    DDS::DomainParticipantFactory_ptr dpf = DDS::DomainParticipantFactory::get_instance();
-    if ((domainId != NULL) && (*domainId == '\0')) {
-        domainIdParm = NULL;
-    } else {
-        domainIdParm = domainId;
+inline
+DDS::DomainParticipant_ptr DEEP_create_participant (const char *domainId)
+{
+  const char *domainIdParm = 0;
+  DDS::DomainParticipantFactory_ptr dpf =
+    DDS::DomainParticipantFactory::get_instance ();
+    
+  if (domainId == 0 || *domainId != '\0')
+    {
+      domainIdParm = domainId;
     }
-    return dpf->create_participant (domainIdParm, PARTICIPANT_QOS_DEFAULT, NULL);
+  
+  return dpf->create_participant (domainIdParm, 
+                                  PARTICIPANT_QOS_DEFAULT,
+                                  0);
 }
 
 #endif /*INCLABSTRACTION_H_*/
