@@ -4,7 +4,7 @@
 /* Base class */
 #include "GenericWriter.h"
 /* Friend */
-#include "impl/ReaderWriterFactory_impl.h"
+#include "ReaderWriterFactory_impl.h"
 /* Implementation */
 #include "TypedFunctions.h"
 

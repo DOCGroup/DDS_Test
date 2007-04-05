@@ -1,3 +1,17 @@
+Thu Apr  5 19:00:24 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DDEP/readerWriter/impl/GenericWriter_impl.h:
+        * DDEP/readerWriter/impl/ReaderWriterFactory_impl.cpp:
+        * DDEP/readerWriter/RTI_DDS_impl/GenericWriter_impl.h:
+        * DDEP/readerWriter/RTI_DDS_impl/GenericReader_impl.h:
+        * DDEP/readerWriter/TAO_DDS_impl/GenericWriter_impl.h:
+        
+          Removed 'impl/' from some includes. Now that there are
+          such directories for each vendor, some of these includes
+          were incorrect, but they will all work without the
+          prefix in any case since the local directory is
+          searched first, which is what we want.
+
 Thu Apr  5 17:47:37 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/readerWriter/generated/deepTypesSplDcps.h:

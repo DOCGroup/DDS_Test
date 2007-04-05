@@ -4,10 +4,10 @@
 /* Base class */
 #include "GenericReader.h"
 /* Friend */
-#include "impl/ReaderWriterFactory_impl.h"
+#include "ReaderWriterFactory_impl.h"
 /* Implementation */
 #include "TypedFunctions.h"
-#include "impl/GenericWriter_impl.h"
+#include "GenericWriter_impl.h"
 
 namespace Deep {
 
