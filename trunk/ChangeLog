@@ -1,3 +1,14 @@
+Thu Apr  5 22:20:18 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * MPC/config/ndds_ts_defaults.mpb:
+        * DEEP/readerWriter/RTI_DDS_impl/TypedFunctions.cpp:
+        * DEEP/readerWriter/RTI_DDS_impl/TypedFunctions.h:
+        * DEEP/readerWriter/RTI_DDS_impl/ReaderWriterFactory_impl.cpp:
+        
+          Added '-namespace' to the command line of rtiddsgen in the
+          MPC base project file, and put back the scoped name passed
+          to several macros in the framework source files.
+
 Thu Apr  5 19:00:24 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DDEP/readerWriter/impl/GenericWriter_impl.h:
