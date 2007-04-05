@@ -13,5 +13,5 @@ project {
     keyword ndds_ts_flags = commandflags
   }
 
-  ndds_ts_flags += -language C++ -replace
+  ndds_ts_flags += -language C++ -replace -namespace
 }
