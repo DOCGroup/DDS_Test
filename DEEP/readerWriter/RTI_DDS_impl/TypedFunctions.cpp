@@ -109,33 +109,33 @@ calculateLatency(
 /* ----------------- Realization per type ----------------------- */
 
 
-TYPED_FUNCTIONS_IMPLS(deepTypes_simpleType)
-TYPED_FUNCTIONS_IMPLS(deepTypes_nestedType)
-TYPED_FUNCTIONS_IMPLS(deepTypes_arrayType)
-TYPED_FUNCTIONS_IMPLS(deepTypes_stringType)
+TYPED_FUNCTIONS_IMPLS(deepTypes::simpleType)
+TYPED_FUNCTIONS_IMPLS(deepTypes::nestedType)
+TYPED_FUNCTIONS_IMPLS(deepTypes::arrayType)
+TYPED_FUNCTIONS_IMPLS(deepTypes::stringType)
 
 
-void typedFunctionsInitData(deepTypes_simpleType &data) {
+void typedFunctionsInitData(deepTypes::simpleType &data) {
     data.id = 100;
     data.payload = 10*data.id;
 }
 
-void typedFunctionsIncrementData(deepTypes_simpleType &data) {
+void typedFunctionsIncrementData(deepTypes::simpleType &data) {
     data.id++;
     data.payload = 10*data.id;
 }
 
-void typedFunctionsInitData(deepTypes_nestedType &data) {
+void typedFunctionsInitData(deepTypes::nestedType &data) {
     data.id = 200;
     data.payload.value = 10*data.id;
 }
 
-void typedFunctionsIncrementData(deepTypes_nestedType &data) {
+void typedFunctionsIncrementData(deepTypes::nestedType &data) {
     data.id++;
     data.payload.value = 10*data.id;
 }
 
-void typedFunctionsInitData(deepTypes_arrayType &data) {
+void typedFunctionsInitData(deepTypes::arrayType &data) {
     int i;
     data.id = 300;
     for (i=0; i<10; i++) {
@@ -143,15 +143,15 @@ void typedFunctionsInitData(deepTypes_arrayType &data) {
     }
 }
 
-void typedFunctionsIncrementData(deepTypes_arrayType &data) {
+void typedFunctionsIncrementData(deepTypes::arrayType &data) {
     data.id++;
 }
 
-void typedFunctionsInitData(deepTypes_stringType &data) {
+void typedFunctionsInitData(deepTypes::stringType &data) {
     data.id = 400;
     data.payload = "payLoad";
 }
 
-void typedFunctionsIncrementData(deepTypes_stringType &data) {
+void typedFunctionsIncrementData(deepTypes::stringType &data) {
     data.id++;
 }

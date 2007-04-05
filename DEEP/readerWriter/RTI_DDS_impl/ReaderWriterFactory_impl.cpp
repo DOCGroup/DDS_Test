@@ -58,10 +58,10 @@ ReaderWriterFactory_impl::createReader(
         result = new GenericReader_impl<typeRequested##DataReader*>(dataReader); \
     }
 
-    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes_simpleType)
-    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes_nestedType)
-    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes_arrayType)
-    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes_stringType)
+    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes::simpleType)
+    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes::nestedType)
+    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes::arrayType)
+    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes::stringType)
     
 #undef CONDITIONAL_GENERIC_READER_CONSTRUCTION
     
@@ -108,10 +108,10 @@ ReaderWriterFactory_impl::createWriter(
         result = new GenericWriter_impl<typeRequested##DataWriter* ,typeRequested>(dataWriter); \
     }
 
-    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes_simpleType)
-    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes_nestedType)
-    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes_arrayType)
-    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes_stringType)
+    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes::simpleType)
+    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes::nestedType)
+    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes::arrayType)
+    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes::stringType)
 
 #undef CONDITIONAL_GENERIC_WRITER_CONSTRUCTION
     
