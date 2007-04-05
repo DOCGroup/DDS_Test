@@ -20,7 +20,6 @@ DataReaderListenerImpl::~DataReaderListenerImpl ()
 }
 
 void DataReaderListenerImpl::on_data_available(DDS::DataReader_ptr reader)
-  throw (CORBA::SystemException)
 {
   // To Do: Update any values for determining when the subscriber is finished
   // (e.g., the number of reads).
@@ -72,32 +71,28 @@ void DataReaderListenerImpl::on_data_available(DDS::DataReader_ptr reader)
 // methods.
 void DataReaderListenerImpl::on_requested_deadline_missed (
     DDS::DataReader_ptr,
-    const DDS::RequestedDeadlineMissedStatus &)
-  throw (CORBA::SystemException)
+    const ::DDS::RequestedDeadlineMissedStatus &)
 {
   cerr << "DataReaderListenerImpl::on_requested_deadline_missed" << endl;
 }
 
 void DataReaderListenerImpl::on_requested_incompatible_qos (
     DDS::DataReader_ptr,
-    const DDS::RequestedIncompatibleQosStatus &)
-  throw (CORBA::SystemException)
+    const ::DDS::RequestedIncompatibleQosStatus &)
 {
   cerr << "DataReaderListenerImpl::on_requested_incompatible_qos" << endl;
 }
 
 void DataReaderListenerImpl::on_liveliness_changed (
     DDS::DataReader_ptr,
-    const DDS::LivelinessChangedStatus &)
-  throw (CORBA::SystemException)
+    const ::DDS::LivelinessChangedStatus &)
 {
   cerr << "DataReaderListenerImpl::on_liveliness_changed" << endl;
 }
 
 void DataReaderListenerImpl::on_subscription_match (
     DDS::DataReader_ptr,
-    const DDS::SubscriptionMatchStatus &)
-  throw (CORBA::SystemException)
+    const ::DDS::SubscriptionMatchStatus &)
 {
   cerr << "DataReaderListenerImpl::on_subscription_match" << endl;
 }
@@ -105,41 +100,42 @@ void DataReaderListenerImpl::on_subscription_match (
 void DataReaderListenerImpl::on_sample_rejected(
     DDS::DataReader_ptr,
     const DDS::SampleRejectedStatus&)
-  throw (CORBA::SystemException)
 {
   cerr << "DataReaderListenerImpl::on_sample_rejected" << endl;
 }
 
 void DataReaderListenerImpl::on_sample_lost(
-  DDS::DataReader_ptr,
-  const DDS::SampleLostStatus&)
-  throw (CORBA::SystemException)
+    DDS::DataReader_ptr,
+    const ::DDS::SampleLostStatus &)
 {
   cerr << "DataReaderListenerImpl::on_sample_lost" << endl;
 }
 
 void DataReaderListenerImpl::on_subscription_disconnected (
-  DDS::DataReader_ptr,
-  const ::TAO::DCPS::SubscriptionDisconnectedStatus &)
-  throw (CORBA::SystemException)
+    DDS::DataReader_ptr,
+    const ::TAO::DCPS::SubscriptionDisconnectedStatus &)
 {
   cerr << "DataReaderListenerImpl::on_subscription_disconnected" << endl;
 }
 
 void DataReaderListenerImpl::on_subscription_reconnected (
-  DDS::DataReader_ptr,
-  const ::TAO::DCPS::SubscriptionReconnectedStatus &)
-  throw (CORBA::SystemException)
+    DDS::DataReader_ptr,
+    const ::TAO::DCPS::SubscriptionReconnectedStatus &)
 {
   cerr << "DataReaderListenerImpl::on_subscription_reconnected" << endl;
 }
 
 void DataReaderListenerImpl::on_subscription_lost (
-  DDS::DataReader_ptr,
-  const ::TAO::DCPS::SubscriptionLostStatus &)
-  throw (CORBA::SystemException)
+    DDS::DataReader_ptr,
+    const ::TAO::DCPS::SubscriptionLostStatus &)
 {
   cerr << "DataReaderListenerImpl::on_subscription_lost" << endl;
+}
+
+void DataReaderListenerImpl::on_connection_deleted (
+    DDS::DataReader_ptr)
+{
+  cerr << "DataReaderListenerImpl::on_connection_deleted" << endl;
 }
 // End: Provide implementations for the other DataReaderListenerImpl
 // methods.

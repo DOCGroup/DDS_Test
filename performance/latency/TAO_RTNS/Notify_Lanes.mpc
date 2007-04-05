@@ -15,6 +15,10 @@ project(*Supplier): rtcorba, rtnotify, naming {
     tester.cpp
     pubmessageC.cpp
   }
+  
+  specific(vc71,vc8) {
+    lit_libs += Winmm
+  }
 }
 
 project(*Consumer): notifytest, rtcorba, rtnotify {

@@ -27,7 +27,7 @@
 
 
 // TAO_IDL - Generated from 
-// be/be_codegen.cpp:586
+// .\be\be_codegen.cpp:622
 
 #ifndef _TAO_IDL_PUBMESSAGES_CPP_
 #define _TAO_IDL_PUBMESSAGES_CPP_
@@ -39,27 +39,31 @@
 #include "pubmessageS.inl"
 #endif /* !defined INLINE */
 
+// TAO_IDL - Generated from
+// .\be\be_visitor_arg_traits.cpp:72
+
 TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
 
-
-// TAO_IDL - Generated from
-// be/be_visitor_arg_traits.cpp:70
-
 // Arg traits specializations.
 namespace TAO
 {
 }
 
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
 
 // TAO_IDL - Generated from
-// be/be_visitor_arg_traits.cpp:70
+// .\be\be_visitor_arg_traits.cpp:72
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
 
 // Arg traits specializations.
 namespace TAO
 {
 }
-
 
 TAO_END_VERSIONED_NAMESPACE_DECL
 

@@ -9,6 +9,7 @@
 #include "tao/ORB_Core.h"
 #include "ace/Sched_Params.h"
 #include "ace/OS_NS_errno.h"
+#include "ace/Streams.h"
 
 ACE_RCSID (Notify, TAO_Notify_Lanes_Consumer_Client, "$Id: Consumer_Client.cpp,v 1.8 2005/08/30 14:23:42 jwillemsen Exp $")
 
@@ -174,16 +175,40 @@ TAO_Notify_Lanes_Consumer_Client::svc (void)
 /*      Attempt to set the real time priority and lock memory */
 void set_rt() 
 {
-        struct sched_param p;
-
-        p.sched_priority = 20;
-        if (-1 == sched_setscheduler(0, SCHED_FIFO, &p)) {
-          perror("sched_setscheduler");
+  int priority = 20;
+  int rt_status =
+    ACE_OS::sched_params (ACE_Sched_Params (ACE_SCHED_FIFO,
+                                            priority,
+                                            ACE_SCOPE_PROCESS));
+  
+  if (rt_status != 0)
+    {
+      switch (ACE_OS::last_error ())
+        {
+          case EPERM:
+            cout << "user is not superuser, "
+                 << "test runs in time-shared class" << endl;
+            break;
+          case EINVAL:
+            cout << "priority " << priority
+                 << " is invalid on this platform, test runs"
+                 << " in time-shared class"
+                 << endl;
+            break;
+          case ESRCH:
+            cout << "process id " << ACE_SCOPE_PROCESS
+                 << " not found, test runs in time-shared class"
+                 << endl;
+            break;
+          default:
+            // No other reasons why sched_params() can fail.
+            break;
         }
-        if (mlockall(MCL_CURRENT || MCL_FUTURE)) {
-          fprintf(stderr, 
-            "== Could not lock memory - Run with root access.\n");
-        }
+    }
+  else
+    {
+      cout << "real time priority successfully set!" << endl;
+    }
 }
 
 int

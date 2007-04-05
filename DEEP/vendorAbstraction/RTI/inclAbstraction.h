@@ -1,35 +1,56 @@
 #ifndef INCLABSTRACTION_H_
 #define INCLABSTRACTION_H_
 
-/* NDDS header file */
-//#include "ndds/ndds_cpp.h"
+// undef'd elsewhere to avoid clashes with OpenSplice
+typedef long pid_t;
+typedef int mode_t;
+
+#include "ace/SString.h"
+
+/* System header files */
+#include "ndds/ndds_namespace_cpp.h"
 
 /* Type header files */
 #include "deepTypesSupport.h"
-//#include "deepTypes.h"
 
 #include <iostream>
 
 using namespace std;
 
-// For better compliance with OMG IDL PSM C++ mapping.
+#define DEEP_INSTANCE_HANDLE_NIL DDS::HANDLE_NIL
+
 namespace DDS
 {
-  typedef DDSDomainParticipantFactory DomainParticipantFactory;
-  
-  typedef DDSDomainParticipant DomainParticipant;
+  typedef DomainParticipantFactory *DomainParticipantFactory_ptr;
   typedef DomainParticipant *DomainParticipant_ptr;
-  typedef DDS_DomainParticipantQos DomainParticipantQos;
-  typedef DDSDomainParticipantListener DomainParticipantListener;
+  typedef DataWriter *DataWriter_ptr;
+  typedef DataReader *DataReader_ptr;
+  typedef WaitSet *WaitSet_ptr;
+  typedef Topic *Topic_ptr;
+  typedef StatusCondition *StatusCondition_ptr;
+}
+
+inline
+DDS::DomainParticipant_ptr DEEP_create_participant (const char *domainId)
+{
+  const char *domainIdParm = 0;
+  DDS::DomainParticipantFactory_ptr dpf =
+    DDS::DomainParticipantFactory::get_instance ();
+    
+  if (domainId == 0 || *domainId != '\0')
+    {
+      domainIdParm = domainId;
+    }
   
-  typedef DDSTopic Topic;
-  typedef DDS_TopicQos TopicQos;
-  typedef DDSTopicListener TopicListener;
-  
-  typedef DDS_StatusMask StatusMask;
-  
-  typedef DDS_ReturnCode_t ReturnCode_t;
-  typedef DDS_Duration_t Duration_t;
+    ACE_CString conv (domainId);
+    
+    // RTI DDS domain ids are not strings. This is a temporary hack.
+    DDS::DomainId_t did = static_cast<RTI_INT32> (conv.hash ());
+    
+  return dpf->create_participant (did, 
+                                  DDS::PARTICIPANT_QOS_DEFAULT,
+                                  0,
+                                  DDS::STATUS_MASK_NONE);
 }
 
 #endif /*INCLABSTRACTION_H_*/

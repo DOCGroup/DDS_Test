@@ -1,3 +1,94 @@
+Thu Apr  5 17:47:37 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DEEP/readerWriter/generated/deepTypesSplDcps.h:
+        * DEEP/readerWriter/generated/deepTypesDcps.h:
+        * DEEP/readerWriter/generated/deepTypes.cpp:
+        * DEEP/readerWriter/generated/deepTypesDcps.idl:
+        * DEEP/readerWriter/generated/deepTypesDcps_impl.h:
+        * DEEP/readerWriter/generated/deepTypes.h:
+        * DEEP/readerWriter/generated/deepTypesSplDcps.cpp:
+        * DEEP/readerWriter/generated/ccpp_deepTypes.h:
+        * DEEP/readerWriter/generated/deepTypesDcps.cpp:
+        * DEEP/readerWriter/generated/deepTypesDcps_impl.cpp:
+
+          Removed these files, they are generated and shouldn't
+          be in the repository.
+
+        * DEEP/DEEP.mpc
+
+          Removed this file, since it isn't always the same
+          file, but copied from one of the 3 vendor-specific
+          MPC files below.
+
+        * DEEP/readerWriter/RTI_DDS_impl:
+        * DEEP/readerWriter/RTI_DDS_impl/TypedFunctions.cpp:
+        * DEEP/readerWriter/RTI_DDS_impl/GenericWriter_impl.h:
+        * DEEP/readerWriter/RTI_DDS_impl/TypedFunctions.h:
+        * DEEP/readerWriter/RTI_DDS_impl/GenericReader_impl.h:
+        * DEEP/readerWriter/RTI_DDS_impl/ReaderWriterFactory_impl.cpp:
+        * DEEP/readerWriter/RTI_DDS_impl/ReaderWriterFactory_impl.h:
+
+          New files in a new directory, used only for RTI DDS.
+
+        * DEEP/README:
+
+          Documents how to build the DEEP framework using MPC.
+
+        * MPC/config/ndds_ts_defaults.mpb:
+        * MPC/config/ndds.mpb:
+
+          Changes to keep in synch with the updated version of
+          RTI DDS - 4.1.
+
+        * DEEP/vendorAbstraction/OpenSplice/inclAbstraction.h:
+        * DEEP/vendorAbstraction/TAO_DDS/inclAbstraction.h:
+        * DEEP/vendorAbstraction/RTI/inclAbstraction.h:
+
+          RTI version filled in, minor changes to the others.
+
+        * DEEP/DEEP.mpc.RTI:
+        * DEEP/DEEP.mpc.TAO_DDS:
+        * DEEP/DEEP.mpc.OSPL:
+
+          Changes to the vendor-specific MPC files, mostly to
+          ensure that all the generated files appear in the
+          build file, and that they all get removed when 'clean'
+          is executed.
+
+        * DEEP/readerWriter/TAO_DDS_impl/GenericReader_impl.h:
+        * DEEP/readerWriter/TAO_DDS_impl/ReaderWriterFactory_impl.cpp:
+        * performance/latency/OpenSplice/tester.cpp:
+        * performance/latency/NDDS/latency/publisher.cxx:
+        * performance/latency/TAO_RTNS/pubmessageC.inl:
+        * performance/latency/TAO_RTNS/pubmessageC.cpp:
+        * performance/latency/TAO_RTNS/Supplier_Client.cpp:
+        * performance/latency/TAO_RTNS/Supplier.cpp:
+        * performance/latency/TAO_RTNS/tester.cpp:
+        * performance/latency/TAO_RTNS/pubmessageS.cpp:
+        * performance/latency/TAO_RTNS/pubmessageS.inl:
+        * performance/latency/TAO_RTNS/Notify_Lanes.mpc
+        * performance/latency/TAO_RTNS/Consumer_Client.cpp:
+        * performance/latency/TAO_RTNS/pubmessageC.h:
+        * performance/latency/TAO_RTNS/tester.h:
+        * performance/latency/TAO_RTNS/pubmessageS.h:
+        * performance/throughput/OpenSplice/C++/common_config.h:
+        * performance/throughput/NDDS/common.h:
+        * Test_Framework/dds_config.h:
+        * Test_Framework/Test_Framework.mpc:
+        * Test_Framework/TestBase.h:
+        * examples/TAODDSQuoter/DataReaderListener.cpp:
+        * examples/TAODDSQuoter/DataReaderListener.h:
+
+          Mostly minor changes to
+
+          - synch with newer versions of DDS implementations
+
+          - remove code related to exception emulation and
+            exception throw specs in TAO DDS- related code,
+            since this stuff was all recently removed from the
+            middleware itself to conform to the current OMG
+            IDL C++ mapping.
+
 Mon Apr  2 21:05:09 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/readerWriter/TAO_DDS_impl/TypedFunctions.cpp:

@@ -15,7 +15,7 @@ tester::get_time (void)
 
   #ifdef _WIN32           // if WINDOWS
     DWORD t;
-    t = timeGetTime();
+    t = ::timeGetTime();
     curr_time.tv_sec = t / 1000;
     curr_time.tv_usec = t % 1000;
   #else                   // else LINUX
@@ -46,7 +46,7 @@ tester::time_to_real (struct timeval t)
 {
   float tr;
   //tr = (float)t.tv_sec * 100000 + (float)t.tv_usec;
-  tr = (double)t.tv_sec + (double)t.tv_usec / (double) 1000000;
+  tr = (float) ((double)t.tv_sec + (double)t.tv_usec / (double) 1000000);
   return tr;
 }
 

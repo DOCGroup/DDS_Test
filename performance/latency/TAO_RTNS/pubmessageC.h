@@ -26,7 +26,7 @@
 //     http://www.cs.wustl.edu/~schmidt/TAO.html
 
 // TAO_IDL - Generated from
-// be/be_codegen.cpp:164
+// .\be\be_codegen.cpp:135
 
 #ifndef _TAO_IDL_PUBMESSAGEC_H_
 #define _TAO_IDL_PUBMESSAGEC_H_
@@ -34,7 +34,7 @@
 #include /**/ "ace/pre.h"
 
 
-#include "ace/config-all.h"
+#include /**/ "ace/config-all.h"
 
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 # pragma once
@@ -42,30 +42,26 @@
 
 #include "tao/AnyTypeCode/AnyTypeCode_methods.h"
 #include "tao/ORB.h"
-#include "tao/Environment.h"
+#include "tao/Basic_Types.h"
 #include "tao/Sequence_T.h"
 #include "tao/Seq_Var_T.h"
 #include "tao/Seq_Out_T.h"
 #include "tao/VarOut_T.h"
-#include "tao/Versioned_Namespace.h"
+#include /**/ "tao/Versioned_Namespace.h"
 
 #if defined (TAO_EXPORT_MACRO)
 #undef TAO_EXPORT_MACRO
 #endif
 #define TAO_EXPORT_MACRO 
 
-TAO_BEGIN_VERSIONED_NAMESPACE_DECL
-
-
-
 // TAO_IDL - Generated from
-// be/be_visitor_module/module_ch.cpp:49
+// w:\tao\tao_idl\be\be_visitor_module/module_ch.cpp:49
 
 namespace pubdata
 {
   
   // TAO_IDL - Generated from
-  // be/be_type.cpp:258
+  // .\be\be_type.cpp:256
   
   struct pubmessage;
   
@@ -77,32 +73,32 @@ namespace pubdata
   
   typedef
     TAO_Out_T<
-        pubmessage,
-        pubmessage_var
+        pubmessage
       >
     pubmessage_out;
   
   // TAO_IDL - Generated from
-  // be/be_visitor_structure/structure_ch.cpp:57
+  // w:\tao\tao_idl\be\be_visitor_structure/structure_ch.cpp:57
   
   struct  pubmessage
   {
     typedef pubmessage_var _var_type;
+    typedef pubmessage_out _out_type;
     
     static void _tao_any_destructor (void *);
     ::CORBA::Long seqnum;
     
     
     // TAO_IDL - Generated from
-    // be/be_visitor_sequence/sequence_ch.cpp:101
+    // w:\tao\tao_idl\be\be_visitor_sequence/sequence_ch.cpp:107
 
 #if !defined (_PUBDATA_PUBMESSAGE__TAO_SEQ_CORBA_OCTET__CH_)
 #define _PUBDATA_PUBMESSAGE__TAO_SEQ_CORBA_OCTET__CH_
     
     class  _tao_seq_CORBA_Octet_
       : public
-          TAO_Unbounded_Sequence<
-              CORBA::Octet
+          TAO::unbounded_value_sequence<
+              ::CORBA::Octet
             >
     {
     public:
@@ -112,83 +108,103 @@ namespace pubdata
           ::CORBA::ULong max,
           ::CORBA::ULong length,
           ::CORBA::Octet* buffer, 
-          ::CORBA::Boolean release = 0
+          ::CORBA::Boolean release = false
         );
       _tao_seq_CORBA_Octet_ (const _tao_seq_CORBA_Octet_ &);
-      ~_tao_seq_CORBA_Octet_ (void);
+      virtual ~_tao_seq_CORBA_Octet_ (void);
 
 #if (TAO_NO_COPY_OCTET_SEQUENCES == 1)
       _tao_seq_CORBA_Octet_ (
           ::CORBA::ULong length,
           const ACE_Message_Block* mb
         )
-        : TAO_Unbounded_Sequence< ::CORBA::Octet> (length, mb) {}
+        : TAO::unbounded_value_sequence< ::CORBA::Octet> (length, mb) {}
 #endif /* TAO_NO_COPY_OCTET_SEQUENCE == 1 */
     };
 
 #endif /* end #if !defined */
     
     // TAO_IDL - Generated from
-    // be/be_visitor_field/field_ch.cpp:393
+    // w:\tao\tao_idl\be\be_visitor_field/field_ch.cpp:358
     
     typedef _tao_seq_CORBA_Octet_ _data_seq;
     _tao_seq_CORBA_Octet_ data;
   };
   
   // TAO_IDL - Generated from
-  // be/be_visitor_typecode/typecode_decl.cpp:49
+  // w:\tao\tao_idl\be\be_visitor_typecode/typecode_decl.cpp:49
   
   extern  ::CORBA::TypeCode_ptr const _tc_pubmessage;
 
 // TAO_IDL - Generated from
-// be/be_visitor_module/module_ch.cpp:78
+// w:\tao\tao_idl\be\be_visitor_module/module_ch.cpp:78
 
 } // module pubdata
 
 // TAO_IDL - Generated from
-// be/be_visitor_traits.cpp:61
+// .\be\be_visitor_traits.cpp:64
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
 // Traits specializations.
 namespace TAO
 {
 }
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
 
 // TAO_IDL - Generated from
-// be/be_visitor_structure/any_op_ch.cpp:53
+// w:\tao\tao_idl\be\be_visitor_structure/any_op_ch.cpp:53
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
  void operator<<= (::CORBA::Any &, const pubdata::pubmessage &); // copying version
  void operator<<= (::CORBA::Any &, pubdata::pubmessage*); // noncopying version
  ::CORBA::Boolean operator>>= (const ::CORBA::Any &, pubdata::pubmessage *&); // deprecated
  ::CORBA::Boolean operator>>= (const ::CORBA::Any &, const pubdata::pubmessage *&);
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
 
 // TAO_IDL - Generated from
-// be/be_visitor_structure/cdr_op_ch.cpp:54
+// w:\tao\tao_idl\be\be_visitor_structure/cdr_op_ch.cpp:54
+
+
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
  ::CORBA::Boolean operator<< (TAO_OutputCDR &, const pubdata::pubmessage &);
  ::CORBA::Boolean operator>> (TAO_InputCDR &, pubdata::pubmessage &);
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
 
 // TAO_IDL - Generated from
-// be/be_visitor_sequence/cdr_op_ch.cpp:71
+// w:\tao\tao_idl\be\be_visitor_sequence/cdr_op_ch.cpp:71
 
 #if !defined _TAO_CDR_OP_pubdata_pubmessage__tao_seq_CORBA_Octet__H_
 #define _TAO_CDR_OP_pubdata_pubmessage__tao_seq_CORBA_Octet__H_
+TAO_BEGIN_VERSIONED_NAMESPACE_DECL
+
+
 
  ::CORBA::Boolean operator<< (
-    TAO_OutputCDR &,
-    const pubdata::pubmessage::_tao_seq_CORBA_Octet_ &
+    TAO_OutputCDR &strm,
+    const pubdata::pubmessage::_tao_seq_CORBA_Octet_ &_tao_sequence
   );
  ::CORBA::Boolean operator>> (
-    TAO_InputCDR &,
-    pubdata::pubmessage::_tao_seq_CORBA_Octet_ &
+    TAO_InputCDR &strm,
+    pubdata::pubmessage::_tao_seq_CORBA_Octet_ &_tao_sequence
   );
+TAO_END_VERSIONED_NAMESPACE_DECL
+
+
 
 #endif /* _TAO_CDR_OP_pubdata_pubmessage__tao_seq_CORBA_Octet__H_ */
 
 // TAO_IDL - Generated from
-// be/be_codegen.cpp:1101
-
-TAO_END_VERSIONED_NAMESPACE_DECL
-
+// .\be\be_codegen.cpp:1138
 #if defined (__ACE_INLINE__)
 #include "pubmessageC.inl"
 #endif /* defined INLINE */

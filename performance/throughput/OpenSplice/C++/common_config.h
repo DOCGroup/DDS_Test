@@ -4,23 +4,10 @@
 #ifndef __COMMON_CONFIG_H
 #define __COMMON_CONFIG_H
 
-// To avoid a clash of typedefs in ACE and OpenSplice
-#define pid_t ACE_pid_t_typedef_clash_workaround
-#define mode_t ACE_mode_t_typedef_clash_workaround
-
 #include "ace/Log_Msg.h"
 #include "ace/Arg_Shifter.h"
 #include "ace/Sched_Params.h"
 #include "Stats.h"
-
-#undef pid_t
-#undef mode_t
-
-// To avoid a redef error on Windows from OpenSplice header files,
-// ACE defines it in config-win32-common.h.
-#if defined (FD_SETSIZE)
-#undef FD_SETSIZE
-#endif
 
 #include "TPTDefDcps_impl.h"
 #include "ccpp_dds_dcps.h"

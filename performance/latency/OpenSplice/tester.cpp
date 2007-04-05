@@ -46,7 +46,7 @@ tester::time_to_real (struct timeval t)
 {
   float tr;
   //tr = (float)t.tv_sec * 100000 + (float)t.tv_usec;
-  tr = (double)t.tv_sec + (double)t.tv_usec / (double) 1000000;
+  tr = (float) ((double)t.tv_sec + (double)t.tv_usec / (double) 1000000);
   return tr;
 }
 

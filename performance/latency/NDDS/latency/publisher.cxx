@@ -4,7 +4,7 @@
 #include <math.h> /*for sqrt */
 #include <iostream>
 
-#include <getopt.h>
+//#include <getopt.h>
 
 #include <fstream>
 

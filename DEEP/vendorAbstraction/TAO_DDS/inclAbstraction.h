@@ -1,6 +1,7 @@
 #ifndef INCLABSTRACTION_H_
 #define INCLABSTRACTION_H_
 
+// undef'd elsewhere to avoid clashes with OpenSplice
 typedef long pid_t;
 typedef int mode_t;
 
@@ -31,22 +32,23 @@ namespace DDS
   typedef WaitSet *WaitSet_ptr;
 }
 
-inline DDS::DomainParticipant_ptr DEEP_create_participant(const char *domainId) {
-    const char *domainIdParm;
-    ::DDS::DomainParticipantFactory_var dpf = TheParticipantFactory;
+inline
+DDS::DomainParticipant_ptr DEEP_create_participant (const char *domainId)
+{
+    const char *domainIdParm = 0;
+    DDS::DomainParticipantFactory_var dpf = TheParticipantFactory;
 
-    if ((domainId != NULL) && (*domainId == '\0'))
-      {
-        domainIdParm = NULL;
-      } 
-    else
-      {
-        domainIdParm = domainId;
-      }
-
+  if (domainId == 0 || *domainId != '\0')
+    {
+      domainIdParm = domainId;
+    }
+  
     ACE_CString conv (domainId);
+    
+    // TAO DDS domain ids are not strings. This is a temporary hack.
     DDS::DomainId_t did = static_cast<CORBA::Long> (conv.hash ());
-    return dpf->create_participant (did, PARTICIPANT_QOS_DEFAULT, NULL);
+    
+    return dpf->create_participant (did, PARTICIPANT_QOS_DEFAULT, 0);
 }
 
 #endif /*INCLABSTRACTION_H_*/
