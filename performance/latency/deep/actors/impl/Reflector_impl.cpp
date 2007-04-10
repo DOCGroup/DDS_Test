@@ -6,6 +6,9 @@
 
 namespace Deep {
 
+#define MAXLEN (1000)
+#define SUFFIX ".XXXXXX"
+
 static void
 processLatencies(
     duration *latencies,
@@ -13,10 +16,16 @@ processLatencies(
     const char *fileName) {
         
     if (nofLatencies > 0) {
-        std::ofstream outFile(fileName);
         unsigned int i;
         unsigned int msecs, sum, min, max;
         double dmean, dmean2, dsum, sdev;
+        char actualFileName[MAXLEN];
+
+        /* Make filename unique */
+        strncpy(actualFileName, fileName, MAXLEN);
+        strncat(actualFileName, SUFFIX, MAXLEN);
+        mkstemp(actualFileName);
+        std::ofstream outFile(actualFileName);
         
         /* First calculate mean, min and max, in microseconds */
         sum = 0;
@@ -56,9 +65,11 @@ Reflector_impl::Reflector_impl(
     timeoutPeriod = reflectorSetting->getTimeoutPeriod();
     doTiming = reflectorSetting->getDoTiming();    
     reader = readerWriterFactory->createReader(reflectorSetting->getTypeName(),
-        reflectorSetting->getTopicName(), reflectorSetting->getReaderPartitionExpression());
+        reflectorSetting->getTopicName(), reflectorSetting->getReaderPartitionExpression(),
+        reflectorSetting->getTopicSetting(), reflectorSetting->getReaderSetting());
     writer = readerWriterFactory->createWriter(reflectorSetting->getTypeName(),
-        reflectorSetting->getTopicName(), reflectorSetting->getWriterPartitionExpression());
+        reflectorSetting->getTopicName(), reflectorSetting->getWriterPartitionExpression(),
+        reflectorSetting->getTopicSetting(), reflectorSetting->getWriterSetting());
 }
 
 Reflector_impl::~Reflector_impl() {
@@ -68,18 +79,6 @@ Reflector_impl::~Reflector_impl() {
 
 void
 Reflector_impl::run() {
-#if 0    
-    bool dataAvailable;
-    unsigned int samplesRead;
-    dataAvailable = reader->waitForData(timeoutPeriod);
-    while (dataAvailable) {
-        samplesRead = reader->takeAndForwardData(writer, MAX_NOF_SAMPLES);
-        while (samplesRead == MAX_NOF_SAMPLES) {
-            samplesRead = reader->takeAndForwardData(writer, MAX_NOF_SAMPLES);
-        }
-        dataAvailable = reader->waitForData(timeoutPeriod);
-    }
-#else
     bool dataAvailable;
     unsigned int samplesRead;
     if (doTiming) {
@@ -112,10 +111,6 @@ Reflector_impl::run() {
         delete []latencies;
     } else {
         dataAvailable = reader->waitForData(timeoutPeriod);
-        if (dataAvailable)
-          {
-            std::cout << "Taking and forwarding data now...";
-          }
         while (dataAvailable) {
             samplesRead = reader->takeAndForwardData(writer, MAX_NOF_SAMPLES);
             while (samplesRead == MAX_NOF_SAMPLES) {
@@ -123,10 +118,8 @@ Reflector_impl::run() {
             }
             dataAvailable = reader->waitForData(timeoutPeriod);
         }
-        std::cout << "[done]" << std::endl;
     }
 
-#endif
 }
 
 }

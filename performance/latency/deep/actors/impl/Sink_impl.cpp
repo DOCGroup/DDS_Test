@@ -14,8 +14,8 @@ Sink_impl::Sink_impl(
     timeoutPeriod = sinkSetting->getTimeoutPeriod();
     doTiming = sinkSetting->getDoTiming();
     reader = readerWriterFactory->createReader(sinkSetting->getTypeName(),
-                                               sinkSetting->getTopicName(),
-                                               sinkSetting->getReaderPartitionExpression());
+        sinkSetting->getTopicName(), sinkSetting->getReaderPartitionExpression(),
+        sinkSetting->getTopicSetting(), sinkSetting->getReaderSetting());
 }
 
 Sink_impl::~Sink_impl() {

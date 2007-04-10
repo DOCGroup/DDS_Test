@@ -20,7 +20,7 @@ SinkSetting_impl::SinkSetting_impl(
     settingsParserNode->getValue("doTiming", doTiming, defaultDoTiming);
     settingsParserNode->getValue("readerPartitionExpression", readerPartitionExpression, defaultPartitionExpression);
     
-    readers = settingsParserNode->getChildNodes("readerSettings");
+    readers = settingsParserNode->getChildNodes("readerSetting");
     if (readers.size() > 0) {
         reader = readers[0];
         readerSetting = new ReaderSetting_impl(reader->getName(), reader);

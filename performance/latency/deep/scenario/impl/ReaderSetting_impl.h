@@ -19,7 +19,10 @@ class ReaderSetting_impl : public virtual ReaderSetting, public NamedSetting_imp
 	virtual ~ReaderSetting_impl();
     friend class ReflectorSetting_impl;
     friend class SinkSetting_impl;
+    /* Private members */
+    unsigned int historyDepth;
 public:
+    unsigned int getHistoryDepth();
 };
 
 }

@@ -14,7 +14,8 @@ Source_impl::Source_impl(
     burstSize = sourceSetting->getBurstSize();
     sleepTime = sourceSetting->getSleepTime();
     writer = readerWriterFactory->createWriter(sourceSetting->getTypeName(),
-        sourceSetting->getTopicName(), sourceSetting->getWriterPartitionExpression());
+        sourceSetting->getTopicName(), sourceSetting->getWriterPartitionExpression(),
+        sourceSetting->getTopicSetting(), sourceSetting->getWriterSetting());
 }
 
 Source_impl::~Source_impl()
