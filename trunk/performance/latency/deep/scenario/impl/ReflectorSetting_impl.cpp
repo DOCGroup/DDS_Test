@@ -24,7 +24,7 @@ ReflectorSetting_impl::ReflectorSetting_impl(
     settingsParserNode->getValue("doTiming", doTiming, defaultDoTiming);
     settingsParserNode->getValue("timeoutPeriod", timeoutPeriod, defaultTimeoutPeriod);
         
-    children = settingsParserNode->getChildNodes("readerSettings");
+    children = settingsParserNode->getChildNodes("readerSetting");
     if (children.size() > 0) {
         child = children[0];
         readerSetting = new ReaderSetting_impl(child->getName(), child);
@@ -32,7 +32,7 @@ ReflectorSetting_impl::ReflectorSetting_impl(
         readerSetting = NULL;
     }
     
-    children = settingsParserNode->getChildNodes("writerSettings");
+    children = settingsParserNode->getChildNodes("writerSetting");
     if (children.size() > 0) {
         child = children[0];
         writerSetting = new WriterSetting_impl(child->getName(), child);
