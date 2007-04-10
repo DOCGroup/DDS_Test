@@ -1,0 +1,36 @@
+module deepTypes {
+
+    struct simpleType {
+        long id;
+        long payload;
+    };
+
+#pragma keylist simpleType id
+
+
+    struct innerStruct {
+        long value;
+    };
+    struct nestedType {
+        long id;
+        innerStruct payload;
+    };
+
+#pragma keylist nestedType id
+
+
+    struct arrayType {
+        long id;
+        long payload[10];
+    };
+
+#pragma keylist arrayType id
+
+
+    struct stringType {
+        long id;
+        string payload;
+    };
+
+#pragma keylist stringType id
+};
