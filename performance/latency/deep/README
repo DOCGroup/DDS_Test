@@ -1,0 +1,7 @@
+I've copied this directory to ~/DDS/performance/latency/NDDS/deep. If you're going to continue using this directory to make changes, please copy all changes to the directory above.
+
+It helps the deployment scripts to have something actually in the RTDEEP_ROOT directory structure.
+
+Thanks,
+James
+
