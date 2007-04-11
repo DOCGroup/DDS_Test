@@ -5,7 +5,10 @@ module deepTypes {
         long payload;
     };
 
-#pragma keylist simpleType id
+
+#pragma keylist simpleType
+#pragma DCPS_DATA_TYPE "deepTypes::simpleType"
+
 
 
     struct innerStruct {
@@ -16,7 +19,10 @@ module deepTypes {
         innerStruct payload;
     };
 
-#pragma keylist nestedType id
+
+#pragma keylist nestedType
+#pragma DCPS_DATA_TYPE "deepTypes::nestedType"
+
 
 
     struct arrayType {
@@ -24,7 +30,9 @@ module deepTypes {
         long payload[10];
     };
 
-#pragma keylist arrayType id
+#pragma keylist arrayType
+#pragma DCPS_DATA_TYPE "deepTypes::arrayType"
+
 
 
     struct stringType {
@@ -32,5 +40,16 @@ module deepTypes {
         string payload;
     };
 
-#pragma keylist stringType id
+#pragma keylist stringType
+#pragma DCPS_DATA_TYPE "deepTypes::stringType"
+
+
+  typedef sequence<octet> OctetSequence;
+
+  struct PubMessage {
+    OctetSequence data;
+  };
+
+
+
 };
