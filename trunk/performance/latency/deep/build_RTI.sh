@@ -22,6 +22,7 @@ sh build.sh RTI Source_impl)
 sh build.sh ReaderWriterFactory_impl
 sh build.sh TypedFunctions)
 (cd readerWriter/RTI/generated
+sh build_TypeSupport.sh
 sh build.sh deepTypes
 sh build.sh deepTypesSupport
 sh build.sh deepTypesPlugin)
