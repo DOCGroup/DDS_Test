@@ -1,3 +1,119 @@
+Wed Apr 11 04:36:06 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
+
+
+        * performance/latency/deep/README
+        * performance/latency/deep/actors/Actor.h
+        * performance/latency/deep/actors/impl/Actor_impl.cpp
+        * performance/latency/deep/actors/impl/Actor_impl.h
+        * performance/latency/deep/actors/impl/Laptimer_impl.cpp
+        * performance/latency/deep/actors/impl/Laptimer_impl.h
+        * performance/latency/deep/actors/impl/Reflector_impl.cpp
+        * performance/latency/deep/actors/impl/Reflector_impl.h
+        * performance/latency/deep/actors/impl/Sink_impl.cpp
+        * performance/latency/deep/actors/impl/Sink_impl.h
+        * performance/latency/deep/actors/impl/Source_impl.cpp
+        * performance/latency/deep/actors/impl/Source_impl.h
+        * performance/latency/deep/actors/impl/build.sh
+        * performance/latency/deep/build_OpenSplice.sh
+        * performance/latency/deep/build_RTI.sh
+        * performance/latency/deep/exec/OpenSplice/ospl.xml
+        * performance/latency/deep/exec/OpenSplice/run.sh
+        * performance/latency/deep/exec/OpenSplice/run_Reflector.sh
+        * performance/latency/deep/exec/OpenSplice/run_Source_Sink_1_to_1.sh
+        * performance/latency/deep/exec/OpenSplice/scenario.xml
+        * performance/latency/deep/exec/RTI/run.sh
+        * performance/latency/deep/exec/RTI/run_Reflector.sh
+        * performance/latency/deep/exec/RTI/run_Source_Sink_1_to_1.sh
+        * performance/latency/deep/exec/RTI/run_Source_Sink_1_to_12.sh
+        * performance/latency/deep/exec/RTI/run_Source_Sink_1_to_4.sh
+        * performance/latency/deep/exec/RTI/run_Source_Sink_1_to_8.sh
+        * performance/latency/deep/exec/RTI/scenario.xml
+        * performance/latency/deep/main/build_OpenSplice.sh
+        * performance/latency/deep/main/build_RTI.sh
+        * performance/latency/deep/main/deepParticipant.cpp
+        * performance/latency/deep/readerWriter/GenericReader.h
+        * performance/latency/deep/readerWriter/GenericWriter.h
+        * performance/latency/deep/readerWriter/OpenSplice
+        * performance/latency/deep/readerWriter/OpenSplice/deepTypes.idl
+        * performance/latency/deep/readerWriter/OpenSplice/generated
+        * performance/latency/deep/readerWriter/OpenSplice/generated/build.sh
+        * performance/latency/deep/readerWriter/OpenSplice/generated/build_TypeSupport.sh
+        * performance/latency/deep/readerWriter/OpenSplice/impl/GenericReader_impl.h
+        * performance/latency/deep/readerWriter/OpenSplice/impl/GenericWriter_impl.h
+        * performance/latency/deep/readerWriter/OpenSplice/impl/ReaderWriterFactory_impl.cpp
+        * performance/latency/deep/readerWriter/OpenSplice/impl/ReaderWriterFactory_impl.h
+        * performance/latency/deep/readerWriter/OpenSplice/impl/TypedFunctions.cpp
+        * performance/latency/deep/readerWriter/OpenSplice/impl/TypedFunctions.h
+        * performance/latency/deep/readerWriter/OpenSplice/impl/build.sh
+        * performance/latency/deep/readerWriter/RTI/deepTypes.idl
+        * performance/latency/deep/readerWriter/RTI/generated/build.sh
+        * performance/latency/deep/readerWriter/RTI/generated/build_TypeSupport.sh
+        * performance/latency/deep/readerWriter/RTI/impl/GenericReader_impl.h
+        * performance/latency/deep/readerWriter/RTI/impl/GenericWriter_impl.h
+        * performance/latency/deep/readerWriter/RTI/impl/ReaderWriterFactory_impl.cpp
+        * performance/latency/deep/readerWriter/RTI/impl/ReaderWriterFactory_impl.h
+        * performance/latency/deep/readerWriter/RTI/impl/TypedFunctions.cpp
+        * performance/latency/deep/readerWriter/RTI/impl/TypedFunctions.h
+        * performance/latency/deep/readerWriter/RTI/impl/build.sh
+        * performance/latency/deep/readerWriter/ReaderWriterFactory.h
+        * performance/latency/deep/readerWriter/ReaderWriterTypes.h
+        * performance/latency/deep/scenario/ActorSetting.h
+        * performance/latency/deep/scenario/LaptimerSetting.h
+        * performance/latency/deep/scenario/NamedSetting.h
+        * performance/latency/deep/scenario/ParticipantSetting.h
+        * performance/latency/deep/scenario/ReaderSetting.h
+        * performance/latency/deep/scenario/ReflectorSetting.h
+        * performance/latency/deep/scenario/ScenarioSetting.h
+        * performance/latency/deep/scenario/SettingTypes.h
+        * performance/latency/deep/scenario/SinkSetting.h
+        * performance/latency/deep/scenario/SourceSetting.h
+        * performance/latency/deep/scenario/TopicSetting.h
+        * performance/latency/deep/scenario/WriterSetting.h
+        * performance/latency/deep/scenario/impl
+        * performance/latency/deep/scenario/impl/ActorSetting_impl.cpp
+        * performance/latency/deep/scenario/impl/ActorSetting_impl.h
+        * performance/latency/deep/scenario/impl/NamedSetting_impl.cpp
+        * performance/latency/deep/scenario/impl/NamedSetting_impl.h
+        * performance/latency/deep/scenario/impl/ParticipantSetting_impl.cpp
+        * performance/latency/deep/scenario/impl/ParticipantSetting_impl.h
+        * performance/latency/deep/scenario/impl/ReaderSetting_impl.cpp
+        * performance/latency/deep/scenario/impl/ReaderSetting_impl.h
+        * performance/latency/deep/scenario/impl/ReflectorSetting_impl.cpp
+        * performance/latency/deep/scenario/impl/ReflectorSetting_impl.h
+        * performance/latency/deep/scenario/impl/ScenarioSetting_impl.cpp
+        * performance/latency/deep/scenario/impl/ScenarioSetting_impl.h
+        * performance/latency/deep/scenario/impl/SinkSetting_impl.cpp
+        * performance/latency/deep/scenario/impl/SinkSetting_impl.h
+        * performance/latency/deep/scenario/impl/SourceSetting_impl.cpp
+        * performance/latency/deep/scenario/impl/SourceSetting_impl.h
+        * performance/latency/deep/scenario/impl/TopicSetting_impl.cpp
+        * performance/latency/deep/scenario/impl/TopicSetting_impl.h
+        * performance/latency/deep/scenario/impl/WriterSetting_impl.cpp
+        * performance/latency/deep/scenario/impl/WriterSetting_impl.h
+        * performance/latency/deep/scenario/impl/build.sh
+        * performance/latency/deep/settingsParser
+        * performance/latency/deep/settingsParser/SettingsParserNode.h
+        * performance/latency/deep/settingsParser/impl
+        * performance/latency/deep/settingsParser/impl/SettingsParserDefault_impl.cpp
+        * performance/latency/deep/settingsParser/impl/SettingsParserDefault_impl.h
+        * performance/latency/deep/settingsParser/impl/SettingsParserXercesNode_impl.cpp
+        * performance/latency/deep/settingsParser/impl/SettingsParserXercesNode_impl.h
+        * performance/latency/deep/settingsParser/impl/SettingsParserXerces_impl.cpp
+        * performance/latency/deep/settingsParser/impl/SettingsParserXerces_impl.h
+        * performance/latency/deep/settingsParser/impl/build.sh
+        * performance/latency/deep/vendorAbstraction
+        * performance/latency/deep/vendorAbstraction/OpenSplice
+        * performance/latency/deep/vendorAbstraction/OpenSplice/implAbstraction.h
+        * performance/latency/deep/vendorAbstraction/OpenSplice/inclAbstraction.h
+        * performance/latency/deep/vendorAbstraction/RTI
+        * performance/latency/deep/vendorAbstraction/RTI/implAbstraction.h
+        * performance/latency/deep/vendorAbstraction/RTI/inclAbstraction.h
+
+
+        Checked in the version of RT-DEEP that is currently used for measuring round-trip
+        latency.
+
+
 Thu Apr  5 22:20:18 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC/config/ndds_ts_defaults.mpb:
