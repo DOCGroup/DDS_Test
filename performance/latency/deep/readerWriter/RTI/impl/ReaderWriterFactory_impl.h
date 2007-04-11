@@ -21,10 +21,10 @@ public:
 	virtual ~ReaderWriterFactory_impl();
     /* friend Actor_impl; */
 
-    GenericReader_ptr createReader(const char *typeName, const char *topicName, const char *partitionExpression /*,
-                                   ReaderSetting_ptr readerSetting, TopicSetting_ptr topicSetting */);
-    GenericWriter_ptr createWriter(const char *typeName, const char *topicName, const char *partitionExpression /*,
-                                   WriterSetting_ptr writerSetting, TopicSetting_ptr topicSetting */);
+    GenericReader_ptr createReader(const char *typeName, const char *topicName, const char *partitionExpression,
+                                   TopicSetting_ptr topicSetting, ReaderSetting_ptr readerSetting);
+    GenericWriter_ptr createWriter(const char *typeName, const char *topicName, const char *partitionExpression,
+                                   TopicSetting_ptr topicSetting, WriterSetting_ptr writerSetting);
 };
 
 }

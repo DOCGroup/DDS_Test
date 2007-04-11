@@ -1,10 +1,10 @@
 /* Interface */
-#include "impl/ReaderWriterFactory_impl.h"
+#include "ReaderWriterFactory_impl.h"
 /* Implementation */
 #include "inclAbstraction.h"
 /* #include "ParticipantSetting.h" */
-#include "impl/GenericReader_impl.h"
-#include "impl/GenericWriter_impl.h"
+#include "GenericReader_impl.h"
+#include "GenericWriter_impl.h"
 #include "string.h"
 
 namespace Deep {

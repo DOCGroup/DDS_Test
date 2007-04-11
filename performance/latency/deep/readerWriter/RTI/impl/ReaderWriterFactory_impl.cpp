@@ -22,9 +22,9 @@ GenericReader_ptr
 ReaderWriterFactory_impl::createReader(
     const char *typeName,
     const char *topicName,
-    const char *partitionExpression/* ,
-    ReaderSetting_ptr readerSetting,
-    TopicSetting_ptr topicSetting*/) {
+    const char *partitionExpression,
+    TopicSetting_ptr topicSetting,
+    ReaderSetting_ptr readerSetting){
 
     DDS_SubscriberQos  sQos;
     DDS_DataReaderQos rQos;
@@ -117,9 +117,9 @@ GenericWriter_ptr
 ReaderWriterFactory_impl::createWriter(
     const char *typeName,
     const char *topicName,
-    const char *partitionExpression/*,
-    WriterSetting_ptr writerSetting,
-    TopicSetting_ptr topicSetting*/) {
+    const char *partitionExpression,
+    TopicSetting_ptr topicSetting,
+    WriterSetting_ptr writerSetting) {
 
     DDS_PublisherQos  pQos;
     DDS_DataWriterQos wQos;
