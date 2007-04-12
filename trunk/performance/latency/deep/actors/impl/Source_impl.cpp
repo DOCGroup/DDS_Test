@@ -13,6 +13,7 @@ Source_impl::Source_impl(
     nofBursts = sourceSetting->getNofBursts();
     burstSize = sourceSetting->getBurstSize();
     sleepTime = sourceSetting->getSleepTime();
+    payload = sourceSetting->getPayload ();
     writer = readerWriterFactory->createWriter(sourceSetting->getTypeName(),
         sourceSetting->getTopicName(), sourceSetting->getWriterPartitionExpression(),
         sourceSetting->getTopicSetting(), sourceSetting->getWriterSetting());
@@ -32,7 +33,7 @@ Source_impl::run() {
     timeSpec.tv_sec = sleepTime/1000;
     timeSpec.tv_nsec = 1000000*(sleepTime % 1000);
     for (iBurst=0; iBurst<nofBursts; iBurst++) {
-        writer->initData();
+        writer->initData(payload);
         for (iSample=0; iSample<burstSize; iSample++) {
             writer->writeData();
             writer->incrementData();
