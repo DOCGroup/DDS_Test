@@ -142,9 +142,11 @@ TYPED_FUNCTIONS_IMPLS(deepTypes::simpleType)
 TYPED_FUNCTIONS_IMPLS(deepTypes::nestedType)
 TYPED_FUNCTIONS_IMPLS(deepTypes::arrayType)
 TYPED_FUNCTIONS_IMPLS(deepTypes::stringType)
+TYPED_FUNCTIONS_IMPLS(deepTypes::sequenceType)
 
 
-void typedFunctionsInitData(deepTypes::simpleType &data) {
+
+void typedFunctionsInitData(deepTypes::simpleType &data, unsigned int payload) {
     data.id = 100;
     data.payload = 10*data.id;
 }
@@ -154,7 +156,7 @@ void typedFunctionsIncrementData(deepTypes::simpleType &data) {
     data.payload = 10*data.id;
 }
 
-void typedFunctionsInitData(deepTypes::nestedType &data) {
+void typedFunctionsInitData(deepTypes::nestedType &data, unsigned int payload) {
     data.id = 200;
     data.payload.value = 10*data.id;
 }
@@ -164,7 +166,7 @@ void typedFunctionsIncrementData(deepTypes::nestedType &data) {
     data.payload.value = 10*data.id;
 }
 
-void typedFunctionsInitData(deepTypes::arrayType &data) {
+void typedFunctionsInitData(deepTypes::arrayType &data, unsigned int payload) {
     int i;
     data.id = 300;
     for (i=0; i<10; i++) {
@@ -176,11 +178,19 @@ void typedFunctionsIncrementData(deepTypes::arrayType &data) {
     data.id++;
 }
 
-void typedFunctionsInitData(deepTypes::stringType &data) {
+void typedFunctionsInitData(deepTypes::stringType &data, unsigned int payload) {
     data.id = 400;
     data.payload = "payLoad";
 }
 
 void typedFunctionsIncrementData(deepTypes::stringType &data) {
     data.id++;
+}
+
+void typedFunctionsInitData(deepTypes::sequenceType &data, unsigned int payload) {
+  data.payload.length (payload);
+}
+
+void typedFunctionsIncrementData(deepTypes::sequenceType &data) {
+  return;
 }

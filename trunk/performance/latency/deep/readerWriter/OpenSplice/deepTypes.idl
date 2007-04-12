@@ -46,9 +46,12 @@ module deepTypes {
 
   typedef sequence<octet> OctetSequence;
 
-  struct PubMessage {
-    OctetSequence data;
+  struct sequenceType {
+    OctetSequence payload;
   };
+
+#pragma keylist sequenceType
+#pragma DCPS_DATA_TYPE "deepTypes::sequenceType"
 
 
 
