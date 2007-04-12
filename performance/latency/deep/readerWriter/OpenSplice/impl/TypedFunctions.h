@@ -9,7 +9,7 @@
 #define TYPED_WRITER(typeName) typeName##DataWriter_ptr
 
 #define TYPED_FUNCTIONS_PROTOS(typeName) \
-    void typedFunctionsInitData(typeName &data); \
+  void typedFunctionsInitData(typeName &data, unsigned int payload);                         \
     void typedFunctionsWriteData(TYPED_WRITER(typeName) writer, typeName data); \
     void typedFunctionsIncrementData(typeName &data); \
     \
@@ -27,6 +27,7 @@ TYPED_FUNCTIONS_PROTOS(deepTypes::simpleType)
 TYPED_FUNCTIONS_PROTOS(deepTypes::nestedType)
 TYPED_FUNCTIONS_PROTOS(deepTypes::arrayType)
 TYPED_FUNCTIONS_PROTOS(deepTypes::stringType)
+TYPED_FUNCTIONS_PROTOS(deepTypes::sequenceType)
 
 
 
