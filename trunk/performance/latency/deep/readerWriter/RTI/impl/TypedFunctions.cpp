@@ -111,9 +111,10 @@ TYPED_FUNCTIONS_IMPLS(simpleType)
 TYPED_FUNCTIONS_IMPLS(nestedType)
 TYPED_FUNCTIONS_IMPLS(arrayType)
 TYPED_FUNCTIONS_IMPLS(stringType)
+TYPED_FUNCTIONS_IMPLS(sequenceType)
 
 
-void typedFunctionsInitData(simpleType &data) {
+void typedFunctionsInitData(simpleType &data, unsigned int payload) {
     data.id = 100;
     data.payload = 10*data.id;
 }
@@ -123,7 +124,7 @@ void typedFunctionsIncrementData(simpleType &data) {
     data.payload = 10*data.id;
 }
 
-void typedFunctionsInitData(nestedType &data) {
+void typedFunctionsInitData(nestedType &data, unsigned int payload) {
     data.id = 200;
     data.payload.value = 10*data.id;
 }
@@ -133,7 +134,7 @@ void typedFunctionsIncrementData(nestedType &data) {
     data.payload.value = 10*data.id;
 }
 
-void typedFunctionsInitData(arrayType &data) {
+void typedFunctionsInitData(arrayType &data, unsigned int payload) {
     int i;
     data.id = 300;
     for (i=0; i<10; i++) {
@@ -145,7 +146,7 @@ void typedFunctionsIncrementData(arrayType &data) {
     data.id++;
 }
 
-void typedFunctionsInitData(stringType &data) {
+void typedFunctionsInitData(stringType &data, unsigned int payload) {
     data.id = 400;
     data.payload = "payLoad";
 }
@@ -155,6 +156,6 @@ void typedFunctionsIncrementData(stringType &data) {
 }
 
 void typedFunctionsInitData(sequenceType &data, unsigned int payload) {
-  data.ensure_length (payload, payload);
+  data.payload.ensure_length (payload, payload);
 }
 

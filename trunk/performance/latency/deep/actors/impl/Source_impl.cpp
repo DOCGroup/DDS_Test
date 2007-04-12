@@ -15,8 +15,10 @@ Source_impl::Source_impl(
     sleepTime = sourceSetting->getSleepTime();
     payload = sourceSetting->getPayload ();
     writer = readerWriterFactory->createWriter(sourceSetting->getTypeName(),
-        sourceSetting->getTopicName(), sourceSetting->getWriterPartitionExpression(),
-        sourceSetting->getTopicSetting(), sourceSetting->getWriterSetting());
+                                               sourceSetting->getTopicName(),
+                                               sourceSetting->getWriterPartitionExpression(),
+                                               sourceSetting->getTopicSetting(),
+                                               sourceSetting->getWriterSetting());
 }
 
 Source_impl::~Source_impl()
