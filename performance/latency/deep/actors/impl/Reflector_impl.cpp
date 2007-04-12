@@ -110,7 +110,13 @@ Reflector_impl::run() {
         }
         delete []latencies;
     } else {
+        std::cout << "Waiting for data..";
         dataAvailable = reader->waitForData(timeoutPeriod);
+        if (dataAvailable)
+          {
+            std::cout << std::endl << "Starting to reflect data...";
+            
+          }
         while (dataAvailable) {
             samplesRead = reader->takeAndForwardData(writer, MAX_NOF_SAMPLES);
             while (samplesRead == MAX_NOF_SAMPLES) {
@@ -118,6 +124,7 @@ Reflector_impl::run() {
             }
             dataAvailable = reader->waitForData(timeoutPeriod);
         }
+        std::cout << "[Done]" << std::endl;
     }
 
 }
