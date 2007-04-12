@@ -32,12 +32,7 @@ public:
     
     /* Public Methods from GenericWriter */
     
-    void initData(unsigned int payload) {
-      if (payload > 0)
-        typedFunctionsInitData(currentData, payload);
-      else
-        typedFunctionsInitData(currentData);
-    }
+    void initData(unsigned int payload) {typedFunctionsInitData(currentData, payload);}
     void writeData() {typedFunctionsWriteData(dataWriter, currentData);}
     void incrementData() {typedFunctionsIncrementData(currentData);}
     

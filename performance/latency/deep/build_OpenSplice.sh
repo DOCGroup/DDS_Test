@@ -18,14 +18,15 @@ sh build.sh OpenSplice Actor_impl
 sh build.sh OpenSplice Reflector_impl
 sh build.sh OpenSplice Sink_impl
 sh build.sh OpenSplice Source_impl)
-(cd readerWriter/OpenSplice/impl
-sh build.sh ReaderWriterFactory_impl
-sh build.sh TypedFunctions)
 (cd readerWriter/OpenSplice/generated
+sh build_TypeSupport.sh
 sh build.sh deepTypes
 sh build.sh deepTypesDcps
 sh build.sh deepTypesDcps_impl
 sh build.sh deepTypesSplDcps)
+(cd readerWriter/OpenSplice/impl
+sh build.sh ReaderWriterFactory_impl
+sh build.sh TypedFunctions)
 (cd main
 sh build_OpenSplice.sh deepParticipant)
 

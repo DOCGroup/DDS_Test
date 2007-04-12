@@ -18,13 +18,13 @@ sh build.sh RTI Actor_impl
 sh build.sh RTI Reflector_impl
 sh build.sh RTI Sink_impl
 sh build.sh RTI Source_impl)
-(cd readerWriter/RTI/impl
-sh build.sh ReaderWriterFactory_impl
-sh build.sh TypedFunctions)
 (cd readerWriter/RTI/generated
 sh build_TypeSupport.sh
 sh build.sh deepTypes
 sh build.sh deepTypesSupport
 sh build.sh deepTypesPlugin)
+(cd readerWriter/RTI/impl
+sh build.sh ReaderWriterFactory_impl
+sh build.sh TypedFunctions)
 (cd main
 sh build_RTI.sh deepParticipant)
