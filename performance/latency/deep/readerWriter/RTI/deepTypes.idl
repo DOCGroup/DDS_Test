@@ -23,6 +23,6 @@ struct stringType {
   string payload;
 };
 
-struct PubMessage {
-  sequence<octet, MAX_MSG_LENGTH> data;
+struct sequenceType {
+  sequence<octet, MAX_MSG_LENGTH> payload;
 };

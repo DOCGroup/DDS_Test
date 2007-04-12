@@ -10,6 +10,8 @@ namespace Deep
 static const unsigned int defaultBurstSize = 10;
 static const unsigned int defaultSleepTime = 200;
 static const unsigned int defaultNofBursts = 50;
+static const unsigned int defaultPayload = 0;
+
 static char *defaultPartitionExpression = "DeepPartition";
 
 SourceSetting_impl::SourceSetting_impl(
@@ -22,6 +24,7 @@ SourceSetting_impl::SourceSetting_impl(
     settingsParserNode->getValue("burstSize", burstSize, defaultBurstSize);
     settingsParserNode->getValue("sleepTime", sleepTime, defaultSleepTime);
     settingsParserNode->getValue("nofBursts", nofBursts, defaultNofBursts);
+    settingsParserNode->getValue("payload", payload, defaultPayload);
     settingsParserNode->getValue("writerPartitionExpression", writerPartitionExpression, defaultPartitionExpression);
     
     writers = settingsParserNode->getChildNodes("writerSetting");
@@ -53,6 +56,12 @@ SourceSetting_impl::getNofBursts() {
     return nofBursts;
 }
     
+unsigned int
+SourceSetting_impl::getPayload() {
+    return payload;
+}
+
+
 const char *
 SourceSetting_impl::getWriterPartitionExpression() {
     return writerPartitionExpression;

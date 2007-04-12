@@ -15,6 +15,7 @@ class Source_impl : public Actor_impl {
     unsigned int nofBursts;
     unsigned int burstSize;
     unsigned int sleepTime;
+    unsigned int payload;
     GenericWriter_ptr writer;
 public:
 	Source_impl(SourceSetting_ptr sourceSetting, ReaderWriterFactory_ptr readerWriterFactory);

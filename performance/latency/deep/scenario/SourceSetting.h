@@ -12,6 +12,7 @@ public:
     virtual unsigned int getBurstSize() = 0;
     virtual unsigned int getSleepTime() = 0;
     virtual unsigned int getNofBursts() = 0;
+    virtual unsigned int getPayload () = 0;
     
     virtual const char        *getWriterPartitionExpression() = 0;
     virtual WriterSetting_ptr  getWriterSetting() = 0;

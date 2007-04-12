@@ -16,6 +16,8 @@ class SourceSetting_impl : public virtual SourceSetting, public ActorSetting_imp
     unsigned int burstSize;
     unsigned int sleepTime;
     unsigned int nofBursts;
+    unsigned int payload;
+
     char *writerPartitionExpression;
     WriterSetting_ptr writerSetting;
     /* Constructor/destructor */
@@ -26,6 +28,7 @@ public:
     unsigned int getBurstSize();
     unsigned int getSleepTime();
     unsigned int getNofBursts();
+    unsigned int getPayload ();
     
     const char *getWriterPartitionExpression();
     WriterSetting_ptr getWriterSetting();
