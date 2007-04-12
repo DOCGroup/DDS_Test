@@ -5,7 +5,7 @@ namespace Deep {
 
 class GenericWriter {
 public:
-    virtual void initData(unsigned int payload) = 0;
+    virtual void initData(unsigned int payload = 0) = 0;
     virtual void writeData() = 0;
     virtual void incrementData() = 0;
 };
