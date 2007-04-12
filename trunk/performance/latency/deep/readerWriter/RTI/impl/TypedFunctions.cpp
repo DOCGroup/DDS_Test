@@ -159,3 +159,6 @@ void typedFunctionsInitData(sequenceType &data, unsigned int payload) {
   data.payload.ensure_length (payload, payload);
 }
 
+void typedFunctionsIncrementData(sequenceType &data) {
+  return;
+}
