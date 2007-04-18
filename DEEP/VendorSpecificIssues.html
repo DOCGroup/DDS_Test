@@ -1,0 +1,208 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; SunOS 5.5.1 sun4u) [Netscape]">
+<title>Vendor-specific Issues in DEEP</title>
+
+<!-- $Id$ -->
+
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000FF" vlink="#CC0000">
+
+<hr>
+<h3>Vendor-specific Issues in DEEP</h3>
+
+This document describes the vendor-specific differences
+in DDS implementation that must be dealt with in the DEEP framework. We
+focus specifically on differences that must be handled in the source code
+of the framework, excluding anything that must be handled at runtime.
+Runtime issues may be added to a later version of this document.<P>
+
+<HR><P>
+
+<table BORDER=2 CELLSPACING=2 CELLPADDING=0>
+
+  <tr>
+    <th>Description</th>
+    <th>Differences</th>
+    <th>Compliance Issue?</th>
+  </tr>
+  
+  <tr>
+    <td>type of <tt>DomainId_t</tt> (<code>native</code> in spec IDL)</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - <code>char*</code>
+        <LI> <B>RTI DDS</B> - signed 32-bit <code>int</code>
+        <LI> <B>TAO DDS</B> - signed 32-bit <code>int</code>
+      </UL>
+    </td>
+    <td>NO (clearly the DDS spec intent is signed 32-bit <code>int</code>
+     but it's not required)</td>
+  </tr>
+
+  <tr>
+    <td>use of <code>namespace DDS</code></td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - yes
+        <LI> <B>RTI DDS</B> - yes, but must include extra header file
+        <LI> <B>TAO DDS</B> - yes
+      </UL>
+    </td>
+    <td>NO (C++ mapping requires it, but it's obtainable from all vendors)</td>
+  </tr>
+  
+  <tr>
+    <td>mapping of IDL modules to namespaces</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - yes
+        <LI> <B>RTI DDS</B> - not by default (needs command line option)
+        <LI> <B>TAO DDS</B> - yes
+      </UL>
+    </td>
+    <td>NO (C++ mapping requires it, but it's obtainable from all vendors)</td>
+  </tr>
+  
+  <tr>
+    <td>use of CORBA <code>_ptr</code> and <code>_var</code> types</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - yes
+        <LI> <B>RTI DDS</B> - no (without <em>RTI CORBA Compatibility Kit</em>)S
+        <LI> <B>TAO DDS</B> - yes
+      </UL>
+    </td>
+    <td>YES (It's an IDL to C++ mapping issue)</td>
+  </tr>
+  
+  <tr>
+    <td>use of CORBA basic types</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - no (uses native in C++ standalone generation)
+        <LI> <B>RTI DDS</B> - no (proprietary typedefs without <em>RTI CORBA Compatibility Kit</em>)
+        <LI> <B>TAO DDS</B> - yes
+      </UL>
+    </td>
+    <td>YES (Not a CORBA issue but IDL to C++ mapping - see section 1.3)</td>
+  </tr>
+  
+  <tr>
+    <td>scope of generation from implied IDL</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - same as original IDL
+        <LI> <B>RTI DDS</B> - same as original IDL
+        <LI> <B>TAO DDS</B> - configurable (global scope by default)
+      </UL>
+    </td>
+    <td>UNKNOWN (I can't find any reference to it in the DDS spec)</td>
+  </tr>
+  
+  <tr>
+    <td>type registration</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - <code><em>foo</em>TypeSupport</code> instantiated on stack
+        <LI> <B>RTI DDS</B> - no instantiation (<code>register_type()</code> is static)
+        <LI> <B>TAO DDS</B> - <code><em>foo</em>TypeSupport</code> instantiated on heap
+      </UL>
+    </td>
+    <td>YES (Only TAO DDS is conpliant here - see section 1.3 of IDL C++ mapping)</td>
+  </tr>
+  
+  <tr>
+    <td>type of <code>[<em>datatype</em>]Seq</code> max length</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - unsigned long
+        <LI> <B>RTI DDS</B> - signed long
+        <LI> <B>TAO DDS</B> - unsigned long
+      </UL>
+    </td>
+    <td>YES (C++ mapping prescribes IDL sequence length as CORBA::ULong)</td>
+  </tr>
+  
+  <tr>
+    <td>resolution of <code>DomainParticipantFactory</code></td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - static <code>instance()</code> method
+        <LI> <B>RTI DDS</B> - static <code>instance()</code> method
+        <LI> <B>TAO DDS</B> - proprietary global function
+      </UL>
+    </td>
+    <td>YES (TAO DDS is non-compliant)</td>
+  </tr>
+  
+  <tr>
+    <td>passing of <code>ConditionSeq</code> to <code>wait()</code></td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - by pointer
+        <LI> <B>RTI DDS</B> - by reference
+        <LI> <B>TAO DDS</B> - does not support WaitSets or conditions
+      </UL>
+    </td>
+    <td>YES (RTI DDS is compliant with IDL C++ mapping)</td>
+  </tr>
+  
+  <tr>
+    <td>passing of <code>[<em>datatype</em>]Seq</code> and
+     <code>SampleInfoSeq</code> to <code>take()</code></td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - by pointer
+        <LI> <B>RTI DDS</B> - by reference
+        <LI> <B>TAO DDS</B> - by pointer
+      </UL>
+    </td>
+    <td>YES (RTI DDS is compliant with IDL C++ mapping)</td>
+  </tr>
+  
+  <tr>
+    <td>identifier for generated downcasting method</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - <code>_narrow</code>
+        <LI> <B>RTI DDS</B> - <code>narrow</code>
+        <LI> <B>TAO DDS</B> - <code>_narrow</code>
+      </UL>
+    </td>
+    <td>YES (RTI DDS is non-compliant with IDL C++ mapping)</td>
+  </tr>
+  
+  <tr>
+    <td><code>StatusMask</code> arg in <code>create_*</code> methods</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - no
+        <LI> <B>RTI DDS</B> - yes
+        <LI> <B>TAO DDS</B> - no
+      </UL>
+    </td>
+    <td>YES (RTI DDS compliant with DDS 1.1 & 1.2,
+     others compliant only with DDS 1.0)</td>
+  </tr>
+  
+  <tr>
+    <td>proprietary listener methods</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - no
+        <LI> <B>RTI DDS</B> - no
+        <LI> <B>TAO DDS</B> - yes (in <code>DataReaderListener</code>
+         and <code>DataWriterListener</code>)
+      </UL>
+    </td>
+    <td>YES (the extra methods are pure virtual,
+     and must be recognized and implemented)</td>
+  </tr>
+  
+</table> <P>
+
+</body>
+</html>
