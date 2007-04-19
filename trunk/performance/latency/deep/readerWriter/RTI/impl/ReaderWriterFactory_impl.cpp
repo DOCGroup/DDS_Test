@@ -26,8 +26,8 @@ ReaderWriterFactory_impl::createReader(
     TopicSetting_ptr topicSetting,
     ReaderSetting_ptr readerSetting){
 
-    DDS_SubscriberQos  sQos;
-    DDS_DataReaderQos rQos;
+    DDS::SubscriberQos  sQos;
+    DDS::DataReaderQos rQos;
     DDSSubscriber *s;
     DDSTopic *topic;
     DDSDataReader *reader;
@@ -36,7 +36,7 @@ ReaderWriterFactory_impl::createReader(
     
     domainParticipant->get_default_subscriber_qos(sQos);
     sQos.partition.name.ensure_length (1, 1);
-    sQos.partition.name[0] = DDS_String_dup (partitionExpression);
+    sQos.partition.name[0] = DDS::String_dup (partitionExpression);
 
 
     
@@ -54,7 +54,7 @@ ReaderWriterFactory_impl::createReader(
     /* Typespecific switch */
 #define CONDITIONAL_GENERIC_READER_CONSTRUCTION(typeRequested) \
     if (strcmp(typeName, #typeRequested) == 0) { \
-        DDS_ReturnCode_t ret_code;\
+        DDS::ReturnCode_t ret_code;\
         ret_code = typeRequested##TypeSupport::register_type(domainParticipant, typeName); \
         if (ret_code != DDS_RETCODE_OK) {\
           printf ("***Error: failed to register type: error %d", ret_code);\
@@ -67,7 +67,7 @@ ReaderWriterFactory_impl::createReader(
                    and the second call will fail, thus affecting the subsequent\
                    creation of writer or reader\
         */\
-        struct DDS_Duration_t timeout = {0,0};\
+        struct DDS::Duration_t timeout = {0,0};\
         topic = domainParticipant->find_topic (topicName, timeout);       \
         if (topic == NULL)\
           {\
@@ -88,7 +88,7 @@ ReaderWriterFactory_impl::createReader(
         s->get_default_datareader_qos(rQos);\
         /* we assume that this reader is going to receive on multicast */\
         rQos.multicast.value.ensure_length(1,1);\
-        rQos.multicast.value[0].receive_address = DDS_String_dup("225.3.2.1");\
+        rQos.multicast.value[0].receive_address = DDS::String_dup("225.3.2.1");\
         /* TODO: Copy from topicQos and override from readerSetting in stead of default */ \
         reader = s->create_datareader(topic,\
                                       rQos,\
@@ -123,8 +123,8 @@ ReaderWriterFactory_impl::createWriter(
     TopicSetting_ptr topicSetting,
     WriterSetting_ptr writerSetting) {
 
-    DDS_PublisherQos  pQos;
-    DDS_DataWriterQos wQos;
+    DDS::PublisherQos  pQos;
+    DDS::DataWriterQos wQos;
     DDSPublisher *p;
     DDSTopic  *topic;
     DDSDataWriter *writer;
@@ -133,7 +133,7 @@ ReaderWriterFactory_impl::createWriter(
 
     domainParticipant->get_default_publisher_qos(pQos);
     pQos.partition.name.ensure_length (1, 1);
-    pQos.partition.name[0] = DDS_String_dup (partitionExpression);
+    pQos.partition.name[0] = DDS::String_dup (partitionExpression);
 
     p = domainParticipant->create_publisher (pQos,
                                              NULL,
@@ -148,7 +148,7 @@ ReaderWriterFactory_impl::createWriter(
     /* Typespecific switch */
 #define CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(typeRequested) \
     if (strcmp(typeName, #typeRequested) == 0) { \
-        DDS_ReturnCode_t ret_code;\
+        DDS::ReturnCode_t ret_code;\
         ret_code = typeRequested##TypeSupport::register_type(domainParticipant, typeName); \
         if (ret_code != DDS_RETCODE_OK) {\
           printf ("***Error: failed to register type: error %d", ret_code);\
@@ -161,7 +161,7 @@ ReaderWriterFactory_impl::createWriter(
                    and the second call will fail, thus affecting the subsequent\
                    creation of writer or reader\
         */\
-        struct DDS_Duration_t timeout = {0,0};\
+        struct DDS::Duration_t timeout = {0,0};\
         topic = domainParticipant->find_topic (topicName, timeout);       \
         if (topic == NULL)\
           {\
