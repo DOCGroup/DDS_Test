@@ -7,7 +7,7 @@
 #include "deepTypes.h"
 #include "deepTypesSupport.h"
 
-#define DEEP_INSTANCE_HANDLE_NIL DDS_HANDLE_NIL
+#define DEEP_INSTANCE_HANDLE_NIL DDS::HANDLE_NIL
 
 inline DDSDomainParticipant *DEEP_create_participant(int domainId) {
     DDSDomainParticipantFactory *factory = DDSDomainParticipantFactory::get_instance();

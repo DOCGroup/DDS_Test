@@ -5,7 +5,7 @@
 
 /* Subtract function for t1 > t2 */
 inline void
-simpleSubtract(DDS_Time_t &t1, DDS_Time_t t2) {
+simpleSubtract(DDS::Time_t &t1, DDS::Time_t t2) {
     t1.sec -= t2.sec;
     if (t1.nanosec >= t2.nanosec) {
         t1.nanosec -= t2.nanosec;
@@ -17,9 +17,9 @@ simpleSubtract(DDS_Time_t &t1, DDS_Time_t t2) {
 
 inline void
 calculateLatency(
-    DDS_Time_t sourceTimestamp,
-    DDS_Time_t destTimestamp,
-    DDS_Time_t &latency) {
+    DDS::Time_t sourceTimestamp,
+    DDS::Time_t destTimestamp,
+    DDS::Time_t &latency) {
     
     if ((destTimestamp.sec > sourceTimestamp.sec) ||
         ((destTimestamp.sec == sourceTimestamp.sec) &&
@@ -46,21 +46,21 @@ calculateLatency(
     unsigned int typedFunctionsTakeData(TYPED_READER(typeName) *reader, unsigned int maxNofSamples) { \
         unsigned int result; \
         typeName##Seq msgSeq;\
-        DDS_SampleInfoSeq infoSeq;\
+        DDS::SampleInfoSeq infoSeq;\
         reader->take(msgSeq, infoSeq, maxNofSamples, \
-            DDS_ANY_SAMPLE_STATE, DDS_ANY_VIEW_STATE, DDS_ALIVE_INSTANCE_STATE); \
+            DDS::ANY_SAMPLE_STATE, DDS::ANY_VIEW_STATE, DDS::ALIVE_INSTANCE_STATE); \
         result = msgSeq.length(); \
         reader->return_loan(msgSeq, infoSeq); \
         return result; \
     } \
     \
-    unsigned int typedFunctionsTakeData(TYPED_READER(typeName) *reader, unsigned int maxNofSamples, DDS_Time_t *latencies) { \
+    unsigned int typedFunctionsTakeData(TYPED_READER(typeName) *reader, unsigned int maxNofSamples, DDS::Time_t *latencies) { \
         unsigned int result; \
-        DDS_Time_t currentTime; \
+        DDS::Time_t currentTime; \
         typeName##Seq msgSeq;\
-        DDS_SampleInfoSeq infoSeq;\
+        DDS::SampleInfoSeq infoSeq;\
         reader->take(msgSeq, infoSeq, maxNofSamples, \
-            DDS_ANY_SAMPLE_STATE, DDS_ANY_VIEW_STATE, DDS_ALIVE_INSTANCE_STATE); \
+            DDS::ANY_SAMPLE_STATE, DDS::ANY_VIEW_STATE, DDS::ALIVE_INSTANCE_STATE); \
         reader->get_subscriber()->get_participant()->get_current_time(currentTime); \
         result = msgSeq.length(); \
         for (int j = 0; j < result; j++) { \
@@ -74,9 +74,9 @@ calculateLatency(
         unsigned int result; \
         typeName##DataWriter *dataWriter = typeName##DataWriter::narrow(writer); \
         typeName##Seq msgSeq;\
-        DDS_SampleInfoSeq infoSeq;\
+        DDS::SampleInfoSeq infoSeq;\
         reader->take(msgSeq, infoSeq, maxNofSamples, \
-            DDS_ANY_SAMPLE_STATE, DDS_ANY_VIEW_STATE, DDS_ALIVE_INSTANCE_STATE); \
+            DDS::ANY_SAMPLE_STATE, DDS::ANY_VIEW_STATE, DDS::ALIVE_INSTANCE_STATE); \
         result = msgSeq.length(); \
         for (int j = 0; j < result; j++) { \
             dataWriter->write_w_timestamp(msgSeq[j], DEEP_INSTANCE_HANDLE_NIL, infoSeq[j].source_timestamp); \
@@ -85,14 +85,14 @@ calculateLatency(
         return result; \
     } \
     \
-    unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDSDataWriter* writer, unsigned int maxNofSamples, DDS_Time_t *latencies) { \
+    unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDSDataWriter* writer, unsigned int maxNofSamples, DDS::Time_t *latencies) { \
         unsigned int result; \
-        DDS_Time_t currentTime; \
+        DDS::Time_t currentTime; \
         typeName##DataWriter *dataWriter = typeName##DataWriter::narrow(writer); \
         typeName##Seq msgSeq; \
-        DDS_SampleInfoSeq infoSeq;\
+        DDS::SampleInfoSeq infoSeq;\
         reader->take(msgSeq, infoSeq, maxNofSamples, \
-            DDS_ANY_SAMPLE_STATE, DDS_ANY_VIEW_STATE, DDS_ALIVE_INSTANCE_STATE); \
+            DDS::ANY_SAMPLE_STATE, DDS::ANY_VIEW_STATE, DDS::ALIVE_INSTANCE_STATE); \
         reader->get_subscriber()->get_participant()->get_current_time(currentTime); \
         result = msgSeq.length(); \
         for (int j = 0; j < result; j++) { \

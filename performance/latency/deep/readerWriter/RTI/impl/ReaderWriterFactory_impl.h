@@ -14,7 +14,7 @@ namespace Deep {
 class ReaderWriterFactory_impl : public ReaderWriterFactory {
     
     /* Members */
-    DDSDomainParticipant* domainParticipant;
+    DDS::DomainParticipant* domainParticipant;
 public:
     /* Constructor to be used by factory only */
 	ReaderWriterFactory_impl(ParticipantSetting_ptr participantSetting);

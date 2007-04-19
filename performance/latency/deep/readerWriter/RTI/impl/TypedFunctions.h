@@ -14,9 +14,9 @@
     void typedFunctionsIncrementData(typeName &data); \
     \
   unsigned int typedFunctionsTakeData(TYPED_READER(typeName) *reader, unsigned int maxNofSamples); \
-  unsigned int typedFunctionsTakeData(TYPED_READER(typeName) *reader, unsigned int maxNofSamples, DDS_Time_t *latencies); \
+  unsigned int typedFunctionsTakeData(TYPED_READER(typeName) *reader, unsigned int maxNofSamples, DDS::Time_t *latencies); \
   unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDSDataWriter *writer, unsigned int maxNofSamples); \
-  unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDSDataWriter *writer, unsigned int maxNofSamples, DDS_Time_t *latencies);
+  unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDSDataWriter *writer, unsigned int maxNofSamples, DDS::Time_t *latencies);
 
 
 

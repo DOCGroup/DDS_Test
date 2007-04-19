@@ -16,14 +16,14 @@ template <class TypedReader> class GenericReader_impl : public GenericReader {
     /* Members */
     TypedReader *dataReader;
 
-    DDSWaitSet waitSet;
+    DDS::WaitSet waitSet;
 
     /* Constructor/destructor (used by factory only) */
     GenericReader_impl(TypedReader *_dataReader) {
+      DDS::StatusCondition *condition;
       dataReader = _dataReader;
-      DDSStatusCondition *condition;
       condition = dataReader->get_statuscondition ();
-      condition->set_enabled_statuses(DDS_DATA_AVAILABLE_STATUS);
+      condition->set_enabled_statuses(DDS::DATA_AVAILABLE_STATUS);
       waitSet.attach_condition(condition);
     }
     virtual ~GenericReader_impl() {}
@@ -37,7 +37,7 @@ public:
     }
     
     unsigned int takeData(unsigned int maxNofSamples, duration *latencies) {
-        typedFunctionsTakeData(dataReader, maxNofSamples, (DDS_Time_t *)latencies);
+        typedFunctionsTakeData(dataReader, maxNofSamples, (DDS::Time_t *)latencies);
     }
     
     unsigned int takeAndForwardData(GenericWriter_ptr forwardTo, unsigned int maxNofSamples) {
@@ -49,13 +49,13 @@ public:
     unsigned int takeAndForwardData(GenericWriter_ptr forwardTo, unsigned int maxNofSamples, duration *latencies) {
         GenericWriterBase_impl_ptr writer_impl;        
         writer_impl = dynamic_cast<GenericWriterBase_impl_ptr>(forwardTo);
-        typedFunctionsTakeAndForwardData(dataReader, writer_impl->getWriter(), maxNofSamples, (DDS_Time_t *)latencies);
+        typedFunctionsTakeAndForwardData(dataReader, writer_impl->getWriter(), maxNofSamples, (DDS::Time_t *)latencies);
     }
     
     bool waitForData(unsigned int timeOutMsecs) {
         bool result;
-        DDSConditionSeq  conditions;
-        DDS_Duration_t timeOut;
+        DDS::ConditionSeq  conditions;
+        DDS::Duration_t timeOut;
         timeOut.sec = timeOutMsecs/1000;
         timeOut.nanosec = 1000000*(timeOutMsecs % 1000);
         waitSet.wait(conditions, timeOut);

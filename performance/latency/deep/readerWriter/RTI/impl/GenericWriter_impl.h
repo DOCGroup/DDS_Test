@@ -12,7 +12,7 @@ namespace Deep {
     
 class GenericWriterBase_impl : public GenericWriter {
 public:
-    virtual DDSDataWriter* getWriter() = 0;
+    virtual DDS::DataWriter* getWriter() = 0;
 };
 
 typedef GenericWriterBase_impl *GenericWriterBase_impl_ptr;
@@ -37,7 +37,7 @@ public:
     void incrementData() {typedFunctionsIncrementData(currentData);}
     
     /* Own public method */
-    DDSDataWriter *getWriter() {return dataWriter;}
+    DDS::DataWriter *getWriter() {return dataWriter;}
 };
 
 }
