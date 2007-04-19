@@ -1,7 +1,75 @@
-I've copied this directory to ~/DDS/performance/latency/NDDS/deep. If you're going to continue using this directory to make changes, please copy all changes to the directory above.
+1. Overview
+-------------
+RT-DEEP is a actor-based C++ framework for runnning applications compliant with
+DDS specifications. Current framework supports three actors: source, sink, 
+reflector. A source actor is responsible for peridocially sending out publishing data
+samples. A sink actor, which usually resides in the same node with a source actor,
+is responsible for receiving data from reflectors. A reflector actor, is responsible 
+for receiving the data from a source and reflecting the data back to the sink. Latency
+measurement can be accomplished easily with current actor settings.
 
-It helps the deployment scripts to have something actually in the RTDEEP_ROOT directory structure.
 
-Thanks,
-James
+
+
+2. Structures
+--------------
+
+-[DEEP]
+  |
+  |--[actors]                       generic actor implementations
+  |
+  |--[settingsParser]               XML parsers
+  |
+  |--[scenarios]                    scenario settings
+  |
+  |--[readerWriter]                 generic reader writer
+  |
+  |--[vendorAbstraction]            vendor specific codes
+  |
+  |--[main]                         main dcps application
+  |
+  |--[exec]                         contains executables for tests
+  |
+  |--[obj]                          contains obj files
+  |
+  |--[doc]                          related documentations
+  |
+  |--build_RTI.sh                 script for building RTI DDS DEEP
+  |
+  |--build_OpenSplice.sh          script for building OpenSplice DEEP
+  |
+  |--DEEP.mpc.OpenSplice
+  |
+  |--DEEP.mpc.RTI
+  |
+  |--DEEP.mpc.TAO_DDS
+  |
+  |--DEEP_framework_export.h
+
+
+
+3. Building RT-DEEP
+-------------------
+
+Building RT-DEEP is very straightforward, but you have to log on to blade40 as tczar
+to do it at this point because blade40 has all the resources necessary for a successful
+build. 
+
+For RTI DDS DEEP
+
+.build_OpenSplice.sh
+
+
+For OpenSplice DDS DEEP
+
+.build_RTI.sh
+
+
+
+4. Running RT-DEEP
+---------------------
+
+
+ 
+
 
