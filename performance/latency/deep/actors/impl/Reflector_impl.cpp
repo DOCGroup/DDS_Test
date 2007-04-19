@@ -75,7 +75,7 @@ Reflector_impl::Reflector_impl(
 Reflector_impl::~Reflector_impl() {
 }
 
-#define MAX_NOF_SAMPLES (10000)
+#define MAX_NOF_SAMPLES (1000)
 
 void
 Reflector_impl::run() {
