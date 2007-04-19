@@ -9,6 +9,18 @@
 
 #define DEEP_INSTANCE_HANDLE_NIL DDS::HANDLE_NIL
 
+namespace DDS
+{
+  typedef DomainParticipantFactory *DomainParticipantFactory_ptr;
+  typedef DomainParticipant *DomainParticipant_ptr;
+  typedef DataWriter *DataWriter_ptr;
+  typedef DataReader *DataReader_ptr;
+  typedef WaitSet *WaitSet_ptr;
+  typedef Topic *Topic_ptr;
+  typedef StatusCondition *StatusCondition_ptr;
+}
+
+
 inline DDSDomainParticipant *DEEP_create_participant(int domainId) {
     DDSDomainParticipantFactory *factory = DDSDomainParticipantFactory::get_instance();
     return factory->create_participant (domainId,
