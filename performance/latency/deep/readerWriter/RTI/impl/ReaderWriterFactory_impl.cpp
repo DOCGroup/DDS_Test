@@ -28,9 +28,9 @@ ReaderWriterFactory_impl::createReader(
 
     DDS::SubscriberQos  sQos;
     DDS::DataReaderQos rQos;
-    DDSSubscriber *s;
-    DDSTopic *topic;
-    DDSDataReader *reader;
+    DDS::Subscriber *s;
+    DDS::Topic *topic;
+    DDS::DataReader *reader;
     GenericReader_ptr result = NULL;
 
     
@@ -125,9 +125,9 @@ ReaderWriterFactory_impl::createWriter(
 
     DDS::PublisherQos  pQos;
     DDS::DataWriterQos wQos;
-    DDSPublisher *p;
-    DDSTopic  *topic;
-    DDSDataWriter *writer;
+    DDS::Publisher *p;
+    DDS::Topic  *topic;
+    DDS::DataWriter *writer;
     GenericWriter_ptr result = NULL;
 
 
