@@ -1,0 +1,28 @@
+const short MAX_MSG_LENGTH = 16384;
+
+struct simpleType {
+  long id;
+  long payload;
+};
+
+struct innerStruct {
+  long value;
+};
+struct nestedType {
+  long id;
+  innerStruct payload;
+};
+
+struct arrayType {
+  long id;
+  long payload[10];
+};
+
+struct stringType {
+  long id;
+  string payload;
+};
+
+struct sequenceType {
+  sequence<octet, MAX_MSG_LENGTH> payload;
+};

@@ -1,0 +1,4 @@
+#ifndef IMPLABSTRACTION_H_
+#define IMPLABSTRACTION_H_
+
+#endif /*IMPLABSTRACTION_H_*/
