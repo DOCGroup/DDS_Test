@@ -51,20 +51,26 @@ measurement can be accomplished easily with current actor settings.
 3. Building RT-DEEP
 -------------------
 
-Building RT-DEEP is very straightforward, but you have to log on to blade40 as tczar
-to do it at this point because blade40 has all the resources necessary for a successful
-build. 
+- Building RT-DEEP on Linux
 
-For RTI DDS DEEP
+   Building RT-DEEP is very straightforward, but you have to log on to blade40 as tczar
+   to do it at this point because blade40 has all the resources necessary for a successful
+   build. 
 
-.build_OpenSplice.sh
+   For RTI DDS DEEP
 
-
-For OpenSplice DDS DEEP
-
-.build_RTI.sh
+   $./build_OpenSplice.sh
 
 
+   For OpenSplice DDS DEEP
+
+   $./build_RTI.sh
+
+
+- Building RT-DEEP on Windows
+
+
+  Jeff, can you fill out this section?
 
 4. Running RT-DEEP
 ---------------------
