@@ -69,7 +69,28 @@ For OpenSplice DDS DEEP
 4. Running RT-DEEP
 ---------------------
 
+.OpenSplice 1-to-1 on a single node where the 2 usually reside on blade30/blade31 usually
+ -ssh to any blade on the network, say blade30
+ -make sure $DEEP_HOME exists
+ -cd $DEEP_HOME
+ -cd exec/OpenSplice
+ -sh ./run.sh
 
- 
+
+.OpenSplice 1-to-n (n >= 1) distributed nodes where 1 usually on blade30, and n distributed on different other blade  nodes
+
+- subscriber side 
+ -ssh to any blade on the network, say blade30
+ -make sure $DEEP_HOME exists
+ -cd $DEEP_HOME
+ -cd exec/OpenSplice
+ -sh ./run_Reflector.sh
+
+- publisher side 
+ -ssh to any blade on the network, say blade30
+ -make sure $DEEP_HOME exists
+ -cd $DEEP_HOME
+ -cd exec/OpenSplice
+ -sh ./run_Source_Sink.sh
 
 
