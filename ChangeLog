@@ -1,3 +1,11 @@
+Fri Apr 20 21:20:20 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
+
+        * DEEP
+        * performance/latency/deep
+
+         Merged two DEEP versions together, and removed the deep
+         in latency direcotory
+
 Wed Apr 18 21:41:27 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DDEP/VendorSpecificIssues.html:
