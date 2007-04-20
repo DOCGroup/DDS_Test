@@ -70,7 +70,7 @@ calculateLatency(
         return result; \
     } \
     \
-    unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDSDataWriter *writer, unsigned int maxNofSamples) { \
+    unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDS::DataWriter *writer, unsigned int maxNofSamples) { \
         unsigned int result; \
         typeName##DataWriter *dataWriter = typeName##DataWriter::narrow(writer); \
         typeName##Seq msgSeq;\
@@ -85,7 +85,7 @@ calculateLatency(
         return result; \
     } \
     \
-    unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDSDataWriter* writer, unsigned int maxNofSamples, DDS::Time_t *latencies) { \
+    unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDS::DataWriter* writer, unsigned int maxNofSamples, DDS::Time_t *latencies) { \
         unsigned int result; \
         DDS::Time_t currentTime; \
         typeName##DataWriter *dataWriter = typeName##DataWriter::narrow(writer); \

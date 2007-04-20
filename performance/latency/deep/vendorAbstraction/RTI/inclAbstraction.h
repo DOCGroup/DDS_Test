@@ -3,7 +3,7 @@
 
 #include "ndds/ndds_cpp.h"
 /*include this file if you want to use DDS namespace */
-// #include "ndds/ndds_namespace_cpp.h"
+#include "ndds/ndds_namespace_cpp.h"
 #include "deepTypes.h"
 #include "deepTypesSupport.h"
 
