@@ -1,3 +1,9 @@
+***************************************************************************************
+*            README file for RT-DEEP                                                  *
+*                                                                                     *
+*                                                                                     *
+***************************************************************************************
+
 1. Overview
 -------------
 RT-DEEP is a actor-based C++ framework for runnning applications compliant with
@@ -11,32 +17,32 @@ measurement can be accomplished easily with current actor settings.
 
 
 
-2. Structures
---------------
+2. Whats inside
+----------------
 
 -[DEEP]
   |
-  |--[actors]                       generic actor implementations
+  |--[actors]                       - generic actor implementations
   |
-  |--[settingsParser]               XML parsers
+  |--[settingsParser]               - XML parsers
   |
-  |--[scenarios]                    scenario settings
+  |--[scenarios]                    - scenario settings
   |
-  |--[readerWriter]                 generic reader writer
+  |--[readerWriter]                 - generic reader writer
   |
-  |--[vendorAbstraction]            vendor specific codes
+  |--[vendorAbstraction]            - vendor specific codes
   |
-  |--[main]                         main dcps application
+  |--[main]                         - main dcps application
   |
-  |--[exec]                         contains executables for tests
+  |--[exec]                         - contains executables for tests
   |
-  |--[obj]                          contains obj files
+  |--[obj]                          - contains obj files
   |
-  |--[doc]                          related documentations
+  |--[doc]                          - related documentations
   |
-  |--build_RTI.sh                 script for building RTI DDS DEEP
+  |--build_RTI.sh                   - script for building RTI DDS DEEP
   |
-  |--build_OpenSplice.sh          script for building OpenSplice DEEP
+  |--build_OpenSplice.sh            - script for building OpenSplice DEEP
   |
   |--DEEP.mpc.OpenSplice
   |
@@ -49,54 +55,92 @@ measurement can be accomplished easily with current actor settings.
 
 
 3. Building RT-DEEP
--------------------
+--------------------
 
-- Building RT-DEEP on Linux
+===== Building RT-DEEP on Linux =======
 
-   Building RT-DEEP is very straightforward, but you have to log on to blade40 as tczar
-   to do it at this point because blade40 has all the resources necessary for a successful
-   build. 
-
-   For RTI DDS DEEP
-
-   $./build_OpenSplice.sh
+Below are step-by-step installation instructions to build RT-DEEP.Generally, building RT-DEEP 
+is very straightforward, but you have to log on to blade40 as tczar to do it at this point 
+because blade40 has all the resources necessary for a successful  build. 
 
 
-   For OpenSplice DDS DEEP
-
-   $./build_RTI.sh
+1) Log in to blade40 as tczzar
 
 
-- Building RT-DEEP on Windows
+2) Load the environment variables for RT-DEEP, do
+
+   . /export/home/tczar/.bashrc
+
+3) Enter the RT-DEEP root, do
+
+   cd $DEEP_HOME
+
+4) For RTI DDS DEEP, do 
+
+   sh ./build_OpenSplice.sh
 
 
-  Jeff, can you fill out this section?
+   For OpenSplice DDS DEEP, do
+
+   sh ./build_RTI.sh
+
+
+===== Building RT-DEEP on Windows ========
+
+
+  (Jeff, can you fill out this section when you are done with building under windows?)
+
 
 4. Running RT-DEEP
 ---------------------
+Below are step-by-step instructions on how to run manual RT-DEEP tests.
 
-.OpenSplice 1-to-1 on a single node where the 2 usually reside on blade30/blade31 usually
- -ssh to any blade on the network, say blade30
- -make sure $DEEP_HOME exists
- -cd $DEEP_HOME
- -cd exec/OpenSplice
- -sh ./run.sh
+- OpenSplice 1-to-1 latency test on a single node
+
+  1) ssh tczar@blade30
+  2) . $HOME/.bashrc
+  3) cd $DEEP_HOME
+  4) cd exec/OpenSplice
+  5) sh ./run.sh
 
 
-.OpenSplice 1-to-n (n >= 1) distributed nodes where 1 usually on blade30, and n distributed on different other blade  nodes
+- OpenSplice 1-to-n (n >= 1) distributed nodes where "1" must reside on blade30, 
+  with "n" distributed on different other nodes
 
-- subscriber side 
- -ssh to any blade on the network, say blade30
- -make sure $DEEP_HOME exists
- -cd $DEEP_HOME
- -cd exec/OpenSplice
- -sh ./run_Reflector.sh
+  - prepare subscriber side
+ 
+    1) ssh to a subscriber node, e.g., ssh tczar@blade31
+    2) . $HOME/.bashrc
+    3) cd $DEEP_HOME
+    4) cd exec/OpenSplice
+    5) type "sh ./run_Reflector.sh" on the command but don't execut it, i.e.
+       DON't press ENTER!
+    6) repeat 1) through 5) for another subscriber node until all subscriber
+       nodes are ready
 
-- publisher side 
- -ssh to any blade on the network, say blade30
- -make sure $DEEP_HOME exists
- -cd $DEEP_HOME
- -cd exec/OpenSplice
- -sh ./run_Source_Sink.sh
 
+  - prepare publisher side 
+
+    1) ssh tczar@blade30
+    2) . $HOME/.bashrc
+    3) cd $DEEP_HOME
+    4) cd exec/OpenSplice
+    5) type "sh ./run_Source_Sink.sh" on the command but don't execut it, i.e.
+       DON't press ENTER!
+   
+
+  - run synchronized 1-to-n latency test
+
+    1) Press Enter for n subscriber nodes (be really fast, :-))
+    2) Press Enter for publisher node
+
+
+- RTI DDS 1-to-1 latency test on a single node
+  
+    (to be constructed...)
+
+- RTI DDS 1-to-n (n >= 1) distributed nodes where "1" must reside on blade30, 
+  with "n" distributed on different other nodes
+
+    (to be constructed...)
 
