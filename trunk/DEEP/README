@@ -57,35 +57,34 @@ measurement can be accomplished easily with current actor settings.
 3. Building RT-DEEP
 --------------------
 
-===== Building RT-DEEP on Linux =======
+- Building RT-DEEP on Linux
 
 Below are step-by-step installation instructions to build RT-DEEP.Generally, building RT-DEEP 
 is very straightforward, but you have to log on to blade40 as tczar to do it at this point 
 because blade40 has all the resources necessary for a successful  build. 
 
 
-1) Log in to blade40 as tczzar
+  1) Log in to blade40 as tczzar
 
 
-2) Load the environment variables for RT-DEEP, do
+  2) Load the environment variables for RT-DEEP, do
 
-   . /export/home/tczar/.bashrc
+       . /export/home/tczar/.bashrc
 
-3) Enter the RT-DEEP root, do
+  3) Enter the RT-DEEP root, do
 
-   cd $DEEP_HOME
+       cd $DEEP_HOME
 
-4) To build RTI DDS DEEP, do 
+  4) To build RTI DDS DEEP, do 
 
-   sh ./build_OpenSplice.sh
+       sh ./build_OpenSplice.sh
+
+     To build OpenSplice DDS DEEP, do
+
+       sh ./build_RTI.sh
 
 
-   To build OpenSplice DDS DEEP, do
-
-   sh ./build_RTI.sh
-
-
-===== Building RT-DEEP on Windows ========
+- Building RT-DEEP on Windows
 
 
   (Jeff, can you fill out this section when you have a chance to test the installation under windows?)
@@ -93,6 +92,7 @@ because blade40 has all the resources necessary for a successful  build.
 
 4. Running RT-DEEP
 ---------------------
+
 Below are step-by-step instructions on how to run manual RT-DEEP tests.
 
 - OpenSplice 1-to-1 latency test on a single node
