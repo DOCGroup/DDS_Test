@@ -75,12 +75,12 @@ because blade40 has all the resources necessary for a successful  build.
 
    cd $DEEP_HOME
 
-4) For RTI DDS DEEP, do 
+4) To build RTI DDS DEEP, do 
 
    sh ./build_OpenSplice.sh
 
 
-   For OpenSplice DDS DEEP, do
+   To build OpenSplice DDS DEEP, do
 
    sh ./build_RTI.sh
 
@@ -88,7 +88,7 @@ because blade40 has all the resources necessary for a successful  build.
 ===== Building RT-DEEP on Windows ========
 
 
-  (Jeff, can you fill out this section when you are done with building under windows?)
+  (Jeff, can you fill out this section when you have a chance to test the installation under windows?)
 
 
 4. Running RT-DEEP
