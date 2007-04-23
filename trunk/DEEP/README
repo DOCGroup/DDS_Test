@@ -95,6 +95,8 @@ because blade40 has all the resources necessary for a successful  build.
 
 Below are step-by-step instructions on how to run manual RT-DEEP tests.
 
+
+
 - OpenSplice 1-to-1 latency test on a single node (currently not available: lack of intranodal DW version)
 
   1) ssh tczar@blade30
@@ -107,6 +109,9 @@ Below are step-by-step instructions on how to run manual RT-DEEP tests.
 - OpenSplice 1-to-n (n >= 1) distributed nodes where "1" must reside on blade30, 
   with "n" distributed on different other nodes
 
+  suppose we want to run latency test for a sequence of size 4, then the scenario4.xml
+  will be used as the input to actors.
+
   - prepare subscriber side
  
     1) ssh to a subscriber node, e.g., ssh tczar@blade31
@@ -118,6 +123,9 @@ Below are step-by-step instructions on how to run manual RT-DEEP tests.
     6) repeat 1) through 5) for another subscriber node until all subscriber
        nodes are ready
 
+    Note: run_Reflector is using scenario4.xml for all data sizes, because it doesn't
+    care about the data sizes, thus the payload property is ignored by run_Reflector
+
 
   - prepare publisher side 
 
@@ -125,7 +133,7 @@ Below are step-by-step instructions on how to run manual RT-DEEP tests.
     2) . $HOME/.bashrc
     3) cd $DEEP_HOME
     4) cd exec/OpenSplice
-    5) type "sh ./run_Source_Sink.sh" on the command but don't execut it, i.e.
+    5) type "sh ./run_Source_Sink.sh 4" on the command but don't execut it, i.e.
        DON't press ENTER!
    
 
@@ -163,7 +171,7 @@ Below are step-by-step instructions on how to run manual RT-DEEP tests.
        nodes are ready
 
     Note: run_Reflector is using scenario4.xml for all data sizes, because it doesn't
-    care about the data sizes, thus the payload property is ignored by run_Reflector
+          care about the data sizes, thus the payload property is ignored by run_Reflector
 
 
   - prepare publisher side 
@@ -172,8 +180,8 @@ Below are step-by-step instructions on how to run manual RT-DEEP tests.
     2) . $HOME/.bashrc
     3) cd $DEEP_HOME
     4) cd exec/RTI
-    5) type "sh ./run_Source_Sink.sh 4" on the command but don't execut it, i.e.
-       DON't press ENTER!
+    5) type "sh ./run_Source_Sink_1_to_n.sh 4" (replace n with an appropriate #)
+       on the command but don't execut it, i.e. DON't press ENTER!
    
 
   - run synchronized 1-to-n latency test
@@ -182,3 +190,6 @@ Below are step-by-step instructions on how to run manual RT-DEEP tests.
     2) Press Enter for publisher node
 
 
+    Note: Be very careful about the NDDS_DISCOVERY_PEERS in the script and make
+          sure that the publisher/subscriber (s) are deployed to the correct
+          nodes.
