@@ -136,11 +136,49 @@ Below are step-by-step instructions on how to run manual RT-DEEP tests.
 
 
 - RTI DDS 1-to-1 latency test on a single node
-  
-    (to be constructed...)
+
+  1) ssh tczar@blade30
+  2) . $HOME/.bashrc
+  3) cd $DEEP_HOME
+  4) cd exec/RTI
+  5) sh ./run.sh 
+
 
 - RTI DDS 1-to-n (n >= 1) distributed nodes where "1" must reside on blade30, 
   with "n" distributed on different other nodes
 
-    (to be constructed...)
+  suppose we want to run latency test for a sequence of size 4, then the scenario4.xml
+  will be used as the input to actors.
+
+
+  - prepare subscriber side
+ 
+    1) ssh to a subscriber node, e.g., ssh tczar@blade31
+    2) . $HOME/.bashrc
+    3) cd $DEEP_HOME
+    4) cd exec/RTI
+    5) type "sh ./run_Reflector.sh" on the command but don't execut it, i.e.
+       DON't press ENTER!
+    6) repeat 1) through 5) for another subscriber node until all subscriber
+       nodes are ready
+
+    Note: run_Reflector is using scenario4.xml for all data sizes, because it doesn't
+    care about the data sizes, thus the payload property is ignored by run_Reflector
+
+
+  - prepare publisher side 
+
+    1) ssh tczar@blade30
+    2) . $HOME/.bashrc
+    3) cd $DEEP_HOME
+    4) cd exec/RTI
+    5) type "sh ./run_Source_Sink.sh 4" on the command but don't execut it, i.e.
+       DON't press ENTER!
+   
+
+  - run synchronized 1-to-n latency test
+
+    1) Press Enter for n subscriber nodes (be really fast, :-))
+    2) Press Enter for publisher node
+
 
