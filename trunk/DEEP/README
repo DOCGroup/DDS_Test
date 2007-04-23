@@ -95,7 +95,7 @@ because blade40 has all the resources necessary for a successful  build.
 
 Below are step-by-step instructions on how to run manual RT-DEEP tests.
 
-- OpenSplice 1-to-1 latency test on a single node
+- OpenSplice 1-to-1 latency test on a single node (currently not available: lack of intranodal DW version)
 
   1) ssh tczar@blade30
   2) . $HOME/.bashrc
