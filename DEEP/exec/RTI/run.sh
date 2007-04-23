@@ -7,9 +7,8 @@ else
 fi
 
 ./deepParticipant scenario.xml SinkParticipant 80 &
-./deepParticipant scenario.xml SinkParticipant 82 &
 for ((refl=1; refl <= NOF_REFLECTORS ; refl++))
 do
-    ./deepParticipant scenario.xml ReflectorParticipant 60 &
+    ./deepParticipant scenario4.xml ReflectorParticipant 60 &
 done
 ./deepParticipant scenario.xml SourceParticipant 40
