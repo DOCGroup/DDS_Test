@@ -1,9 +1,9 @@
 
 <OpenSplice>
     <Domain>
-        <Name>DEEP testframework</Name>
+        <Name>DOCGroup benchmark testing</Name>
         <Database>
-            <Size>10485670</Size>
+            <Size>12000000</Size>
         </Database>
 	<Lease>
             <ExpiryTime update_factor="0.5">5.0</ExpiryTime>
@@ -18,11 +18,24 @@
 
     <NetworkService name="networking">
         <Partitioning>
-            <GlobalPartition Address="225.3.2.1"/>
+            <GlobalPartition Address="broadcast"/>
         </Partitioning>
         <Channels>
             <Channel enabled="true" name="BestEffort" reliable="false" default="true">
                 <PortNr>3340</PortNr>
+                <FragmentSize>65536</FragmentSize>
+                <Sending>
+                    <Scheduling>
+                        <Class>Realtime</Class>
+                         <Priority>99</Priority>
+                    </Scheduling>
+                </Sending>
+                <Receiving>
+                    <Scheduling>
+                        <Class>Realtime</Class>
+                         <Priority>98</Priority>
+                    </Scheduling>
+                </Receiving>
             </Channel>
             <Channel enabled="true" name="Reliable" reliable="true">
                 <PortNr>3350</PortNr>
