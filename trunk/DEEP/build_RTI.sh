@@ -23,8 +23,8 @@ sh build_TypeSupport.sh
 sh build.sh deepTypes
 sh build.sh deepTypesSupport
 sh build.sh deepTypesPlugin)
-(cd readerWriter/RTI/impl
-sh build.sh ReaderWriterFactory_impl
-sh build.sh TypedFunctions)
+(cd readerWriter/impl
+sh build.sh RTI ReaderWriterFactory_impl
+sh build.sh RTI TypedFunctions)
 (cd main
-sh build_RTI.sh deepParticipant)
+sh build.sh RTI deepParticipant)

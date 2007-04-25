@@ -24,10 +24,10 @@ sh build.sh deepTypes
 sh build.sh deepTypesDcps
 sh build.sh deepTypesDcps_impl
 sh build.sh deepTypesSplDcps)
-(cd readerWriter/OpenSplice/impl
-sh build.sh ReaderWriterFactory_impl
-sh build.sh TypedFunctions)
+(cd readerWriter/impl
+sh build.sh OpenSplice ReaderWriterFactory_impl
+sh build.sh OpenSplice TypedFunctions)
 (cd main
-sh build_OpenSplice.sh deepParticipant)
+sh build.sh OpenSplice deepParticipant)
 
 
