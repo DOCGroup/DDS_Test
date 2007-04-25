@@ -60,7 +60,7 @@ DEEP_create_topic(
 inline void DEEP_vendor_specific_readerqos_init(DDS::DataReaderQos readerQos) {
     /* we assume that this reader is going to receive on multicast */\
     readerQos.multicast.value.DEEP_length(1);\
-    readerQos.multicast.value[0].receive_address = DDS::strdup("225.3.2.1");\
+    readerQos.multicast.value[0].receive_address = DDS_String_dup("225.3.2.1");\
 }
 
 namespace DDS
