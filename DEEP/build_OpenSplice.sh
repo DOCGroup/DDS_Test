@@ -18,7 +18,7 @@ sh build.sh OpenSplice Actor_impl
 sh build.sh OpenSplice Reflector_impl
 sh build.sh OpenSplice Sink_impl
 sh build.sh OpenSplice Source_impl)
-(cd readerWriter/OpenSplice/generated
+(cd readerWriter/generated/OpenSplice
 sh build_TypeSupport.sh
 sh build.sh deepTypes
 sh build.sh deepTypesDcps
