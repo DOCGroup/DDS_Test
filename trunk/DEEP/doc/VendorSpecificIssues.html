@@ -38,7 +38,7 @@ Runtime issues may be added to a later version of this document.<P>
         <LI> <B>TAO DDS</B> - signed 32-bit <code>int</code>
       </UL>
     </td>
-    <td>NO (clearly the DDS spec intent is signed 32-bit <code>int</code>
+    <td>NO (the DDS spec example is signed 32-bit <code>int</code>
      but it's not required)</td>
   </tr>
 
@@ -82,7 +82,7 @@ Runtime issues may be added to a later version of this document.<P>
     <td>use of CORBA basic types</td>
     <td>
       <UL>
-        <LI> <B>OpenSplice</B> - no (uses native in C++ standalone generation)
+        <LI> <B>OpenSplice</B> - yes
         <LI> <B>RTI DDS</B> - no (proprietary typedefs without <em>RTI CORBA Compatibility Kit</em>)
         <LI> <B>TAO DDS</B> - yes
       </UL>
@@ -111,16 +111,18 @@ Runtime issues may be added to a later version of this document.<P>
         <LI> <B>TAO DDS</B> - <code><em>foo</em>TypeSupport</code> instantiated on heap
       </UL>
     </td>
-    <td>YES (Only TAO DDS is conpliant here - see section 1.3 of IDL C++ mapping)</td>
+    <td>YES (Only TAO DDS is conpliant here - see section 1.3 of IDL C++ mapping. 
+        OpenSplice also allows heap instantiation, but the mapping forbids direct
+        instantiation of interface classes)</td>
   </tr>
   
   <tr>
     <td>type of <code>[<em>datatype</em>]Seq</code> max length</td>
     <td>
       <UL>
-        <LI> <B>OpenSplice</B> - unsigned long
+        <LI> <B>OpenSplice</B> - CORBA::ULong
         <LI> <B>RTI DDS</B> - signed long
-        <LI> <B>TAO DDS</B> - unsigned long
+        <LI> <B>TAO DDS</B> - CORBA::ULong
       </UL>
     </td>
     <td>YES (C++ mapping prescribes IDL sequence length as CORBA::ULong)</td>
@@ -202,6 +204,21 @@ Runtime issues may be added to a later version of this document.<P>
      and must be recognized and implemented)</td>
   </tr>
   
+  <tr>
+    <td>type of <code><em>datatype</em>Seq[index]</code> index variable between brackets
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - CORBA::ULong
+        <LI> <B>RTI DDS</B> - signed long
+        <LI> <B>TAO DDS</B> - CORBA::ULong
+      </UL>
+    </td>
+    <td>YES (C++ mapping prescribes IDL sequence length as CORBA::ULong.
+        Even though RTI DDS doesn't use CORBA basic types without the
+        optional kit, it would still be better if it used an unsigned
+        type)</td>
+  </tr>
+
 </table> <P>
 
 </body>
