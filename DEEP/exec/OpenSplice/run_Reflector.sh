@@ -1,1 +1,1 @@
-./deepParticipant scenario4.xml ReflectorParticipant 80
+./deepParticipant ../scenario4.xml ReflectorParticipant 80
