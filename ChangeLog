@@ -1,3 +1,11 @@
+Thu Apr 26 20:03:59 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
+
+        * DEEP/main/build_Opensplice.sh
+        * DEEP/main/build_RTI.sh
+
+        Removed these scripts since there is a build.sh that does the
+        job of both
+
 Thu Apr 26 19:44:09 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
 
         * DEEP/exec/
