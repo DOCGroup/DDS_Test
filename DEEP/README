@@ -1,3 +1,4 @@
+//$id:
 ***************************************************************************************
 *            README file for RT-DEEP                                                  *
 *                                                                                     *
@@ -67,7 +68,7 @@ because blade40 has all the resources necessary for a successful  build.
   1) Log in to blade40 as tczzar
 
 
-  2) Load the environment variables for RT-DEEP, do
+  2) Load the environment variables required by RT-DEEP, do
 
        . /export/home/tczar/.bashrc
 
