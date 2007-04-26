@@ -8,12 +8,12 @@ fi
 
 ospl start file:///export2/home/tczar/DDS/performance/latency/deep/exec/OpenSplice/ospl.xml
 
-./deepParticipant scenario.xml SinkParticipant 80 &
-./deepParticipant scenario.xml SinkParticipant 82 &
+./deepParticipant ../scenario4.xml SinkParticipant 80 &
+./deepParticipant ../scenario4.xml SinkParticipant 82 &
 for ((refl=1; refl <= NOF_REFLECTORS ; refl++))
 do
-    ./deepParticipant scenario.xml ReflectorParticipant 60 &
+    ./deepParticipant ../scenario4.xml ReflectorParticipant 60 &
 done
-./deepParticipant scenario.xml SourceParticipant 40
+./deepParticipant ../scenario4.xml SourceParticipant 40
 
 ospl stop

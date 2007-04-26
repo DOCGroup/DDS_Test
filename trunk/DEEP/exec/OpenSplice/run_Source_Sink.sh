@@ -1,3 +1,3 @@
-./deepParticipant scenario.xml SinkParticipant 80 &
-./deepParticipant scenario.xml SourceParticipant 40
+./deepParticipant ../scenario$1.xml SinkParticipant 80 &
+./deepParticipant ../scenario$1.xml SourceParticipant 40
 
