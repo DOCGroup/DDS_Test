@@ -202,12 +202,16 @@ Below are step-by-step instructions on how to run manual RT-DEEP tests.
 Current RT-DEEP is running on multicast address at 225.3.2.1
 
 For OpenSplice, you might need to manually set up the routing table in order
-to let the network traffic properly go through multicast address to do that, you should use route.sh under the /exec/OpenSplice directory to explicitely
+to let the network traffic properly go through multicast address to do that, 
+you should use route.sh under the /exec/OpenSplice directory to explicitely
 register the multicast membership group,e.g.
 
-./route.sh eth0 (eth0 indicates whatever interface that represents the current active network interface)
+./route.sh eth0 (eth0 indicates whatever interface that represents the current 
+active network interface)
 
-to monitor the traffic for diagnosis purpose, you may run sniffer program such as tcpdump to monitor the network traffic (suppose you are running 1-to-many internodes scenarios)
+to monitor the traffic for diagnosis purpose, you may run sniffer program such 
+as tcpdump to monitor the network traffic (suppose you are running 1-to-many 
+internodes scenarios)
 
 e.g. 
 
