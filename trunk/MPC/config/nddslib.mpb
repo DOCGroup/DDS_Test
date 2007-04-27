@@ -1,16 +1,16 @@
 // -*- MPC -*-
 // $Id$
 
-project : acelib, ndds_ts_defaults {
+project {
   libs        += nddscpp nddsc nddscore
   includes    += $(NDDSHOME)/include $(NDDSHOME)/include/ndds
 
-  specific(nmake, vc71, vc8) {
+  specific(vc71, vc8) {
     libpaths    += $(NDDSHOME)/lib/i86Win32VS2005
     macros      += RTI_WIN32 NDDS_DLL_VARIABLE
   }
 
-  specific(gnuace) {
+  specific(make) {
     libpaths    += $(NDDSHOME)/lib/i86Linux2.6gcc3.4.3
     macros      += RTI_UNIX
   }

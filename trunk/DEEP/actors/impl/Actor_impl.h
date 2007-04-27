@@ -21,4 +21,9 @@ typedef Actor_impl *Actor_impl_ptr;
 
 }
 
+#if defined (_WINDOWS)
+# include <io.h>
+# define mkstemp(s) (void)_mktemp_s (s, strlen (s) + 1)
+#endif
+
 #endif /*ACTOR_IMPL_H_*/

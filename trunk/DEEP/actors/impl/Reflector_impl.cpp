@@ -17,7 +17,7 @@ processLatencies(
         
     if (nofLatencies > 0) {
         unsigned int i;
-        unsigned int msecs, sum, min, max;
+        time_t msecs, sum, min, max;
         double dmean, dmean2, dsum, sdev;
         char actualFileName[MAXLEN];
 
@@ -42,7 +42,7 @@ processLatencies(
             }
             outFile << i << "  " << msecs << std::endl;
         }
-        dmean = sum;
+        dmean = static_cast<double> (sum);
         dmean /= nofLatencies;
         dsum = 0.0;
         dmean2 = dmean*dmean;

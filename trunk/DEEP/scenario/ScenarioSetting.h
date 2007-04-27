@@ -8,7 +8,7 @@ namespace Deep {
 
 class ScenarioSetting {
 public:
-    virtual ParticipantSetting_ptr getParticipantSetting(SettingNameType name) = 0;
+    virtual ParticipantSetting_ptr getParticipantSetting(const SettingNameType name) = 0;
 };
 
 typedef ScenarioSetting *ScenarioSetting_ptr;

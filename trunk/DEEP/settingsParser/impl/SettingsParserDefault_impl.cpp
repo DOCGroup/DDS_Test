@@ -267,27 +267,30 @@ SettingsParserDefault_impl::getValue(const SettingIdentifierType path, bool &val
 
 
 void
-SettingsParserDefault_impl::getValue(const SettingIdentifierType path, char *&value) throw (SettingsParserException) {
-    const char *result;
-    unsigned int i;
-    bool found;
-    const char *currentName;
-    
-    found = false;
-    i = 0;
-    currentName = defaultStringSettings[i].nodeName;
-    while (!found && (currentName != NULL)) {
-        if (strcmp(name, currentName) == 0) {
-            found = (strcmp(path, defaultStringSettings[i].paramName) == 0);
-            if (found) {
-                value = strdup(defaultStringSettings[i].defaultValue);
-            }
-        }
-        currentName = defaultStringSettings[++i].nodeName;
-    }
-    if (!found) {
-        throw SETTING_EXCEPTION_NOT_FOUND;
-    }
+SettingsParserDefault_impl::getValue (const SettingIdentifierType path,
+                                      char *&value)
+  throw (SettingsParserException)
+{
+  // const char *result;
+  unsigned int i;
+  bool found;
+  const char *currentName;
+  
+  found = false;
+  i = 0;
+  currentName = defaultStringSettings[i].nodeName;
+  while (!found && (currentName != NULL)) {
+      if (strcmp(name, currentName) == 0) {
+          found = (strcmp(path, defaultStringSettings[i].paramName) == 0);
+          if (found) {
+              value = strdup(defaultStringSettings[i].defaultValue);
+          }
+      }
+      currentName = defaultStringSettings[++i].nodeName;
+  }
+  if (!found) {
+      throw SETTING_EXCEPTION_NOT_FOUND;
+  }
 }
 
 const char *

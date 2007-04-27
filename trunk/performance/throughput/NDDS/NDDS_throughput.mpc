@@ -1,4 +1,4 @@
-project(NDDS_Throughput_Pub): nddsexe {
+project(NDDS_Throughput_Pub): nddsexe_with_idl {
   exename   = publisher
   libs     += Stats
   after    += Stats
@@ -25,7 +25,7 @@ project(NDDS_Throughput_Pub): nddsexe {
   }
 }
 
-project(NDDS_Throughput_Sub): nddsexe {
+project(NDDS_Throughput_Sub): nddsexe_with_idl {
   exename   = subscriber
   libs     += Stats
   after    += Stats

@@ -1,3 +1,71 @@
+Fri Apr 27 21:15:25 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * MPC\config\nddslib_with_idl.mpb:
+        * MPC\config\spliceexe_with_idl.mpb:
+        * MPC\config\splicelib.mpb:
+        * MPC\config\splicelib_with_idl.mpb:
+        * MPC\config\nddsexe_with_idl.mpb:
+        * MPC\config\nddslib.mpb:
+
+          New files, a better breakdown of functionality
+          that provides every combination of lib vs
+          executable and with/without typesupport processing.
+
+        * DEEP\DEEP.mpc:
+
+          New file, a combination of the 3 similarly named
+          files below, which have been removed. Work on
+          building DEEP linked to TAO DDS is not yet
+          complete, requiring either listener support in
+          DEEP or waitset support in TAO DDS.
+
+        * MPC\config\ndds.mpb:
+        * MPC\config\splice.mpb:
+
+          Removed these files, they are replaced by the
+          corresponding *lib.mpb new files.
+
+        * DEEP\DEEP.mpc:.RTI:
+        * DEEP\DEEP.mpc:.OpenSplice:
+        * DEEP\DEEP.mpc:.TAO_DDS:
+
+          Removed these files, they are now combined in DEEP.mpc
+
+        * MPC\config\nddsexe.mpb:
+        * MPC\config\spliceexe.mpb:
+        * performance\latency\OpenSplice\Splice_latency.mpc:
+        * performance\latency\NDDS\latency\NDDS_latency.mpc:
+        * performance\throughput\OpenSplice\C++\Splice_c++_throughput.mpc:
+        * performance\throughput\NDDS\NDDS_throughput.mpc:
+        * Test_Framework\Test_Framework.mpc:
+        * examples\TestFrameworkExamples\Simple\Simple.mpc:
+
+          Modified these files to reflect the changes above.
+
+        * DEEP\main\deepParticipant.cpp:
+        * DEEP\vendorAbstraction\OpenSplice\inclAbstraction.h:
+        * DEEP\vendorAbstraction\TAO_DDS\inclAbstraction.h:
+        * DEEP\vendorAbstraction\RTI\inclAbstraction.h:
+        * DEEP\actors\impl\Actor_impl.h:
+        * DEEP\actors\impl\Laptimer_impl.cpp:
+        * DEEP\actors\impl\Source_impl.cpp:
+        * DEEP\actors\impl\Sink_impl.cpp:
+        * DEEP\actors\impl\Reflector_impl.cpp:
+        * DEEP\readerWriter\impl\TypedFunctions.cpp:
+        * DEEP\readerWriter\impl\TypedFunctions.h:
+        * DEEP\readerWriter\impl\GenericReader_impl.h:
+        * DEEP\readerWriter\impl\ReaderWriterFactory_impl.cpp:
+        * DEEP\readerWriter\ReaderWriterTypes.h:
+        * DEEP\scenario\impl\ScenarioSetting_impl.cpp:
+        * DEEP\scenario\ScenarioSetting.h:
+        * DEEP\settingsParser\impl\SettingsParserXercesNode_impl.cpp:
+        * DEEP\settingsParser\impl\SettingsParserDefault_impl.cpp:
+        * DEEP\settingsParser\impl\SettingsParserDefault_impl.h:
+        * DEEP\settingsParser\impl\SettingsParserXerces_impl.cpp:
+
+          Changes to enable the DEEP framework to build with
+          Visual Studio.
+
 Thu Apr 26 22:32:03 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
 
         * DEEP/VERSION

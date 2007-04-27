@@ -1,0 +1,144 @@
+//  -*- MPC -*- now wouldn't this be cool...
+// $Id$
+
+project (DEEP_OpenSplice) : splicelib, xerces {
+  exename =   deep_opensplice
+  includes += actors \
+			        readerWriter \
+			        readerWriter/impl \
+			        readerWriter/generated/OpenSplice \
+			        scenario \
+			        settingsParser \
+			        vendorAbstraction/OpenSplice
+  
+  Source_Files {
+    actors/impl
+    ^actors/impl/Laptimer_impl.cpp
+    main
+    readerWriter/impl
+    readerWriter/generated/Opensplice
+    scenario/impl
+    settingsParser/impl
+  }
+  
+  Header_Files {
+    actors
+    ^actors/impl/Laptimer_impl.h
+    readerWriter/*.h
+    readerWriter/impl
+    readerWriter/generated/Opensplice
+    scenario
+    settingsParser
+    vendorAbstraction/OpenSplice
+  }
+  
+  // This can be removed when we build DEEP as a lib
+  specific(vc71,vc8) {
+    macros += _WINDOWS
+  }
+
+  specific(vc8) {
+    DisableSpecificWarnings += 4290 4250
+    macros += _CRT_SECURE_NO_WARNINGS
+  }
+  
+  verbatim(make, macros) {
+    OUTPUT_OPTION = -o obj/OpenSplice
+  }
+}
+
+project (DEEP_RTI_DDS) : nddslib, xerces {
+  exename =   deep_rti_dds 
+  includes += actors \
+			        readerWriter \
+			        readerWriter/impl \
+			        readerWriter/generated/RTI \
+			        scenario \
+			        settingsParser \
+			        vendorAbstraction/RTI
+  
+  Source_Files {
+    actors/impl
+    ^actors/impl/Laptimer_impl.cpp
+    main
+    readerWriter/impl
+    readerWriter/generated/RTI
+    scenario/impl
+    settingsParser/impl
+  }
+  
+  Header_Files {
+    actors
+    ^actors/impl/Laptimer_impl.h
+    readerWriter/*.h
+    readerWriter/impl
+    readerWriter/generated/RTI
+    scenario
+    settingsParser
+    vendorAbstraction/RTI
+  }
+  
+  // This can be removed when we build DEEP as a lib
+  specific(vc71,vc8) {
+    macros += _WINDOWS
+  }
+
+  specific(vc8) {
+    DisableSpecificWarnings += 4290 4250
+    macros += _CRT_SECURE_NO_WARNINGS
+  }
+  
+  verbatim(make, macros) {
+    OUTPUT_OPTION = -o obj/RTI
+  }
+}
+
+project (DEEP_OpenDDS) : dcpsexe_with_reliable_multicast, portableserver, xerces {
+  exename =   deep_opendds 
+  includes += actors \
+			        readerWriter \
+			        readerWriter/impl \
+			        readerWriter/generated/TAO_DDS \
+			        scenario \
+			        settingsParser \
+			        vendorAbstraction/TAO_DDS
+  
+  Source_Files {
+    actors/impl
+    ^actors/impl/Laptimer_impl.cpp
+    main
+    readerWriter/impl
+    readerWriter/generated/TAO_DDS
+    scenario/impl
+    settingsParser/impl
+  }
+  
+  Header_Files {
+    actors
+    ^actors/impl/Laptimer_impl.h
+    readerWriter/*.h
+    readerWriter/impl
+    readerWriter/generated/TAO_DDS
+    scenario
+    settingsParser
+    vendorAbstraction/TAO_DDS
+  }
+  
+  Inline_Files {
+    readerWriter/generated/TAO_DDS
+  }
+  
+  // This can be removed when we build DEEP as a lib
+  specific(vc71,vc8) {
+    macros += _WINDOWS
+  }
+
+  specific(vc8) {
+    DisableSpecificWarnings += 4290 4250
+    macros += _CRT_SECURE_NO_WARNINGS
+  }
+  
+  verbatim(make, macros) {
+    OUTPUT_OPTION = -o obj/TAO_DDS
+  }
+}

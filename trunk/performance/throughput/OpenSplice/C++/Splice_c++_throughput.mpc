@@ -1,4 +1,4 @@
-project(Splice_Throughput_Pub) : spliceexe {
+project(Splice_Throughput_Pub) : spliceexe_with_idl {
   exename   = publisher
   libs     += Stats
   after    += Stats
@@ -26,7 +26,7 @@ project(Splice_Throughput_Pub) : spliceexe {
   }
 }
 
-project(Splice_Throughput_Sub) : spliceexe {
+project(Splice_Throughput_Sub) : spliceexe_with_idl {
   exename   = subscriber
   libs     += Stats
   after    += Stats
