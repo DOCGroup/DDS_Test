@@ -1,24 +1,41 @@
                     DDS Benchmarking Environment
 
 
-last updated 1/31/07
+last updated 4/27/07
 
 
                Generating builds with MPC
+               
+Check out the MPC module from the SubVersion repository. It's
+location is
+
+https://svn.dre.vanaderbilt.edu/DOC/MPC
+
+Move the contents of the 'trunk' directory up to the level of
+the 'trunk' directory, and delete it. Set $MPC_ROOT in your
+environment to the path of this directory. If you have ACE+TAO
+installed and want to build any of the things in DDS_TEST that
+require them (most builds except the OpenSplice- and RTI DDS-linked
+versions of DEEP), then, from the directory
+of this README file, find MPC/config/MPC.cfg and copy it to
+$MPC_ROOT/config.
 
 From this directory, type
 
-mwc.pl -include MPC/config DDSTest.mwc
+$MPC_ROOT/mwc.pl -type <type> DDSTest.mwc
 
-for GNU makefiles. For Visual Studio, insert
+where <type> is 'make' or 'vc71' or 'vc8'. This will generate
+build files for everything in DDS_Test, much of which requires
+ACE+TAO to build. To build just the DEEP framework, type
 
--type vc71
+cd DEEP
+$MPC_ROOT/mwc.pl -type <type> -include ../MPC/config
 
-or
-
--type vc8
-
-in the above command line.
+In the DEEP directory, the file DEEP.mpc contains a project
+for each DDS implementation. If you don't have all these
+implementation installed, make a backup copy of DEEP.mpc
+and remove the appropriate projects from the working
+copy.
 
 
               SVN COMMANDS FOR THIS PROJECT:
