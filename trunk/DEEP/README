@@ -193,3 +193,14 @@ Below are step-by-step instructions on how to run manual RT-DEEP tests.
     Note: Be very careful about the NDDS_DISCOVERY_PEERS in the script and make
           sure that the publisher/subscriber (s) are deployed to the correct
           nodes.
+
+
+5. Multicast issues
+-------------------------
+
+Current RT-DEEP is running on multicast address at 225.3.2.1
+
+For OpenSplice, you might need to manually set up the routing table in order
+to let the network traffic properly go through multicast address to do that, you should use route.sh under the /exec/OpenSplice directory to explicitely attach mulitcast address with a certain interface, e.g. 
+
+./route.sh eth0 (eth0 indicates whatever interface that represents the current active network interface)
