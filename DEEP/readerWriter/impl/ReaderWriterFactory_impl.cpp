@@ -2,7 +2,7 @@
 /* Interface */
 #include "ReaderWriterFactory_impl.h"
 /* Implementation */
-#include "inclAbstraction.h"
+//#include "inclAbstraction.h"
 /* #include "ParticipantSetting.h" */
 #include "GenericReader_impl.h"
 #include "GenericWriter_impl.h"
@@ -78,11 +78,11 @@ ReaderWriterFactory_impl::createReader(
         result = new GenericReader_impl<typeRequested##DataReader>(dataReader); \
     }
 
-    CONDITIONAL_GENERIC_READER_CONSTRUCTION(simpleType)
-    CONDITIONAL_GENERIC_READER_CONSTRUCTION(nestedType)
-    CONDITIONAL_GENERIC_READER_CONSTRUCTION(arrayType)
-    CONDITIONAL_GENERIC_READER_CONSTRUCTION(stringType)
-    CONDITIONAL_GENERIC_READER_CONSTRUCTION(sequenceType)
+    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes::simpleType)
+    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes::nestedType)
+    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes::arrayType)
+    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes::stringType)
+    CONDITIONAL_GENERIC_READER_CONSTRUCTION(deepTypes::sequenceType)
     
 #undef CONDITIONAL_GENERIC_READER_CONSTRUCTION
     
@@ -148,11 +148,11 @@ ReaderWriterFactory_impl::createWriter(
         result = new GenericWriter_impl<typeRequested##DataWriter,typeRequested>(dataWriter); \
     }
 
-    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(simpleType)
-    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(nestedType)
-    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(arrayType)
-    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(stringType)
-    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(sequenceType)
+    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes::simpleType)
+    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes::nestedType)
+    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes::arrayType)
+    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes::stringType)
+    CONDITIONAL_GENERIC_WRITER_CONSTRUCTION(deepTypes::sequenceType)
 
 #undef CONDITIONAL_GENERIC_WRITER_CONSTRUCTION
     

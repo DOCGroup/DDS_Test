@@ -20,7 +20,7 @@ ScenarioSetting_impl::ScenarioSetting_impl(const SettingNameType scenarioId) : N
     scenarioSetting = settingsParser->getToplevelNode();
     parsedParticipants = scenarioSetting->getChildNodes("participantSettings");
     
-    for (int i = 0; i<parsedParticipants.size(); i++) {
+    for (unsigned int i = 0; i<parsedParticipants.size(); i++) {
         parsedParticipant = parsedParticipants[i];            
         newParticipantSetting = new ParticipantSetting_impl(parsedParticipant->getName(), parsedParticipant);
         participantSettings.push_back(newParticipantSetting);
@@ -38,7 +38,7 @@ ScenarioSetting_impl::getParticipantSetting(
 
     ParticipantSetting_ptr result = NULL;
     ParticipantSetting_ptr current;
-    int index = 0;
+    unsigned int index = 0;
 
     if (name == NULL) {
         if (participantSettings.size() > 0) {

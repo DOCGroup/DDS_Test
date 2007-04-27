@@ -23,11 +23,11 @@
 /* ----------------- Realization per type ----------------------- */
 
 
-TYPED_FUNCTIONS_PROTOS(simpleType)
-TYPED_FUNCTIONS_PROTOS(nestedType)
-TYPED_FUNCTIONS_PROTOS(arrayType)
-TYPED_FUNCTIONS_PROTOS(stringType)
-TYPED_FUNCTIONS_PROTOS(sequenceType)
+TYPED_FUNCTIONS_PROTOS(deepTypes::simpleType)
+TYPED_FUNCTIONS_PROTOS(deepTypes::nestedType)
+TYPED_FUNCTIONS_PROTOS(deepTypes::arrayType)
+TYPED_FUNCTIONS_PROTOS(deepTypes::stringType)
+TYPED_FUNCTIONS_PROTOS(deepTypes::sequenceType)
 
 
 

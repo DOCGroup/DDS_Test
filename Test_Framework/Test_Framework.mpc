@@ -1,7 +1,7 @@
 //  -*- MPC -*- now wouldn't this be cool...
 // $Id$
 
-project (Test_Framework) : portableserver, ndds, splice, dcps {
+project (Test_Framework) : portableserver, nddslib, splicelib, dcps {
   dynamicflags += TEST_FRAMEWORK_BUILD_DLL
   libout = $(DDSTEST_ROOT)
   

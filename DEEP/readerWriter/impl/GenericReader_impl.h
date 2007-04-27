@@ -31,24 +31,40 @@ template <class TypedReader> class GenericReader_impl : public GenericReader {
 public:
     
     /* Public Methods from GenericReader */
-    unsigned int takeData(unsigned int maxNofSamples) {
-        typedFunctionsTakeData(dataReader, maxNofSamples);
+    unsigned int takeData(unsigned int maxNofSamples)
+    {
+      return typedFunctionsTakeData(dataReader,
+                                    maxNofSamples);
     }
     
-    unsigned int takeData(unsigned int maxNofSamples, duration *latencies) {
-        typedFunctionsTakeData(dataReader, maxNofSamples, (DDS::Time_t *)latencies);
+    unsigned int takeData(unsigned int maxNofSamples,
+                          duration *latencies)
+    {
+      return typedFunctionsTakeData(dataReader,
+                                    maxNofSamples,
+                                    (DDS::Time_t *)latencies);
     }
     
-    unsigned int takeAndForwardData(GenericWriter_ptr forwardTo, unsigned int maxNofSamples) {
+    unsigned int takeAndForwardData(GenericWriter_ptr forwardTo,
+                                    unsigned int maxNofSamples)
+    {
         GenericWriterBase_impl_ptr writer_impl;        
         writer_impl = dynamic_cast<GenericWriterBase_impl_ptr>(forwardTo);
-        typedFunctionsTakeAndForwardData(dataReader, writer_impl->getWriter(), maxNofSamples);
+        return typedFunctionsTakeAndForwardData(dataReader,
+                                                writer_impl->getWriter(),
+                                                maxNofSamples);
     }
     
-    unsigned int takeAndForwardData(GenericWriter_ptr forwardTo, unsigned int maxNofSamples, duration *latencies) {
+    unsigned int takeAndForwardData(GenericWriter_ptr forwardTo,
+                                    unsigned int maxNofSamples,
+                                    duration *latencies)
+    {
         GenericWriterBase_impl_ptr writer_impl;        
         writer_impl = dynamic_cast<GenericWriterBase_impl_ptr>(forwardTo);
-        typedFunctionsTakeAndForwardData(dataReader, writer_impl->getWriter(), maxNofSamples, (DDS::Time_t *)latencies);
+        return typedFunctionsTakeAndForwardData(dataReader,
+                                                writer_impl->getWriter(),
+                                                maxNofSamples,
+                                                (DDS::Time_t *)latencies);
     }
     
     bool waitForData(unsigned int timeOutMsecs) {

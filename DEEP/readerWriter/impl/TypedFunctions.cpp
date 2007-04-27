@@ -44,18 +44,18 @@ calculateLatency(
     } \
     \
     unsigned int typedFunctionsTakeData(TYPED_READER(typeName) *reader, unsigned int maxNofSamples) { \
-        unsigned int result; \
+        DEEP_sequenceIndexType result; \
         typeName##Seq msgSeq;\
         DDS::SampleInfoSeq infoSeq;\
         reader->take(msgSeq, infoSeq, maxNofSamples, \
             DDS::ANY_SAMPLE_STATE, DDS::ANY_VIEW_STATE, DDS::ALIVE_INSTANCE_STATE); \
         result = msgSeq.length(); \
         reader->return_loan(msgSeq, infoSeq); \
-        return result; \
+        return static_cast<unsigned int> (result); \
     } \
     \
     unsigned int typedFunctionsTakeData(TYPED_READER(typeName) *reader, unsigned int maxNofSamples, DDS::Time_t *latencies) { \
-        unsigned int result; \
+        DEEP_sequenceIndexType result; \
         DDS::Time_t currentTime; \
         typeName##Seq msgSeq;\
         DDS::SampleInfoSeq infoSeq;\
@@ -67,11 +67,11 @@ calculateLatency(
             calculateLatency(infoSeq[j].source_timestamp, currentTime, latencies[j]); \
         } \
         reader->return_loan(msgSeq, infoSeq); \
-        return result; \
+        return static_cast<unsigned int> (result); \
     } \
     \
     unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDS::DataWriter *writer, unsigned int maxNofSamples) { \
-        unsigned int result; \
+        DEEP_sequenceIndexType result; \
         typeName##DataWriter *dataWriter = typeName##DataWriter::DEEP_narrow(writer); \
         typeName##Seq msgSeq;\
         DDS::SampleInfoSeq infoSeq;\
@@ -82,11 +82,11 @@ calculateLatency(
             dataWriter->write_w_timestamp(msgSeq[j], DEEP_INSTANCE_HANDLE_NIL, infoSeq[j].source_timestamp); \
         } \
         reader->return_loan(msgSeq, infoSeq); \
-        return result; \
+        return static_cast<unsigned int> (result); \
     } \
     \
     unsigned int typedFunctionsTakeAndForwardData(TYPED_READER(typeName) *reader, DDS::DataWriter* writer, unsigned int maxNofSamples, DDS::Time_t *latencies) { \
-        unsigned int result; \
+        DEEP_sequenceIndexType result; \
         DDS::Time_t currentTime; \
         typeName##DataWriter *dataWriter = typeName##DataWriter::DEEP_narrow(writer); \
         typeName##Seq msgSeq; \
@@ -102,62 +102,62 @@ calculateLatency(
             calculateLatency(infoSeq[j].source_timestamp, currentTime, latencies[j]); \
         } \
         reader->return_loan(msgSeq, infoSeq); \
-        return result; \
+        return static_cast<unsigned int> (result); \
     }
 /* ----------------- Realization per type ----------------------- */
 
 
-TYPED_FUNCTIONS_IMPLS(simpleType)
-TYPED_FUNCTIONS_IMPLS(nestedType)
-TYPED_FUNCTIONS_IMPLS(arrayType)
-TYPED_FUNCTIONS_IMPLS(stringType)
-TYPED_FUNCTIONS_IMPLS(sequenceType)
+TYPED_FUNCTIONS_IMPLS(deepTypes::simpleType)
+TYPED_FUNCTIONS_IMPLS(deepTypes::nestedType)
+TYPED_FUNCTIONS_IMPLS(deepTypes::arrayType)
+TYPED_FUNCTIONS_IMPLS(deepTypes::stringType)
+TYPED_FUNCTIONS_IMPLS(deepTypes::sequenceType)
 
 
-void typedFunctionsInitData(simpleType &data, unsigned int payload) {
+void typedFunctionsInitData(deepTypes::simpleType &data, unsigned int payload) {
     data.id = 100;
     data.payload = 10*data.id;
 }
 
-void typedFunctionsIncrementData(simpleType &data) {
+void typedFunctionsIncrementData(deepTypes::simpleType &data) {
     data.id++;
     data.payload = 10*data.id;
 }
 
-void typedFunctionsInitData(nestedType &data, unsigned int payload) {
+void typedFunctionsInitData(deepTypes::nestedType &data, unsigned int payload) {
     data.id = 200;
     data.payload.value = 10*data.id;
 }
 
-void typedFunctionsIncrementData(nestedType &data) {
+void typedFunctionsIncrementData(deepTypes::nestedType &data) {
     data.id++;
     data.payload.value = 10*data.id;
 }
 
-void typedFunctionsInitData(arrayType &data, unsigned int payload) {
+void typedFunctionsInitData(deepTypes::arrayType &data, unsigned int payload) {
     data.id = 300;
     for (int i=0; i<10; i++) {
         data.payload[i] = i;
     }
 }
 
-void typedFunctionsIncrementData(arrayType &data) {
+void typedFunctionsIncrementData(deepTypes::arrayType &data) {
     data.id++;
 }
 
-void typedFunctionsInitData(stringType &data, unsigned int payload) {
+void typedFunctionsInitData(deepTypes::stringType &data, unsigned int payload) {
     data.id = 400;
     data.payload = "payLoad";
 }
 
-void typedFunctionsIncrementData(stringType &data) {
+void typedFunctionsIncrementData(deepTypes::stringType &data) {
     data.id++;
 }
 
-void typedFunctionsInitData(sequenceType &data, unsigned int payload) {
+void typedFunctionsInitData(deepTypes::sequenceType &data, unsigned int payload) {
   data.payload.DEEP_length(payload);
 }
 
-void typedFunctionsIncrementData(sequenceType &data) {
+void typedFunctionsIncrementData(deepTypes::sequenceType &data) {
   return;
 }

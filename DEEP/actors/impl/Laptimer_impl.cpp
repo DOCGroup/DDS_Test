@@ -15,7 +15,9 @@ Sink_impl::Sink_impl(
     doTiming = sinkSetting->getDoTiming();
     reader = readerWriterFactory->createReader(sinkSetting->getTypeName(),
                                                sinkSetting->getTopicName(),
-                                               sinkSetting->getReaderPartitionExpression());
+                                               sinkSetting->getReaderPartitionExpression(),
+                                               sinkSetting->getTopicSetting(),
+                                               sinkSetting->getReaderSetting());
 }
 
 Sink_impl::~Sink_impl() {
@@ -47,7 +49,9 @@ processLatencies(
         min = 0xffffffff;
         max = 0;
         for (i=0; i<nofLatencies; i++) {
-            msecs = latencies[i].tv_sec * 1000000 + latencies[i].tv_usec/1000;
+            msecs =
+              static_cast<unsigned int> (latencies[i].tv_sec) * 1000000
+              + latencies[i].tv_usec/1000;
             sum += msecs;
             if (msecs > max) {
                 max = msecs;
@@ -62,7 +66,9 @@ processLatencies(
         dsum = 0.0;
         dmean2 = dmean*dmean;
         for (i=0; i<nofLatencies; i++) {
-            msecs = latencies[i].tv_sec * 1000000 + latencies[i].tv_usec/1000;
+            msecs =
+              static_cast<unsigned int> (latencies[i].tv_sec) * 1000000
+              + latencies[i].tv_usec/1000;
             dsum += msecs*msecs - dmean2;
         }
         sdev = sqrt(dsum/nofLatencies);

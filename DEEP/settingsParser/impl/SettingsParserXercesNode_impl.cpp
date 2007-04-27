@@ -1,7 +1,7 @@
 #include "impl/SettingsParserXercesNode_impl.h"
 #include "impl/SettingsParserXerces_impl.h"
 #include "stdlib.h"
-#include "strings.h"
+#include <string>
 
 namespace Deep
 {
@@ -57,7 +57,7 @@ SettingsParserXercesNode_impl::getValue(
         
     char *stringValue;
     getValue(path, stringValue);
-    value = atof(stringValue);
+    value = static_cast<float> (atof(stringValue));
 }
 
 void
@@ -69,7 +69,7 @@ SettingsParserXercesNode_impl::getValue(
     char *stringValue;
     try {
         getValue(path, stringValue);
-        value = atof(stringValue);
+        value = static_cast<float> (atof(stringValue));
     }
     catch (SettingsParserException e) {
         if (e == SETTING_EXCEPTION_NOT_FOUND) {
@@ -87,7 +87,8 @@ SettingsParserXercesNode_impl::getValue(
 
     char *stringValue;
     getValue(path, stringValue);
-    value = (strcasecmp(stringValue, "true") == 0);
+    std::string strValue (stringValue);
+    value = (strValue == "true" || strValue == "TRUE");
 }
 
 void
@@ -99,7 +100,8 @@ SettingsParserXercesNode_impl::getValue(
     char *stringValue;
     try {
         getValue(path, stringValue);
-        value = (strcasecmp(stringValue, "true") == 0);
+        std::string strValue (stringValue);
+        value = (strValue == "true" || strValue == "TRUE");
     }
     catch (SettingsParserException e) {
         if (e == SETTING_EXCEPTION_NOT_FOUND) {
@@ -116,7 +118,7 @@ SettingsParserXercesNode_impl::getValue(
     char *&value) throw (SettingsParserException) {
     
     bool found = false;
-    int index = 0;
+    unsigned int index = 0;
     NameValue_ptr currentNameValue;
     
     while (!found && (index < values.size())) {
@@ -140,7 +142,7 @@ SettingsParserXercesNode_impl::getValue(
     char *defaultValue) throw (SettingsParserException) {
     
     bool found = false;
-    int index = 0;
+    unsigned int index = 0;
     NameValue_ptr currentNameValue;
     
     while (!found && (index < values.size())) {

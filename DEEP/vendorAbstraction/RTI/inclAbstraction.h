@@ -2,10 +2,18 @@
 #define INCLABSTRACTION_H_
 
 #include "ndds/ndds_cpp.h"
-/*include this file if you want to use DDS namespace */
+/* include this file if you want to use DDS namespace */
 #include "ndds/ndds_namespace_cpp.h"
 #include "deepTypes.h"
 #include "deepTypesSupport.h"
+
+#if defined (_WINDOWS)
+# include <Windows.h>
+#endif
+
+#include <iostream>
+
+using namespace std;
 
 #define DEEP_INSTANCE_HANDLE_NIL DDS::HANDLE_NIL
 
@@ -98,4 +106,4 @@ inline DDSDomainParticipant *DEEP_create_participant(const char *domainId) {
 
 
 
-#endif /*INCLABSTRACTION_H_*/
+#endif /* INCLABSTRACTION_H_ */

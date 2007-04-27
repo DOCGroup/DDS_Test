@@ -1,4 +1,4 @@
-project(Splice_Latency_Pub) : spliceexe {
+project(Splice_Latency_Pub) : spliceexe_with_idl {
   exename   = publisher
   libs     += Stats
   after    += Stats
@@ -27,7 +27,7 @@ project(Splice_Latency_Pub) : spliceexe {
   }
 }
 
-project(Splice_Latency_Sub) : spliceexe {
+project(Splice_Latency_Sub) : spliceexe_with_idl {
   exename   = subscriber
   libs     += Stats
   after    += Stats

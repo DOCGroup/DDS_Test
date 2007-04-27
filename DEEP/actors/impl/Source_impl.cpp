@@ -1,7 +1,25 @@
 /* Interface */
 #include "Source_impl.h"
 /* Implementation */
+#if defined (_WINDOWS)
+# include <Windows.h>
+#else
 #include <time.h>
+#endif
+
+#if defined (_WINDOWS)
+struct timespec
+{
+  time_t tv_sec;
+  long tv_nsec;
+};
+
+void nanosleep (const struct timespec *ts,
+                struct timespec * /* remaining */)
+{
+  ::Sleep (static_cast<DWORD> (ts->tv_sec * 1000 + ts->tv_nsec / 1000));
+}
+#endif
 
 namespace Deep
 {

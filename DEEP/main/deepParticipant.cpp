@@ -10,13 +10,40 @@
 #include "ReflectorSetting.h"
 #include "SinkSetting.h"
 /* Implementation */
+#if !defined (_WINDOWS)
 #include <unistd.h>
 #include <sched.h>
+#endif
 
 #define BUILTIN_SETTING_NAME_DEFAULT BUILTIN_SETTING_NAME_SOURCE
 
 using namespace Deep;
 
+#if defined (_WINDOWS)
+// Windows Sleep() takes milliseconds
+# define sleep(n) ::Sleep (n * 1000)
+
+static void set_rt (int /* prio */) 
+{
+  HANDLE hProcess
+    = ::OpenProcess (PROCESS_SET_INFORMATION,
+                     FALSE,
+                     ::GetCurrentProcessId ());
+                     
+  if (hProcess == 0)
+    {
+      cerr << "error - could not open current process" << endl;
+      return;
+    }
+    
+  if (! ::SetPriorityClass (hProcess, REALTIME_PRIORITY_CLASS))
+    {
+      cerr << "error - could not set priority class" << endl;
+    }   
+        
+  ::CloseHandle (hProcess);
+}
+#else
 static void set_rt(int prio) 
 {
     struct sched_param p;
@@ -32,6 +59,7 @@ static void set_rt(int prio)
     }
 */
 }
+#endif
 
 int
 main(
@@ -47,7 +75,7 @@ main(
     ReaderWriterFactory_ptr readerWriterFactory;
     char *scenarioName = NULL;
     char *participantName = NULL;
-    unsigned int curArgc;
+    int curArgc;
     
     curArgc = 1;
     if (argc > curArgc) {

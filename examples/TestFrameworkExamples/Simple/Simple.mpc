@@ -1,4 +1,4 @@
-project(SimplePubNDDS): nddsexe, ddstest {
+project(SimplePubNDDS): nddsexe_with_idl, ddstest {
   exename   = simple_pub_ndds
   
   NDDSTypeSupport_Files {
@@ -19,7 +19,7 @@ project(SimplePubNDDS): nddsexe, ddstest {
   }
 }
 
-project(SimpleSubNDDS): nddsexe, ddstest {
+project(SimpleSubNDDS): nddsexe_with_idl , ddstest {
   exename   = simple_sub_ndds
 
   NDDSTypeSupport_Files {

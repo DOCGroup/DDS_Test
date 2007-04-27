@@ -10,7 +10,7 @@
 #define DEEP_INSTANCE_HANDLE_NIL DDS::HANDLE_NIL
 
 /* The type used for the [] operator on sequences seems to be vendor specific */
-typedef CORBA::Long DEEP_sequenceIndexType;
+typedef CORBA::ULong DEEP_sequenceIndexType;
 
 /* Setting the length of a sequence */
 #define DEEP_length(seqLen) length(seqLen) 
@@ -85,4 +85,4 @@ inline DDS::DomainParticipant_ptr DEEP_create_participant(const char *domainId) 
     return dp;
 }
 
-#endif /*INCLABSTRACTION_H_*/
+#endif /* INCLABSTRACTION_H_ */

@@ -1,5 +1,5 @@
 // -*- MPC -*-
 // $Id$
 
-project : aceexe, splice {
+project : splicelib {
 }
