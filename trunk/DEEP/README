@@ -150,6 +150,7 @@ Below are step-by-step instructions on how to run manual RT-DEEP tests.
   3) cd $DEEP_HOME
   4) cd exec/RTI
   5) sh ./run.sh 
+  6) find result file starting with "OneSink" in the same directory
 
 
 - RTI DDS 1-to-n (n >= 1) distributed nodes where "1" must reside on blade30, 
