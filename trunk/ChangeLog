@@ -1,3 +1,15 @@
+Fri Apr 27 21:46:45 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * MPC/config/MPC.cfg:
+        
+          New file, to be copied to $MPC_ROOT/config for use with
+          MPC to build things in DDS_Test that require ACE and/or
+          TAO.
+          
+        * README:
+        
+          Updated MPC information.
+
 Fri Apr 27 21:15:25 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC\config\nddslib_with_idl.mpb:
