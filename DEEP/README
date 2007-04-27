@@ -205,3 +205,9 @@ to let the network traffic properly go through multicast address to do that, you
 register the multicast membership group,e.g.
 
 ./route.sh eth0 (eth0 indicates whatever interface that represents the current active network interface)
+
+to monitor the traffic for diagnosis purpose, you may run sniffer program such as tcpdump to monitor the network traffic (suppose you are running 1-to-many internodes scenarios)
+
+e.g. 
+
+sudo /usr/sbin/tcpdump host 225.3.2.1
