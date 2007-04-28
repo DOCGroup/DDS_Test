@@ -95,7 +95,7 @@ static const struct {
 #define V_DEFAULT_SCHEDULING_CLASS "Default"
 #define V_DEFAULT_RELIABILITY      "BestEffort"
 #define V_DEFAULT_TOPIC_NAME       "simpleTypeTopic"
-#define V_DEFAULT_TYPE_NAME        "deepTypes::simpleType"
+#define V_DEFAULT_TYPE_NAME        "simpleType"
 
 static const struct {
     const char *nodeName;

@@ -6,7 +6,7 @@
 namespace Deep
 {
 
-static char *defaultTypeName = "deepTypes::simpleType";
+static char *defaultTypeName = "simpleType";
 static char *defaultTopicName = "simpleTopic";
 
 ActorSetting_impl::ActorSetting_impl(

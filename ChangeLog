@@ -1,3 +1,14 @@
+Sat Apr 28 14:38:44 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DEEP/readerWriter/impl/TypedFunctions.cpp:
+        * DEEP/readerWriter/impl/TypedFunctions.h:
+        * DEEP/readerWriter/impl/ReaderWriterFactory_impl.cpp:
+        * DEEP/scenario\impl/ActorSetting_impl.cpp:
+        * DEEP/settingsParser/impl/SettingsParserDefault_impl.cpp:
+        
+          Removed module from IDL file regenerated code, and removed
+          namespace 'deepTypes' from macro instantiations.
+
 Sat Apr 28 01:42:31 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC\config\MPC.cfg:
