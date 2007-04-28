@@ -1,0 +1,9 @@
+// -*- MPC -*-
+// $Id$
+
+workspace {
+  cmdline += -include ../MPC/config -feature_file ../MPC/config/default.features
+  DEEP_OpenSplice.mpc
+  DEEP_RTI_DDS.mpc
+//  DEEP_OpenDDS.mpc
+}
