@@ -57,6 +57,49 @@ measurement can be accomplished easily with current actor settings.
 3. Building RT-DEEP
 --------------------
 
+- Building RT-DEEP with MPC
+
+If you are building things for the first time,
+check out the MPC module from the SubVersion repository. It's
+location is
+
+https://svn.dre.vanaderbilt.edu/DOC/MPC/trunk
+
+Move the contents of the 'trunk' directory up to the level of
+the 'trunk' directory, and delete it. Set $MPC_ROOT in your
+environment to the path of this new directory.
+
+To build just the RTI DDS and OpenSplice versions of DEEP,
+there is no dependency on ACE or TAO, and no need to
+have any of those libs built or installed. There are 3
+MPC files in the DEEP directory, one for each of the
+above versions of DEEP and one for the OpenDDS version.
+This latter version depends on ACE + TAO and also
+(because of its lack of support for waitsets) does not
+currently build without errors. You'll notice in the
+file DEEP.mwc that this MPC file is commented out of
+the list. If you want to skip building either one of
+the other versions, you can comment it out as well.
+
+To build the no-ACE-dependency OpenSplice and RTI DDS
+versions, cd to the DEEP directory and type
+
+$MPC_ROOT/mwc.pl -type <type> DEEP.mwc
+
+where <type> is 'make', 'vc71' or 'vc8'. If you have
+uncommented the OpenDDS MPC project and want to
+build it, you'll need to have ACE + TAO installed.
+For this build, type
+
+$ACE_ROOT/bin/mwc.pl -type <type> DEEP.mwc
+
+Notice that the ACE_ROOT version of mwc.pl is used
+for this. Of course it goes without saying that, to
+build any of these DEEP versions, you'll need the
+corresponding vendor's implementation of DDS installed,
+and your environment variables set according to the
+instructions in their documentation.
+
 - Building RT-DEEP on Linux
 
 Below are step-by-step installation instructions to build RT-DEEP.Generally, building RT-DEEP 

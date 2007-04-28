@@ -1,0 +1,22 @@
+//  -*- MPC -*- now wouldn't this be cool...
+// $Id$
+
+project (DEEP_RTI_DDS) : nddslib, deepbase {
+  exename =   deep_rti_dds 
+  includes += readerWriter/generated/RTI \
+			        vendorAbstraction/RTI
+  
+  Source_Files {
+    readerWriter/generated/RTI
+  }
+  
+  Header_Files {
+    readerWriter/generated/RTI
+    vendorAbstraction/RTI
+  }
+  
+  verbatim(make, macros) {
+    OUTPUT_OPTION = -o obj/RTI
+  }
+}
+

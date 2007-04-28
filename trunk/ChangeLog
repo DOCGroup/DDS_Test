@@ -1,3 +1,31 @@
+Sat Apr 28 01:42:31 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * MPC\config\MPC.cfg:
+        * DEEP\DEEP.mpc:
+        
+          Removed these recently added files, reconfigured and
+          added new files to get an easier procedure for doing
+          MPC builds.
+        
+        * MPC\config\default.features:
+        * MPC\config\deepbase.mpb:
+        * DEEP\DEEP.mwc:
+        * DEEP\DEEP_RTI_DDS.mpc:
+        * DEEP\DEEP_OpenDDS.mpc:
+        * DEEP\DEEP_OpenSplice.mpc:
+        
+          New files, separate MPC files for each flavor of DEEP
+          now, and .mwc file dedicated just to DEEP, a
+          default features file to enable the pickup of the
+          Xerces base project, and a base .mpb project to
+          factor out common stuff from all 3 builds.
+        
+        * README:
+        * DEEP\README:
+        
+          Updated documentation to reflect the changes described
+          above.
+
 Fri Apr 27 21:46:45 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC/config/MPC.cfg:

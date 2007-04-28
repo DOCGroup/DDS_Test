@@ -1,0 +1,21 @@
+//  -*- MPC -*- now wouldn't this be cool...
+// $Id$
+
+project (DEEP_OpenSplice) : splicelib, deepbase {
+  exename =   deep_opensplice
+  includes += readerWriter/generated/OpenSplice \
+			        vendorAbstraction/OpenSplice
+  
+  Source_Files {
+    readerWriter/generated/Opensplice
+  }
+  
+  Header_Files {
+    readerWriter/generated/Opensplice
+    vendorAbstraction/OpenSplice
+  }
+  
+  verbatim(make, macros) {
+    OUTPUT_OPTION = -o obj/OpenSplice
+  }
+}

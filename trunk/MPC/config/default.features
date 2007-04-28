@@ -1,0 +1,4 @@
+// Feature definitions from this file override those in
+// $MPC_ROOT/config/global.features and $MPC_ROOT/config/default.features
+//
+xerces        = 1
