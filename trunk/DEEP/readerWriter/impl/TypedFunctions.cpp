@@ -107,57 +107,57 @@ calculateLatency(
 /* ----------------- Realization per type ----------------------- */
 
 
-TYPED_FUNCTIONS_IMPLS(deepTypes::simpleType)
-TYPED_FUNCTIONS_IMPLS(deepTypes::nestedType)
-TYPED_FUNCTIONS_IMPLS(deepTypes::arrayType)
-TYPED_FUNCTIONS_IMPLS(deepTypes::stringType)
-TYPED_FUNCTIONS_IMPLS(deepTypes::sequenceType)
+TYPED_FUNCTIONS_IMPLS(simpleType)
+TYPED_FUNCTIONS_IMPLS(nestedType)
+TYPED_FUNCTIONS_IMPLS(arrayType)
+TYPED_FUNCTIONS_IMPLS(stringType)
+TYPED_FUNCTIONS_IMPLS(sequenceType)
 
 
-void typedFunctionsInitData(deepTypes::simpleType &data, unsigned int payload) {
+void typedFunctionsInitData(simpleType &data, unsigned int payload) {
     data.id = 100;
     data.payload = 10*data.id;
 }
 
-void typedFunctionsIncrementData(deepTypes::simpleType &data) {
+void typedFunctionsIncrementData(simpleType &data) {
     data.id++;
     data.payload = 10*data.id;
 }
 
-void typedFunctionsInitData(deepTypes::nestedType &data, unsigned int payload) {
+void typedFunctionsInitData(nestedType &data, unsigned int payload) {
     data.id = 200;
     data.payload.value = 10*data.id;
 }
 
-void typedFunctionsIncrementData(deepTypes::nestedType &data) {
+void typedFunctionsIncrementData(nestedType &data) {
     data.id++;
     data.payload.value = 10*data.id;
 }
 
-void typedFunctionsInitData(deepTypes::arrayType &data, unsigned int payload) {
+void typedFunctionsInitData(arrayType &data, unsigned int payload) {
     data.id = 300;
     for (int i=0; i<10; i++) {
         data.payload[i] = i;
     }
 }
 
-void typedFunctionsIncrementData(deepTypes::arrayType &data) {
+void typedFunctionsIncrementData(arrayType &data) {
     data.id++;
 }
 
-void typedFunctionsInitData(deepTypes::stringType &data, unsigned int payload) {
+void typedFunctionsInitData(stringType &data, unsigned int payload) {
     data.id = 400;
     data.payload = "payLoad";
 }
 
-void typedFunctionsIncrementData(deepTypes::stringType &data) {
+void typedFunctionsIncrementData(stringType &data) {
     data.id++;
 }
 
-void typedFunctionsInitData(deepTypes::sequenceType &data, unsigned int payload) {
+void typedFunctionsInitData(sequenceType &data, unsigned int payload) {
   data.payload.DEEP_length(payload);
 }
 
-void typedFunctionsIncrementData(deepTypes::sequenceType &data) {
+void typedFunctionsIncrementData(sequenceType &data) {
   return;
 }
