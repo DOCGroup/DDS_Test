@@ -1,4 +1,3 @@
-echo "Last updated: `date -u`"
 rm -rf /obj/*
 (cd settingsParser/impl
 sh build.sh OpenSplice SettingsParserXerces_impl
