@@ -40,6 +40,8 @@ measurement can be accomplished easily with current actor settings.
   |
   |--[doc]                          - related documentations
   |
+  |--[autobuild]                    - scripts for updating scoreboard
+  |
   |--build_RTI.sh                   - script for building RTI DDS DEEP
   |
   |--build_OpenSplice.sh            - script for building OpenSplice DEEP
@@ -263,12 +265,12 @@ sudo /usr/sbin/tcpdump host 225.3.2.1
 Since a lot of people are making a lot of changes to RT-DEEP, we put a build
 scoreboard page at
 
-http://www.dre.vanderbilt.edu/DDS/html/deep.html (near the bottom of the page)
+http://www.dre.vanderbilt.edu/DDS/scoreboard
 
-which will show the build results for RT-DEEP at a regular basis.
+which will show the latest build results for RT-DEEP at a regular basis.
 
 Generally you don't have to worry about updating the scoreboard, since we have
 put it as a crontab task, but if for any reason, you need to update the scoreboard
-manually. simply do the following as tczar:
+manually, simply do the following as tczar:
 
-sh /export/home/tczar/DDS/DEEP/update_build_scoreboard.sh
+sh /export/home/tczar/DDS/DEEP/scoreboard/update_build_scoreboard.sh
