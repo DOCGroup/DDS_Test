@@ -75,7 +75,7 @@ echo "<hr>" >> $INDEX_FILE
 echo "<h2><a name=\"Linux\">Linux</a></h2>" >> $INDEX_FILE
 echo "<table border=\"1\">" >> $INDEX_FILE
 echo "<tbody><tr>" >> $INDEX_FILE
-echo "<th>Build Name</th><th>Config</th><th>Compile</th><th>Tests</th><th>Test Results</th>" >> $INDEX_FILE
+echo "<th>Build Name</th><th>Config</th><th>Compile</th><th>Tests</th><th>Graph Results</th>" >> $INDEX_FILE
 echo "</tr>" >> $INDEX_FILE
 
 echo "<tr><td>RTI 4.1e</td><td>build_RTI.sh </td><td bgcolor=\"lime\">[<a href=\"http://www.dre.vanderbilt.edu/DDS/html/BUILD/RTI_BUILD_RESULT\">Full</a>] </td><td bgcolor=\"lime\">[<a href=\"http://www.dre.vanderbilt.edu/DDS/html/BUILD/RTI_TEST_RESULT\">Full</a>]</td><td bgcolor=\"white\">N/A</td></tr>" >> $INDEX_FILE
@@ -83,7 +83,7 @@ echo "<tr><td>OpenSplice 2.2.5b02</td><td>build_OpenSplice.sh </td><td bgcolor=\
 echo "<tr><td>MPC Build</td><td>DEEP.mwc </td><td bgcolor=\"lime\">[<a href=\"http://www.dre.vanderbilt.edu/DDS/html/BUILD/MPC_BUILD_RESULT\">Full</a>] </td><td bgcolor=\"white\">N/A</td><td bgcolor=\"white\">N/A</td></tr>" >> $INDEX_FILE
 echo "</tbody></table>" >> $INDEX_FILE
 
-echo "<br>Last updated at `date -u`<br>" >> $INDEX_FILE
+echo "<br>Last built and test at `date -u`<br>" >> $INDEX_FILE
 
 echo "</body></html>" >> $INDEX_FILE
 
