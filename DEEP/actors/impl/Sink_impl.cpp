@@ -38,7 +38,7 @@ processLatencies(
 
         /* Make filename unique */
         strncpy(actualFileName, fileName, MAXLEN);
-        strncat(actualFileName, SUFFIX, MAXLEN);
+        // strncat(actualFileName, SUFFIX, MAXLEN);
         mkstemp(actualFileName);
         std::ofstream outFile(actualFileName);
 
