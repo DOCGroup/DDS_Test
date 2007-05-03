@@ -6,7 +6,7 @@ else
   NOF_REFLECTORS=$DEF_NOF_REFLECTORS
 fi
 
-ospl start file:///export2/home/tczar/DDS/DEEP/exec/OpenSplice/ospl.xml
+ospl start
 
 ./deepParticipant ../scenario4.xml SinkParticipant 80 &
 ./deepParticipant ../scenario4.xml SinkParticipant 82 &
