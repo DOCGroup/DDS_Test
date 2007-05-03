@@ -93,7 +93,7 @@ echo "<th>Build Name</th><th>Config</th><th>Compile</th><th>Tests</th><th>Graph 
 echo "</tr>" >> $INDEX_FILE
 
 echo "<tr><td>RTI 4.1e</td><td>build_RTI.sh </td><td bgcolor=\"lime\">[<a href=\"http://www.dre.vanderbilt.edu/DDS/html/BUILD/RTI_BUILD_RESULT\">Full</a>] </td><td bgcolor=\"lime\">[<a href=\"http://www.dre.vanderbilt.edu/DDS/html/BUILD/RTI_TEST_RESULT\">Full</a>]</td><td bgcolor=\"white\">N/A</td></tr>" >> $INDEX_FILE
-echo "<tr><td>OpenSplice 2.2.5b02</td><td>build_OpenSplice.sh </td><td bgcolor=\"lime\">[<a href=\"http://www.dre.vanderbilt.edu/DDS/html/BUILD/OpenSplice_BUILD_RESULT\">Full</a>] </td><td bgcolor=\"white\">N/A</td><td bgcolor=\"white\">N/A</td></tr>" >> $INDEX_FILE
+echo "<tr><td>OpenSplice 2.2.5b02</td><td>build_OpenSplice.sh </td><td bgcolor=\"lime\">[<a href=\"http://www.dre.vanderbilt.edu/DDS/html/BUILD/OpenSplice_BUILD_RESULT\">Full</a>] </td><td bgcolor=\"lime\">[<a href=\"http://www.dre.vanderbilt.edu/DDS/html/BUILD/RTI_TEST_RESULT\">Full</a>]</td><td bgcolor=\"white\">N/A</td></tr>" >> $INDEX_FILE
 echo "<tr><td>MPC Build</td><td>DEEP.mwc </td><td bgcolor=\"lime\">[<a href=\"http://www.dre.vanderbilt.edu/DDS/html/BUILD/MPC_BUILD_RESULT\">Full</a>] </td><td bgcolor=\"white\">N/A</td><td bgcolor=\"white\">N/A</td></tr>" >> $INDEX_FILE
 echo "</tbody></table>" >> $INDEX_FILE
 
