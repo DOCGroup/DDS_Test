@@ -57,6 +57,20 @@ fi
 )
 
 echo "step 7: Running OpenSplice 1-to-1 intranode test.."
+(
+echo "Last updated: `date -u`" > $OpenSplice_TEST_RESULT_FILE
+echo "1 to 1 intranode latency test (run.sh) run at `hostname`" >> $OpenSplice_TEST_RESULT_FILE
+cd $DEEP_HOME/exec/OpenSplice
+if [ -e "OneSink" ];then
+  rm OneSink
+fi
+sh ./run.sh 1>>$OpenSplice_TEST_RESULT_FILE 2>&1
+sleep 5 # Wait for result file to be written
+if [ -e "OneSink" ];then
+  cat OneSink >> $OpenSplice_TEST_RESULT_FILE
+fi
+)
+
 
 echo "step 8: Updating WWW repository.."
 
