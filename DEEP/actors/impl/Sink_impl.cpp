@@ -45,6 +45,9 @@ processLatencies(
         /* First calculate mean, min and max, in microseconds */
         sum = 0;
         min = 0xffffffff;
+
+        outFile << "current min:" << min << std::endl;
+        
         max = 0;
         for (i=0; i<nofLatencies; i++) {
             msecs = latencies[i].tv_sec * 1000000 + latencies[i].tv_usec/1000;
@@ -53,6 +56,7 @@ processLatencies(
                 max = msecs;
             }
             if (msecs < min) {
+                outFile << "msecs < min" << std::endl;
                 min = msecs;
             }
             outFile << i << "  " << msecs << std::endl;
