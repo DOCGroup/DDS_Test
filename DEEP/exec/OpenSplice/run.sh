@@ -9,7 +9,6 @@ fi
 ospl start
 
 ./deepParticipant ../scenario4.xml SinkParticipant 80 &
-./deepParticipant ../scenario4.xml SinkParticipant 82 &
 for ((refl=1; refl <= NOF_REFLECTORS ; refl++))
 do
     ./deepParticipant ../scenario4.xml ReflectorParticipant 60 &
