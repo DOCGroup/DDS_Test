@@ -16,4 +16,4 @@ do
 done
 ./deepParticipant ../scenario4.xml SourceParticipant 40
 
-ospl stop
+ospl -a
