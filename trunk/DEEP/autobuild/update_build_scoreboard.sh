@@ -106,6 +106,7 @@ echo "</body></html>" >> $INDEX_FILE
 (cp -f $OpenSplice_RESULT_FILE /home/tczar/WWW/trunk/DDS/html/BUILD/OpenSplice_BUILD_RESULT)
 (cp -f $MPC_RESULT_FILE /home/tczar/WWW/trunk/DDS/html/BUILD/MPC_BUILD_RESULT)
 (cp -f $RTI_TEST_RESULT_FILE /home/tczar/WWW/trunk/DDS/html/BUILD/RTI_TEST_RESULT)
+(cp -f $OpenSplice_TEST_RESULT_FILE /home/tczar/WWW/trunk/DDS/html/BUILD/OpenSplice_TEST_RESULT)
 
 (cp -f $INDEX_FILE /home/tczar/WWW/trunk/DDS/scoreboard/index.html)
 
