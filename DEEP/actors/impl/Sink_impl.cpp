@@ -44,7 +44,7 @@ processLatencies(
 
         /* First calculate mean, min and max, in microseconds */
         sum = 0;
-        min = 0xffffffff;
+        min = 0x7fffffff;
         max = 0;
         for (i=0; i<nofLatencies; i++) {
             msecs = latencies[i].tv_sec * 1000000 + latencies[i].tv_usec/1000;
