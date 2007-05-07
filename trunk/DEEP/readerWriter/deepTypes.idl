@@ -1,3 +1,4 @@
+const long MAX_MSGLENGTH = 32768;
 
 struct simpleType {
     long id;
@@ -41,7 +42,7 @@ struct stringType {
 #pragma DCPS_DATA_TYPE "stringType"
 
 
-typedef sequence<octet> OctetSequence;
+typedef sequence<octet,MAX_MSG_LENGTH> OctetSequence;
 
 struct sequenceType {
     OctetSequence payload;
