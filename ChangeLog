@@ -1,3 +1,12 @@
+Mon May  7 01:35:55 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
+
+        * DEEP/readerWriter/deepTypes.idl
+
+        Added MAX_MSG_LENGTH to octet sequence definition because
+        the internal buffer allocated for serializing the sequence
+        is based on this value, which means without which "bad
+        things" might happen.
+
 Sat Apr 28 14:38:44 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/readerWriter/impl/TypedFunctions.cpp:
