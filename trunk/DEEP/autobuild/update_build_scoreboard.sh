@@ -15,6 +15,8 @@ OpenSplice_TEST_RESULT_FILE=/export/home/tczar/DDS/DEEP/autobuild/OpenSplice_TES
 cd /export/home/tczar/DDS/DEEP
 . /export/home/tczar/.bashrc
 
+unset NDDS_DISCOVERY_PEERS #remove this line when doing distributed test
+
 echo "Start updating the scoreboard.."
 echo "step 1: Updating current working copy.."
 (svn up 1>/dev/null)
@@ -52,6 +54,7 @@ fi
 sh ./run.sh 1>>$RTI_TEST_RESULT_FILE 2>&1
 sleep 20 # Wait for result file to be written
 if [ -e "OneSink" ];then
+  echo "Results: OneSink"  >> $RTI_TEST_RESULT_FILE
   cat OneSink >> $RTI_TEST_RESULT_FILE
 fi
 )
