@@ -15,4 +15,6 @@ do
 done
 ./deepParticipant ../scenario16384.xml SourceParticipant 40
 
+sleep 50
+
 ospl -a
