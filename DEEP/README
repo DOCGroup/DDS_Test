@@ -274,3 +274,11 @@ put it as a crontab task, but if for any reason, you need to update the scoreboa
 manually, simply do the following as tczar:
 
 sh /export/home/tczar/DDS/DEEP/scoreboard/update_build_scoreboard.sh
+
+
+7.FAQ
+---------------------------------
+Q: Im not able to run the run.sh for each vendor at the same host, why?
+A: Usually this is caused by an environment variable NDDS_DISCOVERY_PEERS.
+   be sure to unset this environment variable before you run that on local
+   host.
