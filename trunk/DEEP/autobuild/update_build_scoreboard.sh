@@ -50,7 +50,7 @@ if [ -e "OneSink" ];then
   rm OneSink
 fi
 sh ./run.sh 1>>$RTI_TEST_RESULT_FILE 2>&1
-sleep 5 # Wait for result file to be written
+sleep 20 # Wait for result file to be written
 if [ -e "OneSink" ];then
   cat OneSink >> $RTI_TEST_RESULT_FILE
 fi
@@ -65,7 +65,7 @@ if [ -e "OneSink" ];then
   rm OneSink
 fi
 sh ./run.sh 1>>$OpenSplice_TEST_RESULT_FILE 2>&1
-sleep 5 # Wait for result file to be written
+sleep 20 # Wait for result file to be written
 if [ -e "OneSink" ];then
   cat OneSink >> $OpenSplice_TEST_RESULT_FILE
 fi
