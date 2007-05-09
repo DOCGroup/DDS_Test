@@ -2,7 +2,7 @@
 // $Id$
 
 project (DEEP_RTI_DDS) : nddslib, deepbase {
-  exename   = deepParaticipant
+  exename   = deepParticipant
   install   = exec/RTI
   includes += readerWriter/generated/RTI \
 			        vendorAbstraction/RTI

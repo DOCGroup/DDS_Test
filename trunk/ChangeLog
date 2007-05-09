@@ -1,3 +1,25 @@
+Wed May  9 21:00:07 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DEEP/DEEP_RTI_DDS.mpc:
+        
+          Fixed typo in executable name.
+
+Wed May  9 20:41:23 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DEEP/DEEP_RTI_DDS.mpc:
+        * DEEP/DEEP_OpenSplice.mpc:
+        * DEEP/DEEP_OpenDDS.mpc:
+        
+          Fixed some spelling case errors that showed up only on
+          Linux. Also removed the OUTPUT_OPTION verbatim line, since
+          it wasn't working as expected in generating a makefile,
+          and added a CXX verbatim line for DEEP_OpenSplice.mpc,
+          to get the version of g++ needed by OpenSplice, and an
+          'install' line to put the executable into the directory
+          needed by the DBE scripts. Thanks to Ming Xiong
+          <ming dot xiong at vanderbilt dot edu> for his help with
+          these makefile problems.
+
 Mon May  7 01:35:55 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
 
         * DEEP/readerWriter/deepTypes.idl
