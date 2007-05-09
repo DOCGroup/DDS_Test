@@ -33,15 +33,15 @@ echo "Last updated: `date -u`" >$OpenSplice_RESULT_FILE
 sh ./build_OpenSplice.sh 1>>$OpenSplice_RESULT_FILE 2>&1
 )
 
-#(
-#echo "Last updated: `date -u`" > $MPC_RESULT_FILE
+(
+echo "Last updated: `date -u`" > $MPC_RESULT_FILE
 
-#echo "step 4: (Re)Generating makefile using MPC.."
-#$MPC_ROOT/mwc.pl -type make DEEP.mwc 1>>$MPC_RESULT_FILE 2>&1
+echo "step 4: (Re)Generating makefile using MPC.."
+$MPC_ROOT/mwc.pl -type make DEEP.mwc 1>>$MPC_RESULT_FILE 2>&1
 
-#echo "step 5: Building RT-DEEP using makefile.."
-#make 1>>$MPC_RESULT_FILE 2>&1
-#)
+echo "step 5: Building RT-DEEP using makefile.."
+make 1>>$MPC_RESULT_FILE 2>&1
+)
 
 echo "step 6: Running RTI 1-to-1 intranode test.."
 (
