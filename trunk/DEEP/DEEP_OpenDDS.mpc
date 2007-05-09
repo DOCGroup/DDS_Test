@@ -2,7 +2,8 @@
 // $Id$
 
 project (DEEP_OpenDDS) : dcpsexe_with_reliable_multicast, portableserver, deepbase {
-  exename   = deep_opendds 
+  exename   = deepParticipant
+  install   = exec/OpenDDS
   includes += readerWriter/generated/TAO_DDS \
 			        vendorAbstraction/TAO_DDS
   
@@ -17,9 +18,5 @@ project (DEEP_OpenDDS) : dcpsexe_with_reliable_multicast, portableserver, deepba
   
   Inline_Files {
     readerWriter/generated/TAO_DDS
-  }
-  
-  verbatim(make, macros) {
-    OUTPUT_OPTION = -o obj/TAO_DDS
   }
 }

@@ -2,20 +2,21 @@
 // $Id$
 
 project (DEEP_OpenSplice) : splicelib, deepbase {
-  exename =   deep_opensplice
+  exename   = deepParticipant
+  install   = exec/OpenSplice 
   includes += readerWriter/generated/OpenSplice \
 			        vendorAbstraction/OpenSplice
   
   Source_Files {
-    readerWriter/generated/Opensplice
+    readerWriter/generated/OpenSplice
   }
   
   Header_Files {
-    readerWriter/generated/Opensplice
+    readerWriter/generated/OpenSplice
     vendorAbstraction/OpenSplice
   }
   
   verbatim(make, macros) {
-    OUTPUT_OPTION = -o obj/OpenSplice
+    CXX = g++3.2.3
   }
 }
