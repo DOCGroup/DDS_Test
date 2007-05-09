@@ -2,7 +2,8 @@
 // $Id$
 
 project (DEEP_RTI_DDS) : nddslib, deepbase {
-  exename =   deep_rti_dds 
+  exename   = deepParaticipant
+  install   = exec/RTI
   includes += readerWriter/generated/RTI \
 			        vendorAbstraction/RTI
   
@@ -13,10 +14,6 @@ project (DEEP_RTI_DDS) : nddslib, deepbase {
   Header_Files {
     readerWriter/generated/RTI
     vendorAbstraction/RTI
-  }
-  
-  verbatim(make, macros) {
-    OUTPUT_OPTION = -o obj/RTI
   }
 }
 
