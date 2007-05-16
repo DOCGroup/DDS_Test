@@ -1,3 +1,18 @@
+Wed May 16 20:13:43 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DEEP/DEEP_RTI_DDS.mpc:
+        * DEEP/DEEP_OpenDDS.mpc:
+        * DEEP/DEEP_OpenSplice.mpc:
+        
+          Removed again the IDL processing steps. There is no clear
+          way to accomplish the generation of a correct makefile
+          that follows the directory structure and redirection of
+          output in the existing build scripts, especially since
+          the OpenSplice IDL processor has no option to redirect
+          its output. Anyway, since IDL processing will be specific
+          to each application, it will likely be removed from DEEP
+          eventually.
+
 Wed May 16 17:51:38 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC/config/deepbase.mpb:
