@@ -17,6 +17,6 @@ project (DEEP_OpenSplice) : splicelib, deepbase {
   }
   
   verbatim(make, macros) {
-    CXX = g++3.2.3
+    OUTPUT_OPTION = -o obj/OpenSplice/$@
   }
 }

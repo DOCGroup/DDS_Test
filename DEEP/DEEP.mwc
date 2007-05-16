@@ -2,8 +2,22 @@
 // $Id$
 
 workspace {
-  cmdline += -include ../MPC/config -feature_file ../MPC/config/default.features
+  cmdline += -include ../MPC/config \
+             -feature_file ../MPC/config/default.features
+             
+  scope1 {
+  cmdline += -value_template cxx=g++3.2.3 \
+             -value_template obj_dir=obj/OpenSplice/
   DEEP_OpenSplice.mpc
+  }
+  
+  scope2 {
+  cmdline += -value_template obj_dir=obj/RTI/
   DEEP_RTI_DDS.mpc
+  }
+  
+//  scope3 {
+//  cmdline += -value_template obj_dir=obj/OpenDDS/
 //  DEEP_OpenDDS.mpc
+//  }
 }

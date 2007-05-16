@@ -1,3 +1,14 @@
+Wed May 16 16:12:51 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DEEP/DEEP.mwc:
+        * DEEP/DEEP_RTI_DDS.mpc:
+        * DEEP/DEEP_OpenSplice.mpc:
+        
+          Changes to these MPC-related files to get generated makefiles
+          that are as close to the existing build scripts as possible.
+          Thanks to Chad Elliott <elliott_c at ociweb dot com> for his
+          help with MPC details.
+
 Wed May  9 21:00:07 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/DEEP_RTI_DDS.mpc:
