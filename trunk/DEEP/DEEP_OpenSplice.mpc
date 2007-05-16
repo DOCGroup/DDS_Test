@@ -1,11 +1,38 @@
 //  -*- MPC -*- now wouldn't this be cool...
 // $Id$
 
-project (DEEP_OpenSplice) : splicelib, deepbase {
-  exename   = deepParticipant
-  install   = exec/OpenSplice 
+project (DEEP_OpenSplice) : splicelib_with_idl, deepbase {
+  exeout    = exec/OpenSplice 
   includes += readerWriter/generated/OpenSplice \
 			        vendorAbstraction/OpenSplice
+  
+  Modify_Custom(SpliceTypeSupport) {
+    postcommand = \
+      <%mv%> ccpp_deepTypes.h readerWriter/generated/OpenSplice <%and%> \
+      <%mv%> deepTypes.cpp readerWriter/generated/OpenSplice <%and%> \
+      <%mv%> deepTypes.h readerWriter/generated/OpenSplice <%and%> \
+      <%mv%> deepTypesDcps.idl readerWriter/generated/OpenSplice <%and%> \
+      <%mv%> deepTypesDcps_impl.cpp readerWriter/generated/OpenSplice <%and%> \
+      <%mv%> deepTypesDcps_impl.h readerWriter/generated/OpenSplice <%and%> \
+      <%mv%> deepTypesSplDcps.cpp readerWriter/generated /OpenSplice<%and%> \
+      <%mv%> deepTypesSplDcps.h readerWriter/generated/OpenSplice <%and%> \
+      <%mv%> deepTypesDcps.cpp readerWriter/generated/OpenSplice <%and%> \
+      <%mv%> deepTypesDcps.h readerWriter/generated/OpenSplice
+  }
+  
+  SpliceTypeSupport_Files {
+	  readerWriter/deepTypes.idl >> \
+	    readerWriter/generated/OpenSplice/ccpp_deepTypes.h \
+      readerWriter/generated/OpenSplice/deepTypes.cpp \
+      readerWriter/generated/OpenSplice/deepTypes.h \
+      readerWriter/generated/OpenSplice/deepTypesDcps.idl \
+      readerWriter/generated/OpenSplice/deepTypesDcps_impl.cpp \
+      readerWriter/generated/OpenSplice/deepTypesDcps_impl.h \
+      readerWriter/generated/OpenSplice/deepTypesSplDcps.cpp \
+      readerWriter/generated/OpenSplice/deepTypesSplDcps.h \
+      readerWriter/generated/OpenSplice/deepTypesDcps.cpp \
+      readerWriter/generated/OpenSplice/deepTypesDcps.h
+  }
   
   Source_Files {
     readerWriter/generated/OpenSplice
@@ -14,9 +41,5 @@ project (DEEP_OpenSplice) : splicelib, deepbase {
   Header_Files {
     readerWriter/generated/OpenSplice
     vendorAbstraction/OpenSplice
-  }
-  
-  verbatim(make, macros) {
-    OUTPUT_OPTION = -o obj/OpenSplice/$@
   }
 }

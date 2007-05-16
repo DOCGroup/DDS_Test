@@ -1,11 +1,21 @@
 //  -*- MPC -*- now wouldn't this be cool...
 // $Id$
 
-project (DEEP_RTI_DDS) : nddslib, deepbase {
-  exename   = deepParticipant
-  install   = exec/RTI
+project (DEEP_RTI_DDS) : nddslib_with_idl, deepbase {
+  exeout    = exec/RTI
+  ndds_ts_flags += -d readerWriter/generated/RTI
   includes += readerWriter/generated/RTI \
 			        vendorAbstraction/RTI
+  
+  NDDSTypeSupport_Files {
+	  readerWriter/deepTypes.idl >> \
+	    readerWriter/generated/RTI/deepTypes.cxx \
+      readerWriter/generated/RTI/deepTypes.h \
+      readerWriter/generated/RTI/deepTypesPlugin.cxx \
+      readerWriter/generated/RTI/deepTypesPlugin.h \
+      readerWriter/generated/RTI/deepTypesSupport.cxx \
+      readerWriter/generated/RTI/deepTypesSupport.h
+  }
   
   Source_Files {
     readerWriter/generated/RTI
@@ -14,10 +24,6 @@ project (DEEP_RTI_DDS) : nddslib, deepbase {
   Header_Files {
     readerWriter/generated/RTI
     vendorAbstraction/RTI
-  }
-  
-  verbatim(make, macros) {
-    OUTPUT_OPTION = -o obj/RTI/$@
   }
 }
 
