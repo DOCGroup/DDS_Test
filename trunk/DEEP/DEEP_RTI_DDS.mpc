@@ -15,5 +15,9 @@ project (DEEP_RTI_DDS) : nddslib, deepbase {
     readerWriter/generated/RTI
     vendorAbstraction/RTI
   }
+  
+  verbatim(make, macros) {
+    OUTPUT_OPTION = -o obj/RTI/$@
+  }
 }
 
