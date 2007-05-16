@@ -3,66 +3,8 @@
 
 project (DEEP_OpenDDS) : dcpsexe_with_reliable_multicast, portableserver, deepbase {
   exeout   = exec/OpenDDS
-  idlflags += -o readerWriter/generated/OpenDDS
-  dcps_ts_flags += -M deepTypes
   includes += readerWriter/generated/OpenDDS \
 			        vendorAbstraction/OpenDDS
-  
-  Modify_Custom(TypeSupport) {
-    postcommand = \
-      <%mv%> simpleTypeTypeSupport.idl readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> simpleTypeTypeSupportImpl.h readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> simpleTypeTypeSupportImpl.cpp readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> nestedTypeTypeSupport.idl readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> nestedTypeTypeSupportImpl.h readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> nestedTypeTypeSupportImpl.cpp readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> arrayTypeTypeSupport.idl readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> arrayTypeTypeSupportImpl.h readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> arrayTypeTypeSupportImpl.cpp readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> stringTypeTypeSupport.idl readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> stringTypeTypeSupportImpl.h readerWriter/generated/OpenDDS <%and%> \
-      <%mv%> stringTypeTypeSupportImpl.cpp readerWriter/generated/OpenDDS
-  }
-  
-  TypeSupport_Files {
-	  readerWriter/deepTypes.idl >> \
-	    readerWriter/generated/OpenDDS/simpleTypeTypeSupport.idl \
-      readerWriter/generated/OpenDDS/simpleTypeTypeSupportImpl.h \
-      readerWriter/generated/OpenDDS/simpleTypeTypeSupportImpl.cpp \
-      readerWriter/generated/OpenDDS/nestedTypeTypeSupport.idl \
-      readerWriter/generated/OpenDDS/nestedTypeTypeSupportImpl.h \
-      readerWriter/generated/OpenDDS/nestedTypeTypeSupportImpl.cpp \
-      readerWriter/generated/OpenDDS/arrayTypeTypeSupport.idl \
-      readerWriter/generated/OpenDDS/arrayTypeTypeSupportImpl.h \
-      readerWriter/generated/OpenDDS/arrayTypeTypeSupportImpl.cpp \
-      readerWriter/generated/OpenDDS/stringTypeTypeSupport.idl \
-      readerWriter/generated/OpenDDS/stringTypeTypeSupportImpl.h \
-      readerWriter/generated/OpenDDS/stringTypeTypeSupportImpl.cpp
-  }
-  
-  IDL_Files {
-    readerWriter/deepTypes.idl << \
-      readerWriter/generated/OpenDDS/simpleTypeTypeSupport.idl \
-      readerWriter/generated/OpenDDS/nestedTypeTypeSupport.idl \
-      readerWriter/generated/OpenDDS/arrayTypeTypeSupport.idl \
-      readerWriter/generated/OpenDDS/stringTypeTypeSupport.idl \
-                               >> \
-      readerWriter/generated/OpenDDS/deepTypesC.h \
-      readerWriter/generated/OpenDDS/deepTypesC.inl \
-      readerWriter/generated/OpenDDS/deepTypesC.cpp \
-      readerWriter/generated/OpenDDS/deepTypesS.h \
-      readerWriter/generated/OpenDDS/deepTypesS.inl \
-      readerWriter/generated/OpenDDS/deepTypesS.cpp
-    readerWriter/generated/OpenDDS/simpleTypeTypeSupport.idl << \
-      readerWriter/generated/OpenDDS/deepTypesS.cpp
-    readerWriter/generated/OpenDDS/nestedTypeTypeSupport.idl << \
-      readerWriter/generated/OpenDDS/deepTypesS.cpp
-    readerWriter/generated/OpenDDS/arrayTypeTypeSupport.idl << \
-      readerWriter/generated/OpenDDS/deepTypesS.cpp
-    readerWriter/generated/OpenDDS/stringTypeTypeSupport.idl << \
-      readerWriter/generated/OpenDDS/deepTypesS.cpp
-  }
-  
   Source_Files {
     readerWriter/generated/OpenDDS
   }
