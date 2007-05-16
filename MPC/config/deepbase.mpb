@@ -2,6 +2,7 @@
 // $Id$
 
 project : xerces {
+  exename   = deepParticipant
   includes += actors \
 			        readerWriter \
 			        readerWriter/impl \
