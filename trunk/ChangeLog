@@ -1,3 +1,12 @@
+Thu May 17 15:35:17 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * DEEP/doc/VendorSpecificIssues.html:
+        
+          Added an item to the table about RTI DDS's proprietary
+          ParticipantQos add-ons, some of which must be set in
+          application code. Thanks to Hans van't Hag <hans dot
+          vanthag at prismtech dot com> for reminding me.
+
 Wed May 16 20:13:43 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/DEEP_RTI_DDS.mpc:

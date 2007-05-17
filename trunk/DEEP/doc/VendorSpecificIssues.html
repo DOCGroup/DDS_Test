@@ -205,7 +205,7 @@ Runtime issues may be added to a later version of this document.<P>
   </tr>
   
   <tr>
-    <td>type of <code><em>datatype</em>Seq[index]</code> index variable between brackets
+    <td>type of <code><em>datatype</em>Seq[index]</code> index variable between brackets</td>
     <td>
       <UL>
         <LI> <B>OpenSplice</B> - CORBA::ULong
@@ -217,6 +217,21 @@ Runtime issues may be added to a later version of this document.<P>
         Even though RTI DDS doesn't use CORBA basic types without the
         optional kit, it would still be better if it used an unsigned
         type)</td>
+  </tr>
+
+  <tr>
+    <td>proprietary QoS settings required</td>
+    <td>
+      <UL>
+        <LI> <B>OpenSplice</B> - no
+        <LI> <B>RTI DDS</B> - yes
+        <LI> <B>TAO DDS</B> - no
+      </UL>
+    </td>
+    <td>YES RTI DDS has several non-spec members in the ParticipantQod
+        struct, some of which (host id and app id) need to be set on
+        publisher and subscriber, with another (participant index)
+        needing to be set on the subscriber only</td>
   </tr>
 
 </table> <P>
