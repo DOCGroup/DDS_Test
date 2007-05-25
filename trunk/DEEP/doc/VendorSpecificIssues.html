@@ -149,7 +149,11 @@ Runtime issues may be added to a later version of this document.<P>
         <LI> <B>TAO DDS</B> - does not support WaitSets or conditions
       </UL>
     </td>
-    <td>YES (RTI DDS is compliant with IDL C++ mapping)</td>
+    <td>NO (The signature of this operation changed from passing
+        ConditionSeq as an OUT parameter - which takes a pointer
+        to be converted to the ConditionSeq_out class - in DDS 1.0, to passing
+        ConditionSeq as in INOUT parameter - which maps to a reference
+        for sequences - in DDS 1.1.)</td>
   </tr>
   
   <tr>
@@ -157,12 +161,12 @@ Runtime issues may be added to a later version of this document.<P>
      <code>SampleInfoSeq</code> to <code>take()</code></td>
     <td>
       <UL>
-        <LI> <B>OpenSplice</B> - by pointer
+        <LI> <B>OpenSplice</B> - by reference
         <LI> <B>RTI DDS</B> - by reference
         <LI> <B>TAO DDS</B> - by pointer
       </UL>
     </td>
-    <td>YES (RTI DDS is compliant with IDL C++ mapping)</td>
+    <td>YES (TAO DDS is not compliant with IDL C++ mapping)</td>
   </tr>
   
   <tr>
