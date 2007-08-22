@@ -1,15 +1,21 @@
+Wed Aug 22 18:12:07 UTC 2007  Abdullah Sowayan  <abdullah.sowayan@lmco.com>
+
+        * MPC/config/nddslib.mpb:
+
+          Enhanced mpb's file support for MSVC71
+
 Fri May 25 16:46:35 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/doc/VendorSpecificIssues.html:
-        
-          Changes intended but overlooked in 
-          
+
+          Changes intended but overlooked in
+
           Thu Apr 26 16:59:11 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
 Thu May 17 15:35:17 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/doc/VendorSpecificIssues.html:
-        
+
           Added an item to the table about RTI DDS's proprietary
           ParticipantQos add-ons, some of which must be set in
           application code. Thanks to Hans van't Hag <hans dot
@@ -20,7 +26,7 @@ Wed May 16 20:13:43 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * DEEP/DEEP_RTI_DDS.mpc:
         * DEEP/DEEP_OpenDDS.mpc:
         * DEEP/DEEP_OpenSplice.mpc:
-        
+
           Removed again the IDL processing steps. There is no clear
           way to accomplish the generation of a correct makefile
           that follows the directory structure and redirection of
@@ -33,13 +39,13 @@ Wed May 16 20:13:43 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 Wed May 16 17:51:38 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC/config/deepbase.mpb:
-        
+
           Factored out 'exename' since it's the same for each MPC file.
-          
+
         * DEEP/DEEP_RTI_DDS.mpc:
         * DEEP/DEEP_OpenDDS.mpc:
         * DEEP/DEEP_OpenSplice.mpc:
-        
+
           Put back IDL processing steps for each vendor.
 
 Wed May 16 16:12:51 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -47,7 +53,7 @@ Wed May 16 16:12:51 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * DEEP/DEEP.mwc:
         * DEEP/DEEP_RTI_DDS.mpc:
         * DEEP/DEEP_OpenSplice.mpc:
-        
+
           Changes to these MPC-related files to get generated makefiles
           that are as close to the existing build scripts as possible.
           Thanks to Chad Elliott <elliott_c at ociweb dot com> for his
@@ -56,7 +62,7 @@ Wed May 16 16:12:51 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 Wed May  9 21:00:07 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/DEEP_RTI_DDS.mpc:
-        
+
           Fixed typo in executable name.
 
 Wed May  9 20:41:23 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -64,7 +70,7 @@ Wed May  9 20:41:23 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * DEEP/DEEP_RTI_DDS.mpc:
         * DEEP/DEEP_OpenSplice.mpc:
         * DEEP/DEEP_OpenDDS.mpc:
-        
+
           Fixed some spelling case errors that showed up only on
           Linux. Also removed the OUTPUT_OPTION verbatim line, since
           it wasn't working as expected in generating a makefile,
@@ -91,7 +97,7 @@ Sat Apr 28 14:38:44 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * DEEP/readerWriter/impl/ReaderWriterFactory_impl.cpp:
         * DEEP/scenario\impl/ActorSetting_impl.cpp:
         * DEEP/settingsParser/impl/SettingsParserDefault_impl.cpp:
-        
+
           Removed module from IDL file regenerated code, and removed
           namespace 'deepTypes' from macro instantiations.
 
@@ -99,40 +105,40 @@ Sat Apr 28 01:42:31 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC\config\MPC.cfg:
         * DEEP\DEEP.mpc:
-        
+
           Removed these recently added files, reconfigured and
           added new files to get an easier procedure for doing
           MPC builds.
-        
+
         * MPC\config\default.features:
         * MPC\config\deepbase.mpb:
         * DEEP\DEEP.mwc:
         * DEEP\DEEP_RTI_DDS.mpc:
         * DEEP\DEEP_OpenDDS.mpc:
         * DEEP\DEEP_OpenSplice.mpc:
-        
+
           New files, separate MPC files for each flavor of DEEP
           now, and .mwc file dedicated just to DEEP, a
           default features file to enable the pickup of the
           Xerces base project, and a base .mpb project to
           factor out common stuff from all 3 builds.
-        
+
         * README:
         * DEEP\README:
-        
+
           Updated documentation to reflect the changes described
           above.
 
 Fri Apr 27 21:46:45 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC/config/MPC.cfg:
-        
+
           New file, to be copied to $MPC_ROOT/config for use with
           MPC to build things in DDS_Test that require ACE and/or
           TAO.
-          
+
         * README:
-        
+
           Updated MPC information.
 
 Fri Apr 27 21:15:25 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -226,7 +232,7 @@ Thu Apr 26 19:44:09 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
 Thu Apr 26 16:59:11 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/doc/VendorSpecificIssues.html:
-        
+
           Corrections and suggestions made by Reinier Torenbeek
           <Reinier dot Torenbeek at prismtech dot com>.
 
@@ -270,7 +276,7 @@ Fri Apr 20 21:20:20 UTC 2007  xiong,ming  <ming.xiong@vanderbilt.edu>
 Wed Apr 18 21:41:27 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DDEP/VendorSpecificIssues.html:
-        
+
           New document, enumerating the issues that require application
           code to differ from one DDS implementation to another,
           listing the behavior of each vendor on each issue, and
@@ -399,7 +405,7 @@ Thu Apr  5 22:20:18 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * DEEP/readerWriter/RTI_DDS_impl/TypedFunctions.cpp:
         * DEEP/readerWriter/RTI_DDS_impl/TypedFunctions.h:
         * DEEP/readerWriter/RTI_DDS_impl/ReaderWriterFactory_impl.cpp:
-        
+
           Added '-namespace' to the command line of rtiddsgen in the
           MPC base project file, and put back the scoped name passed
           to several macros in the framework source files.
@@ -411,7 +417,7 @@ Thu Apr  5 19:00:24 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * DDEP/readerWriter/RTI_DDS_impl/GenericWriter_impl.h:
         * DDEP/readerWriter/RTI_DDS_impl/GenericReader_impl.h:
         * DDEP/readerWriter/TAO_DDS_impl/GenericWriter_impl.h:
-        
+
           Removed 'impl/' from some includes. Now that there are
           such directories for each vendor, some of these includes
           were incorrect, but they will all work without the
@@ -517,39 +523,39 @@ Mon Apr  2 21:05:09 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * DEEP/readerWriter/TAO_DDS_impl/GenericReader_impl.h:
         * DEEP/readerWriter/TAO_DDS_impl/ReaderWriterFactory_impl.cpp:
         * DEEP/readerWriter/TAO_DDS_impl/ReaderWriterFactory_impl.h:
-        
+
           New files, a temporary design so the DEEP framework will
           compile and link with TAO DDS until the final design is
           decided upon.
-          
+
         * DEEP/vendorAbstraction/TAO_DDS/inclAbstraction.h:
         * DEEP/vendorAbstraction/RTI/inclAbstraction.h:
-        
+
           Changes to the vendor-specific include files.
-          
+
         * DEEP/DEEP.mpc.RTI:
         * DEEP/DEEP.mpc.TAO_DDS:
         * DEEP/DEEP.mpc.OSPL:
-        
+
           Vendor-specific MPC files, necessary since each must have
           its own vendor-specific include paths and libs to link to.
           At present, just remove the extension after the .mpc from
           the desired MPC file and generate.
-          
+
         * DEEP/deepTypes.idl:
-        
+
           Added necessary #pragmas for TAO DDS.
-          
+
         * DEEP/settingsParser/impl/SettingsParserDefault_impl.cpp:
         * DEEP/settingsParser/impl/SettingsParserXerces_impl.cpp:
-        
-          
+
+
           Commented out some unused variables.
 
 Fri Mar 30 19:30:00 UTC 2007  James Edmondson <jedmondson@gmail.com>
 
         * DDS/scripts/*:
-          
+
           benchmark and terminate should now work with latency exes
           from OpenSplice, RTI DDS, and TAO DDS.
 
@@ -575,7 +581,7 @@ Fri Mar 30 19:30:00 UTC 2007  James Edmondson <jedmondson@gmail.com>
 Fri Mar 30 19:25:53 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DEEP/*:
-        
+
           New directory and files, containing the framework supplied by
           the OpenSplice folks, along with a few minor mods for
           portability. The example IDL file deepTypes.idl was moved
@@ -586,17 +592,17 @@ Fri Mar 30 19:25:53 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 Mon Feb 26 23:12:44 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performace/latency/NDDS/latency/NDDS_latency.mpc:
-        
-          Modified this file to reflect a change in the IDL 
+
+          Modified this file to reflect a change in the IDL
           filename.
-          
+
         * performace/latency/NDDS/latency/latencyPlugin.cxx:
         * performace/latency/NDDS/latency/latencySupport.h:
         * performace/latency/NDDS/latency/latency.h:
         * performace/latency/NDDS/latency/latencySupport.cxx:
         * performace/latency/NDDS/latency/latency.cxx:
         * performace/latency/NDDS/latency/latencyPlugin.h:
-        
+
           Removed these generated files from the repository.
 
 Mon Feb 26 22:56:24 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -755,7 +761,7 @@ Mon Feb 26 21:58:36 UTC 2007  James Edmondson <jedmondson@gmail.com>
 
         * performance/latency/NDDS/latency/*
         * settings/*
-        
+
           Added Ming's file name changes in the NDDS latency directory.
           The changes to the settings files are minor and only specify
           diff blades that are currently being used (blade33-34).
@@ -764,7 +770,7 @@ Fri Feb 23 22:52:11 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC/config/splice_ts_defaults.mpb:
         * MPC/config/splice.mpb:
-        
+
           Modified these files to work with the C++ standalone mapping of
           OpenSplice, previous version worked with the C mapping. Also
           made changes so that whatever passes for 'make clean' on
@@ -779,33 +785,33 @@ Fri Feb 23 21:50:21 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * performance/throughput/OpenSplice/C++/types_registration.h:
         * performance/throughput/OpenSplice/C++/stats_export.h:
         * performance/throughput/OpenSplice/C++/getopt.h:
-        
+
           Removed these files. The stats-related files were duplicates
           of those in the Stats library, the contents of the other
           files were refactored into existing files.
 
         * performance/throughput/OpenSplice/C++/Splice_c++_throughput.mpc:
-        
+
           New file, which generates 3 builds: the common generated code
           in a library, and the publisher and subscriber as executables
           that share the generated code.
 
         * performance/throughput/OpenSplice/C++/common_config.h:
-        
+
           Factored out write-specific and read-specific methods
           into their corresponding publisher and subscriber source
           files. Also added necessary includes for the generated
           code. Also added workarounds for clashes in macro and
           type definitions between ACE and OpenSplice.
-          
+
         * performance/throughput/OpenSplice/C++/subscriber.cpp:
         * performance/throughput/OpenSplice/C++/publisher.cpp:
-        
+
           Rearranged include files, plus cosmetic changes. Changed
           all output messages to use ACE_DEBUG or ACE_ERROR.
-          
+
         * performance/throughput/OpenSplice/C++/TPTDef.idl:
-        
+
           Replace all bounded sequence declarations for a given
           data type with a single unbounded sequence for that type.
           Also added empty keylist pragma directives.
@@ -822,16 +828,16 @@ Mon Feb 19 23:13:33 UTC 2007  James Edmondson  <jedmondson@gmail.com>
         * settings/net/two_node.settings
         * performance/latency/NDDS/latency/*
         * performance/latency/OpenSplice/*
-        
+
           Benchmark.pl and terminate.pl now start processes up as root
           for rt_class usage. Several bash scripts were replaced with
           perl scripts for portability. DDS environment files were added
           to aid setting up environment (especially LD_LIBRARY_PATH).
-        
+
           OpenSplice latency code has been incorporated into the DBE. Initial
           pass at NDDS latency code (it compiles but has not been incorporated
           yet).
-        
+
           Added new settings files for latency tests and testing on the same
           node. Functionality has been there for a long time. This was just done
           to add a template file for others to use.
@@ -840,7 +846,7 @@ Mon Feb 19 23:13:33 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 Fri Feb  2 22:29:08 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * performance/throughput/NDDS/TP_Packet.idl:
-        
+
           Removed all declarations of bounded sequences, left only
           a struct containing an unbounded octet sequence, along
           with some comments about possible future changes and
@@ -867,14 +873,14 @@ Wed Jan 31 21:50:42 UTC 2007  James Edmondson  <jedmondson@gmail.com>
         * performance/throughput/NDDS/sub_result3
         * performance/throughput/NDDS/sub_result4
         * performance/throughput/NDDS/#START_SUB#
-        
+
           All of these files were removed from the repository as they were
           either duplicates, binaries, or automatically generated files.
 
 Wed Jan 31 21:20:14 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 
         * settings/*
-        
+
           Added the DBE settings files currently on the blade. These provide
           default network, qos, and test settings for easy setup and
           configuration of the DBE.
@@ -882,7 +888,7 @@ Wed Jan 31 21:20:14 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 Wed Jan 31 21:11:01 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 
         * performance/latency/*
-        
+
           Added the latency code base to the repository. For information
           about most of these tests, see Ming. One note should be added
           concerning performance/latency/JMS. I left the jar files in the
@@ -898,17 +904,17 @@ Wed Jan 31 20:31:58 UTC 2007  James Edmondson  <jedmondson@gmail.com>
         * scripts/ospl_start
         * scripts/ospl_runtime_stop.sh
         * scripts/ospl_runtime_init.sh
-        
+
           Added scripts for starting and stopping the splice daemon
           as root with real-time scheduling.
-        
+
 
 Wed Jan 31 20:12:06 UTC 2007  James Edmondson  <jedmondson@gmail.com>
 
         * README
-        
-          Added description of SVN commands for this repository.      
-        
+
+          Added description of SVN commands for this repository.
+
 
 Tue Jan 30 23:12:06 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
@@ -918,14 +924,14 @@ Tue Jan 30 23:12:06 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * Test_Framework/Splice_Test_Pub_T.cpp:
         * Test_Framework/Splice_Test_Sub_T.cpp:
         * Test_Framework/Splice_Test_T.h:
-        
+
           New files, minimum integration of OpenSplice into the
           test framework.
-          
+
         * Test_Framework/Test_Framework.mpc:
-        
+
           Added new files to the MPC file.
-          
+
         * Test_Framework/dds_config.h:
         * Test_Framework/NDDS_Test_T.h:
         * Test_Framework/NDDS_Test_Pub_T.h:
@@ -933,7 +939,7 @@ Tue Jan 30 23:12:06 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * Test_Framework/NDDS_Test_T.cpp:
         * Test_Framework/NDDS_Test_Pub_T.cpp:
         * Test_Framework/NDDS_Test_Sub_T.cpp:
-        
+
           Minor changes.
 
 Fri Jan 12 20:32:18 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -947,44 +953,44 @@ Fri Jan 12 20:32:18 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * performance/throughput/OpenSplice/C/listener/dds_config_file.h:
         * performance/throughput/OpenSplice/C/listener/common_config.h:
         * performance/throughput/OpenSplice/C/listener/subscriber_aux.h:
-        
+
           Removed #includes of .cpp file in corresponding .h file, added
           ACE includes, fixed signed/unsigned mismatches, added Splice
           includes.
-          
+
         * performance/throughput/OpenSplice/C/listener/Splice_c_listener_tp.mpc:
-        
+
           Added files to Header_Files block of subscriber project.
-          
+
         * performance/throughput/OpenSplice/C/waitset/Splice_c_waitset_tp.mpc:
-        
+
           New file, MPC project file for Splice waitset test code.
 
 Fri Jan 12 19:25:23 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * MPC/config/splice_ts_defaults.mpb:
-        
+
           Put MPC-style 'quote' tokens around strings with an
           environment variable that contains a space.
-          
+
         * MPC/config/splice.mpb:
-        
+
           Fixed name of a link lib, and added a warning suppression for
           Visual Studio builds, suppresses 'unused local variable', since
           these seem to be common in Splice generated code.
-          
+
         * performance/throughput/OpenSplice/C/listener/dds_config_file.cpp:
         * performance/throughput/OpenSplice/C/listener/tweak_qos.h:
         * performance/throughput/OpenSplice/C/listener/dds_config_file.h:
         * performance/throughput/OpenSplice/C/listener/qos_file_format.h:
         * performance/throughput/OpenSplice/C/listener/common_config.h:
-        
+
           Fixed signed/unsigned mismatches, and removed #include of .cpp
           file at the bottom of some .h files.
-          
+
         * performance/throughput/OpenSplice/C/listener/Splice_c_listener_tp.mpc:
-        
-          New file, MPC build generation file for Splice publisher and 
+
+          New file, MPC build generation file for Splice publisher and
           subscriber in this directory.
 
 Tue Jan  9 22:32:18 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -992,7 +998,7 @@ Tue Jan  9 22:32:18 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * MPC/config/splice.mpb:
         * MPC/config/splice_ts_defaults.mpb:
         * MPC/config/spliceexe.mpb:
-        
+
           New files, first cut at getting Splice test code to build
           using MPC.
 
@@ -1001,7 +1007,7 @@ Tue Jan  9 22:29:55 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * performance/throughput/NDDS\ndds.mpb:
         * performance/throughput/NDDS\ndds_ts_defaults.mpb:
         * performance/throughput/NDDS\nddsexe.mpb:
-        
+
           Removed these files, they are now duplicates of files in
           MPC/config.
 
@@ -1011,7 +1017,7 @@ Tue Jan  9 22:24:39 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * Stats/Stats.h:
         * Stats/stats_export.h:
         * Stats/Stats.mpc:
-        
+
           Restored these files and their directory, they can't be
           removed until the DDS test framework is integrated with
           all test code - my mistake.
@@ -1019,7 +1025,7 @@ Tue Jan  9 22:24:39 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 Tue Jan  9 19:54:50 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Stats/*.*:
-        
+
           Removed this directory and its associated buid, the
           stats stuff is now contained in the Test_Framework
           library.
@@ -1027,32 +1033,32 @@ Tue Jan  9 19:54:50 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 Tue Jan  9 19:47:14 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DDSTest.mwc:
-        
+
           Removed the exclude of the Stats directory, which has
           been removed. Also modified the cmdline addition to
           have the correct syntax when referring to an
           environment variable.
-          
+
         * Test_Framework/dds_config.h:
-        
+
           Cosmetic changes.
-          
+
         * Test_Framework/TAO_DDS_Listeners.cpp:
-        
+
           Added guard to exclude this file from the build unless
           we are building the TAO DDS version of Test_Framework.
 
 Tue Dec 19 19:54:15 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Test_Framework/dds_config.h:
-        
+
           New file, allows the user to specify which implementation
           of DDS is being used.
-          
+
         * Test_Framework/TAO_DDS_Listeners.h:
         * Test_Framework/TestBase.h:
         * Test_Framework/Test_Framework.mpc:
-        
+
           Changes resulting from new file above.
 
 Fri Dec 15 18:49:14 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -1061,50 +1067,50 @@ Fri Dec 15 18:49:14 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * MPC/config/ndds.mpb:
         * MPC/config/ddstest.mpb:
         * MPC/config/nddsexe.mpb:
-        
+
           Moved these files from Test_Framework/MPC (removed,
           see below) to this new path, consistent with similar
           paths in the TAO, CIAO, and DDS modules.
-          
+
         * Test_Framework/MPC:
-        
+
           Removed this directory, all its files were moved as
           described above.
-          
+
         * README:
-        
+
           New file, containing minimal info about generating builds
           for this workspace with MPC.
 
 Mon Sep 11 23:04:53 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Test_Framework/README:
-        
+
           Added outstanding issue related to NDDS - the failure
           of the nddsgen script to handle #ifndef guards around IDL.
-          
+
         * examples/TestFrameworkExamples/Simple/Simple.idl:
-        
+
           Added comments explaining why the #ifndef guards must
           be commented out - see above item.
-          
+
         * examples/TestFrameworkExamples/Simple/README:
-        
+
           New file documenting the ongoing work with the test
           framework example.
 
 Mon Sep 11 21:11:19 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * DDSTest.mwc:
-        
+
           New MPC workspace file for the entire DDS test tree.
-          
+
         * Test_Framework/MPC/ddstest.mpb:
-        
+
           New file containing MPC project to be added as a
           base project for tests that link to the Test_Framework
           library.
-          
+
         * Test_Framework/MPC/ndds.mpb:
         * Test_Framework/MPC/ndds_ts_defaults.mpb:
         * Test_Framework/MPC/nddsexe.mpb:
@@ -1115,7 +1121,7 @@ Mon Sep 11 21:11:19 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
           Studio projects generated for such tests will then
           execute the nddsgen script on the specified IDL file(s)
           automatically.
-          
+
         * examples/TestFrameworkExamples/Simple/Simple.idl:
         * examples/TestFrameworkExamples/Simple/Simple.mpc:
         * examples/TestFrameworkExamples/Simple/Simple.mwc:
@@ -1124,7 +1130,7 @@ Mon Sep 11 21:11:19 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * examples/TestFrameworkExamples/Simple/SimpleSubNDDS.cpp:
         * examples/TestFrameworkExamples/Simple/SimpleSubTAODDS.cpp:
         * examples/TestFrameworkExamples/Simple/main.cpp:
-        
+
           New files, comprising a new examples that demonstrates the
           use of the Test Framework library. So far, the example
           includes executables for an NDDS publisher, and NDDS
@@ -1139,14 +1145,14 @@ Mon Sep 11 14:26:22 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * performanace/throughput/NDDS/TP_PacketPlugin.h:
         * performanace/throughput/NDDS/TP_PacketSupport.cxx:
         * performanace/throughput/NDDS/TP_PacketSupport.h:
-        
+
           Removed these files, since they are generated by the
           action of the nddsgen script on TP_Packet.idl.
 
 Fri Sep  8 22:47:01 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Test_Framework/README:
-        
+
           Added a list of outstanding issues, some of them
           vendor-specific.
 
@@ -1162,7 +1168,7 @@ Fri Sep  8 22:19:44 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
         * Test_Framework/TAO_DDS_Test_Sub_T.h:
         * Test_Framework/TAO_DDS_Test_T.cpp:
         * Test_Framework/TAO_DDS_Test_T.h:
-        
+
           Minor changes resulting from debugging very simple
           test runs.
 
