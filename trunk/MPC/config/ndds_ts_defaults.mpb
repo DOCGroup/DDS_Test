@@ -6,9 +6,9 @@ project {
     automatic             = 1
     command               = $(NDDSHOME)/scripts/rtiddsgen
     dependent             = $(NDDSHOME)/scripts/rtiddsgen
-    source_pre_extension  = , , Support, Plugin
+    source_pre_extension  = , Support, Plugin
     source_outputext      = .cxx
-    header_pre_extension  = , , Support, Plugin
+    header_pre_extension  = , Support, Plugin
     header_outputext      = .h
     keyword ndds_ts_flags = commandflags
   }
