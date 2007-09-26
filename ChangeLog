@@ -1,3 +1,11 @@
+Wed Sep 26 20:27:30 UTC 2007  Abdullah Sowayan  <abdullah.sowayan@lmco.com>
+
+        * MPC/config/ndds_ts_defaults.mpb:
+        * MPC/config/splice_ts_defaults.mpb:
+
+          Removed extra colons in mpb files. The extra colons cause make warnings
+          to appear while building. Thanks to Chad Elliott for pointing that out.
+
 Wed Aug 22 18:12:07 UTC 2007  Abdullah Sowayan  <abdullah.sowayan@lmco.com>
 
         * MPC/config/nddslib.mpb:
