@@ -1,8 +1,8 @@
 // $Id$
 
-#if defined (TAO_DDS_CONFIG)
-
 #include "TAO_DDS_Listeners.h"
+
+#if defined (TAO_DDS_CONFIG)
 
 TAO_DDS_DataWriterListener::TAO_DDS_DataWriterListener (void)
 {}

@@ -9,17 +9,19 @@
 
 #include "TAO_DDS_Listeners.h"
 
-#include "dds/DCPS/PublisherImpl.h"
+#include "dds/DCPS/SubscriberImpl.h"
 #include "dds/DCPS/Marked_Default_Qos.h"
 
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::TAO_DDS_Test_Sub_T (void)
+                   DATA_READER_IMPL,
+                   DATA_READER>::TAO_DDS_Test_Sub_T (void)
   : data_reader_servant_ (0),
     data_verifier_ (0)
 {
@@ -28,23 +30,27 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::~TAO_DDS_Test_Sub_T (void)
+                   DATA_READER_IMPL,
+                   DATA_READER>::~TAO_DDS_Test_Sub_T (void)
 {
 }
 
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 int
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::Init (int argc, char *argv[])
+                   DATA_READER_IMPL,
+                   DATA_READER>::Init (int argc, char *argv[])
 {
   ACE_TRY
     {
@@ -103,12 +109,14 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 int
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::SetReaderListener (
+                   DATA_READER_IMPL,
+                   DATA_READER>::SetReaderListener (
   DDS::DataReaderListener *listener,
   DDS::StatusMask mask)
 {
@@ -145,12 +153,14 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 void
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::SetDataVerifier (
+                   DATA_READER_IMPL,
+                   DATA_READER>::SetDataVerifier (
   DATA_VERIFIER verifier)
 {
   this->data_verifier_ = verifier;
@@ -159,12 +169,14 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 int
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::Run (void)
+                   DATA_READER_IMPL,
+                   DATA_READER>::Run (void)
 {
   // If user has called Run without having called Init first,
   // this will save us some trouble.
@@ -203,12 +215,14 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 int
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::CreateSubscriber (void)
+                   DATA_READER_IMPL,
+                   DATA_READER>::CreateSubscriber (void)
 {
   this->topic_description_ =
       this->participant_->lookup_topicdescription (
@@ -241,10 +255,8 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
     }
     
   // Get the subscriber servant for attaching the transport.
-  TAO::DCPS::SubscriberImpl* sub_impl =
-    TAO::DCPS::reference_to_servant<
-      TAO::DCPS::SubscriberImpl,
-      DDS::Subscriber_ptr> (this->subscriber_.in ());
+  OpenDDS::DCPS::SubscriberImpl * sub_impl =
+    dynamic_cast<OpenDDS::DCPS::SubscriberImpl*> (this->subscriber_.in ());
 
   if (sub_impl == 0)
     {
@@ -270,25 +282,25 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 int
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::CreateDataReader (void)
+                   DATA_READER_IMPL,
+                   DATA_READER>::CreateDataReader (void)
 {
   DataReaderListener_T<TAO_DDS_DataReaderListener,
                        DDS::DataReader> *servant =
     new DataReaderListener_T<TAO_DDS_DataReaderListener,
                              DDS::DataReader> (this);
-  this->safe_dr_listener_ = servant; 
   
   // This listener overrides only on_data_available), the one
   // necessary callback.
   // Users can reset this later with a hand-written listener.  
   this->data_reader_listener_ =
-    TAO::DCPS::servant_to_reference_2<DDS::DataReaderListener> (
-      servant);
+    dynamic_cast <DDS::DataReaderListener_ptr> (servant);
     
   this->data_reader_ =
     this->subscriber_->create_datareader (this->topic_description_.in (),
@@ -302,7 +314,7 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
     }
     
   this->typed_data_reader_ =
-    DATA_READER_IMPL::_stub_type::_narrow (this->data_reader_.in ());
+    DATA_READER::_narrow (this->data_reader_.in ());
     
   if (CORBA::is_nil (this->typed_data_reader_.in ()))
     {
@@ -311,10 +323,7 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
     }
     
   this->data_reader_servant_ =
-    TAO::DCPS::reference_to_servant<
-      DATA_READER_IMPL,
-      typename DATA_READER_IMPL::_stub_ptr_type> (
-        this->typed_data_reader_.in ());
+  dynamic_cast <DATA_READER_IMPL *> (this->typed_data_reader_.in ());
         
   if (this->data_reader_servant_ == 0)
     {
@@ -329,12 +338,14 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 void
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::Read (void)
+                   DATA_READER_IMPL,
+                   DATA_READER>::Read (void)
 {
   DATA_TYPE_SEQ sample_seq;
   DDS::SampleInfoSeq info_seq;
@@ -378,12 +389,14 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 int
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::Fini (void)
+                   DATA_READER_IMPL,
+                   DATA_READER>::Fini (void)
 {
   while (!this->IsFinished ())
     {
@@ -408,7 +421,7 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
       this->RetcodeErrorMsg ("Fini", "delete_subscriber", retcode);
     }
     
-  if (this->TAO_DDS_Test_T<DATA_TYPE, TYPE_SUPPORT_IMPL>::Fini () != 0)
+  if (this->TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>::Fini () != 0)
     {
       // Error message already output.
       return -1;
@@ -420,12 +433,14 @@ TAO_DDS_Test_Sub_T<DATA_TYPE,
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 bool
 TAO_DDS_Test_Sub_T<DATA_TYPE,
                    DATA_TYPE_SEQ,
                    TYPE_SUPPORT_IMPL,
-                   DATA_READER_IMPL>::IsFinished (void)
+                   DATA_READER_IMPL,
+                   DATA_READER>::IsFinished (void)
 {
   DDS::InstanceHandleSeq handles;
   DDS::ReturnCode_t retcode =

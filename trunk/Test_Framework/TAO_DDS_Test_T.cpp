@@ -30,7 +30,7 @@ template<typename TYPE_SUPPORT_IMPL>
 int
 TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>::Init (int argc, char *argv[])
 {
-  int status = this->TAO_DDS_Common::Init (argc, arv);
+  int status = this->TAO_DDS_Common::Init (argc, argv);
   
   if (status != 0)
     {
@@ -40,7 +40,6 @@ TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>::Init (int argc, char *argv[])
     
   // Used in type registration and topic creation.  
   this->ts_servant_ = new TYPE_SUPPORT_IMPL ();       
-  this->safe_ts_servant_ = this->ts_servant_; 
   
   return 0;
 }
@@ -58,11 +57,7 @@ template<typename TYPE_SUPPORT_IMPL>
 DDS::ReturnCode_t
 TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>::RegisterType (void)
 {
-  typename TYPE_SUPPORT_IMPL::_stub_var_type ts =
-    TAO::DCPS::servant_to_reference_2<
-      TYPE_SUPPORT_IMPL::_stub_type> (this->ts_servant_);
-    
-  return ts->register_type (this->participant_.in (),
+  return ts_servant_->register_type (this->participant_.in (),
                             this->ts_servant_->get_type_name ());
 }
 
@@ -88,7 +83,7 @@ TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>::CreateTopic (void)
 template<typename TYPE_SUPPORT_IMPL>
 int
 TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>::DataTypeAndTopic (
-  const char *entity_type)
+  const char *)
 {
   DDS::ReturnCode_t retcode = this->RegisterType ();
   
@@ -110,4 +105,3 @@ TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>::DataTypeAndTopic (
 #endif /* TAO_DDS_CONFIG */
 
 #endif /* TAO_DDS_TEST_T_CPP */
-

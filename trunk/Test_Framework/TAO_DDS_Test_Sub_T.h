@@ -15,6 +15,7 @@
 #ifndef TAO_DDS_TEST_SUB_T_H
 #define TAO_DDS_TEST_SUB_T_H
 
+#include "TAO_DDS_Sub.h"
 #include "TAO_DDS_Test_T.h"
 
 #ifdef TAO_DDS_CONFIG
@@ -31,9 +32,11 @@
 template<typename DATA_TYPE,
          typename DATA_TYPE_SEQ,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_READER_IMPL>
+         typename DATA_READER_IMPL,
+         typename DATA_READER>
 class TAO_DDS_Test_Sub_T
-  : public TAO_DDS_Test_T<DATA_TYPE, TYPE_SUPPORT_IMPL>
+  : public TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>,
+    public TAO_DDS_Sub
 {
 public:
   typedef bool (*DATA_VERIFIER)(const DATA_TYPE &);
@@ -62,7 +65,7 @@ private:
   DDS::SubscriberListener_var subscriber_listener_;
 
   DDS::DataReader_var data_reader_;
-  typename DATA_READER_IMPL::_stub_var_type typed_data_reader_;
+  typename DATA_READER::_var_type typed_data_reader_;
   DATA_READER_IMPL *data_reader_servant_;
   DDS::DataReaderQos data_reader_qos_;
   

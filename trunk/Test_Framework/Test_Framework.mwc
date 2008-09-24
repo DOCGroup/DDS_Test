@@ -1,0 +1,6 @@
+// -*- MPC -*-
+// $Id: Test_Framework.mwc 118 2006-09-11 22:28:23Z parsons $
+
+workspace {
+  cmdline += -include MPC/config
+}

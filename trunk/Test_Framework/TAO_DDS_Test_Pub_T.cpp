@@ -15,14 +15,15 @@
 
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+	 typename DATA_WRITER>
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
-                   DATA_WRITER_IMPL>::TAO_DDS_Test_Pub_T (void)
+                   DATA_WRITER_IMPL,
+		   DATA_WRITER>::TAO_DDS_Test_Pub_T (void)
   : TestBase (),
     TAO_DDS_Common (),
     TAO_DDS_Test_T<TYPE_SUPPORT_IMPL> (),
-    TAO_DDS_Test_Pub (),
     data_writer_servant_ (0),
     data_initializer_ (0)
 {
@@ -30,20 +31,24 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
 
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+	 typename DATA_WRITER>
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
-                   DATA_WRITER_IMPL>::~TAO_DDS_Test_Pub_T (void)
+                   DATA_WRITER_IMPL,
+		   DATA_WRITER>::~TAO_DDS_Test_Pub_T (void)
 {
 }
 
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+	 typename DATA_WRITER>
 int
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
-                   DATA_WRITER_IMPL>::Init (int argc, char *argv[])
+                   DATA_WRITER_IMPL,
+		   DATA_WRITER>::Init (int argc, char *argv[])
 {
   ACE_TRY
     {
@@ -101,11 +106,13 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
 
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+	 typename DATA_WRITER>
 int
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
-                   DATA_WRITER_IMPL>::SetWriterListener (
+                   DATA_WRITER_IMPL,
+		   DATA_WRITER>::SetWriterListener (
   DDS::DataWriterListener *listener,
   DDS::StatusMask mask)
 {
@@ -141,11 +148,13 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
 
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+	 typename DATA_WRITER>
 void
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
-                   DATA_WRITER_IMPL>::SetDataInitializer (
+                   DATA_WRITER_IMPL,
+		   DATA_WRITER>::SetDataInitializer (
   DATA_INITIALIZER initializer)
 {
   this->data_initializer_ = initializer;
@@ -153,11 +162,13 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
 
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+	 typename DATA_WRITER>
 int
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
-                   DATA_WRITER_IMPL>::Run (void)
+                   DATA_WRITER_IMPL,
+		   DATA_WRITER>::Run (void)
 {
   // If user has called Run without having called Init first,
   // this will save us some trouble.
@@ -200,11 +211,13 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
 
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+	 typename DATA_WRITER>
 int
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
-                   DATA_WRITER_IMPL>::CreatePublisher (void)
+                   DATA_WRITER_IMPL,
+		   DATA_WRITER>::CreatePublisher (void)
 {
   ACE_TRY
     {
@@ -227,10 +240,9 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
         }
         
       // Get the publisher servant for attaching the transport.
-      TAO::DCPS::PublisherImpl *pub_impl =
-        TAO::DCPS::reference_to_servant <
-          TAO::DCPS::PublisherImpl,
-          DDS::Publisher_ptr> (this->publisher_.in ());
+      OpenDDS::DCPS::PublisherImpl *pub_impl =
+        dynamic_cast <OpenDDS::DCPS::PublisherImpl*> (
+	  this->publisher_.in ());
           
       if (pub_impl == 0)
         {
@@ -269,24 +281,24 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
 
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+	 typename DATA_WRITER>
 int
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
-                   DATA_WRITER_IMPL>::CreateDataWriter (void)
+                   DATA_WRITER_IMPL,
+		   DATA_WRITER>::CreateDataWriter (void)
 {
   DataWriterListener_T<TAO_DDS_DataWriterListener,
                        DDS::DataWriter> *servant =
     new DataWriterListener_T<TAO_DDS_DataWriterListener,
                              DDS::DataWriter>;
-  this->safe_dw_listener_ = servant;
     
   // This listener overrides only on_publication_matched(), a useful
   // callback for making sure all subscribers are ready.
   // Users can reset this later with a hand-written listener.  
   this->data_writer_listener_ =
-    TAO::DCPS::servant_to_reference_2<DDS::DataWriterListener> (
-      servant);
+    dynamic_cast <DDS::DataWriterListener*> (servant);
     
   this->data_writer_ =
     this->publisher_->create_datawriter (this->topic_.in (),
@@ -300,8 +312,8 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
     }
     
   this->typed_data_writer_ =
-    DATA_WRITER_IMPL::_stub_type::_narrow (this->data_writer_.in ());
-    
+    DATA_WRITER::_narrow (this->data_writer_.in ());
+
   if (CORBA::is_nil (this->typed_data_writer_.in ()))
     {
       this->NullReturnErrorMsg ("CreateDataWriter", "_narrow");
@@ -309,10 +321,7 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
     }
     
   this->data_writer_servant_ =
-    TAO::DCPS::reference_to_servant<
-      DATA_WRITER_IMPL,
-      typename DATA_WRITER_IMPL::_stub_ptr_type> (
-        this->typed_data_writer_.in ());
+    dynamic_cast<DATA_WRITER_IMPL *> (this->typed_data_writer_.in ());
         
   if (this->data_writer_servant_ == 0)
     {
@@ -326,11 +335,13 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
 
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+	 typename DATA_WRITER>
 int
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
-                   DATA_WRITER_IMPL>::Write (void)
+                   DATA_WRITER_IMPL,
+		   DATA_WRITER>::Write (void)
 {
   DDS::InstanceHandleSeq handles;
   this->data_writer_->get_matched_subscriptions (handles);
@@ -375,11 +386,13 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
 
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+	 typename DATA_WRITER>
 int
 TAO_DDS_Test_Pub_T<DATA_TYPE,
                    TYPE_SUPPORT_IMPL,
-                   DATA_WRITER_IMPL>::Fini (void)
+                   DATA_WRITER_IMPL,
+		   DATA_WRITER>::Fini (void)
 {
   while (!this->IsFinished ())
     {
@@ -405,7 +418,7 @@ TAO_DDS_Test_Pub_T<DATA_TYPE,
       this->RetcodeErrorMsg ("Fini", "delete_publisher", retcode);
     }
     
-  if (this->TAO_DDS_Test_T<DATA_TYPE, TYPE_SUPPORT_IMPL>::Fini () != 0)
+  if (this->TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>::Fini () != 0)
     {
       // Error message already output.
       return -1;

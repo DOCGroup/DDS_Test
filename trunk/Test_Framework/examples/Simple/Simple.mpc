@@ -1,0 +1,128 @@
+//project(SimplePubNDDS): nddsexe_with_idl, ddstest {
+//  exename   = simple_pub_ndds
+//  
+//  NDDSTypeSupport_Files {
+//    Simple.idl
+//  }
+//
+//  Source_Files {
+//    SimplePubNDDS.cpp 
+//    Simple.cxx
+//    SimplePlugin.cxx
+//    SimpleSupport.cxx
+//  }
+//
+//  Header_Files {
+//    Simple.h
+//    SimplePlugin.h
+//    SimpleSupport.h
+//  }
+//}
+//
+//project(SimpleSubNDDS): nddsexe_with_idl , ddstest {
+//  exename   = simple_sub_ndds
+//
+//  NDDSTypeSupport_Files {
+//    Simple.idl >> Simple.cxx \
+//                  Simple.h \
+//                  SimplePlugin.cxx \
+//                  SimplePlugin.h \
+//                  SimpleSupport.cxx \
+//                  SimpleSupport.h
+//  }
+//
+//  Source_Files {
+//    SimpleSubNDDS.cpp
+//    Simple.cxx
+//    SimplePlugin.cxx
+//    SimpleSupport.cxx
+//  }
+//  
+//  Header_Files {
+//    Simple.h
+//    SimplePlugin.h
+//    SimpleSupport.h
+//  }
+//}
+
+project(SimplePubTAODDS): dcpsexe, portableserver, ddstest {
+  exename   = simple_pub_taodds
+  includes += ../..
+  libpaths += ../..
+  idlflags -= -GT
+  idlflags += -St
+//  dcps_ts_flags += --module=Mine
+
+  TypeSupport_Files {
+    Simple.idl >> SimpleTypeSupport.idl \
+                  SimpleTypeSupportImpl.h \
+                  SimpleTypeSupportImpl.cpp
+  }
+
+  Header_Files {
+    SimpleTypeSupportC.h
+    SimpleTypeSupportImpl.h
+    SimpleTypeSupportS.h
+    SimpleC.h
+    SimpleS.h
+  }
+
+  Source_Files {
+    SimpleTypeSupportC.cpp
+    SimpleTypeSupportImpl.cpp
+    SimpleTypeSupportS.cpp
+    SimplePubTAODDS.cpp
+    SimpleC.cpp
+    SimpleS.cpp
+  }
+  
+  Template_Files {
+  }
+
+  
+  IDL_Files {
+    SimpleTypeSupport.idl
+    Simple.idl
+  }
+}
+
+project(SimpleSubTAODDS): dcpsexe, portableserver, ddstest {
+  exename   = simple_sub_taodds
+  includes += ../..
+  libpaths += ../..
+  idlflags -= -GT
+  idlflags += -St
+//  dcps_ts_flags += --module=Mine
+
+  Header_Files {
+    SimpleTypeSupportC.h
+    SimpleTypeSupportImpl.h
+    SimpleTypeSupportS.h
+    SimpleC.h
+    SimpleS.h
+  }
+
+  Source_Files {
+    SimpleTypeSupportC.cpp
+    SimpleTypeSupportImpl.cpp
+    SimpleTypeSupportS.cpp
+    SimpleSubTAODDS.cpp
+    SimpleC.cpp
+    SimpleS.cpp
+  }
+  
+  Template_Files {
+  }
+
+  TypeSupport_Files {
+    Simple.idl >> SimpleTypeSupport.idl \
+                  SimpleTypeSupportImpl.h \
+                  SimpleTypeSupportImpl.cpp
+  }
+  
+  IDL_Files {
+    SimpleTypeSupport.idl
+    Simple.idl
+  }
+}
+
