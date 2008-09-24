@@ -30,7 +30,10 @@
  *
  */
 class Test_Framework_Export TAO_DDS_DataWriterListener
-  : public virtual POA_DDS::DataWriterListener, // see DataWriterListener_T.h
+:
+#ifdef PORT_TO_OPENDDS
+    public virtual POA_OpenDDS::DataWriterListener, // see DataWriterListener_T.h
+#endif
     public virtual PortableServer::RefCountServantBase
 {
 public:
@@ -45,7 +48,10 @@ public:
  *
  */
 class Test_Framework_Export TAO_DDS_DataReaderListener
-  : public virtual POA_DDS::DataReaderListener, // see DataReaderListener_T.h
+: 
+#ifdef PORT_TO_OPENDDS
+    public virtual POA_DDS::DataReaderListener, // see DataReaderListener_T.h
+#endif
     public virtual PortableServer::RefCountServantBase
 {
 public:

@@ -1,0 +1,40 @@
+//  -*- MPC -*- now wouldn't this be cool...
+// $Id: deepbase.mpb 304 2007-05-16 17:55:13Z parsons $
+
+project : xerces {
+  exename   = deepParticipant
+  includes += actors \
+			        readerWriter \
+			        readerWriter/impl \
+			        scenario \
+			        settingsParser \
+  
+  Source_Files {
+    actors/impl
+    ^actors/impl/Laptimer_impl.cpp
+    main
+    readerWriter/impl
+    scenario/impl
+    settingsParser/impl
+  }
+  
+  Header_Files {
+    actors
+    ^actors/impl/Laptimer_impl.h
+    readerWriter/*.h
+    readerWriter/impl
+    scenario
+    settingsParser
+  }
+  
+  // This can be removed when we build DEEP as a lib
+  specific(vc71,vc8) {
+    macros += _WINDOWS
+  }
+
+  specific(vc8) {
+    DisableSpecificWarnings += 4290 4250
+    macros += _CRT_SECURE_NO_WARNINGS
+  }
+}
+

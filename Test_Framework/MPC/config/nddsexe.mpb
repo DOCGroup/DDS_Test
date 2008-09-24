@@ -1,0 +1,5 @@
+// -*- MPC -*-
+// $Id: nddsexe.mpb 261 2007-04-27 21:18:50Z parsons $
+
+project : nddslib {
+}

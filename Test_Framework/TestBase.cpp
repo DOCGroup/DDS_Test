@@ -2,7 +2,7 @@
 
 #include "TestBase.h"
 #include "ace/Sched_Params.h"
-#include "ace/Streams.h"
+#include "ace/streams.h"
 #include "ace/Log_Msg.h"
 
 TestBase::TestBase (void)
@@ -127,22 +127,22 @@ TestBase::ParseArgs (ACE_Arg_Shifter &arg_shifter)
 void
 TestBase::Usage (void) const
 {
-  cout << "General Usage:" << endl
-       << "\t[-domain #]       - domain id" << endl
-       << "\t[-test \"\"]      - test description" << endl
-       << "\t[-id #]           - DDS entity id" << endl
-       << "\t[-size #]         - length of payload sequence" << endl
-       << "\t[-topic \"\"]     - topic name" << endl
-       << "\t[-protocol \"\"]  - name of transport protocol" << endl
-       << "\t[-transport \"\"] - unicast | multicast | broadcast" << endl
-       << "\t[-notify \"\"]    - listener | waitset" << endl
-       << "\t[-readers #]      - number of data readers" << endl
-       << "\t[-writers #]      - number of data writers" << endl
-       << "\t[-primer #]       - number of primer samples" << endl
-       << "\t[-stats #]        - number of stats samples" << endl
-       << "\t[-net \"\"]       - network settings filename" << endl
-       << "\t[-qos \"\"]       - QoS settings filename" << endl
-       << "\t[-results \"\"]   - results output filename" << endl;
+  std::cout << "General Usage:" << std::endl
+	    << "\t[-domain #]       - domain id" << std::endl
+	    << "\t[-test \"\"]      - test description" << std::endl
+	    << "\t[-id #]           - DDS entity id" << std::endl
+	    << "\t[-size #]         - length of payload sequence" << std::endl
+	    << "\t[-topic \"\"]     - topic name" << std::endl
+	    << "\t[-protocol \"\"]  - name of transport protocol" << std::endl
+	    << "\t[-transport \"\"] - unicast | multicast | broadcast" << std::endl
+	    << "\t[-notify \"\"]    - listener | waitset" << std::endl
+	    << "\t[-readers #]      - number of data readers" << std::endl
+	    << "\t[-writers #]      - number of data writers" << std::endl
+	    << "\t[-primer #]       - number of primer samples" << std::endl
+	    << "\t[-stats #]        - number of stats samples" << std::endl
+	    << "\t[-net \"\"]       - network settings filename" << std::endl
+	    << "\t[-qos \"\"]       - QoS settings filename" << std::endl
+	    << "\t[-results \"\"]   - results output filename" << std::endl;
 }
 
 void
@@ -158,19 +158,19 @@ TestBase::SetSchedParams (void)
       switch (ACE_OS::last_error ())
         {
           case EPERM:
-            cout << "user is not superuser, "
-                 << "test runs in time-shared class" << endl;
+            std::cout << "user is not superuser, "
+		      << "test runs in time-shared class" << std::endl;
             break;
           case EINVAL:
-            cout << "priority " << this->priority_
-                 << " is invalid on this platform, test runs"
-                 << " in time-shared class"
-                 << endl;
+            std::cout << "priority " << this->priority_
+		      << " is invalid on this platform, test runs"
+		      << " in time-shared class"
+		      << std::endl;
             break;
           case ESRCH:
-            cout << "process id " << ACE_SCOPE_PROCESS
-                 << " not found, test runs in time-shared class"
-                 << endl;
+            std::cout << "process id " << ACE_SCOPE_PROCESS
+		      << " not found, test runs in time-shared class"
+		      << std::endl;
             break;
           default:
             // No other reasons why sched_params() can fail.
@@ -179,7 +179,7 @@ TestBase::SetSchedParams (void)
     }
   else
     {
-      cout << "real time priority successfully set!" << endl;
+      std::cout << "real time priority successfully set!" << std::endl;
     }
 }
 

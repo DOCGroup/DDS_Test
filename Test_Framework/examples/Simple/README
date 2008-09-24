@@ -1,0 +1,41 @@
+         Simple Test Framework Example
+         
+   September 11, 2006
+         
+This example uses a simple byte sequence for a data type
+and shows how a simple test can be written and run by
+relying on the Test Framework library to handle most of
+the implementation differences, as well as the differences
+between pub and sub code.
+
+The 4 executables built in this directory at present 
+include
+
+NDDS publisher
+NDDS subscriber
+TAO DDS publisher
+TAO DDS subscriber
+
+All 4 executables share the same IDL and main() driver.
+This example will be added to and elaborated piecemeal
+as support for additional features is added. There will
+also be support added for OpenSplice, after similar
+support has been added to the Test Framework library.
+
+So far, actual communication between publisher and
+subscriber has not yet been tested, but for each
+implementation, the typical pub and/or sub actions:
+
+- resolution of the domain participant factory
+- participant creation
+- publisher creation
+- subscriber creation
+- data writer creation
+- data reader creation
+- listener creation
+- waitset creation
+- implementation-specific transport configuration
+- default QoS initialization of all entities
+- cleanup of all entities
+
+have been tried and found to execute successfully.

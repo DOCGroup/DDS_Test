@@ -1,0 +1,22 @@
+// -*- MPC -*-
+// $Id: splice_ts_defaults.mpb 309 2007-09-26 20:40:13Z sowayaa $
+
+project {
+  Define_Custom(SpliceTypeSupport) {
+    automatic             = 1
+    command               = <%quote%>$(OSPL_HOME)/bin/idlpp<%quote%>
+    dependent             = <%quote%>$(OSPL_HOME)/bin/idlpp<%quote%>
+    source_pre_extension  = , Dcps, SplDcps, Dcps_impl
+    source_outputext      = .cpp
+    header_pre_extension  = , Dcps, SplDcps, Dcps_impl
+    header_pre_filename   = , ccpp_
+    header_outputext      = .h
+    generic_pre_extension = Dcps
+    generic_outputext     = .idl
+    keyword splice_ts_flags = commandflags
+  }
+
+  splice_ts_flags += \
+    -I <%quote%>$(OSPL_HOME)/include/dcps/C++/SACPP<%quote%> \
+    -l cpp -S
+}

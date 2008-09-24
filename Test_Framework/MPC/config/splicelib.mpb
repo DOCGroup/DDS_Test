@@ -1,0 +1,14 @@
+// -*- MPC -*-
+// $Id: splicelib.mpb 261 2007-04-27 21:18:50Z parsons $
+
+project {
+  lit_libs    += ddsdatabase dcpssacpp
+  libpaths    += $(OSPL_HOME)/lib
+  includes    += $(OSPL_HOME)/include \
+                 $(OSPL_HOME)/include/sys \
+                 $(OSPL_HOME)/include/dcps/C++/SACPP
+                 
+  specific(nmake, vc71, vc8) {
+    DisableSpecificWarnings += 4101
+  }
+}

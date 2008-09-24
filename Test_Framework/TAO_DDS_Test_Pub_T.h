@@ -31,7 +31,8 @@
  */
 template<typename DATA_TYPE,
          typename TYPE_SUPPORT_IMPL,
-         typename DATA_WRITER_IMPL>
+         typename DATA_WRITER_IMPL,
+         typename DATA_WRITER>
 class TAO_DDS_Test_Pub_T
   : public virtual TAO_DDS_Test_T<TYPE_SUPPORT_IMPL>,
     public virtual TAO_DDS_Pub
@@ -61,7 +62,7 @@ private:
   DDS::PublisherListener_var publisher_listener_;
 
   DDS::DataWriter_var data_writer_;
-  typename DATA_WRITER_IMPL::_stub_var_type typed_data_writer_;
+  typename DATA_WRITER::_var_type typed_data_writer_;
   DATA_WRITER_IMPL *data_writer_servant_;
   DDS::DataWriterQos data_writer_qos_;
   
@@ -74,7 +75,8 @@ private:
 #define TAO_DDS_PUB_SETUP(DATATYPE) \
   TAO_DDS_Test_Pub_T<DATATYPE, \
                      DATATYPE ## TypeSupportImpl, \
-                     DATATYPE ## DataWriterImpl> tao_dds_pub
+                     DATATYPE ## DataWriterImpl, \
+                     DATATYPE ## DataWriter> tao_dds_pub
 
 #if defined (ACE_TEMPLATES_REQUIRE_SOURCE)
 #include "TAO_DDS_Test_Pub_T.cpp"
@@ -84,5 +86,6 @@ private:
 #pragma implementation ("TAO_DDS_Test_Pub_T.cpp")
 #endif /* ACE_TEMPLATES_REQUIRE_PRAGMA */
 
-#endif /* TAO_DDS_TEST_PUB_T_H */
+#endif /* TAO_DDS_CONFIG */
 
+#endif /* TAO_DDS_TEST_PUB_T_H */

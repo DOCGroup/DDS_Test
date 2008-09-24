@@ -49,9 +49,6 @@ protected:
 
 #if defined (ACE_TEMPLATES_REQUIRE_SOURCE)
 #include "TAO_DDS_Test_T.cpp"
-#endif /* TAO_DDS_TEST_T_H */
-
-
 #endif /* ACE_TEMPLATES_REQUIRE_SOURCE */
 
 #if defined (ACE_TEMPLATES_REQUIRE_PRAGMA)
@@ -61,4 +58,3 @@ protected:
 #endif /* TAO_DDS_CONFIG */
 
 #endif /* TAO_DDS_TEST_T_H */
-

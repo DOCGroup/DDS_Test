@@ -1,0 +1,5 @@
+// -*- MPC -*-
+// $Id: nddslib_with_idl.mpb 261 2007-04-27 21:18:50Z parsons $
+
+project : nddslib, ndds_ts_defaults {
+}
