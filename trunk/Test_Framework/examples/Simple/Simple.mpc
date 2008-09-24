@@ -47,8 +47,6 @@
 
 project(SimplePubTAODDS): dcpsexe, portableserver, ddstest {
   exename   = simple_pub_taodds
-  includes += ../..
-  libpaths += ../..
   idlflags -= -GT
   idlflags += -St
 //  dcps_ts_flags += --module=Mine
@@ -88,8 +86,6 @@ project(SimplePubTAODDS): dcpsexe, portableserver, ddstest {
 
 project(SimpleSubTAODDS): dcpsexe, portableserver, ddstest {
   exename   = simple_sub_taodds
-  includes += ../..
-  libpaths += ../..
   idlflags -= -GT
   idlflags += -St
 //  dcps_ts_flags += --module=Mine
