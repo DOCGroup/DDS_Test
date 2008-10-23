@@ -1,3 +1,137 @@
+Thu Oct 23 17:28:47 UTC 2008  Mike Martinez  <martinez_m@ociweb.com>
+
+        * DEEP/readerWriter/generated/OpenDDS:
+        * DEEP/vendorAbstraction/OpenDDS:
+        * DEEP/vendorAbstraction/OpenDDS/implAbstraction.h:
+        * DEEP/vendorAbstraction/OpenDDS/inclAbstraction.h:
+        * DEEP/DEEP_OpenDDS.mpc:
+
+	  Modified to work with current trunk revision of OpenDDS.
+
+        * DEEP/readerWriter/generated/TAO_DDS:
+        * DEEP/vendorAbstraction/TAO_DDS:
+        * DEEP/vendorAbstraction/TAO_DDS/implAbstraction.h:
+        * DEEP/vendorAbstraction/TAO_DDS/inclAbstraction.h:
+
+	  Moved these to the OpenDDS named directories and modified to
+	  work with current trunk revision of OpenDDS.
+
+        * DEEP/DEEP_framework_export.h:
+        * DEEP/README:
+        * DEEP/VERSION:
+        * DEEP/actors/Actor.h:
+        * DEEP/actors/impl/Actor_impl.h:
+        * DEEP/actors/impl/Actor_impl.cpp:
+        * DEEP/actors/impl/Laptimer_impl.h:
+        * DEEP/actors/impl/Laptimer_impl.cpp:
+        * DEEP/actors/impl/Reflector_impl.h:
+        * DEEP/actors/impl/Reflector_impl.cpp:
+        * DEEP/actors/impl/Sink_impl.h:
+        * DEEP/actors/impl/Sink_impl.cpp:
+        * DEEP/actors/impl/Source_impl.h:
+        * DEEP/actors/impl/Source_impl.cpp:
+        * DEEP/actors/impl/build.sh:
+        * DEEP/autobuild/update_build_scoreboard.sh:
+        * DEEP/build_OpenSplice.sh:
+        * DEEP/build_RTI.sh:
+        * DEEP/doc/VendorSpecificIssues.html:
+        * DEEP/exec/OpenSplice/ospl.xml:
+        * DEEP/exec/OpenSplice/route.sh:
+        * DEEP/exec/OpenSplice/run.sh:
+        * DEEP/exec/OpenSplice/run_Reflector.sh:
+        * DEEP/exec/OpenSplice/run_Source_Sink.sh:
+        * DEEP/exec/RTI/run.sh:
+        * DEEP/exec/RTI/run_Reflector.sh:
+        * DEEP/exec/RTI/run_Source_Sink_1_to_1.sh:
+        * DEEP/exec/RTI/run_Source_Sink_1_to_12.sh:
+        * DEEP/exec/RTI/run_Source_Sink_1_to_4.sh:
+        * DEEP/exec/RTI/run_Source_Sink_1_to_8.sh:
+        * DEEP/exec/scenario1024.xml:
+        * DEEP/exec/scenario128.xml:
+        * DEEP/exec/scenario16.xml:
+        * DEEP/exec/scenario16384.xml:
+        * DEEP/exec/scenario2048.xml:
+        * DEEP/exec/scenario256.xml:
+        * DEEP/exec/scenario32.xml:
+        * DEEP/exec/scenario32768.xml:
+        * DEEP/exec/scenario4.xml:
+        * DEEP/exec/scenario4096.xml:
+        * DEEP/exec/scenario512.xml:
+        * DEEP/exec/scenario64.xml:
+        * DEEP/exec/scenario8.xml:
+        * DEEP/exec/scenario8192.xml:
+        * DEEP/main/build.sh:
+        * DEEP/main/deepParticipant.cpp:
+        * DEEP/readerWriter/GenericReader.h:
+        * DEEP/readerWriter/GenericWriter.h:
+        * DEEP/readerWriter/ReaderWriterFactory.h:
+        * DEEP/readerWriter/ReaderWriterTypes.h:
+        * DEEP/readerWriter/deepTypes.idl:
+        * DEEP/readerWriter/generated/OpenSplice/build.sh:
+        * DEEP/readerWriter/generated/OpenSplice/build_TypeSupport.sh:
+        * DEEP/readerWriter/generated/RTI/build.sh:
+        * DEEP/readerWriter/generated/RTI/build_TypeSupport.sh:
+        * DEEP/readerWriter/impl/GenericReader_impl.h:
+        * DEEP/readerWriter/impl/GenericWriter_impl.h:
+        * DEEP/readerWriter/impl/ReaderWriterFactory_impl.h:
+        * DEEP/readerWriter/impl/ReaderWriterFactory_impl.cpp:
+        * DEEP/readerWriter/impl/TypedFunctions.h:
+        * DEEP/readerWriter/impl/TypedFunctions.cpp:
+        * DEEP/readerWriter/impl/build.sh:
+        * DEEP/scenario/ActorSetting.h:
+        * DEEP/scenario/LaptimerSetting.h:
+        * DEEP/scenario/NamedSetting.h:
+        * DEEP/scenario/ParticipantSetting.h:
+        * DEEP/scenario/ReaderSetting.h:
+        * DEEP/scenario/ReflectorSetting.h:
+        * DEEP/scenario/ScenarioSetting.h:
+        * DEEP/scenario/SettingTypes.h:
+        * DEEP/scenario/SinkSetting.h:
+        * DEEP/scenario/SourceSetting.h:
+        * DEEP/scenario/TopicSetting.h:
+        * DEEP/scenario/WriterSetting.h:
+        * DEEP/scenario/impl/ActorSetting_impl.h:
+        * DEEP/scenario/impl/ActorSetting_impl.cpp:
+        * DEEP/scenario/impl/NamedSetting_impl.h:
+        * DEEP/scenario/impl/NamedSetting_impl.cpp:
+        * DEEP/scenario/impl/ParticipantSetting_impl.h:
+        * DEEP/scenario/impl/ParticipantSetting_impl.cpp:
+        * DEEP/scenario/impl/ReaderSetting_impl.h:
+        * DEEP/scenario/impl/ReaderSetting_impl.cpp:
+        * DEEP/scenario/impl/ReflectorSetting_impl.h:
+        * DEEP/scenario/impl/ReflectorSetting_impl.cpp:
+        * DEEP/scenario/impl/ScenarioSetting_impl.h:
+        * DEEP/scenario/impl/ScenarioSetting_impl.cpp:
+        * DEEP/scenario/impl/SinkSetting_impl.h:
+        * DEEP/scenario/impl/SinkSetting_impl.cpp:
+        * DEEP/scenario/impl/SourceSetting_impl.h:
+        * DEEP/scenario/impl/SourceSetting_impl.cpp:
+        * DEEP/scenario/impl/TopicSetting_impl.h:
+        * DEEP/scenario/impl/TopicSetting_impl.cpp:
+        * DEEP/scenario/impl/WriterSetting_impl.h:
+        * DEEP/scenario/impl/WriterSetting_impl.cpp:
+        * DEEP/scenario/impl/build.sh:
+        * DEEP/settingsParser/SettingsParserNode.h:
+        * DEEP/settingsParser/impl/SettingsParserDefault_impl.h:
+        * DEEP/settingsParser/impl/SettingsParserDefault_impl.cpp:
+        * DEEP/settingsParser/impl/SettingsParserXercesNode_impl.h:
+        * DEEP/settingsParser/impl/SettingsParserXercesNode_impl.cpp:
+        * DEEP/settingsParser/impl/SettingsParserXerces_impl.h:
+        * DEEP/settingsParser/impl/SettingsParserXerces_impl.cpp:
+        * DEEP/settingsParser/impl/build.sh:
+        * DEEP/vendorAbstraction/OpenSplice/implAbstraction.h:
+        * DEEP/vendorAbstraction/OpenSplice/inclAbstraction.h:
+        * DEEP/vendorAbstraction/RTI/implAbstraction.h:
+        * DEEP/vendorAbstraction/RTI/inclAbstraction.h:
+
+	  Made line endings native and added properties:
+	    svn:keywords : Author Date Id Revision
+	    svn:eol-style : native
+
+        * scripts/':
+
+          Removed this file.
+
 Wed Sep 26 20:27:30 UTC 2007  Abdullah Sowayan  <abdullah.sowayan@lmco.com>
 
         * MPC/config/ndds_ts_defaults.mpb:

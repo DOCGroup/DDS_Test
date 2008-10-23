@@ -1,5 +1,5 @@
 // -*- C++ -*-
-// $Id: DEEP_framework_export.h 174 2007-03-30 19:29:23Z parsons $
+// $Id$
 // Definition for Win32 Export directives.
 // ------------------------------
 
