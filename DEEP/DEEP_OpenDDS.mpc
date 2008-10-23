@@ -5,6 +5,21 @@ project (DEEP_OpenDDS) : dcpsexe_with_reliable_multicast, portableserver, deepba
   exeout   = exec/OpenDDS
   includes += readerWriter/generated/OpenDDS \
 			        vendorAbstraction/OpenDDS
+
+  includes += .
+  idlflags += -o readerWriter
+  dcps_ts_flags += -o readerWriter
+
+  TypeSupport_Files {
+    gendir = readerWriter
+    readerWriter/deepTypes.idl
+  }
+
+  IDL_Files {
+    readerWriter/deepTypes.idl
+    readerWriter/deepTypesTypeSupport.idl
+  }
+
   Source_Files {
     readerWriter/generated/OpenDDS
   }

@@ -10,12 +10,9 @@
 #include "dds/DCPS/Qos_Helper.h"
 #include "dds/DCPS/Service_Participant.h"
 #include "dds/DCPS/Marked_Default_Qos.h"
+#include "dds/DCPS/WaitSet.h"
 
-#include "simpleTypeTypeSupportImpl.h"
-#include "sequenceTypeTypeSupportImpl.h"
-#include "nestedTypeTypeSupportImpl.h"
-#include "arrayTypeTypeSupportImpl.h"
-#include "stringTypeTypeSupportImpl.h"
+#include "deepTypesTypeSupportImpl.h"
 
 #include <iostream>
 
@@ -42,11 +39,8 @@ inline char *DEEP_strdup(const char *source) {
                            typeName, \
                            result) \
   do { \
-  	typeSupportTypeName##TypeSupportImpl *servant = \
-  	  new typeSupportTypeName##TypeSupportImpl (); \
-  	PortableServer::ServantBase_var safe_servant = servant; \
   	typeSupportTypeName##TypeSupport_var typeSupport = \
-  	  TAO::DCPS::servant_to_reference (servant); \
+  	  new typeSupportTypeName##TypeSupportImpl (); \
   	result = typeSupport->register_type(domainParticipant, typeName); \
   } while (0)
 
@@ -80,8 +74,7 @@ DEEP_vendor_specific_readerqos_init (DDS::DataReaderQos readerQos)
 {
 	/* Nothing for OpenDDS */
 }
-/*
-// OpenDDS doesn't yet support WaitSets
+
 inline bool
 DEEP_waitSetWait (
   DDS::WaitSet &waitSet, // by reference, no copy constructor available 
@@ -89,7 +82,7 @@ DEEP_waitSetWait (
 {
   return false;
 }
-*/
+
 inline
 DDS::DomainParticipant_ptr DEEP_create_participant (const char *domainId)
 {
